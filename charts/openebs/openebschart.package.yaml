@@ -1,9 +1,0 @@
-packageName: openebs
-subcharts:
-  - name: targetchaos
-    CSV: openebstargetchaos.v0.1.0.chartserviceversion.yaml
-  - name: poolchaos
-    CSV: openebspoolchaos.v0.1.0.chartserviceversion.yaml
-  - name: controlplanechaos
-    CSV: openebscontrolplanechaos.v0.1.0.chartserviceversion.yaml
-
