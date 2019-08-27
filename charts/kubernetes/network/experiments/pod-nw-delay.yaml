@@ -1,0 +1,29 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: kubernetes-network-pod-nw-delay
+  version: {{ VERSION }}
+spec:
+  definition:
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/kubernetes/pod_nw_delay/test.yml -i /etc/ansible/hosts
+      -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    - name: TOTAL_CHAOS_DURATION
+      value: 15
+    - name: CHAOS_INTERVAL
+      value: 5
+    - name: LIB
+      value: ""
+    image: ""
+    labels:
+      name: pod-nw-delay
+    litmusbook: /experiments/chaos/kubernetes/pod_nw_delay/run_litmus_test.yml

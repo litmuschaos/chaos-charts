@@ -1,0 +1,8 @@
+packageName: kubernetes 
+subcharts:
+  - name: state
+    CSV: state.chartserviceversion.yaml 
+    desc: "pod-delete, container-kill"
+  - name: network
+    CSV: network.chartserviceversion.yaml
+    desc: "pod-network-delay, pod-network-loss"

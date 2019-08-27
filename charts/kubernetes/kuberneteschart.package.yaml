@@ -1,7 +1,0 @@
-packageName: kubernetes 
-subcharts:
-  - name: statechaos
-    CSV: statechaos.v0.1.0.chartserviceversion.yaml
-  - name: networkchaos
-    CSV: networkchaos.v0.1.0.chartserviceversion.yaml
-
