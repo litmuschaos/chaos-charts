@@ -1,21 +1,23 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-state 
+  name: openebss-state 
   annotations:
-    categories: "Kubernetes"
+    categories: "OpenEBS"
     vendor: "CNCF"
     createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
-    support: https://slack.kubernetes.io/
+    support: https://slack.openebs.io/
 spec:
   displayName: state 
   description: >
-    Contains chaos to disrupt state of kubernetes resources. 
-    Examples include pod-delete, container-kill
+    OpenEBS subchart sateChaos which contains chaos to disrupt state of openebs control-plane and  data-plane resources. Experiments can inject random pod-level and container level-failures against specified openebs  replicas. Install will add the following experiments
+    - target-pod-delete-exp.yaml
+
   keywords:
     - Kubernetes
     - State 
+    - OpenEBS
   version: {{ VERSION }}
   maturity: alpha
   maintainers:
@@ -26,9 +28,12 @@ spec:
     name: Mayadata
   links:
     - name: Kubernetes Website
-      url: https://kubernetes.io
+      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/openebs/openebs
   icon:
-    - base64data: ""
+    - url: ""
       mediatype: ""
+  experiments:
+    - target-pod-delete-exp.yaml
+

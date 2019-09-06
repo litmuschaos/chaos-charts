@@ -8,22 +8,15 @@ metadata:
     createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.openebs.io/
-    description: Injects generic kubernetes chaos 
+    description: Injects generic openebs chaos 
 spec:
-  displayName: Kubernetes
+  displayName: OpenEBS
   description: >
-    **Kubernetes** is an open-source system for automating deployment, scaling, and management of containerized 
-    applications. It groups containers that make up an application into logical units for easy management and discovery. 
-    Kubernetes builds upon 15 years of experience of running production workloads at Google, combined with best-of-breed 
-    ideas and practices from the community. 
+    **OpenEBS** is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. Install all will install the following subcharts
 
-    * **StateChaos** - Injects random pod-level and container level-failures against specified app replicas 
-
-    * **NetworkChaos** - Injects random network jitters, delays and packet loss on the app replica pods  
-
-    ## Getting Started
-    
-    * Learn more about these experiments [here](https://github.com/litmuschaos/litmus)
+    **State**
+  subcharts:
+    - State
 
   keywords:
     - OpenEBS
@@ -38,10 +31,10 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
+    - name: OpenEBS Website
+      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/openebs/openebs
   icon:
-    - base64data: ""
+    - url: 
       mediatype: image/png

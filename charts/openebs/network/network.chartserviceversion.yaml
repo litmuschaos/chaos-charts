@@ -1,21 +1,21 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-network 
+  name: openebs-network 
   annotations:
-    categories: "Kubernetes"
+    categories: "OpenEBS"
     vendor: "CNCF"
     createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
-    support: https://slack.kubernetes.io/
+    support: https://slack.openebs.io/
 spec:
   displayName: network
   description: >
-    Contains chaos to disrupt network connectivity of kubernetes pods
-    Examples include network-delay, network-loss
+    OpenEBS subchart networkChaos which contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods.
   keywords:
     - Kubernetes
     - Network
+    - OpenEBS
   version: {{ VERSION }}
   maturity: alpha
   maintainers:
@@ -25,10 +25,10 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
+    - name: OpenEBS Website
+      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/openebs/openebs
   icon:
     - base64data: ""
       mediatype: ""
