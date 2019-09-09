@@ -32,3 +32,4 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/network/experiments/openebs_nw_all_exp_crd.yaml 

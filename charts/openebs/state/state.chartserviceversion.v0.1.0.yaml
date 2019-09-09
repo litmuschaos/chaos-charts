@@ -35,4 +35,4 @@ spec:
       mediatype: ""
   experiments:
     - target-pod-delete-exp.yaml
-
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/state/experiments/openebs_state_all_exp_crd.yaml

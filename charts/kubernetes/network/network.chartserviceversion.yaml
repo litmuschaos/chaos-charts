@@ -34,4 +34,4 @@ spec:
       mediatype: ""
   experiments:
     - pod-nw-delay-exp.yaml
-
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/network/experiments/k8s_nw_all_exp_crd.yaml 

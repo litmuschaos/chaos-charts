@@ -37,3 +37,4 @@ spec:
   icon:
     - url: 
       mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/experiments/openebs_all_exp_crd.yaml

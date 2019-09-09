@@ -36,3 +36,4 @@ spec:
   experiments:
     - container-kill-exp.yaml
     - pod-delete-exp.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/state/experiments/k8s_state_all_exp_crd.yaml
