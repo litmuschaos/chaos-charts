@@ -12,7 +12,7 @@ metadata:
 spec:
   displayName: Kubernetes
   description: >
-    **Kubernetes** is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install all will install the following subcharts 
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install all will install the following subcharts 
 
     - State
     - Network

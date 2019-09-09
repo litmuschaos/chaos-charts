@@ -8,11 +8,11 @@ metadata:
     createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.openebs.io/
-    description: Injects generic kubernetes chaos 
+    description: Injects generic openebs chaos 
 spec:
   displayName: OpenEBS
   description: >
-    **OpenEBS** is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. Install all will install the following subcharts
+    OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. Install all will install the following subcharts
 
     **State**
   subcharts:
