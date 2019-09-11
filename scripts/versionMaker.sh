@@ -28,8 +28,7 @@ do
     version=$(yaml $file spec.version)
     echo $version
 
-    # if version is interger or float then it will make a new csv with version number and
-    # and rename the the version number with the default syntax {{ VERSION }}
+    # if version is interger or float 
     if [[ $version =~ ^[+-]?[0-9]*\.?[0-9]*$ ]];    then
         temp=$(echo ${file::-5})
         echo $temp
@@ -37,11 +36,12 @@ do
         # removing old version file
         oldversion=`rm ${temp}.v*.yaml`
 
+    # it will make a new csv with new version number and
+    # and rename the the version number in the base templatewith the default syntax {{ VERSION }}
         `touch $temp.v$version.yaml && cp $file $temp.v$version.yaml`
         `sed -i -E "s/version:[[:space:]]*$version/version:  {{ VERSION }}/" $file`
     fi
-
-    
+   
 done
 
 
