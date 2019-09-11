@@ -41,7 +41,6 @@ do
         `touch $temp.v$version.yaml && cp $file $temp.v$version.yaml`
         `sed -i -E "s/version:[[:space:]]*$version/version:  {{ VERSION }}/" $file`
     fi
-   
 done
 
 
