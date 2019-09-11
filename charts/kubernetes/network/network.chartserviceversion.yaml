@@ -12,7 +12,7 @@ spec:
   displayName: network
   description: >
     Kubernetes subchart networkChaos which contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods. Install will add the following experiments
-    - pod-nw-delay-exp.yaml
+  <br> - Pod network delay (pod-nw-delay-exp.yaml)
   keywords:
     - Kubernetes
     - Network
@@ -33,5 +33,5 @@ spec:
     - base64data: ""
       mediatype: ""
   experiments:
-    - pod-nw-delay-exp.yaml
+    - pod-network-delay-exp.yaml
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/network/experiments/k8s_nw_all_exp_crd.yaml 
