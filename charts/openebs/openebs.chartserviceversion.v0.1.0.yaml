@@ -13,8 +13,8 @@ spec:
   displayName: OpenEBS
   description: >
     OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. Install all will install the following subcharts
+    <br> - State
 
-    **State**
   subcharts:
     - State
 

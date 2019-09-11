@@ -12,7 +12,7 @@ spec:
   displayName: state 
   description: >
     OpenEBS subchart sateChaos which contains chaos to disrupt state of openebs control-plane and  data-plane resources. Experiments can inject random pod-level and container level-failures against specified openebs  replicas. Install will add the following experiments
-    - target-pod-delete-exp.yaml
+    <br> - Target pod delete (target-pod-delete-exp.yaml)
 
   keywords:
     - Kubernetes
