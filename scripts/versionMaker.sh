@@ -28,8 +28,8 @@ do
     version=$(yaml $file spec.version)
     echo $version
 
-    # if version is interger or float 
-    if [[ $version =~ ^[+-]?[0-9]*\.?[0-9]*$ ]];    then
+    # if version is interger or float (semversion)
+    if [[ $version =~ ^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$ ]];    then
         temp=$(echo ${file::-5})
         echo $temp
 
