@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: state 
   description: >
-    Kubernetes subchart sateChaos which contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod-level and container level-failures against specified app replicas. Install will add the following experiments
+    Kubernetes subchart stateChaos which contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod-level and container level-failures against specified app replicas. Install will add the following experiments
     <br> - Container kill (container-kill-exp.yaml)
     <br> - Pod delete (pod-delete-exp.yaml)
   keywords:
