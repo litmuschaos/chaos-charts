@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes
+  name: kubernetes-v0.1.0
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -24,7 +24,7 @@ spec:
   keywords:
     - Kubernetes
     - ContainerOrchestrators
-  version: {{ VERSION }}
+  version: v0.1.0 
   maturity: alpha
   maintainers:
     - name: ksatchit

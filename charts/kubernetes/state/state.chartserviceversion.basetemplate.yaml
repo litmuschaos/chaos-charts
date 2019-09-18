@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-state-v0.1.0 
+  name: kubernetes-state 
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -17,7 +17,7 @@ spec:
   keywords:
     - Kubernetes
     - State 
-  version: v0.1.0
+  version: {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: ksatchit
