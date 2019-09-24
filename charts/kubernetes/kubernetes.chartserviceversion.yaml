@@ -4,14 +4,10 @@ metadata:
   name: kubernetes-v0.1.0
   annotations:
     categories: "Kubernetes"
-    vendor: "CNCF"
-    createdAt: 2019-08-12T10:28:08Z
-    repository: https://github.com/litmuschaos/community-charts
-    support: https://slack.kubernetes.io/
-    description: Injects generic kubernetes chaos 
+    chartDescription: Injects generic kubernetes chaos 
 spec:
   displayName: Kubernetes
-  description: >
+  categoryDescription: >
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install all will install the following subcharts 
 
     <br> - State
@@ -23,7 +19,7 @@ spec:
 
   keywords:
     - Kubernetes
-    - ContainerOrchestrators
+    - Container
   version: v0.1.0 
   maturity: alpha
   maintainers:
@@ -37,6 +33,10 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/ 
+    - name: Documentation
+      url: https://kubernetes.io/docs/home/
   icon:
     - url: 
       mediatype: image/png
