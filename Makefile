@@ -6,7 +6,7 @@ versionmaker:
 	@echo "version maker"
 	# dependency to run gem pkg manger
 	sudo apt-get install rubygems
-	bash ./scripts/versionMaker.sh
+	bash ./scripts/version_maker.sh
 
 .PHONY: push
 push:
