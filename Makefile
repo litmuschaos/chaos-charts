@@ -12,5 +12,3 @@ versionmaker:
 push:
 	@echo "---------git push to master-------"
 	bash ./scripts/push.sh
-
-	

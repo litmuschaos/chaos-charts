@@ -32,6 +32,7 @@ do
     eval $(yaml $file)
     kind=$kind
 
+    # check if kind is chaosexperiment or ChartServiceVersion
     if [ $kind == "ChaosExperiment" ]; then
         newversion=$metadata_version
     elif [ $kind == "ChartServiceVersion" ]; then
@@ -39,10 +40,10 @@ do
     fi
 
     # if  version is interger or float (semversion)
-    result=sudo python scripts/semversion_checker.py $newversion
+    sudo python scripts/validate_version.py $newversion
+
     if [ $? == 0 ]; then
             temp=$(echo ${file::-18})
-
         if [ $kind == "ChartServiceVersion" ]; then
             # echo $temp
             oldversionfile=$temp'.yaml'
@@ -66,10 +67,6 @@ do
 
             `sed -i  "s/$oldversion/$newversion/" $oldversionfile`
             `sed -i "s/version:[[:space:]]*$oldversion/version:  {{ VERSION }}/" $file`
-
         fi
     fi
-    
 done
-
-
