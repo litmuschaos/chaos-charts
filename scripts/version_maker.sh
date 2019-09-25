@@ -48,7 +48,7 @@ do
             temp=$(echo ${file::-18})
 
         if [ $kind == "ChartServiceVersion" ]; then
-            # echo $temp
+            echo $temp
             oldversionfile=$temp'.yaml'
             echo $oldversionfile
             eval $(yaml $oldversionfile)
