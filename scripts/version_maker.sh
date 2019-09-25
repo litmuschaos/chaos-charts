@@ -19,7 +19,7 @@ function yaml() {
 }
 
 # find files ended with chartserviceversion.yaml 
-FIND_CMD=`find ../charts -type f -name "*basetemplate.yaml"`
+FIND_CMD=`find ./charts -type f -name "*basetemplate.yaml"`
 
 # add all the files to an array called files
 files=$(echo $FIND_CMD | tr " " "\n")
@@ -33,30 +33,45 @@ do
     kind=$kind
 
     if [ $kind == "ChaosExperiment" ]; then
-        version=$metadata_version
+        newversion=$metadata_version
     elif [ $kind == "ChartServiceVersion" ]; then
-        version=$spec_version 
+        newversion=$spec_version 
     fi
 
-    echo $version
+    echo $newversion
     SEMVER_REGEX="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
     echo $file
-    # if version is interger or float (semversion)
-    result=sudo python ./semversion_checker.py $version
-    if [ $? == 0 ]; then
-        if [ $kind == "ChartServiceVersion" ]; then
-            temp=$(echo ${file::-18})
-            echo $temp  
-            # `truncate -s 0 $temp.yaml && cp $file $temp.yaml`
-            # `sed -i "s/version:[[:space:]]*$version/version:  {{ VERSION }}/" $file`
-        
-        fi
-    #     # removing old version file
-    #     oldversion=`rm ${temp}.yaml`
 
-    # # # it will make a new csv with new version number and
-    # # # and rename the the version number in the base templatewith the default syntax {{ VERSION }}
-        # `touch $temp.yaml && cp $file $temp.yaml`
+    # if version is interger or float (semversion)
+    result=sudo python scripts/semversion_checker.py $newversion
+    if [ $? == 0 ]; then
+            temp=$(echo ${file::-18})
+
+        if [ $kind == "ChartServiceVersion" ]; then
+            # echo $temp
+            oldversionfile=$temp'.yaml'
+            echo $oldversionfile
+            eval $(yaml $oldversionfile)
+
+            oldversion=$spec_version
+            echo $oldversion
+
+            `sed -i  "s/[[:alnum:]]*$oldversion/$newversion/" $oldversionfile`
+            `sed -i -e "s/version:[[:space:]]*$oldversion/version:  {{ VERSION }}/" $file`
+
+        elif [ $kind == "ChaosExperiment" ]; then
+            # echo $temp
+            oldversionfile=$temp'.version.yaml'
+            echo $oldversionfile
+            eval $(yaml $oldversionfile)
+
+            oldversion=$metadata_version
+            echo $oldversion
+
+            `sed -i  "s/[[:alnum:]]*$oldversion/$newversion/" $oldversionfile`
+            `sed -i "s/version:[[:space:]]*$oldversion/version:  {{ VERSION }}/" $file`
+
+        fi
     fi
     
 done

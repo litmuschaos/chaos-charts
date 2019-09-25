@@ -1,20 +1,20 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Network loss between Pod and PVC belonging to a deployment/statefulset/daemonset
+    Network delay between Pod and PVC belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: kubernetes
-  name: pod-network-loss
+  name: pod-network-delay
   namespace: litmus
-  version: 0.1.0
+  version: {{ VERSION }}
 
 spec:
   definition:
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -i /etc/ansible/hosts
+    - ansible-playbook ./experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -i /etc/ansible/hosts
       -vv; exit 0
     command:
     - /bin/bash
@@ -41,15 +41,15 @@ spec:
       value: "240" # in seconds (Mandatory)
 
     - name: LIVENESS_APP_LABEL
-      value: "" # (Optional) If Liveness probe is enable, mention the app_label else skip
+      value: "" # (Optional) If Liveness probe enable, mention the app_label else skip
 
     - name: LIVENESS_APP_NAMESPACE
-      value: "" # # (Optional) If Liveness probe is enable, mention the app_namespace else skip
+      value: "" # (Optional) If Liveness probe enable, mention the app_label else skip
 
     - name: DATA_PERSISTENCY
       value: "enable"
 
     image: "" # (Optional)
     labels:
-      name: pod-network-loss
-    litmusbook: /experiments/chaos/openebs_target_network_loss/run_litmus_test.yml
+      name: pod-network-delay
+    litmusbook: /experiments/chaos/openebs_target_network_delay/run_litmus_test.yml
