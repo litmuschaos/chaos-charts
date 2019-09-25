@@ -22,7 +22,7 @@ spec:
     - OpenEBS
     - CAS
     - Storage
-  version: {{ VERSION }}
+  version: 0.1.1
   maturity: alpha
   maintainers:
     - name: ksatchit
