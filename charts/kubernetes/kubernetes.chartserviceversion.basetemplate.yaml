@@ -20,7 +20,7 @@ spec:
   keywords:
     - Kubernetes
     - ContainerOrchestrators
-  version:  0.1.2
+  version:  {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: ksatchit
