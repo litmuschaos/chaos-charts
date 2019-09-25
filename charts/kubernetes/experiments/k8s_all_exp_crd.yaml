@@ -4,7 +4,7 @@ description:
   message: "Kills a container belonging to an application pod \n"
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-state-container-kill-v0.1.0
+  name: container-kill
   version: v0.1.0
 spec:
   definition:
@@ -35,7 +35,7 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-state-pod-delete-v0.1.0
+  name: pod-delete
   version: v0.1.0
 spec:
   definition:
@@ -65,7 +65,7 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-network-pod-nw-delay-v0.1.0
+  name: network-pod
   version: v0.1.0
 spec:
   definition:
