@@ -27,7 +27,7 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
+    - name: OpenEBS Website
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
