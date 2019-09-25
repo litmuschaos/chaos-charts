@@ -42,7 +42,7 @@ do
     SEMVER_REGEX="^(0|[1-9]\d*)\.(0|[1-9]\d*)\.(0|[1-9]\d*)(?:-((?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*))?(?:\+([0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*))?$"
     echo $file
 
-    # if version is interger or float (semversion)
+    # if  version is interger or float (semversion)
     result=sudo python scripts/semversion_checker.py $newversion
     if [ $? == 0 ]; then
             temp=$(echo ${file::-18})
