@@ -1,0 +1,8 @@
+sudo: required
+dist: xenial # ubuntu 16.04 distro
+script:
+  # runs only when PR is merged
+  - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then make versionmaker; fi
+after_success: 
+   # runs only when PR is merged and push the version file to master version
+  - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then make push; fi
