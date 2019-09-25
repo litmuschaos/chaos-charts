@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-network-v0.1.0 
+  name: openebs-network-v0.1.0 
   annotations:
     categories: "OpenEBS"
     vendor: "CNCF"
@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: network
   description: >
-    OpenEBS subchart networkChaos which contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods.
+    OpenEBS subchart networkChaos which contains chaos to disrupt network connectivity of openebs pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods.
   keywords:
     - Kubernetes
     - Network
