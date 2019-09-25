@@ -20,13 +20,13 @@ spec:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: "default"
 
     - name: OPERATOR_NAMESPACE
-      value: openebs
+      value: "openebs"
 
     - name: APP_NAMESPACE
-      value: default # NS of deployed app (Mandatory)
+      value: "default" # NS of deployed app (Mandatory)
 
     - name: APP_LABEL
       value: "" # deployed app label (Mandatory)
