@@ -1,21 +1,19 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-v0.1.0
+  name: generic-v0.1.0
   annotations:
     categories: "Kubernetes"
     chartDescription: Injects generic kubernetes chaos 
 spec:
-  displayName: Kubernetes
+  displayName: Generic Chaos
   categoryDescription: >
-    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install all will install the following subcharts 
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install will all the experiments which can be used to inject chaos into containerized appications.
 
-    <br> - State
-    <br> - Network
-  
-  subcharts:
-    - State
-    - Network 
+  experiments:
+    - pod-nw-delay
+    - pod-delete-exp
+    - container-kill
 
   keywords:
     - Kubernetes

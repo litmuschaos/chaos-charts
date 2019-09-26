@@ -1,0 +1,11 @@
+packageName: kubernetes 
+experiments:
+  - name: Pod-delete
+    CSV: pod_delete.chartserviceversion.yaml
+    desc: "Pod delete"
+  - name: Container-kill
+    CSV:  container_kill.chartserviceversion.yaml
+    desc: "container kill"
+  - name: Pod-network-delay
+    CSV: pod_network_delay.chartserviceversion.yaml
+    desc: "Pod network delay"

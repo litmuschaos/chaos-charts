@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-network 
+  name: Container-kill-v.0.1.0
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -9,13 +9,12 @@ metadata:
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: network
+  displayName: Container-kill
   description: >
-    Kubernetes subchart networkChaos which contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods. Install will add the following experiments
-  <br> - Pod network delay (pod-nw-delay-exp.yaml)
+   Container kill contains chaos to disrupt state of kubernetes resources. Experiments can inject random container delete failures against specified application. 
   keywords:
     - Kubernetes
-    - Network
+    - Container 
   version: {{ VERSION }}
   maturity: alpha
   maintainers:
@@ -30,8 +29,9 @@ spec:
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
   icon:
-    - base64data: ""
+    - url: 
       mediatype: ""
   experiments:
-    - pod-network-delay-exp.yaml
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/network/experiments/k8s_nw_all_exp_crd.yaml 
+    - container-kill-exp.yaml
+    - pod-delete-exp.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/state/experiments/k8s_state_all_exp_crd.yaml

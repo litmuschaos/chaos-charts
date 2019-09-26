@@ -1,5 +1,5 @@
 packageName: openebs
 subcharts:
-  - name: state
-    CSV: state.chartserviceversion.yaml 
-    desc: "pod-delete, container-kill"
+  - name: Pod-delete
+    CSV: pod_delete.chartserviceversion.yaml 
+    desc: "Pod-delete"

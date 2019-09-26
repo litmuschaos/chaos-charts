@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: kubernetes-state 
+  name: Container-kill
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -9,14 +9,12 @@ metadata:
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: state 
+  displayName: Container-kill
   description: >
-    Kubernetes subchart stateChaos which contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod-level and container level-failures against specified app replicas. Install will add the following experiments
-    <br> - Container kill (container-kill-exp.yaml)
-    <br> - Pod delete (pod-delete-exp.yaml)
+   Container kill contains chaos to disrupt state of kubernetes resources. Experiments can inject random container delete failures against specified application. 
   keywords:
     - Kubernetes
-    - State 
+    - Container 
   version: {{ VERSION }}
   maturity: alpha
   maintainers:
