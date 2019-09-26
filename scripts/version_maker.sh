@@ -58,7 +58,7 @@ do
                     echo $oldversion
 
                     `sed -i  "s/$oldversion/$newversion/" $oldversionfile` &&
-                    `sed -i  "s/version:[[:space:]]*$newversion/version:  {{ VERSION }}/" $file`
+                    `sed -i  "s/version:[[:space:]]*$newversion/version: {{ VERSION }}/" $file`
                 fi
 
             elif [ $kind == "ChaosExperiment" ]; then
@@ -72,7 +72,7 @@ do
                     echo $oldversion
 
                     `sed -i  "s/$oldversion/$newversion/" $oldversionfile`
-                    `sed -i "s/version:[[:space:]]*$newversion/version:  {{ VERSION }}/" $file`
+                    `sed -i "s/version:[[:space:]]*$newversion/version: {{ VERSION }}/" $file`
                 fi
             fi
         fi
