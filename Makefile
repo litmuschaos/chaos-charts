@@ -3,9 +3,7 @@
 
 .PHONY: versionmaker
 versionmaker:
-	@echo "version maker"
-	# dependency to run gem pkg manger
-	sudo apt-get install rubygems
+	@echo "-----version maker-----"
 	bash ./scripts/version_maker.sh
 
 .PHONY: push

@@ -28,45 +28,53 @@ files=$(echo $FIND_CMD | tr " " "\n")
 for file in $files
 do
     # get the latest version from the template file
-    
     eval $(yaml $file)
-    kind=$kind
 
-    # check if kind is chaosexperiment or ChartServiceVersion
-    if [ $kind == "ChaosExperiment" ]; then
-        newversion=$metadata_version
-    elif [ $kind == "ChartServiceVersion" ]; then
-        newversion=$spec_version 
-    fi
+    if [[ $? == 0 ]]; then
+    
+        kind=$kind
+        # check if kind is chaosexperiment or ChartServiceVersion
+        if [[ $kind == "ChaosExperiment" ]]; then
+            newversion=$metadata_version
+        elif [[ $kind == "ChartServiceVersion" ]]; then
+            newversion=$spec_version 
+        fi
 
-    # if  version is interger or float (semversion)
-    sudo python scripts/validate_version.py $newversion
+        echo $newversion
+        # if  version is interger or float (semversion)
+        sudo python scripts/validate_version.py $newversion
 
-    if [ $? == 0 ]; then
-            temp=$(echo ${file::-18})
-        if [ $kind == "ChartServiceVersion" ]; then
-            # echo $temp
-            oldversionfile=$temp'.yaml'
-            echo $oldversionfile
-            eval $(yaml $oldversionfile)
+        if [[ $? == 0 ]]; then
+                temp=$(echo ${file::-18})
+            if [[ $kind == "ChartServiceVersion" ]]; then
+                # echo $temp
+                oldversionfile=$temp'.yaml'
+                echo $oldversionfile
+                eval $(yaml $oldversionfile)
 
-            oldversion=$spec_version
-            echo $oldversion
+                echo $?
+                if [[ $? == 0 ]]; then
+                    oldversion=$spec_version
+                    echo $oldversion
 
-            `sed -i  "s/[[:alnum:]]*$oldversion/$newversion/" $oldversionfile`
-            `sed -i -e "s/version:[[:space:]]*$oldversion/version:  {{ VERSION }}/" $file`
+                    `sed -i  "s/$oldversion/$newversion/" $oldversionfile` &&
+                    `sed -i  "s/version:[[:space:]]*$newversion/version:  {{ VERSION }}/" $file`
+                fi
 
-        elif [ $kind == "ChaosExperiment" ]; then
-            # echo $temp
-            oldversionfile=$temp'.version.yaml'
-            echo $oldversionfile
-            eval $(yaml $oldversionfile)
+            elif [ $kind == "ChaosExperiment" ]; then
+                # echo $temp
+                oldversionfile=$temp'.version.yaml'
+                echo $oldversionfile
+                eval $(yaml $oldversionfile)
 
-            oldversion=$metadata_version
-            echo $oldversion
+                if [[ $? == 0 ]]; then
+                    oldversion=$metadata_version
+                    echo $oldversion
 
-            `sed -i  "s/$oldversion/$newversion/" $oldversionfile`
-            `sed -i "s/version:[[:space:]]*$oldversion/version:  {{ VERSION }}/" $file`
+                    `sed -i  "s/$oldversion/$newversion/" $oldversionfile`
+                    `sed -i "s/version:[[:space:]]*$newversion/version:  {{ VERSION }}/" $file`
+                fi
+            fi
         fi
     fi
 done
