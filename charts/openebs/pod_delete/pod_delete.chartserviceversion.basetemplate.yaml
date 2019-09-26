@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: openebss-state 
+  name: pod-delete
   annotations:
     categories: "OpenEBS"
     vendor: "CNCF"
@@ -9,14 +9,13 @@ metadata:
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.openebs.io/
 spec:
-  displayName: state 
+  displayName: Pod-Delete 
   description: >
-    OpenEBS subchart stateChaos which contains chaos to disrupt state of openebs control-plane and  data-plane resources. Experiments can inject random pod-level and container level-failures against specified openebs  replicas. Install will add the following experiments
-    <br> - Target pod delete (target-pod-delete-exp.yaml)
+     Pod delete contains chaos to disrupt state of openebs control-plane and  data-plane resources. Experiments can inject random pod delete against specified openebs replicas. 
 
   keywords:
     - Kubernetes
-    - State 
+    - Pod
     - OpenEBS
   version: {{ VERSION }}
   maturity: alpha
@@ -34,6 +33,3 @@ spec:
   icon:
     - url: ""
       mediatype: ""
-  experiments:
-    - target-pod-delete-exp.yaml
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/state/experiments/openebs_state_all_exp_crd.yaml
