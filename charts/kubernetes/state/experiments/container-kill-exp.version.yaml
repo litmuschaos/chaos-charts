@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubernetes-state-container-kill-v0.1.0
-  version: v0.1.0
+  version: 0.1.0
 spec:
   definition:
     args:
