@@ -1,0 +1,46 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the pool pod and check if gets scheduled again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: kubernetes
+  name: openebs-pool-failure
+  namespace: litmus
+spec:
+  definition:
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/openebs_pool_failure/test.yml -i /etc/ansible/hosts
+      -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default	
+    - name: APP_NAMESPACE
+      value: app-percona-ns
+    - name: APP_LABEL
+      value: "name=percona"
+    - name: APP_PVC
+      value: percona-mysql-claim
+    - name: LIVENESS_APP_LABEL
+      value: ""
+    - name: LIVENESS_APP_NAMESPACE
+      value: ""
+    - name: DATA_PERSISTENCE
+      value: ""
+    - name: CHAOS_TYPE
+      value: "pool-kill"
+    - name: CHAOS_ITERATIONS
+      value: "2"
+    labels:
+      name: openebs-pool-failure
+    configmaps:
+    - name: pool-failure
+      data:
+        parameters.yml:
+    litmusbook: /experiments/chaos/openebs_pool_failure/run_litmus_test.yml
+
