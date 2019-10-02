@@ -1,8 +1,8 @@
 #! /bin/bash 
 
 # Retrive the last pushed commit from the repo
-last_commit_hash=`git merge-base testing HEAD`
-echo "Last commit hash: $last_commit_hash"
+second_last_commit_hash=`git log -n 2 --pretty=format:"%H" | tail -1`
+echo "Second Last commit hash: $second_last_commit_hash"
 
 # This function is used to parse the yaml file.
 function yaml_parser() {
