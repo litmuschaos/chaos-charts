@@ -19,5 +19,5 @@ upload_files() {
 }
 
 setup_git
-commit_website_files
+commit_updated_changes
 upload_files
