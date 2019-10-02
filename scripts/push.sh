@@ -2,11 +2,11 @@
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
-  git remote set-url origin  https://${GITHUB_TOKEN}@github.com/litmuschaos/community-charts.git > /dev/null 2>&1
+  git remote set-url origin  https://${GITHUB_TOKEN}@github.com/rajdas98/community-charts.git > /dev/null 2>&1
 }
 
 commit_updated_changes() {
-  git checkout master
+  git checkout testing
   git status
   git add .
   git commit --message " $TRAVIS_BUILD_NUMBER: version upgraded for chaos-charts"
@@ -15,7 +15,7 @@ commit_updated_changes() {
 
 upload_files() {
   git remote -v
-  git push origin master
+  git push origin testing
 }
 
 setup_git

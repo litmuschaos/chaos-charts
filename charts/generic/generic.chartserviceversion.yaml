@@ -18,7 +18,7 @@ spec:
   keywords:
     - Kubernetes
     - Container
-  version: 0.1.0
+  version: 0.1.21
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -27,7 +27,7 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
+    - name: Kubernetes Websites
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
