@@ -125,7 +125,7 @@ versionMod(){
 }
 
 # compare and retrive the changed files
-check_diff=`git diff ${last_commit_hash} --name-only`
+check_diff=`git diff ${second_last_commit_hash} --name-only`
 files=$(echo $check_diff | tr " " "\n")
 
 for file in $files
