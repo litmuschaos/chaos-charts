@@ -1,8 +1,8 @@
 #! /bin/bash 
 
 # Retrive the last pushed commit from the repo
-last_commit_hash=`git merge-base master HEAD`
-echo "Last commit hash: $last_commit_hash"
+second_last_commit_hash=`git log -n 2 --pretty=format:"%H" | tail -1`
+echo "Second Last commit hash: $second_last_commit_hash"
 
 # This function is used to parse the yaml file.
 function yaml_parser() {
@@ -125,7 +125,7 @@ versionMod(){
 }
 
 # compare and retrive the changed files
-check_diff=`git diff ${last_commit_hash} --name-only`
+check_diff=`git diff ${second_last_commit_hash} --name-only`
 files=$(echo $check_diff | tr " " "\n")
 
 for file in $files
