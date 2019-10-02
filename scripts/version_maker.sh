@@ -58,7 +58,7 @@ versionInc(){
             newversion="${versions[0]}.${versions[1]}.${versions[2]}"
 
             # This python script checks and validate the version
-            sudo python scripts/validate_version.py $oldversion $newversion
+            sudo python3 scripts/validate_version.py $oldversion $newversion
         
             if [[ $? == 0 ]]; then
                 `sed -i "s/$existing_version/$newversion/" $file` &&
@@ -94,7 +94,7 @@ versionMod(){
             if [[ $? == 0 ]]; then
                 oldversion=$spec_version
                 # This python script checks and validate the version
-                sudo python scripts/validate_version.py $oldversion $newversion
+                sudo python3 scripts/validate_version.py $oldversion $newversion
 
                 if [[ $? == 0 ]]; then
                     `sed -i "s/$oldversion/$newversion/" $oldversionfile` &&
@@ -112,7 +112,7 @@ versionMod(){
                 oldversion=$metadata_version
 
                 # This python script checks and validate the version
-                sudo python scripts/validate_version.py $oldversion $newversion
+                sudo python3 scripts/validate_version.py $oldversion $newversion
 
                 if [[ $? == 0 ]]; then
                     `sed -i "s/$oldversion/$newversion/" $oldversionfile` &&
