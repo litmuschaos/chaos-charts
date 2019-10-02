@@ -4,7 +4,8 @@
 .PHONY: deps
 deps:
 	@echo "-----Installing dependencies-----"
-	sudo apt install python-pip
+	sudo apt update
+	sudo apt-get install python-pip
 	pip install packaging
 
 .PHONY: versionmaker
