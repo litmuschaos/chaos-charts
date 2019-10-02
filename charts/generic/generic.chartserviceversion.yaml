@@ -18,7 +18,7 @@ spec:
   keywords:
     - Kubernetes
     - Container
-  version: 0.1.18
+  version: 0.1.19
   maturity: alpha
   maintainers:
     - name: ksatchit
