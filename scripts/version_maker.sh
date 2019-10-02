@@ -1,10 +1,7 @@
 #! /bin/bash 
 
 # Retrive the last pushed commit from the repo
-git branch
-branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
-echo branch
-last_commit_hash=`git merge-base testing $branch`
+last_commit_hash=`git merge-base testing master`
 echo "Last commit hash: $last_commit_hash"
 
 # This function is used to parse the yaml file.
