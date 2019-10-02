@@ -1,5 +1,5 @@
 #!/bin/sh
-
+branch=$(git branch | sed -n -e 's/^\* \(.*\)/\1/p')
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
@@ -7,7 +7,7 @@ setup_git() {
 }
 
 commit_updated_changes() {
-  git checkout master
+  git checkout $branch
   git status
   git add .
   git commit --message " $TRAVIS_BUILD_NUMBER: version upgraded for chaos-charts"
@@ -16,7 +16,7 @@ commit_updated_changes() {
 
 upload_files() {
   git remote -v
-  git push origin master
+  git push origin $branch
 }
 
 setup_git
