@@ -130,6 +130,7 @@ files=$(echo $check_diff | tr " " "\n")
 
 for file in $files
 do
+    echo $file
     # For basetemplate (Experiment and chart service version)
     if [[ "$file" =~ \basetemplate.yaml$ ]]; then
         versionMod $file
