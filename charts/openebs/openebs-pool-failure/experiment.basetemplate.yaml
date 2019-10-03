@@ -5,10 +5,9 @@ description:
     Kill the pool pod and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
-  labels:
-    litmuschaos.io/name: kubernetes
   name: openebs-pool-failure
   namespace: litmus
+  version: {{ VERSION }}
 spec:
   definition:
     args:
@@ -41,7 +40,7 @@ spec:
     configmaps:
     - name: pool-failure
       data:
-        parameters.yml:
+        parameters.yml: |
     litmusbook: /experiments/chaos/openebs_pool_failure/run_litmus_test.yml
 
 
