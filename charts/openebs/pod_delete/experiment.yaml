@@ -4,8 +4,8 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-state-pod-delete-v0.1.0
-  version: 0.1.0
+  name: kubernetes-state-pod-delete-v0.6.0
+  version: 0.6.0
 spec:
   definition:
     args:

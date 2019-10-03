@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-network-delay-v0.1.0 
+  name: pod-network-delay-v0.6.0 
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -15,7 +15,7 @@ spec:
   keywords:
     - Kubernetes
     - Network
-  version: 0.1.0
+  version: 0.6.0
   maturity: alpha
   maintainers:
     - name: ksatchit
