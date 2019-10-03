@@ -9,6 +9,7 @@ metadata:
     litmuschaos.io/name: kubernetes
   name: openebs-target-failure
   namespace: litmus
+  version: {{ VERSION }}
 spec:
   definition:
     args:

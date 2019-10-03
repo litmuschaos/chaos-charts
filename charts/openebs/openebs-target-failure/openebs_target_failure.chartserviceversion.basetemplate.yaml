@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: openebs-target-failure
+  annotations:
+    categories: "OpenEBS"
+    vendor: "CNCF"
+    createdAt: 2019-10-03T10:28:08Z
+    repository: https://github.com/litmuschaos/community-charts
+    support: https://slack.openebs.io/
+spec:
+  displayName: Openebs-Target-Failure 
+  description: >
+     openebs target failure contains chaos to disrupt state of openebs control-plane and data-plane resources. Experiments can inject container kill against openebs target pod. 
+  keywords:
+    - Kubernetes
+    - TargetPod
+    - OpenEBS
+  version: {{ VERSION }}
+  maturity: alpha
+  maintainers:
+    - name: shubham chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: OpenEBS Website
+      url: https://openebs.io
+    - name: Source Code
+      url: https://github.com/openebs/openebs
+  icon:
+    - url: ""
+      mediatype: ""
