@@ -19,7 +19,7 @@ spec:
   version: {{ VERSION }}
   maturity: alpha
   maintainers:
-    - name: shubham
+    - name: shubham chaudhary
       email: shubham.chaudhary@mayadata.io
   minKubeVersion: 1.12.0
   provider:
