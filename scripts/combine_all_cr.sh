@@ -1,4 +1,4 @@
-directories=$(find ../charts -maxdepth 1 -mindepth 1 -type d)
+directories=$(find ./charts -maxdepth 1 -mindepth 1 -type d)
 for directory in $directories
 do
 	subDirectories=$(find $directory -maxdepth 1 -mindepth 1 -type d)
@@ -13,7 +13,7 @@ do
         done
 done
 echo "validating combine charts for generic"
-cat ../charts/generic/experiments.yaml
+cat ./charts/generic/experiments.yaml
 echo "validating combine charts for openebs"
-cat ../charts/openebs/experiments.yaml
+cat ./charts/openebs/experiments.yaml
 
