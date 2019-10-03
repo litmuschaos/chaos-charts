@@ -3,7 +3,7 @@ dist: xenial # ubuntu 16.04 distro
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
-aftee_deploy:
+after_deploy:
   - bash ./scripts/check_csv.sh
 
 script:
