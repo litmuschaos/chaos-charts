@@ -5,16 +5,15 @@ metadata:
   annotations:
     categories: "OpenEBS"
     vendor: "CNCF"
-    createdAt: 2019-10-03T10:28:08Z
-    repository: https://github.com/litmuschaos/community-charts
+    repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
 spec:
   displayName: Openebs-Pool-Failure 
   description: >
-     openebs pool failure contains chaos to disrupt state of openebs control-plane and data-plane resources. Experiments can inject random pod delete against openebs pool pod. 
+     Kill the pool pod and check if gets scheduled again. 
   keywords:
     - Kubernetes
-    - Pool
+    - Storage Pool
     - OpenEBS
   version: {{ VERSION }}
   maturity: alpha
@@ -24,6 +23,7 @@ spec:
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
+  readme: "https://github.com/mayadata-io/litmus/blob/master/experiments/chaos/openebs_pool_failure/README.md"
   links:
     - name: OpenEBS Website
       url: https://openebs.io
