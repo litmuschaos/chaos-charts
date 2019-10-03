@@ -1,10 +1,11 @@
 sudo: required
 dist: xenial # ubuntu 16.04 distro
-before_deploy:
-  - ./scripts/check_csv.sh
 deploy:
   provider: releases
   api_key: $GITHUB_TOKEN
+aftee_deploy:
+  - bash ./scripts/check_csv.sh
+
 script:
   - make deps
   # runs  only when PR is merged
