@@ -1,12 +1,25 @@
-directories=$(ls -l ./charts/ | grep ^d | awk '{print $9}')
+directories=$(find ./charts -maxdepth 1 -type d)
 for directory in $directories
 do
-	echo -e "---\n" > ./charts/$directory/experiments.yaml
-	subDirectories=$(ls -l ./charts/$directory | grep ^d | awk '{print $9}')
+	if [ $directory == "./charts" ]
+        then 
+		continue
+        fi
+	subDirectories=$(find $directory -maxdepth 1 -type d)
 	for subDirectory in $subDirectories
-	do 
-	cat ./charts/$directory/$subDirectory/experiment.yaml >> ./charts/$directory/experiments.yaml
-	echo -e "\n---\n" >> ./charts/$directory/experiments.yaml
+	do     
+	       if [ $subDirectory == $directory ] 
+	       then 
+		       continue
+	       fi
+               if test -f "$subDirectory/experiment.yaml"; then	       
+	       if test -f "$directory/experiments.yaml"; then
+	          cat $subDirectory/experiment.yaml >> $directory/experiments.yaml
+	      else
+	          cat $subDirectory/experiment.yaml > $directory/experiments.yaml
+	      fi
+	      echo -e "\n---\n" >> $directory/experiments.yaml                  		  
+	       fi
         done
 done
 echo "validating combine charts for generic"
