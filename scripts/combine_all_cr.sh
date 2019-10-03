@@ -9,4 +9,7 @@ do
 	echo -e "\n---\n" >> ./charts/$directory/experiments.yaml
         done
 done
+echo "validating combine charts"
+cat ./charts/generic/
+cat ./charts/openebs/
 
