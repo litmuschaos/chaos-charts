@@ -6,10 +6,10 @@ versionmaker:
 	@echo "-----version maker-----"
 	bash ./scripts/version_maker.sh
 
-.PHONY: mergeExpCR
+.PHONY: combineExpCR
 push:
-        @echo "--------merging experiment Crs-------"
-        bash ./scripts/merge_all_cr.sh
+        @echo "--------Combining Experiments CR-------"
+        bash ./scripts/combine_all_cr.sh
 
 .PHONY: push
 push:
