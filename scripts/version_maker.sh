@@ -22,15 +22,6 @@ function yaml_parser() {
     }'
 }
 
-# This function checks whether the kind is CSV or CE
-checker(){
-    if [[ $1 == "ChaosExperiment" ]]; then
-        echo $metadata_version
-    elif [[ $1 == "ChartServiceVersion" ]]; then
-        echo $spec_version 
-    fi
-}
-
 # This function takes the old version from the last commit 
 # and increment the existing version by one unit.
 versionInc(){
@@ -39,17 +30,17 @@ versionInc(){
     
     eval $(yaml_parser $file)
     if [[ $? == 0 ]]; then
-        existing_version=`checker $kind`
+        existing_version=$metadata_version
         echo "Existing version: $existing_version"
 
         # stores the last pushed committed file as temp.yaml in the root directory 
         # and will be deleted after the job
-        temp_file=`git show $last_commit_hash:$1 >> temp.yaml`
+        temp_file=`git show $second_last_commit_hash:$1 >> temp.yaml`
 
         eval $(yaml_parser './temp.yaml')
         if [[ $? == 0 ]]; then
 
-            oldversion=`checker $kind`
+            oldversion=$metadata_version
             echo "Oldversion : $oldversion"
 
             # storing version to an array 
@@ -70,60 +61,6 @@ versionInc(){
     fi
 }
 
-# This function takes the latest from the base-template'
-# and increment the existing version in the csv/experiment file
-# by the input version mention in the basetemplate by the user.
-versionMod(){
-
-    file=$1
-    echo $file
-    eval $(yaml_parser $file)
-
-    if [[ $? == 0 ]]; then
-    
-        # check if kind is chaosexperiment or ChartServiceVersion
-        newversion=`checker $kind`
-        echo "New Version: $newversion"
-
-        temp=$(echo ${file::-18}) # This statement will scrap last 18 character which will be .basetemplate.yaml
-        if [[ $kind == "ChartServiceVersion" ]]; then
-            oldversionfile=$temp'.yaml'
-            echo $oldversionfile
-            eval $(yaml_parser $oldversionfile)
-
-            if [[ $? == 0 ]]; then
-                oldversion=$spec_version
-                # This python script checks and validate the version
-                sudo python3 scripts/validate_version.py $oldversion $newversion
-
-                if [[ $? == 0 ]]; then
-                    `sed -i "s/$oldversion/$newversion/" $oldversionfile` &&
-                    `sed -i "s/version:[[:space:]]*$newversion/version: {{ VERSION }}/" $file`
-                    echo "$file's version updated from $oldversion to $newversion"
-                fi
-            fi
-        elif [ $kind == "ChaosExperiment" ]; then
-
-            oldversionfile=$temp'.yaml'
-            echo $oldversionfile
-            eval $(yaml_parser $oldversionfile)
-
-            if [[ $? == 0 ]]; then
-                oldversion=$metadata_version
-
-                # This python script checks and validate the version
-                sudo python3 scripts/validate_version.py $oldversion $newversion
-
-                if [[ $? == 0 ]]; then
-                    `sed -i "s/$oldversion/$newversion/" $oldversionfile` &&
-                    `sed -i "s/version:[[:space:]]*$newversion/version: {{ VERSION }}/" $file`
-                    echo "$file's version updated from $oldversion to $newversion"
-                fi
-            fi
-        fi
-    fi
-}
-
 # compare and retrive the changed files
 check_diff=`git diff ${second_last_commit_hash} --name-only`
 files=$(echo $check_diff | tr " " "\n")
@@ -131,12 +68,8 @@ files=$(echo $check_diff | tr " " "\n")
 for file in $files
 do
     echo $file
-    # For basetemplate (Experiment and chart service version)
-    if [[ "$file" =~ \basetemplate.yaml$ ]]; then
-        versionMod $file
-        break;
     # For chart service version
-    elif [[ "$file" =~ \version.yaml$ ]]; then
+    if [[ "$file" =~ \version.yaml$ ]]; then
         versionInc $file
         break;
 
