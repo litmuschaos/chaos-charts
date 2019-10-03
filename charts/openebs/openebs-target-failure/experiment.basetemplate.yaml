@@ -46,7 +46,7 @@ spec:
     configmaps:
     - name: target-failure
       data:
-        parameters.yml: 
+        parameters.yml: |
     litmusbook: /experiments/chaos/openebs_target_failure/run_litmus_test.yml
 
 
