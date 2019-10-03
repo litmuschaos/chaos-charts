@@ -6,6 +6,11 @@ versionmaker:
 	@echo "-----version maker-----"
 	bash ./scripts/version_maker.sh
 
+.PHONY: mergeExpCR
+push:
+        @echo "--------merging experiment Crs-------"
+        bash ./scripts/merge_all_cr.sh
+
 .PHONY: push
 push:
 	@echo "---------git push to master-------"
