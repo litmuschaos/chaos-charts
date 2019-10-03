@@ -10,6 +10,6 @@ do
         done
 done
 echo "validating combine charts"
-cat ./charts/generic/
-cat ./charts/openebs/
+cat ./charts/generic/experiments.yaml
+cat ./charts/openebs/experiments.yaml
 
