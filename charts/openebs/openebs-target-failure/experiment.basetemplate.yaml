@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-failure
-  namespace: litmus
   version: {{ VERSION }}
 spec:
   definition:
@@ -24,11 +23,11 @@ spec:
     - name: TARGET_NAMESPACE
       value: openebs
     - name: APP_NAMESPACE
-      value: app-percona-ns
+      value: ""
     - name: APP_LABEL
-      value: "name=percona"
+      value: ""
     - name: APP_PVC
-      value: percona-mysql-claim
+      value: #mendatory field
     - name: LIVENESS_APP_LABEL
       value: ""
     - name: LIVENESS_APP_NAMESPACE
