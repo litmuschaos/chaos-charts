@@ -7,9 +7,9 @@ versionmaker:
 	bash ./scripts/version_maker.sh
 
 .PHONY: combineExpCR
-push:
-        @echo "--------Combining Experiments CR-------"
-        bash ./scripts/combine_all_cr.sh
+combineExpCR:
+	@echo "--------Combining Experiments CR-------"
+	bash ./scripts/combine_all_cr.sh
 
 .PHONY: push
 push:
