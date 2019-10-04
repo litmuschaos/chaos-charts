@@ -32,3 +32,4 @@ spec:
   icon:
     - url: ""
       mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-failure/experiment.yaml
