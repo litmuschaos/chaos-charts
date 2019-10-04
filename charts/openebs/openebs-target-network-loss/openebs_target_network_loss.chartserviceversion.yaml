@@ -1,10 +1,11 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: openebs-target-network-loss 
+  name: openebs-target-network-loss
+  version: 0.1.0
   annotations:
-    categories: "Kubernetes"
-    vendor: "CNCF"
+    categories: Kubernetes
+    vendor: CNCF
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
@@ -15,7 +16,6 @@ spec:
     - Kubernetes
     - OpenEBS 
     - Network Loss
-  version: 0.1.0
   maturity: alpha
   maintainers:
     - name: giri
@@ -24,10 +24,10 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: OpenEBS Website
+    - name: Kubernetes Website
       url: https://openebs.io
     - name: Source Code
-      url: https://github.com/openebs/openebs
+      url: https://github.com/openebes/openebs
   icon:
     - url: ""
       mediatype: ""

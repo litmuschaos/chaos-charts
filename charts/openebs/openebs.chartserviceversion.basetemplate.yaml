@@ -2,11 +2,11 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs
+  version: {{ VERSION }}
   annotations:
-    categories: "OpenEBS"
-    vendor: "MayaData"
-    createdAt: 2019-08-12T10:28:08Z
-    repository: https://github.com/litmuschaos/community-charts
+    categories: OpenEBS
+    vendor: MayaData
+    repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
     description: Injects generic openebs chaos 
 spec:
@@ -15,13 +15,14 @@ spec:
     OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. 
 
   experiments:
-    - Pod-delete
-
+    - openebs-pool-failure
+    - openebs-target-failure
+    - openebs-target-network-delay
+    - openebs-target-network-loss
   keywords:
     - OpenEBS
     - CAS
     - Storage
-  version: {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -37,4 +38,4 @@ spec:
   icon:
     - url: 
       mediatype: image/png
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/experiments/openebs_all_exp_crd.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/experiments.yaml
