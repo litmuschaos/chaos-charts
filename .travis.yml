@@ -9,5 +9,5 @@ script:
   # Combining all experiment in one file
   - make combineExpCR
 after_success: 
-   # runs only when PR is merged and push the version file to master version
+   # runs only when PR is merged and push the version file to the master branch
   - if [[ $TRAVIS_PULL_REQUEST == 'false' ]]; then make push; fi
