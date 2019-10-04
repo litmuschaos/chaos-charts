@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: openebs-target-failure
+  annotations:
+    categories: "OpenEBS"
+    vendor: "CNCF"
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://slack.openebs.io/
+spec:
+  displayName: Openebs-Target-Failure 
+  description: >
+     Kill the cstor target/Jiva controller container and check if gets created again
+  keywords:
+    - Kubernetes
+    - Storage Controller
+    - OpenEBS
+  version: {{ VERSION }}
+  maturity: alpha
+  maintainers:
+    - name: shubham chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  readme: "https://github.com/mayadata-io/litmus/blob/master/experiments/chaos/openebs_target_failure/README.md"
+  links:
+    - name: OpenEBS Website
+      url: https://openebs.io
+    - name: Source Code
+      url: https://github.com/openebs/openebs
+  icon:
+    - url: ""
+      mediatype: ""
