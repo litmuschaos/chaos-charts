@@ -1,13 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Network loss between Pod and PVC belonging to a deployment/statefulset/daemonset
+    Network loss to target pod belonging to a OpenEBS PVC
 kind: ChaosExperiment
 metadata:
   labels:
-    litmuschaos.io/name: kubernetes
+    litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  namespace: litmus
   version: 0.1.0
 spec:
   definition:
@@ -23,27 +22,6 @@ spec:
 
     - name: OPERATOR_NAMESPACE
       value: "openebs"
-
-    - name: APP_NAMESPACE
-      value: "default" # NS of deployed app (Mandatory)
-
-    - name: APP_LABEL
-      value: "" # deployed app label (Mandatory)
-
-    - name: APP_PVC
-      value: "" # PVC name (Mandatory)
-
-    - name: NETWORK_DELAY
-      value: "10" # in milliseconds (Mandatory)
-
-    - name: CHAOS_DURATION
-      value: "10" # in milliseconds (Mandatory)
-
-    - name: LIVENESS_APP_LABEL
-      value: "" # (Optional) If Liveness probe is enable, mention the app_label else skip
-
-    - name: LIVENESS_APP_NAMESPACE
-      value: "" # # (Optional) If Liveness probe is enable, mention the app_namespace else skip
 
     - name: DATA_PERSISTENCY
       value: ""

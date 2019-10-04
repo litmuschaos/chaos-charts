@@ -1,7 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: Container-kill-v.0.1.0
+  name: Container-kill
+  version: {{ VERSION }}
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -15,7 +16,6 @@ spec:
   keywords:
     - Kubernetes
     - Container 
-  version: {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: ksatchit

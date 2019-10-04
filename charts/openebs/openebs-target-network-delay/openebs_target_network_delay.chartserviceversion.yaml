@@ -6,30 +6,29 @@ metadata:
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
-    createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.kubernetes.io/
 spec:
   displayName: Openebs_target_network_delay
   description: >
-    Network delay between Pod and PVC belonging to a deployment/statefulset/daemonset
+    Network delay to Pod belonging to a OpenEBS PVC
   keywords:
     - OpenEBS
     - Kubernetes
     - Network Delay 
   maturity: alpha
   maintainers:
-    - name: ksatchit
-      email: karthik.s@mayadata.io
+    - name: giri
+      email: giridhara.prasad@mayadata.io
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
+    - name: OpenEBS Website
+      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/openebs/openebs
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/openebs/openebs-target-network-delay/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-network-delay/experiment.yaml
