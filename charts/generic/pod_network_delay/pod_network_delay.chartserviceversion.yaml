@@ -31,4 +31,4 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/community-charts/master/charts/kubernetes/network/experiments/k8s_nw_all_exp_crd.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod_network_delay/experiment.yaml 
