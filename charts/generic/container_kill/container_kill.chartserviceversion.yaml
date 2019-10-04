@@ -2,11 +2,10 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: Container-kill
-  version: {{ VERSION }}
+  version: 0.1.0
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
-    createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
     support: https://slack.kubernetes.io/
 spec:
