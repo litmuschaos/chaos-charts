@@ -38,4 +38,4 @@ spec:
   icon:
     - url: 
       mediatype: image/png
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments/experiments.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments.yaml
