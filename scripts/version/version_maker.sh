@@ -4,7 +4,7 @@
 second_last_commit_hash=`git log -n 2 --pretty=format:"%H" | tail -1`
 echo "Second Last commit hash: $second_last_commit_hash"
 
-# This function is used to parse the yaml file.
+# # This function is used to parse the yaml file.
 function yaml_parser() {
     local prefix=$2
     local s='[[:space:]]*' w='[a-zA-Z0-9_]*' fs=$(echo @|tr @ '\034')
@@ -23,11 +23,11 @@ function yaml_parser() {
 }
 
 # This function takes the old version from the last commit 
-# and increment the existing version by one unit.
+# and increments the existing version by one unit.
 versionInc(){
     echo "version inc"
     file=$1
-    
+
     eval $(yaml_parser $file)
     if [[ $? == 0 ]]; then
         existing_version=$metadata_version
@@ -49,7 +49,7 @@ versionInc(){
             newversion="${versions[0]}.${versions[1]}.${versions[2]}"
 
             # This python script checks and validate the version
-            sudo python3 scripts/validate_version.py $oldversion $newversion
+            sudo python3 scripts/version/validate_version.py $oldversion $newversion
         
             if [[ $? == 0 ]]; then
                 `sed -i "s/$existing_version/$newversion/" $file` &&
@@ -61,20 +61,17 @@ versionInc(){
     fi
 }
 
-# compare and retrive the changed files
+
+compare and retrive the changed files
 check_diff=`git diff ${second_last_commit_hash} --name-only`
 files=$(echo $check_diff | tr " " "\n")
 
 for file in $files
 do
     echo $file
-    # For chart service version
-    if [[ "$file" =~ \version.yaml$ ]]; then
-        versionInc $file
-        break;
-
-    # # For experiment
-    elif [[ "$file" =~ \experiment.yaml$ ]]; then
+    # For chart service version or experiment
+    if [[ "$file" =~ \version.yaml$ ]] || [[ "$file" =~ \experiment.yaml$ ]]; then
         versionInc $file
     fi
 done
+

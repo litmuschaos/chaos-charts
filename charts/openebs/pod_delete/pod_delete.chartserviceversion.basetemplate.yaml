@@ -2,6 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: pod-delete
+  version: {{ VERSION }}
   annotations:
     categories: "OpenEBS"
     vendor: "CNCF"
@@ -17,7 +18,6 @@ spec:
     - Kubernetes
     - Pod
     - OpenEBS
-  version: {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: ksatchit
