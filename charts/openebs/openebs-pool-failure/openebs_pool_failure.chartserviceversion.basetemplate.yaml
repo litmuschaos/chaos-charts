@@ -2,20 +2,20 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-pool-failure
+  version: {{ VERSION }}
   annotations:
-    categories: "OpenEBS"
-    vendor: "CNCF"
+    categories: OpenEBS
+    vendor: CNCF
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
 spec:
-  displayName: Openebs-Pool-Failure 
+  displayName: openebs-pool-failure 
   description: >
      Kill the pool pod and check if gets scheduled again. 
   keywords:
     - Kubernetes
     - Storage Pool
     - OpenEBS
-  version: {{ VERSION }}
   maturity: alpha
   maintainers:
     - name: shubham chaudhary

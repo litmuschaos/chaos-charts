@@ -1,0 +1,136 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the pool pod and check if gets scheduled again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-pool-failure
+  version: 0.1.0
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/openebs_pool_failure/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    - name: DATA_PERSISTENCE
+      value: ""
+    - name: CHAOS_TYPE
+      value: "pool-kill"
+    - name: CHAOS_ITERATIONS
+      value: "2"
+    labels:
+      name: openebs-pool-failure
+    configmaps:
+    - name: pool-failure
+      data:
+        parameters.yml: |
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the cstor target/Jiva controller container and check if gets created again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-failure
+  version: 0.1.0
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/openebs_target_failure/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    - name: TARGET_NAMESPACE
+      value: "openebs"
+    - name: DATA_PERSISTENCE
+      value: ""
+    - name: CHAOS_TYPE
+      value: "target-zrepl-kill"
+    - name: TARGET_CONTAINER
+      value: "cstor-volume-mgmt"
+    - name: DEPLOY_TYPE
+      value: "deployment"
+    labels:
+      name: openebs-target-failure
+    configmaps:
+    - name: target-failure
+      data:
+        parameters.yml: |
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network delay to target pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-network-delay
+  version: 0.1.0
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: "default"
+    - name: OPERATOR_NAMESPACE
+      value: "openebs"
+    - name: NETWORK_DELAY
+      value: "60" # in milliseconds (Mandatory)
+    - name: CHAOS_DURATION
+      value: "60" # in milliseconds (Mandatory)
+    - name: DATA_PERSISTENCY
+      value: ""
+    labels:
+      name: openebs-target-network-delay
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network loss to target pod belonging to a OpenEBS PVC
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-network-loss
+  version: 0.1.0
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: "default"
+    - name: OPERATOR_NAMESPACE
+      value: "openebs"
+    - name: NETWORK_DELAY
+      value: "60" # in milliseconds (Mandatory)
+    - name: CHAOS_DURATION
+      value: "60" # in milliseconds (Mandatory)
+    - name: DATA_PERSISTENCY
+      value: ""
+    labels:
+      name: openebs-target-network-loss

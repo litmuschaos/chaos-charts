@@ -1,0 +1,31 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network delay to target pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-network-delay
+  version: 0.1.0
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: "default"
+    - name: OPERATOR_NAMESPACE
+      value: "openebs"
+    - name: NETWORK_DELAY
+      value: "60" # in milliseconds (Mandatory)
+    - name: CHAOS_DURATION
+      value: "60" # in milliseconds (Mandatory)
+    - name: DATA_PERSISTENCY
+      value: ""
+    labels:
+      name: openebs-target-network-delay
