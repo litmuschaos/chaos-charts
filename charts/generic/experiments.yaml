@@ -8,6 +8,12 @@ metadata:
   version: 0.1.0
 spec:
   definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: default
@@ -17,10 +23,8 @@ spec:
       value: ""
     - name: LIB
       value: ""
-    image: "litmuschaos/ansible-runner:ci"
     labels:
       name: container-kill
-    litmusbook: /experiments/generic/container_kill/container_kill_k8s_job.yml
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -32,6 +36,12 @@ metadata:
   version: 0.1.0
 spec:
   definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: default
@@ -41,10 +51,8 @@ spec:
       value: 5
     - name: LIB
       value: ""
-    image: "litmuschaos/ansible-runner:ci"
     labels:
       name: pod-delete
-    litmusbook: /experiments/generic/pod_delete/pod_delete_ansible_logic.yml
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -56,6 +64,12 @@ metadata:
   version: 0.1.0
 spec:
   definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_network_delay/pod_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: default
@@ -65,7 +79,5 @@ spec:
       value: 5
     - name: LIB
       value: ""
-    image: "litmuschaos/ansible-runner:ci"
     labels:
       name: pod-network-delay
-    litmusbook: /experiments/generic/pod_network_delay/pod_network_delay_ansible_logic.yml
