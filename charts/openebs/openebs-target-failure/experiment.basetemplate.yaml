@@ -1,0 +1,53 @@
+--
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the cstor target/Jiva controller container and check if gets created again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-failure
+  version: {{ VERSION }}
+spec:
+  definition:
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/openebs_target_failure/test.yml -i /etc/ansible/hosts
+      -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    - name: TARGET_NAMESPACE
+      value: openebs
+    - name: APP_NAMESPACE
+      value: ""
+    - name: APP_LABEL
+      value: ""
+    - name: APP_PVC
+      value: #mendatory field
+    - name: LIVENESS_APP_LABEL
+      value: ""
+    - name: LIVENESS_APP_NAMESPACE
+      value: ""
+    - name: DATA_PERSISTENCE
+      value: ""
+    - name: CHAOS_TYPE
+      value: "target-zrepl-kill"
+    - name: TARGET_CONTAINER
+      value: "cstor-volume-mgmt"
+    - name: DEPLOY_TYPE
+      value: deployment
+    labels:
+      name: openebs-target-failure
+    configmaps:
+    - name: target-failure
+      data:
+        parameters.yml: |
+    litmusbook: /experiments/chaos/openebs_target_failure/run_litmus_test.yml
+
+
+
+
