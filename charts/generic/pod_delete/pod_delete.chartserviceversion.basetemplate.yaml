@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: Pod-delete 
+  name: Pod-delete
   version: {{ VERSION }}
   annotations:
     categories: "Kubernetes"

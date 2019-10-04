@@ -1,17 +1,12 @@
 sudo: required
 dist: xenial # ubuntu 16.04 distro
 script:
-<<<<<<< HEAD
   # Installing dependencies
   - make deps
   # CAUTION: This will ignore the commit if it is pushes by Travis CI,
   # otherwise it will go to an infinte loop.
   - author=`git log -1 --pretty=format:'%an'` && if [[ "$author"  != "Travis CI" ]]; then make versionmaker; fi
   # Combining all experiment in one file
-=======
-  # runs  only when PR is merged
-  - make versionmaker
->>>>>>> upstream/master
   - make combineExpCR
 after_success: 
    # runs only when PR is merged and push the version file to the master branch

@@ -1,27 +1,25 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-delete
+  name: openebs-target-network-delay
   version: {{ VERSION }}
   annotations:
-    categories: "OpenEBS"
+    categories: "Kubernetes"
     vendor: "CNCF"
-    createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/community-charts
-    support: https://slack.openebs.io/
+    support: https://slack.kubernetes.io/
 spec:
-  displayName: Pod-Delete 
+  displayName: Openebs_target_network_delay
   description: >
-     Pod delete contains chaos to disrupt state of openebs control-plane and  data-plane resources. Experiments can inject random pod delete against specified openebs replicas. 
-
+    Network delay to Pod belonging to a OpenEBS PVC
   keywords:
-    - Kubernetes
-    - Pod
     - OpenEBS
+    - Kubernetes
+    - Network Delay 
   maturity: alpha
   maintainers:
-    - name: ksatchit
-      email: karthik.s@mayadata.io
+    - name: giri
+      email: giridhara.prasad@mayadata.io
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
@@ -31,5 +29,6 @@ spec:
     - name: Source Code
       url: https://github.com/openebs/openebs
   icon:
-    - url: ""
+    - url: 
       mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-network-delay/experiment.yaml

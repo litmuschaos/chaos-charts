@@ -3,7 +3,7 @@ description:
   message: "Kills a container belonging to an application pod \n"
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-state-container-kill-v0.1.0
+  name: container-kill
   version: 0.1.0
 spec:
   definition:

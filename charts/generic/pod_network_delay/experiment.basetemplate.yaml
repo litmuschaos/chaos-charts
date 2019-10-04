@@ -4,7 +4,7 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-network-pod-nw-delay
+  name: pod-network-delay
   version: {{ VERSION }}
 spec:
   definition:

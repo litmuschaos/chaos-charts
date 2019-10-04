@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: generic-v0.1.0
-  version: 0.1.0
+  name: generic
+  version: 0.1.0 
   annotations:
     categories: "Kubernetes"
     chartDescription: Injects generic kubernetes chaos 
@@ -18,7 +18,7 @@ spec:
 
   keywords:
     - Kubernetes
-    - Containers
+    - Container
   maturity: alpha
   maintainers:
     - name: ksatchit

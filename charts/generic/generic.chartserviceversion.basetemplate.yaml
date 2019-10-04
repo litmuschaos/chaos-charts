@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: generic-v0.1.0
+  name: generic
   version: {{ VERSION }}
   annotations:
     categories: "Kubernetes"

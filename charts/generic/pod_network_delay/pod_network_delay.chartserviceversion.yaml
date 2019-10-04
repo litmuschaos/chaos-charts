@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-network-delay-v0.1.0 
+  name: Pod-network-delay
   version: 0.1.0
   annotations:
     categories: "Kubernetes"
