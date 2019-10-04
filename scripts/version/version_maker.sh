@@ -48,13 +48,8 @@ versionInc(){
             ((versions[2]++)) # Increment the patch version by one unit
             newversion="${versions[0]}.${versions[1]}.${versions[2]}"
 
-            # This python script checks and validate the version
-            sudo python3 scripts/version/validate_version.py $oldversion $newversion
-        
-            if [[ $? == 0 ]]; then
-                `sed -i "s/$existing_version/$newversion/" $file` &&
-                echo "$file's version updated from $oldversion to $newversion"
-            fi
+            `sed -i "s/$existing_version/$newversion/" $file` &&
+            echo "$file's version updated from $oldversion to $newversion"
         fi
         # deleting the temporary file 
         rm './temp.yaml'
