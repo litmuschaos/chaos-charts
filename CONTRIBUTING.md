@@ -1,6 +1,6 @@
-# Contributing to Community Charts
+# Contributing to ChaosHub
 
-Litmus Community-Charts is an Apache 2.0 Licensed project that uses the standard GitHub pull requests process to review and accept 
+Litmus chaos-charts is an Apache 2.0 Licensed project that uses the standard GitHub pull requests process to review and accept 
 contributions. This repository is the canonical source for the chaos charts that appear on [hub.litmuschaos.io](https://hub.litmuschaos.io)
 
 Chaos Charts are a groups of categorized chaos experiments, represented as custom resource definitions that can be executed by the 
