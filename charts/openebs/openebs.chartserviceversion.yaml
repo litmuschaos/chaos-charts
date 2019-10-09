@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs
-  version: 0.1.0
+  version: 0.1.8
   annotations:
     categories: OpenEBS
     vendor: MayaData
@@ -15,10 +15,10 @@ spec:
     OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. 
 
   experiments:
-    - openebs-pool-failure
-    - openebs-target-failure
-    - openebs-target-network-delay
-    - openebs-target-network-loss
+    - openebs-pool-failures
+    - openebs-target-failures
+    - openebs-target-network-delays
+    - openebs-target-network-losses
   keywords:
     - OpenEBS
     - CAS

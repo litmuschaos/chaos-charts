@@ -43,13 +43,20 @@ versionInc(){
             oldversion=$metadata_version
             echo "Oldversion : $oldversion"
 
-            # storing version to an array 
-            versions=( ${oldversion//./ } )
-            ((versions[2]++)) # Increment the patch version by one unit
-            newversion="${versions[0]}.${versions[1]}.${versions[2]}"
+            if [[ $existing_version > $oldversion ]]; then
+                `sed -i "s/$existing_version/$existing_version/" $file` &&
+                echo "$file's version updated from $oldversion to $existing_version"
+                else
+                    # storing version to an array 
+                    versions=( ${oldversion//./ } )
+                    ((versions[2]++)) # Increment the patch version by one unit
+                    newversion="${versions[0]}.${versions[1]}.${versions[2]}"
 
-            `sed -i "s/$existing_version/$newversion/" $file` &&
-            echo "$file's version updated from $oldversion to $newversion"
+                    `sed -i "s/$existing_version/$newversion/" $file` &&
+                    echo "$file's version updated from $oldversion to $newversion"
+            fi
+
+
         fi
         # deleting the temporary file 
         rm './temp.yaml'
