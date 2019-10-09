@@ -8,4 +8,4 @@ Steps:
 
 2. It compares the changes with the second last commit and stores the changed file to an array.
 
-3. It will go through each file an increament a patch version to each changed file
+3. It will go through each file and increment a patch version to each changed file
