@@ -18,7 +18,7 @@ spec:
     - openebs-pool-failures
     - openebs-target-failures
     - openebs-target-network-delays
-    - openebs-target-network-lossessssssssssdddfrefrgrg
+    - openebs-target-network-loss
   keywords:
     - OpenEBS
     - CAS
