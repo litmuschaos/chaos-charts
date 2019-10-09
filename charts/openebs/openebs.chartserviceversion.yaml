@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs
-  version: 0.1.9
+  version: 0.1.10
   annotations:
     categories: OpenEBS
     vendor: MayaData
@@ -17,7 +17,7 @@ spec:
   experiments:
     - openebs-pool-failures
     - openebs-target-failures
-    - openebs-target-network-delays
+    - openebs-target-network-delayss
     - openebs-target-network-loss
   keywords:
     - OpenEBS

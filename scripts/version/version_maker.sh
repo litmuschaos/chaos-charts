@@ -1,4 +1,4 @@
-#! /bin/bash 
+#! /bin/bash
 
 # Retrive the last pushed commit from the repo
 second_last_commit_hash=`git log -n 2 --pretty=format:"%H" | tail -1`
@@ -43,17 +43,17 @@ versionInc(){
             oldversion=$metadata_version
             echo "Oldversion : $oldversion"
 
-            if [[ $existing_version > $oldversion ]]; then
-                `sed -i "s/$existing_version/$existing_version/" $file` &&
+            if [ "$existing_version" > "$oldversion" ]; then
                 echo "$file's version updated from $oldversion to $existing_version"
-                else
+                if [ "$existing_version" = "$oldversion" ]; then
                     # storing version to an array 
                     versions=( ${oldversion//./ } )
                     ((versions[2]++)) # Increment the patch version by one unit
                     newversion="${versions[0]}.${versions[1]}.${versions[2]}"
 
-                    `sed -i "s/$existing_version/$newversion/" $file` &&
+                    # `sed -i "s/$existing_version/$newversion/" $file`
                     echo "$file's version updated from $oldversion to $newversion"
+                fi
             fi
 
 
