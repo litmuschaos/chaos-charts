@@ -1,5 +1,4 @@
 #!/bin/sh
-
 setup_git() {
   git config --global user.email "travis@travis-ci.org"
   git config --global user.name "Travis CI"
@@ -20,5 +19,5 @@ upload_files() {
 }
 
 setup_git
-commit_website_files
+commit_updated_changes
 upload_files
