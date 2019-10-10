@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-single-replica-failure
-  version: {{ VERSION }}
+  version: 0.1.0
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
