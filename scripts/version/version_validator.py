@@ -14,7 +14,6 @@ if result:
     elif version.parse(existing_version) == version.parse(old_version):
         print("versions are equal")
         sys.exit(2) # on success
-
     else:
         print("version validation failed")
         sys.exit(1) #on failure
