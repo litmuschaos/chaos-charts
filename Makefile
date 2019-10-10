@@ -3,9 +3,9 @@
 
 .PHONY: deps
 deps:
-	@echo "-----Install depencies-----"
+	@echo "-----Install dependencies-----"
 	sudo apt-get update
-	sudo apt-get install python3.6 -y
+	sudo apt-get install python3
 	sudo apt-get install python3-pip -y
 	pip3 install packaging
 
