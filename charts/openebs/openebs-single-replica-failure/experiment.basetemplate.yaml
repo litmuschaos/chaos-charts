@@ -1,0 +1,24 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Delete the Jiva replica pod and ensure that it gets scheduled again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-single-replica-failure
+  version: {{ VERSION }}
+spec:
+  definition:
+    image: "openebs/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/openebs_single_replica_failure/test.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    labels:
+      name: openebs-single-replica-failure
