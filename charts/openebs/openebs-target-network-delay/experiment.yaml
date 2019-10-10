@@ -7,7 +7,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.5
+  version: 0.1.0
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
@@ -22,7 +22,7 @@ spec:
     - name: OPERATOR_NAMESPACE
       value: "openebs"
     - name: NETWORK_DELAY
-      value: "61" # in milliseconds (Mandatory)
+      value: "60" # in milliseconds (Mandatory)
     - name: CHAOS_DURATION
       value: "60" # in milliseconds (Mandatory)
     - name: DATA_PERSISTENCY
