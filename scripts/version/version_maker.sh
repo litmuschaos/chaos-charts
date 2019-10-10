@@ -50,7 +50,7 @@ versionInc(){
             if [[ $ret_code == 0 ]]; then
                 echo "$file's version updated from $oldversion to $existing_version"
                 elif [[ $ret_code == 2 ]]; then
-                    storing version to an array 
+                    # storing version to an array 
                     versions=( ${oldversion//./ } )
                     ((versions[2]++)) # Increment the patch version by one unit
                     newversion="${versions[0]}.${versions[1]}.${versions[2]}"
