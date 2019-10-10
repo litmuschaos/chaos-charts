@@ -22,7 +22,6 @@ function yaml_parser() {
     }'
 }
 
-
 # This function takes the old version from the last commit 
 # and increments the existing version by one unit.
 versionInc(){
@@ -42,11 +41,11 @@ versionInc(){
         eval $(yaml_parser './temp.yaml')
         if [[ $? == 0 ]]
         then
-
             oldversion=$metadata_version
             echo "Oldversion : $oldversion"
             sudo python3 scripts/version/version_validator.py $existing_version $oldversion
             ret_code=$?
+
             if [[ $ret_code == 0 ]]; then
                 echo "$file's version updated from $oldversion to $existing_version"
                 elif [[ $ret_code == 2 ]]; then
@@ -58,14 +57,11 @@ versionInc(){
                     `sed -i "s/$existing_version/$newversion/" $file`
                     echo "$file's version updated from $oldversion to $existing_version"
             fi
-
-
         fi
         # deleting the temporary file 
         rm './temp.yaml'
     fi
 }
-
 
 # compare and retrive the changed files
 check_diff=`git diff ${second_last_commit_hash} --name-only`
