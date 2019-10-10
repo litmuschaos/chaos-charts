@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-network-delay
+  name: pod-network-loss
   version: 0.1.0
   annotations:
     categories: Kubernetes
@@ -9,9 +9,9 @@ metadata:
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: pod-network-delay
+  displayName: pod-network-loss
   description: >
-    Pod-network-delay contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network jitters, delays and packet loss on the app replica pods. 
+    Pod-network-loss contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject percentage packet loss on the app replica pods. 
   keywords:
     - Kubernetes
     - Network
@@ -30,4 +30,4 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod_network_delay/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-loss/experiment.yaml 
