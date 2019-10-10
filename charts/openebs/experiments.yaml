@@ -1,4 +1,40 @@
 ---
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: kubernetes-state-pod-delete-v0.1.1
+  version: v0.1.1
+spec:
+  definition:
+    args:
+    - -c
+    - ansible-playbook ./experiments/chaos/kubernetes/pod_delete/test.yml -i /etc/ansible/hosts
+      -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: default
+    - name: TOTAL_CHAOS_DURATION
+      value: 15
+    - name: CHAOS_INTERVAL
+      value: 5
+    - name: LIB
+      value: ""
+    image: ""
+    labels:
+      name: pod-delete
+    litmusbook: /experiments/chaos/kubernetes/pod_delete/run_litmus_test.yml
+---
+
+---
+
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -32,6 +68,8 @@ spec:
     - name: pool-failure
       data:
         parameters.yml: |
+---
+
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -71,6 +109,7 @@ spec:
       data:
         parameters.yml: |
 ---
+
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -103,6 +142,7 @@ spec:
     labels:
       name: openebs-target-network-delay
 ---
+
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -134,3 +174,5 @@ spec:
       value: ""
     labels:
       name: openebs-target-network-loss
+---
+
