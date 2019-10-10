@@ -1,7 +1,9 @@
 sudo: required
 dist: xenial # ubuntu 16.04 distro
 script:
-  # runs  only when PR is merged
+  # Install dependencies
+  - make deps
+  # It will ignore if travis ci committed, else works as it is.
   - author=`git log -1 --pretty=format:'%an'` && if [[ "$author"  != "Travis CI" ]]; then make versionmaker; fi
   - make combineExpCR
 after_success: 
