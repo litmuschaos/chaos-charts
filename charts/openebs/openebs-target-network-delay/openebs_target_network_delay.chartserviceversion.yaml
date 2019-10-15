@@ -6,7 +6,7 @@ metadata:
   annotations:
     categories: Kubernetes
     vendor: CNCF
-    repository: https://github.com/litmuschaos/community-charts
+    repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
   displayName: openebs_target_network_delay
