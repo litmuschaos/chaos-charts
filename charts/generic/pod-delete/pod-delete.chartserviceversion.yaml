@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: pod-delete
-  version: {{ VERSION }}
+  version: 0.1.1
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -31,4 +31,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod_delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml
