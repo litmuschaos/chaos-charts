@@ -1,21 +1,20 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-delete
+  name: container-kill
   version: 0.1.0
   annotations:
-    categories: Kubernetes
-    vendor: CNCF
-    createdAt: 2019-08-12T10:28:08Z
+    categories: "Kubernetes"
+    vendor: "CNCF"
     repository: https://github.com/litmuschaos/chaos-charts
-    support: https://slack.kubernetes.io/
+    support: https://slack.openebs.io/
 spec:
-  displayName: pod-delete
+  displayName: container-kill
   description: >
-    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application. 
+   Container kill contains chaos to disrupt state of kubernetes resources. Experiments can inject random container delete failures against specified application. 
   keywords:
     - Kubernetes
-    - State 
+    - Container 
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -31,4 +30,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod_delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/container-kill/experiment.yaml
