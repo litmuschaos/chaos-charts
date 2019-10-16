@@ -10,7 +10,7 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: pod-network-loss
-  description: >
+  categoryDescription: >
     Pod-network-loss contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject percentage packet loss on the app replica pods. 
   keywords:
     - Kubernetes

@@ -10,7 +10,7 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: pod-network-latency
-  description: >
+  categoryDescription: >
     Pod-network-latency contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network delays on the app replica pods. 
   keywords:
     - Kubernetes
