@@ -10,7 +10,7 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: openebs-target-network-loss
-  description: >
+  categoryDescription: >
     Network loss to the target pod belonging to an OpenEBS PVC
   keywords:
     - Kubernetes

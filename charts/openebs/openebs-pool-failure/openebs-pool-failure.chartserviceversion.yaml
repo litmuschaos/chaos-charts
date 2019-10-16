@@ -5,12 +5,13 @@ metadata:
   version: 0.1.0
   annotations:
     categories: OpenEBS
+    createdAt: 2019-08-12T10:28:08Z
     vendor: CNCF
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
 spec:
   displayName: openebs-pool-failure 
-  description: >
+  categoryDescription: >
      Kill the pool pod and check if gets scheduled again. 
   keywords:
     - Kubernetes

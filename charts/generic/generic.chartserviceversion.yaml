@@ -2,20 +2,22 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: generic
-  version: 0.1.0
+  version: 0.1.0 
   annotations:
-    categories: Kubernetes
+    categories: "Kubernetes"
+    vendor: "CNCF"
+    createdAt: 2019-08-12T10:28:08Z
+    repository: https://github.com/litmuschaos/community-charts
+    support: https://slack.kubernetes.io/
     chartDescription: Injects generic kubernetes chaos 
 spec:
   displayName: Generic Chaos
   categoryDescription: >
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. Install will all the experiments which can be used to inject chaos into containerized appications.
-
   experiments:
-    - pod-network-delay
-    - pod-delete
+    - pod-nw-delay
+    - pod-delete-exp
     - container-kill
-
   keywords:
     - Kubernetes
     - Container
@@ -36,6 +38,7 @@ spec:
     - name: Documentation
       url: https://kubernetes.io/docs/home/
   icon:
-    - url: 
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
       mediatype: image/png
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiment.yaml
+

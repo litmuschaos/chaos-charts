@@ -2,15 +2,15 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-network-delay
-  version: 0.1.1
+  version: 0.1.0
   annotations:
     categories: Kubernetes
     vendor: CNCF
-    repository: https://github.com/litmuschaos/chaos-charts
+    repository: https://github.com/litmuschaos/community-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: openebs_target_network_delay
-  description: >
+  displayName: openebs-target-network-delay
+  categoryDescription: >
     Network delay to Pod belonging to a OpenEBS PVC
   keywords:
     - OpenEBS

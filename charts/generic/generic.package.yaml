@@ -8,7 +8,7 @@ experiments:
     desc: "container kill"
   - name: pod-network-loss
     CSV: pod-network-loss.chartserviceversion.yaml
-    desc: "Pod network delay"
+    desc: "pod network loss"
   - name: pod-network-latency
     CSV: pod-network-latency.chartserviceversion.yaml
-    desc: "Pod network delay"
+    desc: "pod network latency"

@@ -1,6 +1,4 @@
 ---
-
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -34,8 +32,6 @@ spec:
     - name: pool-failure
       data:
         parameters.yml: |
----
-
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -75,7 +71,6 @@ spec:
       data:
         parameters.yml: |
 ---
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -85,13 +80,13 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.1
+  version: 0.1.0
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -107,13 +102,7 @@ spec:
       value: ""
     labels:
       name: openebs-target-network-delay
-    configmaps:
-    - name: target-network-delay
-      data:
-        parameters.yml: |
-
 ---
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -123,13 +112,13 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.1
+  version: 0.1.0
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -145,10 +134,3 @@ spec:
       value: ""
     labels:
       name: openebs-target-network-loss
-    configmaps:
-    - name: target-network-loss
-      data:
-        parameters.yml: |
-
----
-
