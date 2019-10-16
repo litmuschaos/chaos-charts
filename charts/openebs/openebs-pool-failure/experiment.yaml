@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-failure
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     image: "openebs/ansible-runner:ci"

@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-failure
-  version: 0.1.0
+  version: 0.1.1
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -10,7 +10,7 @@ metadata:
     support: https://slack.openebs.io/
 spec:
   displayName: openebs-target-failure 
-  description: >
+  categoryDescription: >
      Kill the cstor target/Jiva controller container and check if gets created again
   keywords:
     - Kubernetes
