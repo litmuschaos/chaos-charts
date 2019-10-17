@@ -1,5 +1,5 @@
 packageName: openebs
-subcharts:
+experiments:
   - name: openebs-pool-failure
     CSV: openebs-pool-failure.chartserviceversion.yaml 
     desc: "openebs-pool-failure"

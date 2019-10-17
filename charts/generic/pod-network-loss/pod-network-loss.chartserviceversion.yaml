@@ -10,8 +10,10 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: pod-network-loss
-  categoryDescription: >
+  categoryDescription: |
     Pod-network-loss contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject percentage packet loss on the app replica pods. 
+    - Causes loss of access to application replica by injecting packet loss using pumba.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
   keywords:
     - Kubernetes
     - Network

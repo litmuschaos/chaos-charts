@@ -10,8 +10,10 @@ metadata:
     support: https://slack.openebs.io/
 spec:
   displayName: container-kill
-  categoryDescription: >
+  categoryDescription: |
    Container kill contains chaos to disrupt state of kubernetes resources. Experiments can inject random container delete failures against specified application. 
+    - Executes SIGKILL on containers of random replicas of an application deployment.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
   keywords:
     - Kubernetes
     - Container 

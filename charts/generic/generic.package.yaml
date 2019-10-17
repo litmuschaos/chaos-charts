@@ -1,4 +1,4 @@
-packageName: kubernetes 
+packageName: generic 
 experiments:
   - name: pod-delete
     CSV: pod-delete.chartserviceversion.yaml

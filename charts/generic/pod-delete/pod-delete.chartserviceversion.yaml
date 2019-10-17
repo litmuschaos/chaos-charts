@@ -11,8 +11,11 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: pod-delete
-  categoryDescription: >
-    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application. 
+  categoryDescription: |
+    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
+    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+ 
   keywords:
     - Kubernetes
     - State 
