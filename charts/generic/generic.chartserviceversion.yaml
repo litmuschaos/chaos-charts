@@ -37,6 +37,6 @@ spec:
     - name: Documentation
       url: https://kubernetes.io/docs/home/
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/charts-logos/litmus.png
       mediatype: image/png
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments.yaml
