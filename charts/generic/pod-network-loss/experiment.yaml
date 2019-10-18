@@ -20,7 +20,7 @@ spec:
     - name: NETWORK_INTERFACE
       value: "eth0"
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: "100" #in %
+      value: "100" #in PERCENTAGE
     - name: TOTAL_CHAOS_DURATION
       value: "60000" #in ms
     - name: LIB
