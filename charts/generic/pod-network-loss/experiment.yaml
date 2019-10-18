@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     image: "litmuschaos/ansible-runner:ci"
