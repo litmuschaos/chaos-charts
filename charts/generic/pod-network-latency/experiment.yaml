@@ -1,0 +1,29 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects network latency on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-latency
+  version: 0.1.1
+spec:
+  definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: TARGET_CONTAINER
+      value: ""
+    - name: NETWORK_INTERFACE
+      value: "eth0"
+    - name: NETWORK_LATENCY
+      value: "60000" #in ms
+    - name: TOTAL_CHAOS_DURATION
+      value: "60000" #in ms
+    - name: LIB
+      value: "pumba"
+    labels:
+      name: pod-network-latency

@@ -4,47 +4,13 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: kubernetes-state-pod-delete-v0.1.1
-  version: v0.1.1
-spec:
-  definition:
-    args:
-    - -c
-    - ansible-playbook ./experiments/chaos/kubernetes/pod_delete/test.yml -i /etc/ansible/hosts
-      -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
-    - name: TOTAL_CHAOS_DURATION
-      value: 15
-    - name: CHAOS_INTERVAL
-      value: 5
-    - name: LIB
-      value: ""
-    image: ""
-    labels:
-      name: pod-delete
-    litmusbook: /experiments/chaos/kubernetes/pod_delete/run_litmus_test.yml
----
-
----
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
     Kill the pool pod and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-failure
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
@@ -80,7 +46,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-failure
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
@@ -119,13 +85,13 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -141,6 +107,11 @@ spec:
       value: ""
     labels:
       name: openebs-target-network-delay
+    configmaps:
+    - name: target-network-delay
+      data:
+        parameters.yml: |
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -152,13 +123,13 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     image: "openebs/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -174,5 +145,10 @@ spec:
       value: ""
     labels:
       name: openebs-target-network-loss
+    configmaps:
+    - name: target-network-loss
+      data:
+        parameters.yml: |
+
 ---
 

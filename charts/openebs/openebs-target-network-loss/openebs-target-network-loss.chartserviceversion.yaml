@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-network-loss
-  version: {{ VERSION }}
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -10,7 +10,7 @@ metadata:
     support: https://slack.kubernetes.io/
 spec:
   displayName: openebs-target-network-loss
-  description: >
+  categoryDescription: >
     Network loss to the target pod belonging to an OpenEBS PVC
   keywords:
     - Kubernetes
