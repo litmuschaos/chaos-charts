@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: openebs-pool-failure
+  name: openebs-pool-container-failure
   version: 0.1.2
   annotations:
     categories: OpenEBS
@@ -9,7 +9,7 @@ metadata:
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
 spec:
-  displayName: openebs-pool-failure 
+  displayName: openebs-pool-container-failure 
   categoryDescription: >
      Kill the pool pod and check if gets scheduled again. 
   keywords:
@@ -23,7 +23,7 @@ spec:
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
-  readme: "https://github.com/mayadata-io/litmus/blob/master/experiments/chaos/openebs_pool_failure/README.md"
+  readme: "https://github.com/litmuschaos/litmus/blob/master/experiments/openebs/openebs-pool-container-failure/README.md"
   links:
     - name: OpenEBS Website
       url: https://openebs.io
@@ -32,4 +32,4 @@ spec:
   icon:
     - url: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-failure/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-container-failure/experiment.yaml

@@ -15,15 +15,27 @@ spec:
     command:
     - /bin/bash
     env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
+     # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: "100" #in PERCENTAGE
+      value: '100' #in PERCENTAGE
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
+
     labels:
       name: pod-network-loss

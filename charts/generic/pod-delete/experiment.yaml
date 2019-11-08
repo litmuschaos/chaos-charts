@@ -16,12 +16,19 @@ spec:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TOTAL_CHAOS_DURATION
-      value: 15
+      value: '15'
+
+    - name: FORCE
+      value: 'true'
+
     - name: CHAOS_INTERVAL
-      value: 5
+      value: '5'
+
     - name: LIB
-      value: ""
+      value: ''
+      
     labels:
       name: pod-delete
