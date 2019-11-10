@@ -38,7 +38,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
     
-    - name: LIB
+    - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.4.8'
       
     labels:
