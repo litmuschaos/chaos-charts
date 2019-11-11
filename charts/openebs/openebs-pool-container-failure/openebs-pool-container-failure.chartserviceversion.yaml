@@ -16,6 +16,9 @@ spec:
     - Kubernetes
     - Storage Pool
     - OpenEBS
+  Platform:
+    - Gke
+    - Openshift
   maturity: alpha
   maintainers:
     - name: shubham chaudhary
