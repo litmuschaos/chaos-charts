@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-network-delay
-  version: 0.1.3
+  version: 0.1.1
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -16,6 +16,9 @@ spec:
     - OpenEBS
     - Kubernetes
     - Network Delay 
+  platforms:
+    - GKE
+    - OpenShift
   maturity: alpha
   maintainers:
     - name: giri

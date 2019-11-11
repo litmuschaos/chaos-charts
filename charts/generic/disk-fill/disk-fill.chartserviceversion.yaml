@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-delete
-  version: 0.1.4
+  name: disk-fill
+  version: 0.0.2
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -10,18 +10,19 @@ metadata:
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: pod-delete
+  displayName: disk-fill
   categoryDescription: |
-    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
-    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
-    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+    Disk fill contains chaos to disrupt state of kubernetes resources. 
+    - Causes (forced/graceful) Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers.
+    - Causes Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.
+    - Tests the Ephemeral Storage Limits, to ensure those parameters are sufficient.
  
   keywords:
     - Kubernetes
+    - Disk
     - State 
   platforms:
     - GKE
-    - OpenShift
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -37,4 +38,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/disk-fill/experiment.yaml
