@@ -7,9 +7,27 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "deployments"
+        - "statefulsets"
+        - "jobs"
+        - "pods"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -17,14 +35,19 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TOTAL_CHAOS_DURATION
-      value: 15
+      value: '15'
+
     - name: CHAOS_INTERVAL
-      value: 5
+      value: '5'
+
     - name: LIB
-      value: ""
+      value: ''
+
     labels:
       name: pod-delete
 ---
@@ -36,9 +59,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -46,16 +88,25 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: "100" #in PERCENTAGE
+      value: '100' #in PERCENTAGE
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
+    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
+    
     labels:
       name: pod-network-loss
 
@@ -68,9 +119,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -78,16 +148,25 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
     - name: NETWORK_LATENCY
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
+
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8'
+
     labels:
       name: pod-network-latency
 
@@ -99,9 +178,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "deployments"
+        - "statefulsets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -109,14 +207,19 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
-    - name: KILL_MODE
-      value: ""
+      value: ''
+
     - name: LIB
-      value: ""
+      value: ''
+    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8'
+      
     labels:
       name: container-kill
 ---
