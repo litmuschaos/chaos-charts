@@ -59,9 +59,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -69,16 +88,25 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: "100" #in PERCENTAGE
+      value: '100' #in PERCENTAGE
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
+    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
+    
     labels:
       name: pod-network-loss
 
