@@ -1,12 +1,13 @@
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Network loss to target pod belonging to a OpenEBS PVC
+    Kill the pool pod and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
-  name: openebs-target-network-loss
+  name: openebs-pool-pod-failure
   version: 0.1.2
 spec:
   definition:
@@ -18,7 +19,6 @@ spec:
         - "batch"
         - "litmuschaos.io"
         - "openebs.io"
-        - "storage.k8s.io"
       resources:
         - "daemonsets"
         - "statefulsets"
@@ -31,49 +31,40 @@ spec:
         - "chaosexperiments"
         - "chaosresults"
         - "persistentvolumeclaims"
-        - "storageclasses"
-        - "persistentvolumes"
+        - "cstorvolumereplicas"
       verbs:
         - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/openebs/openebs-target-network-loss/openebs_target_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-pool-pod-failure/openebs_pool_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+      value: default
 
-    - name: OPENEBS_NAMESPACE
+    - name: OPENEBS_NS
       value: 'openebs'
 
     - name: APP_PVC
       value: ''
 
-    # only pumba supported
-    # For pumba image use : gaiaadm/pumba:0.4.8
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
-
-    - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: '100' # in percentage
-
-    - name: CHAOS_DURATION
-      value: '240000' # in milliseconds
-
     - name: LIVENESS_APP_LABEL
       value: ''
 
     - name: LIVENESS_APP_NAMESPACE
-      value: ''
+      value: '' 
+
+    - name: CHAOS_ITERATIONS
+      value: '2'
 
     - name: DATA_PERSISTENCE
       value: ''
 
     labels:
-      name: openebs-target-network-loss
+      name: openebs-pool-pod-failure
     configmaps:
-    - name: openebs-target-network-loss
+    - name: openebs-pool-pod-failure
       data:
         parameters.yml: |
