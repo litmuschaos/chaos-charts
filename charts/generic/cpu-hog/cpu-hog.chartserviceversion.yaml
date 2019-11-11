@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-delete
-  version: 0.1.4
+  name: cpu-hog
+  version: 0.0.2
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -10,18 +10,18 @@ metadata:
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: pod-delete
+  displayName: cpu-hog
   categoryDescription: |
-    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
-    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
-    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+    CPU hog contains chaos to disrupt state of kubernetes resources. Experiments can inject a cpu skipe on a node where the application pod is scheduled.
+    - Causes (forced/graceful) cpu hog on a perticular node where the application deployment is available.
+    - After test the recovery should be manual of the application pod and node in case they are not in appropriate state.
  
   keywords:
     - Kubernetes
+    - CPU
     - State 
   platforms:
     - GKE
-    - OpenShift
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -37,4 +37,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/cpu-hog/experiment.yaml
