@@ -20,6 +20,7 @@ spec:
       - "openebs.io"
     resources:
       - "daemonsets"
+      - "statefulsets"
       - "deployments"
       - "replicasets"
       - "jobs"
@@ -67,8 +68,8 @@ spec:
       value: '2'
 
     labels:
-      name: openebs-pool-failure
+      name: openebs-pool-container-failure
     configmaps:
-    - name: pool-container-kill
+    - name: openebs-pool-container-failure
       data:
         parameters.yml: |
