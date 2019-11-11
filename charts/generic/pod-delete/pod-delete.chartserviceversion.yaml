@@ -19,6 +19,9 @@ spec:
   keywords:
     - Kubernetes
     - State 
+  platforms:
+    - GKE
+    - OpenShift
   maturity: alpha
   maintainers:
     - name: ksatchit
