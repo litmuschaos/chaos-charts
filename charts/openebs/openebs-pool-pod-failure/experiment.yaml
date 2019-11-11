@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     permissions:
