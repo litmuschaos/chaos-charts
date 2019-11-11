@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: pod-delete
-  version: 0.1.3
+  version: 0.1.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -19,6 +19,9 @@ spec:
   keywords:
     - Kubernetes
     - State 
+  platforms:
+    - GKE
+    - OpenShift
   maturity: alpha
   maintainers:
     - name: ksatchit
