@@ -17,6 +17,7 @@ spec:
         - "litmuschaos.io"
       resources:
         - "daemonsets"
+        - "statefulsets"
         - "deployments"
         - "jobs"
         - "nodes"
@@ -48,4 +49,4 @@ spec:
       value: ''
       
     labels:
-      name: cpu_hog
+      name: cpu-hog

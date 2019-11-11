@@ -21,7 +21,7 @@ spec:
     - CPU
     - State 
   platforms:
-    - gke
+    - GKE
   maturity: alpha
   maintainers:
     - name: ksatchit
