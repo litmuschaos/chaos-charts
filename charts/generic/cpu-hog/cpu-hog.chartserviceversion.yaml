@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: cpu_hog
-  version: 0.1.3
+  name: cpu-hog
+  version: 0.0.1
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -10,7 +10,7 @@ metadata:
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: cpu_hog
+  displayName: cpu-hog
   categoryDescription: |
     CPU hog contains chaos to disrupt state of kubernetes resources. Experiments can inject a cpu skipe on a node where the application pod is scheduled.
     - Causes (forced/graceful) cpu hog on a perticular node where the application deployment is available.
@@ -20,6 +20,8 @@ spec:
     - Kubernetes
     - CPU
     - State 
+  platforms:
+    - gke
   maturity: alpha
   maintainers:
     - name: ksatchit
