@@ -19,6 +19,7 @@ spec:
         - "deployments"
         - "jobs"
         - "pods"
+        - "pods/exec"
         - "chaosengines"
         - "chaosexperiments"
         - "chaosresults"
@@ -36,6 +37,9 @@ spec:
       value: 'default'
 
     - name: TARGET_CONTAINER
+      value: ''
+
+    - name: LIB
       value: ''
     
     - name: LIB_IMAGE
