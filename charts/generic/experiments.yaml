@@ -3,6 +3,62 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    Fillup Ephemeral Storage of a Resource
+kind: ChaosExperiment
+metadata:
+  name: disk-fill
+  version: 0.0.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TARGET_CONTAINER
+      value: ''
+    
+    - name: FILL_PERCENTAGE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+      
+    labels:
+      name: disk-fill
+
+
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Give a cpu spike on a node belonging to a deployment
 kind: ChaosExperiment
 metadata:
