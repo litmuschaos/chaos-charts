@@ -20,11 +20,10 @@ spec:
     - Kubernetes
     - AWS
     - GCP
-    - AWS EC2
-    - AWS EBS
-    - Google PD
-    - Google compute instance
-    - Disk Loss
+    - Disk 
+  platorms:
+    - GKE
+    - AWS
   maturity: alpha
   maintainers:
     - name: Raj Babu Das
