@@ -118,7 +118,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
@@ -153,12 +153,14 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
+    - name: FORCE
+      value: 'true'
+
     - name: CHAOS_INTERVAL
       value: '5'
 
     - name: LIB
-      value: ''
-
+      value: ''    
     labels:
       name: pod-delete
 ---
@@ -170,7 +172,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
@@ -199,9 +201,15 @@ spec:
     command:
     - /bin/bash
     env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
 
     - name: TARGET_CONTAINER
       value: ''
+
+     # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -214,10 +222,6 @@ spec:
 
     - name: LIB
       value: 'pumba'
-    
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8' 
-    
     labels:
       name: pod-network-loss
 
@@ -230,7 +234,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
@@ -259,12 +263,18 @@ spec:
     command:
     - /bin/bash
     env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
 
     - name: TARGET_CONTAINER
       value: ''
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
 
     - name: NETWORK_LATENCY
       value: '60000' #in ms
@@ -274,10 +284,6 @@ spec:
 
     - name: LIB
       value: 'pumba'
-
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8'
-
     labels:
       name: pod-network-latency
 
@@ -289,7 +295,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
@@ -327,10 +333,11 @@ spec:
 
     - name: LIB
       value: ''
-    
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8'
-      
+
+    # provide lib image
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
     labels:
       name: container-kill
 ---
