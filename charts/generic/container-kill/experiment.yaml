@@ -42,9 +42,10 @@ spec:
 
     - name: LIB
       value: ''
-    
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8'
-      
+
+    # provide lib image
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
     labels:
       name: container-kill
