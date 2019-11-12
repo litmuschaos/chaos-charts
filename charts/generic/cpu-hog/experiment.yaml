@@ -1,10 +1,11 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
-  message: "Kills a container belonging to an application pod \n"
+  message: |
+    Give a cpu spike on a node belonging to a deployment
 kind: ChaosExperiment
 metadata:
-  name: container-kill
-  version: 0.1.4
+  name: cpu-hog
+  version: 0.0.2
 spec:
   definition:
     permissions:
@@ -16,9 +17,10 @@ spec:
         - "litmuschaos.io"
       resources:
         - "daemonsets"
-        - "deployments"
         - "statefulsets"
+        - "deployments"
         - "jobs"
+        - "nodes"
         - "pods"
         - "pods/exec"
         - "chaosengines"
@@ -29,7 +31,7 @@ spec:
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/cpu_hog/cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -37,15 +39,14 @@ spec:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: 'default'
 
-    - name: TARGET_CONTAINER
-      value: ''
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: PLATFORM
+      value: 'ANY'
 
     - name: LIB
       value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
-
+      
     labels:
-      name: container-kill
+      name: cpu-hog

@@ -1,10 +1,11 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
-  message: "Kills a container belonging to an application pod \n"
+  message: |
+    Fillup Ephemeral Storage of a Resource
 kind: ChaosExperiment
 metadata:
-  name: container-kill
-  version: 0.1.4
+  name: disk-fill
+  version: 0.0.2
 spec:
   definition:
     permissions:
@@ -16,8 +17,8 @@ spec:
         - "litmuschaos.io"
       resources:
         - "daemonsets"
-        - "deployments"
         - "statefulsets"
+        - "deployments"
         - "jobs"
         - "pods"
         - "pods/exec"
@@ -29,7 +30,7 @@ spec:
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -39,13 +40,14 @@ spec:
 
     - name: TARGET_CONTAINER
       value: ''
-
-    - name: LIB
+    
+    - name: FILL_PERCENTAGE
       value: ''
 
-    # provide lib image
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
-
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+      
     labels:
-      name: container-kill
+      name: disk-fill
+
+

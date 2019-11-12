@@ -7,29 +7,73 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
-    image: "openebs/ansible-runner:ci"
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+        - "storage.k8s.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "storageclasses"
+        - "persistentvolumes"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-target-network-delay/openebs_target_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: "default"
-    - name: OPERATOR_NAMESPACE
-      value: "openebs"
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.4.8
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
+
     - name: NETWORK_DELAY
-      value: "60" # in milliseconds (Mandatory)
+      value: '60000' # in milliseconds
+
     - name: CHAOS_DURATION
-      value: "60" # in milliseconds (Mandatory)
-    - name: DATA_PERSISTENCY
-      value: ""
+      value: '60000' # in milliseconds
+            
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''   
+
     labels:
       name: openebs-target-network-delay
     configmaps:
-    - name: target-network-delay
+    - name: openebs-target-network-delay
       data:
         parameters.yml: |

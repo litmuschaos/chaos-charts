@@ -2,13 +2,19 @@ packageName: generic
 experiments:
   - name: pod-delete
     CSV: pod-delete.chartserviceversion.yaml
-    desc: "pod delete"
+    desc: "pod-delete"
   - name: container-kill
     CSV:  container-kill.chartserviceversion.yaml
-    desc: "container kill"
+    desc: "container-kill"
   - name: pod-network-loss
     CSV: pod-network-loss.chartserviceversion.yaml
-    desc: "Pod network delay"
+    desc: "Pod-network-loss"
   - name: pod-network-latency
     CSV: pod-network-latency.chartserviceversion.yaml
-    desc: "Pod network delay"
+    desc: "pod-network-latency"
+  - name: cpu-hog
+    CSV: cpu-hog.chartserviceversion.yaml
+    desc: "cpu-hog"
+  - name: disk-fill
+    CSV: disk-fill.chartserviceversion.yaml
+    desc: "disk-fill"
