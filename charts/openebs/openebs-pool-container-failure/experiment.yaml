@@ -2,7 +2,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Kill the pool pod and check if gets scheduled again
+    Kill the pool container and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
   labels:

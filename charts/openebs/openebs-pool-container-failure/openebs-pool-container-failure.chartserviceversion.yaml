@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: openebs-pool-container-failure 
   categoryDescription: >
-     Kill the pool pod and check if gets scheduled again. 
+     Kill the pool container and check if gets scheduled again. 
   keywords:
     - Kubernetes
     - Storage Pool

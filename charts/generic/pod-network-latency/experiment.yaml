@@ -47,7 +47,7 @@ spec:
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.4.8' 
 
-   - name: NETWORK_LATENCY
+    - name: NETWORK_LATENCY
       value: '60000' #in ms
 
     - name: TOTAL_CHAOS_DURATION

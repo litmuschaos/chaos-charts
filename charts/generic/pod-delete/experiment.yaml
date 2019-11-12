@@ -47,7 +47,6 @@ spec:
       value: '5'
 
     - name: LIB
-      value: ''
-      
+      value: ''    
     labels:
       name: pod-delete
