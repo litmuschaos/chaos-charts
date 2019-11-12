@@ -15,6 +15,7 @@ spec:
       - "litmuschaos.io"
     resources:
       - "deployments"
+      - "statefulsets"
       - "jobs"
       - "pods"
       - "chaosengines"
