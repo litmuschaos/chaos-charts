@@ -45,10 +45,7 @@ spec:
         
    # Only GCP is supported
     - name: CLOUD_PLATFORM
-      value: ''
-
-    - name: TOTAL_CHAOS_DURATION
-      value: ''
+      value: 'GCP'
 
     - name: PROJECT_ID 
       value: ''
@@ -66,4 +63,4 @@ spec:
       name: disk-loss
     secrets:
     - name: disk-loss
-      mountPath: /mnt/cloud_config.yml
+      mountPath: /tmp/
