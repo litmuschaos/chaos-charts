@@ -4,14 +4,14 @@ metadata:
   name: kafka-broker-pod-failure
   version: 0.1.0
   annotations:
-    categories: Kubernetes
-    vendor: CNCF
+    categories: Kafka
+    vendor: Mayadata
     repository: https://github.com/litmuschaos/chaos-charts
-    support: https://slack.kubernetes.io/
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
   displayName: kafka-broker-pod-failure
   categoryDescription: |
-    kafka-broker-pod-failure contains chaos to disrupt state of kubernetes resources. 
+    This chaos experiment kills (random or specified) kafka broker pods
   keywords:
     - Kubernetes
     - Pod
@@ -19,7 +19,7 @@ spec:
     - Kafka
   platforms:
     - GKE
-    - Convey
+    - konvoy
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -28,10 +28,10 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
+    - name: Kafka Website
+      url: http://kafka.apache.org/
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/kafka
   icon:
     - url: 
       mediatype: ""
