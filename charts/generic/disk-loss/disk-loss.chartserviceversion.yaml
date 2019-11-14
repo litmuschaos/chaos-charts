@@ -5,10 +5,10 @@ metadata:
   version: 0.1.1
   annotations:
     categories: Kubernetes
-    vendor: CNCF
+    vendor: Mayadata
     createdAt: 2019-11-08T12:28:08Z
     repository: https://github.com/litmuschaos/chaos-charts
-    support: https://slack.kubernetes.io/
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
   displayName: disk-loss
   categoryDescription: |
@@ -35,7 +35,7 @@ spec:
     - name: Kubernetes Website
       url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic
   icon:
     - url: 
       mediatype: ""

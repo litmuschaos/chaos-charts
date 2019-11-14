@@ -10,7 +10,7 @@ spec:
   displayName: Kafka Chaos
   categoryDescription: >
     Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, fast, 
-    and runs in production in thousands of compani
+    and runs in production in thousands of companies
   experiments:
     - kafka-broker-pod-failure
   keywords:
