@@ -234,7 +234,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.1
+  version: 0.1.2
 spec:
   permissions:
     apiGroups:
@@ -261,11 +261,38 @@ spec:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TOTAL_CHAOS_DURATION
-      value: 15
+      value: '15'
+
+    - name: APP_CHECK
+      value: 'true' 
+
+    - name: CHAOS_NAMESPACE
+      value: ''
+        
+   # Only GCP is supported
+    - name: CLOUD_PLATFORM
+      value: 'GCP'
+
+    - name: PROJECT_ID 
+      value: ''
+
+    - name: NODE_NAME
+      value: '' 
+
+    - name: DISK_NAME
+      value: ''  
+          
+    - name: ZONE_NAME
+      value: '' 
+          
     labels:
       name: disk-loss
+    secrets:
+    - name: disk-loss
+      mountPath: /tmp/
 
 ---
 
