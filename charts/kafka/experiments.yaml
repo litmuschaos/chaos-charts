@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     permissions:
@@ -47,6 +47,9 @@ spec:
     - name: KAFKA_LIVENESS_STREAM
       value: 'enabled'
 
+    - name: KAFKA_CONSUMER_TIMEOUT
+      value: '30000'
+
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
@@ -55,6 +58,9 @@ spec:
 
     - name: FORCE
       value: 'true'
+
+    - name: KAFKA_INSTANCE_NAME
+      value: ''
 
     - name: KAFKA_NAMESPACE
       value: ''
@@ -103,7 +109,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     permissions:
@@ -142,6 +148,9 @@ spec:
     - name: KAFKA_LIVENESS_STREAM
       value: 'enabled'
 
+    - name: KAFKA_CONSUMER_TIMEOUT
+      value: '30000'
+
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
@@ -166,7 +175,7 @@ spec:
     - name: KAFKA_BROKER
       value: ''
 
-    - name: KAFKA_INSTANCE
+    - name: KAFKA_INSTANCE_NAME
       value: ''
 
     - name: KAFKA_REPLICATION_FACTOR
@@ -195,5 +204,6 @@ spec:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/
       
+
 ---
 
