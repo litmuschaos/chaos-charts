@@ -18,3 +18,6 @@ experiments:
   - name: disk-fill
     CSV: disk-fill.chartserviceversion.yaml
     desc: "disk-fill"
+  - name: disk-loss
+    CSV: disk-loss.chartserviceversion.yaml
+    desc: "disk-loss"
