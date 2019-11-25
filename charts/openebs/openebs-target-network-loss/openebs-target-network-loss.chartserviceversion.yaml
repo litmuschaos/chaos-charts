@@ -1,0 +1,37 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: openebs-target-network-loss
+  version: 0.1.1
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: openebs-target-network-loss
+  categoryDescription: >
+    Network loss to the target pod belonging to an OpenEBS PVC
+  keywords:
+    - Kubernetes
+    - OpenEBS 
+    - Network Loss
+  platforms:
+    - GKE
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: giri
+      email: giridhara.prasad@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kubernetes Website
+      url: https://openebs.io
+    - name: Source Code
+      url: https://github.com/openebes/openebs
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-network-loss/experiment.yaml

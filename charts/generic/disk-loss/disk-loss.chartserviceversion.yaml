@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: disk-loss
+  version: 0.1.2
+  annotations:
+    categories: Kubernetes
+    vendor: Mayadata
+    createdAt: 2019-11-08T12:28:08Z
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: disk-loss
+  categoryDescription: |
+    Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against specified application.
+    - Causes (forced/graceful) disk loss from node/instance..
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+ 
+  keywords:
+    - Kubernetes
+    - AWS
+    - GCP
+    - Disk 
+  platorms:
+    - GKE
+    - AWS
+  maturity: alpha
+  maintainers:
+    - name: Raj Babu Das
+      email: raj.das@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/disk-loss/experiment.yaml

@@ -1,0 +1,66 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
+kind: ChaosExperiment
+metadata:
+  name: disk-loss
+  version: 0.1.2
+spec:
+  permissions:
+    apiGroups:
+      - ""
+      - "apps"
+      - "batch"
+      - "litmuschaos.io"
+    resources:
+      - "deployments"
+      - "statefulsets"
+      - "jobs"
+      - "pods"
+      - "chaosengines"
+      - "chaosexperiments"
+      - "chaosresults"
+    verbs:
+      - "*"
+  definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    - name: APP_CHECK
+      value: 'true' 
+
+    - name: CHAOS_NAMESPACE
+      value: ''
+        
+   # Only GCP is supported
+    - name: CLOUD_PLATFORM
+      value: 'GCP'
+
+    - name: PROJECT_ID 
+      value: ''
+
+    - name: NODE_NAME
+      value: '' 
+
+    - name: DISK_NAME
+      value: ''  
+          
+    - name: ZONE_NAME
+      value: '' 
+          
+    labels:
+      name: disk-loss
+    secrets:
+    - name: disk-loss
+      mountPath: /tmp/

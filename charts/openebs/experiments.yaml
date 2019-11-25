@@ -4,33 +4,335 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
+    Kill the cstor target/Jiva controller container and check if gets created again
 kind: ChaosExperiment
 metadata:
-  name: kubernetes-state-pod-delete-0.1.1
-  version: 0.1.1
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-container-failure
+  version: 0.1.2
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+        - "storage.k8s.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "storageclasses"
+        - "persistentvolumes"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/kubernetes/pod_delete/test.yml -i /etc/ansible/hosts
-      -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-target-container-failure/openebs_target_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
-    - name: TOTAL_CHAOS_DURATION
-      value: 15
-    - name: CHAOS_INTERVAL
-      value: 5
-    - name: LIB
-      value: ""
-    image: ""
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
+    # For pumba image use : gaiaadm/pumba:0.4.8
+    # For containerd image use : gprasath/crictl:ci
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8'
+
+    # Specify the container runtime used , to pick the relevant chaos util  
+    - name: CONTAINER_RUNTIME
+      value: 'docker' 
+
+    # TARGET_CONTAINER values: cstor-volume-mgmt , cstor-istgt
+    # For cstor-volume-istgt container kill use : cstor-istgt
+    # For volume-mgmt-kill container use : cstor-volume-mgmt
+            
+    - name: TARGET_CONTAINER
+      value: 'cstor-volume-mgmt'
+
+    - name: FORCE
+      value: 'true'
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: DEPLOY_TYPE
+      value: 'deployment'
+
     labels:
-      name: pod-delete
-    litmusbook: /experiments/chaos/kubernetes/pod_delete/run_litmus_test.yml
+      name: openebs-target-container-failure
+    configmaps:
+    - name: openebs-target-container-failure
+      data:
+        parameters.yml: | 
 ---
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the cstor target/Jiva controller pod and check if gets created again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-pod-failure
+  version: 0.1.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+        - "storage.k8s.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "storageclasses"
+        - "persistentvolumes"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-pod-failure/openebs_target_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+      
+    - name: APP_PVC
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: DEPLOY_TYPE
+      value: 'deployment'
+
+    labels:
+      name: openebs-target-pod-failure
+    configmaps:
+    - name: openebs-target-pod-failure
+      data:
+        parameters.yml: |
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network delay to target pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-network-delay
+  version: 0.1.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+        - "storage.k8s.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "storageclasses"
+        - "persistentvolumes"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-network-delay/openebs_target_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.4.8
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8' 
+
+    - name: NETWORK_DELAY
+      value: '60000' # in milliseconds
+
+    - name: CHAOS_DURATION
+      value: '60000' # in milliseconds
+            
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''   
+
+    labels:
+      name: openebs-target-network-delay
+    configmaps:
+    - name: openebs-target-network-delay
+      data:
+        parameters.yml: |
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network loss to target pod belonging to a OpenEBS PVC
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-target-network-loss
+  version: 0.1.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+        - "storage.k8s.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "storageclasses"
+        - "persistentvolumes"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-network-loss/openebs_target_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.4.8
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
+    - name: NETWORK_PACKET_LOSS_PERCENTAGE
+      value: '100' # in percentage
+
+    - name: CHAOS_DURATION
+      value: '240000' # in milliseconds
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    labels:
+      name: openebs-target-network-loss
+    configmaps:
+    - name: openebs-target-network-loss
+      data:
+        parameters.yml: |
 
 ---
 
@@ -43,136 +345,145 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
-  name: openebs-pool-failure
-  version: 0.1.0
+  name: openebs-pool-pod-failure
+  version: 0.1.2
 spec:
   definition:
-    image: "openebs/ansible-runner:ci"
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "cstorvolumereplicas"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/openebs_pool_failure/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-pool-pod-failure/openebs_pool_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: default
-    - name: DATA_PERSISTENCE
-      value: ""
-    - name: CHAOS_TYPE
-      value: "pool-kill"
+
+    - name: OPENEBS_NS
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: '' 
+
     - name: CHAOS_ITERATIONS
-      value: "2"
-    labels:
-      name: openebs-pool-failure
-    configmaps:
-    - name: pool-failure
-      data:
-        parameters.yml: |
----
+      value: '2'
 
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Kill the cstor target/Jiva controller container and check if gets created again
-kind: ChaosExperiment
-metadata:
-  labels:
-    litmuschaos.io/name: openebs
-  name: openebs-target-failure
-  version: 0.1.0
-spec:
-  definition:
-    image: "openebs/ansible-runner:ci"
-    args:
-    - -c
-    - ansible-playbook ./experiments/chaos/openebs_target_failure/test.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
-    - name: TARGET_NAMESPACE
-      value: "openebs"
     - name: DATA_PERSISTENCE
-      value: ""
-    - name: CHAOS_TYPE
-      value: "target-zrepl-kill"
-    - name: TARGET_CONTAINER
-      value: "cstor-volume-mgmt"
-    - name: DEPLOY_TYPE
-      value: "deployment"
+      value: ''
+
     labels:
-      name: openebs-target-failure
+      name: openebs-pool-pod-failure
     configmaps:
-    - name: target-failure
+    - name: openebs-pool-pod-failure
       data:
         parameters.yml: |
+
 ---
 
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Network delay to target pod belonging to a deployment/statefulset/daemonset
+    Kill the pool container and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
-  name: openebs-target-network-delay
-  version: 0.1.0
+  name: openebs-pool-container-failure
+  version: 0.1.2
 spec:
+  permissions:
+    apiGroups:
+      - ""
+      - "extensions"
+      - "apps"
+      - "batch"
+      - "litmuschaos.io"
+      - "openebs.io"
+    resources:
+      - "daemonsets"
+      - "statefulsets"
+      - "deployments"
+      - "replicasets"
+      - "jobs"
+      - "pods"
+      - "pods/exec"
+      - "chaosengines"
+      - "chaosexperiments"
+      - "chaosresults"
+      - "persistentvolumeclaims"
+      - "cstorvolumereplicas"
+    verbs:
+      - "*"
   definition:
-    image: "openebs/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_delay/test.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-pool-container-failure/openebs_pool_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: "default"
-    - name: OPERATOR_NAMESPACE
-      value: "openebs"
-    - name: NETWORK_DELAY
-      value: "60" # in milliseconds (Mandatory)
-    - name: CHAOS_DURATION
-      value: "60" # in milliseconds (Mandatory)
-    - name: DATA_PERSISTENCY
-      value: ""
-    labels:
-      name: openebs-target-network-delay
----
+      value: 'default'
 
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Network loss to target pod belonging to a OpenEBS PVC
-kind: ChaosExperiment
-metadata:
-  labels:
-    litmuschaos.io/name: openebs
-  name: openebs-target-network-loss
-  version: 0.1.0
-spec:
-  definition:
-    image: "openebs/ansible-runner:ci"
-    args:
-    - -c
-    - ansible-playbook ./experiments/chaos/experiments/chaos/openebs_target_network_loss/test.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: "default"
-    - name: OPERATOR_NAMESPACE
-      value: "openebs"
-    - name: NETWORK_DELAY
-      value: "60" # in milliseconds (Mandatory)
-    - name: CHAOS_DURATION
-      value: "60" # in milliseconds (Mandatory)
-    - name: DATA_PERSISTENCY
-      value: ""
+    - name: OPENEBS_NS
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.4.8
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: '' 
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: CHAOS_ITERATIONS
+      value: '2'
+
     labels:
-      name: openebs-target-network-loss
+      name: openebs-pool-container-failure
+    configmaps:
+    - name: openebs-pool-container-failure
+      data:
+        parameters.yml: |
+
 ---
 

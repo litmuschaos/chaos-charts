@@ -2,16 +2,16 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs
-  version: 0.1.0
+  version: 0.1.1
   annotations:
     categories: OpenEBS
     vendor: MayaData
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
-    description: Injects generic openebs chaos 
+    chartDescription: Injects generic openebs chaos 
 spec:
   displayName: OpenEBS
-  description: >
+  categoryDescription: >
     OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. 
 
   experiments:
@@ -36,6 +36,6 @@ spec:
     - name: Source Code
       url: https://github.com/openebs/openebs
   icon:
-    - url: 
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/icons/openebs.png
       mediatype: image/png
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/experiments.yaml

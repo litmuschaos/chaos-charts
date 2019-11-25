@@ -1,22 +1,24 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: pod-network-latency
+  name: pod-delete
   version: 0.1.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
+    createdAt: 2019-08-12T10:28:08Z
     repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.kubernetes.io/
 spec:
-  displayName: pod-network-latency
+  displayName: pod-delete
   categoryDescription: |
-    Pod-network-latency contains chaos to disrupt network connectivity of kubernetes pods. Experiments can inject random network delays on the app replica pods. 
-    - Causes flaky access to application replica by injecting network delay using pumba.
-    - The application pod should be healthy once chaos is stopped. Service-requests should be served despite chaos.
+    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
+    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+ 
   keywords:
     - Kubernetes
-    - Network
+    - State 
   platforms:
     - GKE
     - OpenShift
@@ -33,6 +35,6 @@ spec:
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
   icon:
-    - base64data: ""
+    - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-latency/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml

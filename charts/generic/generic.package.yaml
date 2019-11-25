@@ -1,11 +1,23 @@
-packageName: kubernetes 
+packageName: generic 
 experiments:
   - name: pod-delete
-    CSV: pod_delete.chartserviceversion.yaml
-    desc: "pod delete"
+    CSV: pod-delete.chartserviceversion.yaml
+    desc: "pod-delete"
   - name: container-kill
-    CSV:  container_kill.chartserviceversion.yaml
-    desc: "container kill"
-  - name: pod-network-delay
-    CSV: pod_network_delay.chartserviceversion.yaml
-    desc: "Pod network delay"
+    CSV:  container-kill.chartserviceversion.yaml
+    desc: "container-kill"
+  - name: pod-network-loss
+    CSV: pod-network-loss.chartserviceversion.yaml
+    desc: "Pod-network-loss"
+  - name: pod-network-latency
+    CSV: pod-network-latency.chartserviceversion.yaml
+    desc: "pod-network-latency"
+  - name: cpu-hog
+    CSV: cpu-hog.chartserviceversion.yaml
+    desc: "cpu-hog"
+  - name: disk-fill
+    CSV: disk-fill.chartserviceversion.yaml
+    desc: "disk-fill"
+  - name: disk-loss
+    CSV: disk-loss.chartserviceversion.yaml
+    desc: "disk-loss"

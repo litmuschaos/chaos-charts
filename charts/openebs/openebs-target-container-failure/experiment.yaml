@@ -1,12 +1,13 @@
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Network loss to target pod belonging to a OpenEBS PVC
+    Kill the cstor target/Jiva controller container and check if gets created again
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
-  name: openebs-target-network-loss
+  name: openebs-target-container-failure
   version: 0.1.2
 spec:
   definition:
@@ -38,7 +39,7 @@ spec:
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/openebs/openebs-target-network-loss/openebs_target_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/openebs/openebs-target-container-failure/openebs_target_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -51,16 +52,25 @@ spec:
     - name: APP_PVC
       value: ''
 
-    # only pumba supported
+    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
     # For pumba image use : gaiaadm/pumba:0.4.8
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
+    # For containerd image use : gprasath/crictl:ci
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.4.8'
 
-    - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: '100' # in percentage
+    # Specify the container runtime used , to pick the relevant chaos util  
+    - name: CONTAINER_RUNTIME
+      value: 'docker' 
 
-    - name: CHAOS_DURATION
-      value: '240000' # in milliseconds
+    # TARGET_CONTAINER values: cstor-volume-mgmt , cstor-istgt
+    # For cstor-volume-istgt container kill use : cstor-istgt
+    # For volume-mgmt-kill container use : cstor-volume-mgmt
+            
+    - name: TARGET_CONTAINER
+      value: 'cstor-volume-mgmt'
+
+    - name: FORCE
+      value: 'true'
 
     - name: LIVENESS_APP_LABEL
       value: ''
@@ -71,9 +81,12 @@ spec:
     - name: DATA_PERSISTENCE
       value: ''
 
+    - name: DEPLOY_TYPE
+      value: 'deployment'
+
     labels:
-      name: openebs-target-network-loss
+      name: openebs-target-container-failure
     configmaps:
-    - name: openebs-target-network-loss
+    - name: openebs-target-container-failure
       data:
-        parameters.yml: |
+        parameters.yml: | 

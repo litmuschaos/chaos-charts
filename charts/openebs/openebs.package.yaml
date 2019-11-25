@@ -1,14 +1,17 @@
 packageName: openebs
-subcharts:
-  - name: openebs-pool-failure
-    CSV: openebs_pool_failure.chartserviceversion.yaml 
-    desc: "openebs-pool-failure"
-  - name: openebs-target-failure
-    CSV: openebs_target_failure.chartserviceversion.yaml 
-    desc: "openebs-target-failure"
+experiments:
+  - name: openebs-pool-pod-failure
+    CSV: openebs-pool-pod-failure.chartserviceversion.yaml
+    desc: "openebs-pool-pod-failure"
+  - name: openebs-target-container-failure
+    CSV: openebs-target-container-failure.chartserviceversion.yaml 
+    desc: "openebs-target-container-failure"
   - name: openebs-target-network-delay
-    CSV: openebs_target_network_delay.chartserviceversion.yaml 
+    CSV: openebs-target-network-delay.chartserviceversion.yaml 
     desc: "openebs-target-network-delay"
   - name: openebs-target-network-loss
-    CSV: openebs_target-network-loss.chartserviceversion.yaml 
+    CSV: openebs-target-network-loss.chartserviceversion.yaml 
     desc: "openebs-target-network-loss"
+  - name: openebs-target-pod-failure
+    CSV: openebs-target-pod-failure.chartserviceversion.yaml
+    desc: "openebs-target-pod-failure"
