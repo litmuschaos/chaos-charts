@@ -3,6 +3,12 @@ experiments:
   - name: openebs-pool-pod-failure
     CSV: openebs-pool-pod-failure.chartserviceversion.yaml
     desc: "openebs-pool-pod-failure"
+  - name: openebs-pool-container-failure
+    CSV: openebs-pool-container-failure.chartserviceversion.yaml
+    desc: "openebs-pool-container-failure"
+  - name: openebs-target-pod-failure
+    CSV: openebs-target-pod-failure.chartserviceversion.yaml
+    desc: "openebs-target-pod-failure"
   - name: openebs-target-container-failure
     CSV: openebs-target-container-failure.chartserviceversion.yaml 
     desc: "openebs-target-container-failure"
@@ -12,6 +18,3 @@ experiments:
   - name: openebs-target-network-loss
     CSV: openebs-target-network-loss.chartserviceversion.yaml 
     desc: "openebs-target-network-loss"
-  - name: openebs-target-pod-failure
-    CSV: openebs-target-pod-failure.chartserviceversion.yaml
-    desc: "openebs-target-pod-failure"
