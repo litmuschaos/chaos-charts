@@ -64,6 +64,12 @@ spec:
     - name: DATA_PERSISTENCE
       value: ''
 
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: CHAOS_INTERVAL
+      value: '15'
+
     - name: DEPLOY_TYPE
       value: 'deployment'
 
