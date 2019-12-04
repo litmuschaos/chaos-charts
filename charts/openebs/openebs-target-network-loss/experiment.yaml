@@ -75,5 +75,4 @@ spec:
       name: openebs-target-network-loss
     configmaps:
     - name: openebs-target-network-loss
-      data:
-        parameters.yml: |
+      mountPath: /mnt

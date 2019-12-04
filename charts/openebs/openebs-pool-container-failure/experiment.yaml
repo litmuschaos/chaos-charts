@@ -71,5 +71,5 @@ spec:
       name: openebs-pool-container-failure
     configmaps:
     - name: openebs-pool-container-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
+  

@@ -88,5 +88,5 @@ spec:
       name: openebs-target-container-failure
     configmaps:
     - name: openebs-target-container-failure
-      data:
-        parameters.yml: | 
+      mountPath: /mnt
+      
