@@ -173,8 +173,7 @@ spec:
       name: openebs-target-pod-failure
     configmaps:
     - name: openebs-target-pod-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
