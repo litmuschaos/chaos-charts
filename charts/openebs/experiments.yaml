@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     permissions:
@@ -90,7 +90,8 @@ spec:
       name: openebs-target-container-failure
     configmaps:
     - name: openebs-target-container-failure
-      mountPath:  /mnt
+      mountPath: /mnt
+      
 ---
 
 ---
@@ -172,7 +173,8 @@ spec:
       name: openebs-target-pod-failure
     configmaps:
     - name: openebs-target-pod-failure
-      mountPath: /mnt
+      data:
+        parameters.yml: |
 
 ---
 
@@ -185,7 +187,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     permissions:
@@ -266,7 +268,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     permissions:
@@ -348,7 +350,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     permissions:
@@ -407,6 +409,7 @@ spec:
     configmaps:
     - name: openebs-pool-pod-failure
       mountPath: /mnt
+      
 
 ---
 
@@ -420,7 +423,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.2
+  version: 0.1.3
 spec:
   permissions:
     apiGroups:
@@ -484,6 +487,7 @@ spec:
     configmaps:
     - name: openebs-pool-container-failure
       mountPath: /mnt
+  
 
 ---
 
