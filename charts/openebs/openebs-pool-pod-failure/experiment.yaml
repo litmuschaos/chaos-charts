@@ -66,5 +66,5 @@ spec:
       name: openebs-pool-pod-failure
     configmaps:
     - name: openebs-pool-pod-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
+      

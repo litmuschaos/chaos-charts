@@ -90,8 +90,7 @@ spec:
       name: openebs-target-container-failure
     configmaps:
     - name: openebs-target-container-failure
-      data:
-        parameters.yml: | 
+      mountPath:  /mnt
 ---
 
 ---
@@ -173,8 +172,7 @@ spec:
       name: openebs-target-pod-failure
     configmaps:
     - name: openebs-target-pod-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
@@ -255,8 +253,7 @@ spec:
       name: openebs-target-network-delay
     configmaps:
     - name: openebs-target-network-delay
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
@@ -337,8 +334,7 @@ spec:
       name: openebs-target-network-loss
     configmaps:
     - name: openebs-target-network-loss
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
@@ -410,8 +406,7 @@ spec:
       name: openebs-pool-pod-failure
     configmaps:
     - name: openebs-pool-pod-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
@@ -488,8 +483,7 @@ spec:
       name: openebs-pool-container-failure
     configmaps:
     - name: openebs-pool-container-failure
-      data:
-        parameters.yml: |
+      mountPath: /mnt
 
 ---
 
