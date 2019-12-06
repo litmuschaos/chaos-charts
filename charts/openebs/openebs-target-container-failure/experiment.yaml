@@ -84,6 +84,9 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    - name: TOTAL_CHAOS_DURATION
+      value: "60"
+      
     labels:
       name: openebs-target-container-failure
     configmaps:

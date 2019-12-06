@@ -59,7 +59,7 @@ spec:
     - name: NETWORK_DELAY
       value: '60000' # in milliseconds
 
-    - name: CHAOS_DURATION
+    - name: TOTAL_CHAOS_DURATION
       value: '60000' # in milliseconds
             
     - name: LIVENESS_APP_LABEL
