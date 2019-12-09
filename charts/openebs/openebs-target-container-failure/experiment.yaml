@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
@@ -84,6 +84,9 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    - name: TOTAL_CHAOS_DURATION
+      value: "60"
+      
     labels:
       name: openebs-target-container-failure
     configmaps:
