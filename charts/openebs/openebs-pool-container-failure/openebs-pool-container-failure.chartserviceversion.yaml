@@ -16,7 +16,7 @@ spec:
     - Kubernetes
     - Storage Pool
     - OpenEBS
-  Platforms:
+  platforms:
     - GKE
     - OpenShift
   maturity: alpha
