@@ -16,7 +16,6 @@ spec:
   keywords:
     - Kubernetes
     - Kafka
-  maturity: alpha
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
