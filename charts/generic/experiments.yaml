@@ -172,7 +172,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     permissions:
@@ -209,7 +209,7 @@ spec:
 
      # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8' 
+      value: 'gaiaadm/pumba:0.6.5' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -303,7 +303,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     permissions:
@@ -343,7 +343,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8' 
+      value: 'gaiaadm/pumba:0.6.5' 
 
     - name: NETWORK_LATENCY
       value: '60000' #in ms
