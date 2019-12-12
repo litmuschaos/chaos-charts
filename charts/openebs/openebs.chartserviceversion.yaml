@@ -23,7 +23,6 @@ spec:
     - OpenEBS
     - CAS
     - Storage
-  maturity: alpha
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

@@ -20,7 +20,6 @@ spec:
   keywords:
     - Kubernetes
     - Container
-  maturity: alpha
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
