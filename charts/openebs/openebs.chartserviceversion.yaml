@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: OpenEBS
     vendor: MayaData
@@ -23,7 +23,6 @@ spec:
     - OpenEBS
     - CAS
     - Storage
-  maturity: alpha
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
