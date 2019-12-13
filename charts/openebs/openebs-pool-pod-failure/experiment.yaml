@@ -64,7 +64,7 @@ spec:
 
     labels:
       name: openebs-pool-pod-failure
-    configmaps:
-    - name: openebs-pool-pod-failure
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-pool-pod-failure
+    #  mountPath: /mnt
       

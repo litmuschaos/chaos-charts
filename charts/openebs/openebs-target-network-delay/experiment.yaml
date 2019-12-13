@@ -73,6 +73,6 @@ spec:
 
     labels:
       name: openebs-target-network-delay
-    configmaps:
-    - name: openebs-target-network-delay
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-target-network-delay
+    #  mountPath: /mnt
