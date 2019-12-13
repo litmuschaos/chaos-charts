@@ -61,6 +61,6 @@ spec:
           
     labels:
       name: disk-loss
-    secrets:
-    - name: disk-loss
-      mountPath: /tmp/
+    #secrets:
+    #- name: disk-loss
+    #  mountPath: /tmp/

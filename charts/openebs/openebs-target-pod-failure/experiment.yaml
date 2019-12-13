@@ -75,6 +75,6 @@ spec:
 
     labels:
       name: openebs-target-pod-failure
-    configmaps:
-    - name: openebs-target-pod-failure
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-target-pod-failure
+    #  mountPath: /mnt

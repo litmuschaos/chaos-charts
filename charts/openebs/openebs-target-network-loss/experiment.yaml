@@ -73,6 +73,6 @@ spec:
 
     labels:
       name: openebs-target-network-loss
-    configmaps:
-    - name: openebs-target-network-loss
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-target-network-loss
+    #  mountPath: /mnt

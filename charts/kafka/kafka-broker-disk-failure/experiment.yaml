@@ -99,7 +99,7 @@ spec:
       value: ''
     labels:
       name: kafka-broker-disk-failure
-    secrets:
-    - name: kafka-broker-disk-failure
-      mountPath: /tmp/
+    #secrets:
+    #- name: kafka-broker-disk-failure
+    #  mountPath: /tmp/
       

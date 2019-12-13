@@ -69,7 +69,7 @@ spec:
 
     labels:
       name: openebs-pool-container-failure
-    configmaps:
-    - name: openebs-pool-container-failure
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-pool-container-failure
+    #  mountPath: /mnt
   

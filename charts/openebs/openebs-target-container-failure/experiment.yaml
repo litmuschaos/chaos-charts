@@ -89,7 +89,7 @@ spec:
       
     labels:
       name: openebs-target-container-failure
-    configmaps:
-    - name: openebs-target-container-failure
-      mountPath: /mnt
+    #configmaps:
+    #- name: openebs-target-container-failure
+    #  mountPath: /mnt
       
