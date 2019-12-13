@@ -4,9 +4,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.1
+  version: 0.1.4
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "deployments"
+        - "statefulsets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -14,13 +33,19 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
-    - name: KILL_MODE
-      value: ""
+      value: ''
+
     - name: LIB
-      value: ""
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
     labels:
       name: container-kill

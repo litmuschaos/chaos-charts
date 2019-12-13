@@ -1,11 +1,17 @@
 packageName: openebs
 experiments:
-  - name: openebs-pool-failure
-    CSV: openebs-pool-failure.chartserviceversion.yaml 
-    desc: "openebs-pool-failure"
-  - name: openebs-target-failure
-    CSV: openebs-target-failure.chartserviceversion.yaml 
-    desc: "openebs-target-failure"
+  - name: openebs-pool-pod-failure
+    CSV: openebs-pool-pod-failure.chartserviceversion.yaml
+    desc: "openebs-pool-pod-failure"
+  - name: openebs-pool-container-failure
+    CSV: openebs-pool-container-failure.chartserviceversion.yaml
+    desc: "openebs-pool-container-failure"
+  - name: openebs-target-pod-failure
+    CSV: openebs-target-pod-failure.chartserviceversion.yaml
+    desc: "openebs-target-pod-failure"
+  - name: openebs-target-container-failure
+    CSV: openebs-target-container-failure.chartserviceversion.yaml 
+    desc: "openebs-target-container-failure"
   - name: openebs-target-network-delay
     CSV: openebs-target-network-delay.chartserviceversion.yaml 
     desc: "openebs-target-network-delay"

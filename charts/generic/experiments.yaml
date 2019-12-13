@@ -3,13 +3,142 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    Fillup Ephemeral Storage of a Resource
+kind: ChaosExperiment
+metadata:
+  name: disk-fill
+  version: 0.0.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TARGET_CONTAINER
+      value: ''
+    
+    - name: FILL_PERCENTAGE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+      
+    labels:
+      name: disk-fill
+
+
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a cpu spike on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: cpu-hog
+  version: 0.0.2
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "nodes"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/cpu_hog/cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: PLATFORM
+      value: 'ANY'
+
+    - name: LIB
+      value: ''
+      
+    labels:
+      name: cpu-hog
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.1
+  version: 0.1.4
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "deployments"
+        - "statefulsets"
+        - "jobs"
+        - "pods"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -17,14 +146,21 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TOTAL_CHAOS_DURATION
-      value: 15
+      value: '15'
+
+    - name: FORCE
+      value: 'true'
+
     - name: CHAOS_INTERVAL
-      value: 5
+      value: '5'
+
     - name: LIB
-      value: ""
+      value: ''    
     labels:
       name: pod-delete
 ---
@@ -36,9 +172,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.2
+  version: 0.1.5
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -46,18 +201,98 @@ spec:
     command:
     - /bin/bash
     env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
+     # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5' 
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: "100" #in PERCENTAGE
+      value: '100' #in PERCENTAGE
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
     labels:
       name: pod-network-loss
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
+kind: ChaosExperiment
+metadata:
+  name: disk-loss
+  version: 0.1.2
+spec:
+  permissions:
+    apiGroups:
+      - ""
+      - "apps"
+      - "batch"
+      - "litmuschaos.io"
+    resources:
+      - "deployments"
+      - "statefulsets"
+      - "jobs"
+      - "pods"
+      - "chaosengines"
+      - "chaosexperiments"
+      - "chaosresults"
+    verbs:
+      - "*"
+  definition:
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    - name: APP_CHECK
+      value: 'true' 
+
+    - name: CHAOS_NAMESPACE
+      value: ''
+        
+   # Only GCP is supported
+    - name: CLOUD_PLATFORM
+      value: 'GCP'
+
+    - name: PROJECT_ID 
+      value: ''
+
+    - name: NODE_NAME
+      value: '' 
+
+    - name: DISK_NAME
+      value: ''  
+          
+    - name: ZONE_NAME
+      value: '' 
+          
+    labels:
+      name: disk-loss
+    secrets:
+    - name: disk-loss
+      mountPath: /tmp/
 
 ---
 
@@ -68,9 +303,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.1
+  version: 0.1.5
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -78,16 +332,27 @@ spec:
     command:
     - /bin/bash
     env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
+      value: ''
+
     - name: NETWORK_INTERFACE
-      value: "eth0"
+      value: 'eth0'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5' 
+
     - name: NETWORK_LATENCY
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: TOTAL_CHAOS_DURATION
-      value: "60000" #in ms
+      value: '60000' #in ms
+
     - name: LIB
-      value: "pumba"
+      value: 'pumba'
     labels:
       name: pod-network-latency
 
@@ -99,9 +364,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.1
+  version: 0.1.4
 spec:
   definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "deployments"
+        - "statefulsets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -109,14 +393,20 @@ spec:
     command:
     - /bin/bash
     env:
+
     - name: ANSIBLE_STDOUT_CALLBACK
-      value: default
+      value: 'default'
+
     - name: TARGET_CONTAINER
-      value: ""
-    - name: KILL_MODE
-      value: ""
+      value: ''
+
     - name: LIB
-      value: ""
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
     labels:
       name: container-kill
 ---
