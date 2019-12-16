@@ -21,3 +21,6 @@ experiments:
   - name: disk-loss
     CSV: disk-loss.chartserviceversion.yaml
     desc: "disk-loss"
+  - name: drain-node
+    CSV: drain-node.chartserviceversion.yaml
+    desc: "drain-node"
