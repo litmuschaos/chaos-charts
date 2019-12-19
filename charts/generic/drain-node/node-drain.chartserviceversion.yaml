@@ -15,6 +15,7 @@ spec:
   keywords:
     - Kubernetes
     - Node 
+    - State
   platforms:
     - GKE
     - AWS
