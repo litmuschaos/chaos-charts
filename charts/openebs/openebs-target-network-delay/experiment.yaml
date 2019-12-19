@@ -7,7 +7,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     permissions:
