@@ -32,9 +32,10 @@ spec:
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/      
   icon:
     - url: ""
       mediatype: ""
-  docs: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-pod-failure/experiment.yaml
 

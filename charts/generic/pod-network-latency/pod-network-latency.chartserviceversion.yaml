@@ -32,8 +32,9 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/pod-network-latency/
   icon:
     - base64data: ""
       mediatype: ""
-  docs: https://docs.litmuschaos.io/docs/pod-network-latency/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-latency/experiment.yaml 

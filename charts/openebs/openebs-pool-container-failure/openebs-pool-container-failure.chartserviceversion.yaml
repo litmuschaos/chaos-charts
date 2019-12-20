@@ -32,8 +32,9 @@ spec:
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/openebs-pool-container-kill/
   icon:
     - url: ""
       mediatype: ""
-  docs: https://docs.litmuschaos.io/docs/openebs-pool-container-kill/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-container-failure/experiment.yaml
