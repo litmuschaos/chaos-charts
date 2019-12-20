@@ -34,7 +34,7 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
-    - nme: Docs
+    - name: Docs
       url: https://docs.litmuschaos.io/docs/pod-delete/
   icon:
     - url: 
