@@ -31,6 +31,8 @@ spec:
       url: http://kafka.apache.org/
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/kafka
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/kafka-broker-disk-failure/
   icon:
     - url: 
       mediatype: ""

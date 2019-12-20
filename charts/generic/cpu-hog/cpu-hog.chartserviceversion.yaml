@@ -34,7 +34,9 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
-  icon:
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/cpu-hog/
+  icon: 
     - url: 
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/cpu-hog/experiment.yaml

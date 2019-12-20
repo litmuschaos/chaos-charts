@@ -32,6 +32,8 @@ spec:
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/openebs-pool-container-kill/
   icon:
     - url: ""
       mediatype: ""
