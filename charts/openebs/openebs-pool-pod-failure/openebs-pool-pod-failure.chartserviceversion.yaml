@@ -35,4 +35,5 @@ spec:
   icon:
     - url: ""
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/openebs-pool-pod-failure/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-pod-failure/experiment.yaml

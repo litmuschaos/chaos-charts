@@ -34,4 +34,5 @@ spec:
   icon:
     - url: ""
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/openebs-target-network-loss/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-network-loss/experiment.yaml

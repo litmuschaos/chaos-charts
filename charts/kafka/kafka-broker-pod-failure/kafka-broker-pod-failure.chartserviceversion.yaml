@@ -35,4 +35,5 @@ spec:
   icon:
     - url: 
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/kafka-broker-pod-failure/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kafka/kafka-broker-pod-failure/experiment.yaml

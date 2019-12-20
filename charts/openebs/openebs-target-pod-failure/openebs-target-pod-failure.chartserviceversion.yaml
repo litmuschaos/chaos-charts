@@ -35,5 +35,6 @@ spec:
   icon:
     - url: ""
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-pod-failure/experiment.yaml
 

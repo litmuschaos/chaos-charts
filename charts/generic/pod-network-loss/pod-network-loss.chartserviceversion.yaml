@@ -35,4 +35,5 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/pod-network-loss/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-loss/experiment.yaml 

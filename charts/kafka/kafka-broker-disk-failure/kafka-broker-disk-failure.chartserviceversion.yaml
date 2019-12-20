@@ -34,4 +34,5 @@ spec:
   icon:
     - url: 
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/kafka-broker-disk-failure/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kafka/kafka-broker-disk-failure/experiment.yaml

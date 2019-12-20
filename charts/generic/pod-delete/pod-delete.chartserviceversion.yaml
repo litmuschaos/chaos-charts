@@ -37,4 +37,5 @@ spec:
   icon:
     - url: 
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/pod-delete/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml

@@ -35,4 +35,5 @@ spec:
   icon:
     - url: 
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/container-kill/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/container-kill/experiment.yaml

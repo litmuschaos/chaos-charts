@@ -35,4 +35,5 @@ spec:
   icon:
     - url: ""
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/openebs-target-container-kill/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-container-failure/experiment.yaml

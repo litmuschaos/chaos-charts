@@ -38,4 +38,5 @@ spec:
   icon:
     - url: 
       mediatype: ""
+  docs: https://docs.litmuschaos.io/docs/disk-fill/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/disk-fill/experiment.yaml
