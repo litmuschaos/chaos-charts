@@ -43,7 +43,7 @@ spec:
       value: '60'
 
     - name: PLATFORM
-      value: 'ANY'
+      value: 'GKE'
 
     - name: LIB
       value: ''
