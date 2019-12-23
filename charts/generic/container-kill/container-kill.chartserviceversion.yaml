@@ -6,7 +6,6 @@ metadata:
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
-    repository: https://github.com/litmuschaos/chaos-charts
     support: https://slack.openebs.io/
 spec:
   displayName: container-kill
