@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-pod-failure
-  version: 0.1.4
+  version: 0.1.5
   annotations:
     categories: OpenEBS
     vendor: CNCF
