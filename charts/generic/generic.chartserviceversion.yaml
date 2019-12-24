@@ -16,10 +16,14 @@ spec:
     - pod-delete
     - container-kill
     - pod-network-latency
+    - drain-node
 
   keywords:
     - Kubernetes
     - Container
+    - node
+    - pod
+    - disk
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
