@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-network-delay
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -31,6 +31,8 @@ spec:
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/openebs-target-network-delay/
   icon:
     - url: 
       mediatype: ""

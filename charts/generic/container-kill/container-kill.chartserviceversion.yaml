@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: container-kill
-  version: 0.1.4
+  version: 0.1.5
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -32,6 +32,8 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/container-kill/
   icon:
     - url: 
       mediatype: ""

@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-pod-failure
-  version: 0.1.2
+  version: 0.1.4
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -26,12 +26,13 @@ spec:
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
-  readme: "https://github.com/litmuschaos/litmus/blob/master/experiments/openebs/openebs-target-pod-failure/README.md"
   links:
     - name: OpenEBS Website
       url: https://openebs.io
     - name: Source Code
       url: https://github.com/openebs/openebs
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/      
   icon:
     - url: ""
       mediatype: ""

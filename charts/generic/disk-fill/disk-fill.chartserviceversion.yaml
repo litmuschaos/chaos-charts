@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: disk-fill
-  version: 0.0.2
+  version: 0.0.3
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -35,6 +35,8 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
+    - name: Docs 
+      url: https://docs.litmuschaos.io/docs/disk-fill/
   icon:
     - url: 
       mediatype: ""
