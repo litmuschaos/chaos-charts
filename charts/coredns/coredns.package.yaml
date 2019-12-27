@@ -1,5 +1,5 @@
 packageName: coredns 
 experiments:
-  - name: pod-delete
-    CSV: pod-delete.chartserviceversion.yaml
+  - name: coredns-pod-delete
+    CSV: coredns-pod-delete.chartserviceversion.yaml
     desc: "coredns pod delete experiment"

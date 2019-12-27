@@ -16,9 +16,7 @@ spec:
         - "batch"
         - "litmuschaos.io"
       resources:
-        - "daemonsets"
         - "deployments"
-        - "statefulsets"
         - "jobs"
         - "pods"
         - "chaosengines"

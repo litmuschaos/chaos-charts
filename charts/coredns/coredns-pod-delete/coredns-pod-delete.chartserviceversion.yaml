@@ -4,26 +4,24 @@ metadata:
   name: coredns-pod-delete
   version: 0.1.0
   annotations:
-    categories: Kubernetes
+    categories: CoreDNS
     vendor: CNCF
     createdAt: 2019-12-27T10:28:08Z
-    support: https://slack.kubernetes.io/
+    support: https://slack.cncf.io/
 spec:
   displayName: pod-delete
   categoryDescription: |
     Pod delete contains chaos to disrupt state of coredns resources. Experiments can inject random pod delete failures against specified application.
     - Causes (forced/graceful) pod failure of coredns replicas of an application deployment.
-    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the coredns pod.
+    - Tests of successful resolution of app services before and after chaos injection
  
   keywords:
     - Kubernetes
-    - State 
+    - CoreDNS
+    - Pod delete 
   platforms:
     - GKE
-    - OpenShift
-    - AKS
-    - EKS
-    - Rancher
+    - Minikube
   maturity: alpha
   maintainers:
     - name: Raj Babu Das
@@ -32,13 +30,14 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
+    - name: CoreDNS Website
+      url: https://coredns.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
-    - name: Docs
-      url: https://docs.litmuschaos.io/docs/coredns/pod-delete
-  icon:
-    - url: 
-      mediatype: ""
+      url: https://github.com/coredns/coredns
+    - name: CoreDNS Slack
+      url: https://slack.cncf.io/
+    - name: Documentation
+      url: https://coredns.io/manual/toc/
+
+
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/pod-delete/experiment.yaml
