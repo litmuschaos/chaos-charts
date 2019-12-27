@@ -10,7 +10,7 @@ spec:
   displayName: CoreDNS chaos
   categoryDescription: >
     CoreDNS is an open-source system for dns management of containerized applications.
-    It helps to resolve services to IP address. Install will all the experiments which can be used to inject chaos into containerized appications.
+    It helps to resolve services to IP address. It will install all the experiments which can be used to inject chaos into containerized appications.
 
   experiments:
     - coredns-pod-delete

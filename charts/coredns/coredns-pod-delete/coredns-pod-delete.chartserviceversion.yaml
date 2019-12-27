@@ -9,11 +9,11 @@ metadata:
     createdAt: 2019-12-27T10:28:08Z
     support: https://slack.cncf.io/
 spec:
-  displayName: pod-delete
+  displayName: coredns-pod-delete
   categoryDescription: |
     Pod delete contains chaos to disrupt state of coredns resources. Experiments can inject random pod delete failures against specified application.
     - Causes (forced/graceful) pod failure of coredns replicas of an application deployment.
-    - Tests of successful resolution of app services before and after chaos injection
+    - Tests of successful resolution of app services during chaos injection
  
   keywords:
     - Kubernetes
