@@ -20,6 +20,7 @@ spec:
     - GKE
     - AWS
   maturity: alpha
+  chaosType: infra-level
   maintainers:
     - name: shubham chaudhary
       email: shubham.chaudhary@mayadata.io

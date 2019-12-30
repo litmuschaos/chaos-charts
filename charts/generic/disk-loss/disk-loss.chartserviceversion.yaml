@@ -24,6 +24,7 @@ spec:
     - GKE
     - AWS
   maturity: alpha
+  chaosType: infra-level
   maintainers:
     - name: Raj Babu Das
       email: raj.das@mayadata.io
