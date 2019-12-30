@@ -1,0 +1,50 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes coredns pod in kube-system namespace
+kind: ChaosExperiment
+metadata:
+  name: coredns-pod-delete
+  version: 0.1.0
+spec:
+  definition:
+    permissions:
+      apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "daemonsets"
+        - "jobs"
+        - "pods"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "*"
+    image: "litmuschaos/ansible-runner:ci"
+    args:
+    - -c
+    - ansible-playbook ./experiments/coredns/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    - name: FORCE
+      value: 'true'
+
+    - name: CHAOS_INTERVAL
+      value: '5'
+
+    - name: LIB
+      value: ''    
+    labels:
+      name: coredns-pod-delete
