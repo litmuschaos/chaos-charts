@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: coredns
-  version: 0.1.0
+  version: 0.1.1
   annotations:
     categories: Kubernetes
     chartDescription: Injects coredns chaos 

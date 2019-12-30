@@ -1,3 +1,5 @@
+---
+
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -5,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: coredns-pod-delete
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     permissions:
@@ -49,3 +51,4 @@ spec:
     labels:
       name: coredns-pod-delete
 ---
+
