@@ -37,6 +37,6 @@ spec:
     - name: Documentation
       url: https://coredns.io/manual/toc/
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/icons/coredns-logo.png
       mediatype: image/png
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/experiments.yaml

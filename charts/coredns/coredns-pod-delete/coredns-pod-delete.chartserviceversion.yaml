@@ -14,7 +14,6 @@ spec:
     Pod delete contains chaos to disrupt state of coredns resources. Experiments can inject random pod delete failures against specified application.
     - Causes (forced/graceful) pod failure of coredns replicas of an application deployment.
     - Tests of successful resolution of app services during chaos injection
- 
   keywords:
     - Kubernetes
     - CoreDNS
@@ -38,6 +37,4 @@ spec:
       url: https://slack.cncf.io/
     - name: Documentation
       url: https://coredns.io/manual/toc/
-
-
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/pod-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuchaos/chaos-charts/master/charts/coredns/coredns-pod-delete/experiment.yaml
