@@ -19,7 +19,6 @@ spec:
     - GKE
     - OpenShift
   maturity: alpha
-  chaosType: app-level
   maintainers:
     - name: shubham chaudhary
       email: shubham.chaudhary@mayadata.io

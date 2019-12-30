@@ -19,7 +19,6 @@ spec:
     - GKE
     - OpenShift
   maturity: alpha
-  chaosType: app-level
   maintainers:
     - name: giri
       email: giridhara.prasad@mayadata.io

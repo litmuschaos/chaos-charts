@@ -20,7 +20,6 @@ spec:
     - GKE
     - OpenShift
   maturity: alpha
-  chaosType: app-level
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
