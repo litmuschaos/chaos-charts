@@ -40,8 +40,9 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
+    # It only supported pumba
     - name: LIB
-      value: ''
+      value: 'pumba'
 
     # provide lib image
     - name: LIB_IMAGE  
