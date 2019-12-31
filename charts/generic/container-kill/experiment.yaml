@@ -10,14 +10,11 @@ spec:
     permissions:
       apiGroups:
         - ""
-        - "extensions"
         - "apps"
         - "batch"
         - "litmuschaos.io"
       resources:
         - "daemonsets"
-        - "deployments"
-        - "statefulsets"
         - "jobs"
         - "pods"
         - "pods/exec"
@@ -25,7 +22,11 @@ spec:
         - "chaosexperiments"
         - "chaosresults"
       verbs:
-        - "*"
+        - "create"
+        - "list"
+        - "get"
+        - "patch"
+        - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
