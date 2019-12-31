@@ -23,11 +23,11 @@ spec:
       - "chaosexperiments"
       - "chaosresults"
       verbs:
-      - "delete"
+      - "create"
       - "list"
       - "get"
-      - "create"
       - "patch"
+      - "delete"
       apiGroups:
       - ""
       resources: 
