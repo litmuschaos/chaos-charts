@@ -17,7 +17,6 @@ spec:
         - "deployments"
         - "configmaps"
         - "daemonsets"
-        - "replicasets"
         - "services"
         - "jobs"
         - "pods"
