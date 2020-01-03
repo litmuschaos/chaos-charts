@@ -11,14 +11,9 @@ spec:
     permissions:
       - apiGroups:
           - ""
-          - "extensions"
-          - "apps"
           - "batch"
           - "litmuschaos.io"
         resources:
-          - "deployments"
-          - "services"
-          - "configmaps"
           - "jobs"
           - "pods"
           - "chaosengines"
