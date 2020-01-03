@@ -23,6 +23,7 @@ spec:
   platforms:
     - GKE
   maturity: alpha
+  chaosType: infra
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
