@@ -15,9 +15,7 @@ spec:
         - "litmuschaos.io"
       resources:
         - "deployments"
-        - "configmaps"
         - "daemonsets"
-        - "services"
         - "jobs"
         - "pods"
         - "pods/exec"
