@@ -9,25 +9,33 @@ metadata:
 spec:
   definition:
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "nodes"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "status"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
