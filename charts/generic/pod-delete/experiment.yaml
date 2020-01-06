@@ -9,6 +9,7 @@ metadata:
 spec:
   definition:
     permissions:
+      scope: Namespaced
       - apiGroups:
         - ""
         - "apps"
