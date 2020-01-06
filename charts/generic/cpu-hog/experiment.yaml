@@ -8,6 +8,7 @@ metadata:
   version: 0.0.3
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
