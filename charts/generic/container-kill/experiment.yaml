@@ -7,14 +7,14 @@ metadata:
   version: 0.1.4
 spec:
   definition:
+    scope: Namespaced
     permissions:
       - apiGroups:
         - ""
         - "apps"
         - "batch"
         - "litmuschaos.io"
-      resources:
-        - "deployments"
+        resources:
         - "daemonsets"
         - "jobs"
         - "pods"
@@ -22,7 +22,7 @@ spec:
         - "chaosengines"
         - "chaosexperiments"
         - "chaosresults"
-      verbs:
+        verbs:
         - "create"
         - "list"
         - "get"
