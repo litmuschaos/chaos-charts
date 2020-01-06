@@ -8,8 +8,8 @@ metadata:
   version: 0.1.5
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      scope: Namespaced
       - apiGroups:
         - ""
         - "apps"
