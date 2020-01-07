@@ -15,6 +15,7 @@ spec:
     - pod-network-loss
     - pod-delete
     - container-kill
+    - pod-cpu-hog
     - pod-network-latency
     - drain-node
 
