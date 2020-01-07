@@ -249,28 +249,27 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
+    - apiGroups:
+      - ""
+      - "batch"
+      - "litmuschaos.io"
       resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
+      - "jobs"
+      - "pods"
+      - "chaosengines"
+      - "chaosexperiments"
+      - "chaosresults"
       verbs:
-        - "*"
+      - "get"
+      - "list"
+      - "patch"
+      - "create"
+      - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
