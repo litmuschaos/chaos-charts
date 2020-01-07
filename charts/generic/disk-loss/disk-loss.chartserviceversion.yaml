@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: disk-loss
-  version: 0.1.5
+  version: 0.1.6
   annotations:
     categories: Kubernetes
     vendor: Mayadata
@@ -24,6 +24,7 @@ spec:
     - GKE
     - AWS
   maturity: alpha
+  chaosType: infra
   maintainers:
     - name: Raj Babu Das
       email: raj.das@mayadata.io

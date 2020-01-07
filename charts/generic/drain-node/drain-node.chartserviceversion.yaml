@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: drain-node
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     vendor: Mayadata
@@ -20,6 +20,7 @@ spec:
     - GKE
     - AWS
   maturity: alpha
+  chaosType: infra
   maintainers:
     - name: shubham chaudhary
       email: shubham.chaudhary@mayadata.io

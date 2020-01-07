@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-pool-container-failure
-  version: 0.1.6
+  version: 0.1.7
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -19,6 +19,7 @@ spec:
     - GKE
     - OpenShift
   maturity: alpha
+  chaosType: infra
   maintainers:
     - name: shubham chaudhary
       email: shubham.chaudhary@mayadata.io

@@ -63,29 +63,38 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cpu-hog
-  version: 0.0.3
+  version: 0.0.4
 spec:
   definition:
+    scope: Cluster
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "nodes"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "status"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -118,27 +127,37 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "deployments"
-        - "statefulsets"
-        - "jobs"
-        - "pods"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -366,7 +385,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: drain-node
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     permissions:
@@ -405,6 +424,9 @@ spec:
     - name: APP_NODE
       value: ''
 
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
 
@@ -418,28 +440,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "deployments"
-        - "statefulsets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
