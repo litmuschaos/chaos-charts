@@ -6,7 +6,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: drain-node
-  version: 0.1.0
+  version: 0.1.1
 spec:
   definition:
     permissions:
@@ -44,6 +44,9 @@ spec:
     
     - name: APP_NODE
       value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
 
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
