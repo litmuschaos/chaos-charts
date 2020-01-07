@@ -8,25 +8,24 @@ metadata:
   version: 0.1.5
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
