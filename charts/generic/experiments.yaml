@@ -7,28 +7,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.0.2
+  version: 0.1.2
 spec:
   definition:
-    permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+    scope: Cluster
+    permissions: 
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "daemonsets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
