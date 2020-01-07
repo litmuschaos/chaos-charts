@@ -18,13 +18,15 @@ spec:
     - pod-cpu-hog
     - pod-network-latency
     - drain-node
+    - pod-network-corruption
 
   keywords:
     - Kubernetes
     - Container
-    - node
-    - pod
-    - disk
+    - Node
+    - Pod
+    - Disk
+    - Network
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
