@@ -62,5 +62,5 @@ spec:
     labels:
       name: disk-loss
     secrets:
-    - name: disk-loss
+    - name: cloud-secret
       mountPath: /tmp/
