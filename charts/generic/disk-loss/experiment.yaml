@@ -16,6 +16,7 @@ spec:
           - "litmuschaos.io"
         resources:
           - "jobs"
+          - "pods"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
