@@ -7,23 +7,25 @@ metadata:
   name: disk-loss
   version: 0.1.2
 spec:
-  permissions:
-    apiGroups:
-      - ""
-      - "apps"
-      - "batch"
-      - "litmuschaos.io"
-    resources:
-      - "deployments"
-      - "statefulsets"
-      - "jobs"
-      - "pods"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
-    verbs:
-      - "*"
   definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
