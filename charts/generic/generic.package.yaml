@@ -12,6 +12,9 @@ experiments:
   - name: pod-network-latency
     CSV: pod-network-latency.chartserviceversion.yaml
     desc: "pod-network-latency"
+  - name: pod-cpu-hog
+    CSV: pod-cpu-hog.chartserviceversion.yaml
+    desc: "pod-cpu-hog"
   - name: cpu-hog
     CSV: cpu-hog.chartserviceversion.yaml
     desc: "cpu-hog"

@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   permissions:
     apiGroups:
@@ -62,5 +62,5 @@ spec:
     labels:
       name: disk-loss
     secrets:
-    - name: disk-loss
+    - name: cloud-secret
       mountPath: /tmp/

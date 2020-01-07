@@ -1,26 +1,20 @@
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Drain the node where application pod is scheduled
+    Injects cpu consumption on pods belonging to an app deployment
 kind: ChaosExperiment
 metadata:
-  name: drain-node
+  name: pod-cpu-hog
   version: 0.1.1
 spec:
   definition:
+    scope: Namespaced
     permissions:
       apiGroups:
         - ""
-        - "extensions"
-        - "apps"
         - "batch"
         - "litmuschaos.io"
       resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
         - "jobs"
         - "pods"
         - "pods/exec"
@@ -28,28 +22,34 @@ spec:
         - "chaosexperiments"
         - "chaosresults"
       verbs:
-        - "*"
+        - "create"
+        - "list"
+        - "get"
+        - "patch"
+        - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/drain_node/drain_node_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: 'default'
 
-    - name: LIVENESS_APP_LABEL
+    - name: TARGET_CONTAINER
       value: ''
-    
-    - name: APP_NODE
-      value: ''
+
+    - name: CPU_CORES
+      value: '1'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60'
+      value: '60000' #in ms
 
-    - name: LIVENESS_APP_NAMESPACE
-      value: '' 
+    - name: LIB
+      value: 'litmus'
 
+    - name: LIB_IMAGE
+      value: 'litmuschaos/app-cpu-stress:latest' 
     labels:
-      name: drain-node
+      name: pod-cpu-hog

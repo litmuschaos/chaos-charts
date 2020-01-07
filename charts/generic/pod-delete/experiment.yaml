@@ -5,27 +5,37 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "deployments"
-        - "statefulsets"
-        - "jobs"
-        - "pods"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
