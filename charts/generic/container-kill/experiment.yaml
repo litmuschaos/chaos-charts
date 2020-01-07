@@ -4,28 +4,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "deployments"
-        - "statefulsets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -40,8 +42,9 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
+    # It only supported pumba
     - name: LIB
-      value: ''
+      value: 'pumba'
 
     # provide lib image
     - name: LIB_IMAGE  

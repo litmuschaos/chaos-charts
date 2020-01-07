@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: disk-fill
-  version: 0.0.4
+  version: 0.0.5
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -23,6 +23,7 @@ spec:
   platforms:
     - GKE
   maturity: alpha
+  chaosType: infra
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
