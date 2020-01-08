@@ -65,7 +65,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cpu-hog
-  version: 0.0.4
+  version: 0.0.5
 spec:
   definition:
     scope: Cluster
@@ -79,7 +79,6 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
-          - "status"
           - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
