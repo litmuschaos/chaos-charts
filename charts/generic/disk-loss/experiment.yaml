@@ -66,4 +66,4 @@ spec:
       name: disk-loss
     secrets:
     - name: cloud-secret
-      mountPath: /tmp/
+      mountPath: /mnt/
