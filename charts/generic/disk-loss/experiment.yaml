@@ -5,25 +5,28 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.2
+  version: 0.1.4
 spec:
-  permissions:
-    apiGroups:
-      - ""
-      - "apps"
-      - "batch"
-      - "litmuschaos.io"
-    resources:
-      - "deployments"
-      - "statefulsets"
-      - "jobs"
-      - "pods"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
-    verbs:
-      - "*"
   definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -62,5 +65,5 @@ spec:
     labels:
       name: disk-loss
     secrets:
-    - name: disk-loss
+    - name: cloud-secret
       mountPath: /tmp/
