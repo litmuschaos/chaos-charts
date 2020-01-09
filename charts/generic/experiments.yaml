@@ -128,28 +128,27 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "create"
-        - "list"
-        - "get"
-        - "patch"
-        - "delete"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
