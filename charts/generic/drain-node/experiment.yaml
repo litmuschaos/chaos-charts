@@ -9,26 +9,35 @@ metadata:
   version: 0.1.1
 spec:
   definition:
+    scope: Cluster
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/eviction"
+          - "daemonsets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+          - "patch"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
