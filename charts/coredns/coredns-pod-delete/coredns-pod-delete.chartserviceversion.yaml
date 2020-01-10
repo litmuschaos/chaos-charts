@@ -33,8 +33,6 @@ spec:
       url: https://coredns.io
     - name: Source Code
       url: https://github.com/coredns/coredns
-    - name: CoreDNS Slack
-      url: https://slack.cncf.io/
-    - name: Documentation
-      url: https://coredns.io/manual/toc/
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/coredns-pod-delete/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuchaos/chaos-charts/master/charts/coredns/coredns-pod-delete/experiment.yaml
