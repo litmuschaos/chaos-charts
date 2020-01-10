@@ -18,7 +18,9 @@ spec:
     - State
   platforms:
     - GKE
-    - AWS
+    - AWS(KOPS)
+    - Packet(Kubeadm)
+    - Konvoy
   maturity: alpha
   chaosType: infra
   maintainers:

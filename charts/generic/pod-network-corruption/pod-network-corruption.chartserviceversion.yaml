@@ -19,6 +19,8 @@ spec:
     - Corruption
   platforms:
     - GKE
+    - Packet(Kubeadm) 
+    - Minikube
   maturity: alpha
   maintainers:
     - name: Shubham Chaudhary

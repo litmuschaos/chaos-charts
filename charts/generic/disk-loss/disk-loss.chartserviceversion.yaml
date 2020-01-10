@@ -22,7 +22,7 @@ spec:
     - Disk 
   platforms:
     - GKE
-    - AWS
+    - AWS(KOPS)
   maturity: alpha
   chaosType: infra
   maintainers:
