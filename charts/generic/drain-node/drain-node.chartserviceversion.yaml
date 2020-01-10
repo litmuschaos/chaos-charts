@@ -32,6 +32,8 @@ spec:
       url: https://kubernetes.io
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic
+    - name: Docs
+      url: https://docs.litmuschaos.io/docs/drain-node/
   icon:
     - url: ""
       mediatype: ""
