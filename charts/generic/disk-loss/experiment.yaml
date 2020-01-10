@@ -46,7 +46,7 @@ spec:
     - name: CHAOS_NAMESPACE
       value: ''
         
-   # Only GCP is supported
+   # It supports GCP and AWS
     - name: CLOUD_PLATFORM
       value: 'GCP'
 
