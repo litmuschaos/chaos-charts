@@ -19,7 +19,7 @@ spec:
   platforms:
     - GKE
     - Minikube 
-    - Packet (Kubeadm)
+    - Packet(Kubeadm)
   maturity: alpha
   maintainers:
     - name: ksatchit
