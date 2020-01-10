@@ -18,7 +18,8 @@ spec:
     - Container 
   platforms:
     - GKE
-    - OpenShift
+    - Minikube 
+    - Packet(Kubeadm)
   maturity: alpha
   maintainers:
     - name: ksatchit

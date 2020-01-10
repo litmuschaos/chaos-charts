@@ -19,6 +19,9 @@ spec:
   platforms:
     - GKE
     - AWS
+    - Minikube 
+    - Packet(Kubeadm)
+    - Konvoy
   maturity: alpha
   chaosType: infra
   maintainers:

@@ -20,7 +20,9 @@ spec:
     - State 
   platforms:
     - GKE
-    - OpenShift
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
   maturity: alpha
   maintainers:
     - name: ksatchit
