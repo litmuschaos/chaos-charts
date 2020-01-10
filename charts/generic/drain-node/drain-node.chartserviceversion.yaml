@@ -18,8 +18,7 @@ spec:
     - State
   platforms:
     - GKE
-    - AWS
-    - Minikube 
+    - AWS(KOPS)
     - Packet(Kubeadm)
     - Konvoy
   maturity: alpha
