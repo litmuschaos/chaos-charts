@@ -44,7 +44,7 @@ spec:
       value: ''
     
     - name: FILL_PERCENTAGE
-      value: ''
+      value: '80'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'

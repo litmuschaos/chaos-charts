@@ -42,7 +42,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    # It only supported pumba
+    # It only supports pumba
     - name: LIB
       value: 'pumba'
 
