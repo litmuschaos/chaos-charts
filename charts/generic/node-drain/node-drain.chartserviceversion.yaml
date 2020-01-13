@@ -31,7 +31,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/drain_node
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_drain
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/drain-node/
   icon:
