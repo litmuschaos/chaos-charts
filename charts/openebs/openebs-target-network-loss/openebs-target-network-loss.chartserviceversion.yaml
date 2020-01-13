@@ -26,11 +26,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/openebes/openebs
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-target-network-loss
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-target-network-loss/
   icon:
     - url: ""
