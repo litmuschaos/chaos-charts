@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-target-network-loss
-  version: 0.1.3
+  version: 0.1.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
