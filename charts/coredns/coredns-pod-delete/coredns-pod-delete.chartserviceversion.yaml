@@ -29,10 +29,8 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: CoreDNS Website
-      url: https://coredns.io
     - name: Source Code
-      url: https://github.com/coredns/coredns
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/coredns/pod_delete
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/coredns-pod-delete/
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuchaos/chaos-charts/master/charts/coredns/coredns-pod-delete/experiment.yaml

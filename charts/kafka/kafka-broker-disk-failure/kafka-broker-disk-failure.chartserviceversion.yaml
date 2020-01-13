@@ -26,11 +26,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kafka Website
-      url: http://kafka.apache.org/
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/kafka
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/kafka/kafka-broker-disk-failure
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/kafka-broker-disk-failure/
   icon:
     - url: 
