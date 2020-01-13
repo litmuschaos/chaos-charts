@@ -17,7 +17,7 @@ spec:
     - container-kill
     - pod-cpu-hog
     - pod-network-latency
-    - drain-node
+    - node-drain
     - pod-network-corruption
 
   keywords:

@@ -24,9 +24,9 @@ experiments:
   - name: disk-loss
     CSV: disk-loss.chartserviceversion.yaml
     desc: "disk-loss"
-  - name: drain-node
-    CSV: drain-node.chartserviceversion.yaml
-    desc: "drain-node"
+  - name: node-drain
+    CSV: node-drain.chartserviceversion.yaml
+    desc: "node-drain"
   - name: pod-network-corruption
     CSV: pod-network-corruption.chartserviceversion.yaml
     desc: "pod-network-corruption"
