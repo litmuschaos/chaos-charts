@@ -122,29 +122,31 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
+    scope: Cluster
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "statefulsets"
+          - "secrets"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "delete"
+          - "get"
+          - "list"
+          - "patch"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -220,6 +222,5 @@ spec:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/
       
-
 ---
 
