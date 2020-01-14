@@ -38,7 +38,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
