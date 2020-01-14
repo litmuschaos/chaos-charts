@@ -30,7 +30,7 @@ spec:
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_network_loss
-    - name: Documentaion
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-network-loss/
   icon:
     - base64data: ""
