@@ -30,11 +30,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_drain
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-drain/
   icon:
     - url: ""

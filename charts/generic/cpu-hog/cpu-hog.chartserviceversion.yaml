@@ -30,11 +30,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/cpu_hog
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/cpu-hog/
   icon: 
     - url: 

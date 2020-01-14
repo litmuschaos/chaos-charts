@@ -31,11 +31,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_delete
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-delete/
   icon:
     - url: 
