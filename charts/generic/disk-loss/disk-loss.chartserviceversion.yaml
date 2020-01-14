@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: disk-loss
-  version: 0.1.7
+  version: 0.1.8
   annotations:
     categories: Kubernetes
     vendor: Mayadata

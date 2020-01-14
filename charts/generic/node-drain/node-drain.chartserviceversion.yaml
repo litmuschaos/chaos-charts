@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: node-drain
-  version: 0.1.5
+  version: 0.1.6
   annotations:
     categories: Kubernetes
     vendor: Mayadata
