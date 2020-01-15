@@ -23,11 +23,11 @@ spec:
     - Minikube
   maturity: alpha
   maintainers:
-    - name: Shubham Chaudhary
-      email: shubham.chaudhary@mayadata.io
+    - name: @LaumiH
+      email: laura-marie.henning@stud.h-da.de
   minKubeVersion: 1.12.0
   provider:
-    name: Mayadata
+    name: Laura-Marie Henning
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_network_corruption
