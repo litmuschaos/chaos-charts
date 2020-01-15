@@ -26,6 +26,7 @@ spec:
           - "create"
           - "list"
           - "get"
+          - "update"
           - "patch"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"

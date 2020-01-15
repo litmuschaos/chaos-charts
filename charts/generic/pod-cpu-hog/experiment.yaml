@@ -25,6 +25,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:

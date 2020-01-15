@@ -29,6 +29,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
