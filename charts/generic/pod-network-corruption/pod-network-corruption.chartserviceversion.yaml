@@ -23,7 +23,7 @@ spec:
     - Minikube
   maturity: alpha
   maintainers:
-    - name: @LaumiH
+    - name: LaumiH
       email: laura-marie.henning@stud.h-da.de
   minKubeVersion: 1.12.0
   provider:
