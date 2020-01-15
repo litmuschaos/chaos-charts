@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -31,6 +31,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
@@ -73,7 +74,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -96,6 +97,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -131,7 +133,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cpu-hog
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -154,6 +156,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
@@ -194,7 +197,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -214,6 +217,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -251,7 +255,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -271,6 +275,7 @@ spec:
           - "delete"
           - "list"
           - "patch"
+          - "update"
           - "get"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -312,7 +317,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -335,6 +340,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
@@ -376,7 +382,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -396,6 +402,7 @@ spec:
       - "list"
       - "patch"
       - "create"
+      - "update"
       - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -437,7 +444,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -458,6 +465,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -512,7 +520,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -532,6 +540,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
@@ -572,7 +581,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -594,6 +603,7 @@ spec:
           - "create"
           - "list"
           - "get"
+          - "update"
           - "patch"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
