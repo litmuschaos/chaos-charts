@@ -9,7 +9,7 @@ metadata:
 spec:
   definition:
     permissions:
-      apiGroups:
+    - apiGroups:
         - ""
         - "batch"
         - "litmuschaos.io"
