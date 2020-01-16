@@ -7,11 +7,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: coredns-pod-delete
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     permissions:
-      apiGroups:
+    - apiGroups:
         - ""
         - "batch"
         - "litmuschaos.io"
@@ -53,5 +53,6 @@ spec:
       value: ''    
     labels:
       name: coredns-pod-delete
+
 ---
 
