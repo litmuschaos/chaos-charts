@@ -12,6 +12,9 @@ experiments:
   - name: pod-network-latency
     CSV: pod-network-latency.chartserviceversion.yaml
     desc: "pod-network-latency"
+  - name: pod-cpu-hog
+    CSV: pod-cpu-hog.chartserviceversion.yaml
+    desc: "pod-cpu-hog"
   - name: cpu-hog
     CSV: cpu-hog.chartserviceversion.yaml
     desc: "cpu-hog"
@@ -21,6 +24,9 @@ experiments:
   - name: disk-loss
     CSV: disk-loss.chartserviceversion.yaml
     desc: "disk-loss"
-  - name: drain-node
-    CSV: drain-node.chartserviceversion.yaml
-    desc: "drain-node"
+  - name: node-drain
+    CSV: node-drain.chartserviceversion.yaml
+    desc: "node-drain"
+  - name: pod-network-corruption
+    CSV: pod-network-corruption.chartserviceversion.yaml
+    desc: "pod-network-corruption"

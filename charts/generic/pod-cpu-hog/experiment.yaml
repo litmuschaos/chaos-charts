@@ -1,11 +1,11 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Injects network latency on pods belonging to an app deployment
+    Injects cpu consumption on pods belonging to an app deployment
 kind: ChaosExperiment
 metadata:
-  name: pod-network-latency
-  version: 0.1.8
+  name: pod-cpu-hog
+  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -30,7 +30,7 @@ spec:
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -40,20 +40,16 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
-
-    - name: NETWORK_LATENCY
-      value: '60000' #in ms
+    - name: CPU_CORES
+      value: '1'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60000' #in ms
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/app-cpu-stress:latest' 
     labels:
-      name: pod-network-latency
+      name: pod-cpu-hog

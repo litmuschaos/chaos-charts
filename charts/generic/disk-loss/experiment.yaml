@@ -5,26 +5,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.2
+  version: 0.1.8
 spec:
-  permissions:
-    apiGroups:
-      - ""
-      - "apps"
-      - "batch"
-      - "litmuschaos.io"
-    resources:
-      - "deployments"
-      - "statefulsets"
-      - "jobs"
-      - "pods"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
-    verbs:
-      - "*"
   definition:
-    image: "litmuschaos/ansible-runner:ci"
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -43,7 +47,7 @@ spec:
     - name: CHAOS_NAMESPACE
       value: ''
         
-   # Only GCP is supported
+   # It supports GCP and AWS
     - name: CLOUD_PLATFORM
       value: 'GCP'
 
@@ -58,9 +62,12 @@ spec:
           
     - name: ZONE_NAME
       value: '' 
+
+    - name: DEVICE_NAME
+      value: '' 
           
     labels:
       name: disk-loss
     secrets:
-    - name: disk-loss
+    - name: cloud-secret
       mountPath: /tmp/

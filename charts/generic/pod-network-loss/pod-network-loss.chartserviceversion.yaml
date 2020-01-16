@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: pod-network-loss
-  version: 0.1.6
+  version: 0.1.8
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -18,7 +18,8 @@ spec:
     - Network
   platforms:
     - GKE
-    - OpenShift
+    - Minikube 
+    - Packet(Kubeadm)
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -27,11 +28,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_network_loss
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-network-loss/
   icon:
     - base64data: ""

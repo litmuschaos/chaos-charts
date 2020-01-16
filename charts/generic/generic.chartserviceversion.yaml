@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: generic
-  version: 0.1.3
+  version: 0.1.6
   annotations:
     categories: Kubernetes
     chartDescription: Injects generic kubernetes chaos 
@@ -15,15 +15,18 @@ spec:
     - pod-network-loss
     - pod-delete
     - container-kill
+    - pod-cpu-hog
     - pod-network-latency
-    - drain-node
+    - node-drain
+    - pod-network-corruption
 
   keywords:
     - Kubernetes
     - Container
-    - node
-    - pod
-    - disk
+    - Node
+    - Pod
+    - Disk
+    - Network
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

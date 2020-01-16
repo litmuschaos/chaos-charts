@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: drain-node
-  version: 0.1.2
+  name: node-drain
+  version: 0.1.6
   annotations:
     categories: Kubernetes
     vendor: Mayadata
@@ -18,7 +18,9 @@ spec:
     - State
   platforms:
     - GKE
-    - AWS
+    - AWS(KOPS)
+    - Packet(Kubeadm)
+    - Konvoy
   maturity: alpha
   chaosType: infra
   maintainers:
@@ -28,11 +30,11 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_drain
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-drain/
   icon:
     - url: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/drain-node/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-drain/experiment.yaml

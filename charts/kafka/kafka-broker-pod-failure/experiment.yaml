@@ -5,30 +5,40 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.3
+  version: 0.1.5
 spec:
   definition:
+    scope: Cluster
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
-    image: "litmuschaos/ansible-runner:ci"
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "statefulsets"
+          - "deployments"
+          - "configmaps"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/kafka/kafka-broker-pod-failure/kafka-broker-pod-failure-ansible-logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -94,7 +104,7 @@ spec:
       value: ''
 
     ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
+    ## default: litmus. Supported values: litmus, powerfulseal
     - name: LIB
       value: 'litmus'
  

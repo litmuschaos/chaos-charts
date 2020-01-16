@@ -1,22 +1,26 @@
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Injects network latency on pods belonging to an app deployment
+    Drain the node where application pod is scheduled
 kind: ChaosExperiment
 metadata:
-  name: pod-network-latency
-  version: 0.1.8
+  name: node-drain
+  version: 0.1.5
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
           - "batch"
+          - "extensions"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
+          - "pods/eviction"
+          - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -27,33 +31,35 @@ spec:
           - "patch"
           - "update"
           - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+          - "patch"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: 'default'
 
-    - name: TARGET_CONTAINER
+    - name: LIVENESS_APP_LABEL
+      value: ''
+    
+    - name: APP_NODE
       value: ''
 
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
-
-    - name: NETWORK_LATENCY
-      value: '60000' #in ms
-
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60'
 
-    - name: LIB
-      value: 'pumba'
+    - name: LIVENESS_APP_NAMESPACE
+      value: '' 
+
     labels:
-      name: pod-network-latency
+      name: node-drain

@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-pool-container-failure
-  version: 0.1.7
+  version: 0.1.8
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -27,11 +27,9 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: OpenEBS Website
-      url: https://openebs.io
     - name: Source Code
-      url: https://github.com/openebs/openebs
-    - name: Docs
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-pool-container-failure
+    - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-pool-container-kill/
   icon:
     - url: ""

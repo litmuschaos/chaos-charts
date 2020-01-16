@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cpu-hog
-  version: 0.0.4
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -19,7 +19,6 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
-          - "status"
           - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
@@ -29,6 +28,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
@@ -37,7 +37,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/cpu_hog/cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

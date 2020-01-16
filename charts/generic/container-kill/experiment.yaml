@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.6
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -26,9 +26,10 @@ spec:
           - "create"
           - "list"
           - "get"
+          - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -42,7 +43,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    # It only supported pumba
+    # It only supports pumba
     - name: LIB
       value: 'pumba'
 

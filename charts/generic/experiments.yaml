@@ -1,5 +1,72 @@
 ---
 
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Drain the node where application pod is scheduled
+kind: ChaosExperiment
+metadata:
+  name: node-drain
+  version: 0.1.5
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/eviction"
+          - "daemonsets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+          - "patch"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+    
+    - name: APP_NODE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: '' 
+
+    labels:
+      name: node-drain
+---
+
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -7,29 +74,32 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.0.2
+  version: 0.1.5
 spec:
   definition:
-    permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
-    image: "litmuschaos/ansible-runner:ci"
+    scope: Cluster
+    permissions: 
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "daemonsets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -44,7 +114,7 @@ spec:
       value: ''
     
     - name: FILL_PERCENTAGE
-      value: ''
+      value: '80'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'
@@ -63,7 +133,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cpu-hog
-  version: 0.0.4
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -77,7 +147,6 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
-          - "status"
           - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
@@ -87,6 +156,7 @@ spec:
           - "list"
           - "get"
           - "patch"
+          - "update"
           - "delete"
       - apiGroups:
           - ""
@@ -95,7 +165,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/cpu_hog/cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -123,41 +193,163 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    Injects cpu consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-cpu-hog
+  version: 0.1.4
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    - name: CPU_CORES
+      value: '1'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60000' #in ms
+
+    - name: LIB
+      value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/app-cpu-stress:latest' 
+    labels:
+      name: pod-cpu-hog
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Inject network packet corruption into application pod
+kind: ChaosExperiment
+metadata:
+  name: pod-network-corruption
+  version: 0.1.3
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+          - "get"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+     # provide lib image
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
+      value: '100' #in PERCENTAGE
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60000' #in ms
+
+    - name: LIB
+      value: 'pumba'
+    labels:
+      name: pod-network-corruption
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.5
+  version: 0.1.8
 spec:
   definition:
+    scope: Namespaced
     permissions:
       - apiGroups:
-        - ""
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
         resources:
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "configmaps"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
         verbs:
-        - "create"
-        - "list"
-        - "get"
-        - "patch"
-        - "delete"
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
       - apiGroups:
-        - ""
+          - ""
         resources: 
-        - "nodes"
+          - "nodes"
         verbs :
-        - "get"
-        - "list"
-    image: "litmuschaos/ansible-runner:ci"
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -190,29 +382,29 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.5
+  version: 0.1.8
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
+    - apiGroups:
+      - ""
+      - "batch"
+      - "litmuschaos.io"
       resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
+      - "jobs"
+      - "pods"
+      - "chaosengines"
+      - "chaosexperiments"
+      - "chaosresults"
       verbs:
-        - "*"
-    image: "litmuschaos/ansible-runner:ci"
+      - "get"
+      - "list"
+      - "patch"
+      - "create"
+      - "update"
+      - "delete"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -252,26 +444,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.2
+  version: 0.1.8
 spec:
-  permissions:
-    apiGroups:
-      - ""
-      - "apps"
-      - "batch"
-      - "litmuschaos.io"
-    resources:
-      - "deployments"
-      - "statefulsets"
-      - "jobs"
-      - "pods"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
-    verbs:
-      - "*"
   definition:
-    image: "litmuschaos/ansible-runner:ci"
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -290,7 +486,7 @@ spec:
     - name: CHAOS_NAMESPACE
       value: ''
         
-   # Only GCP is supported
+   # It supports GCP and AWS
     - name: CLOUD_PLATFORM
       value: 'GCP'
 
@@ -305,11 +501,14 @@ spec:
           
     - name: ZONE_NAME
       value: '' 
+
+    - name: DEVICE_NAME
+      value: '' 
           
     labels:
       name: disk-loss
     secrets:
-    - name: disk-loss
+    - name: cloud-secret
       mountPath: /tmp/
 
 ---
@@ -321,29 +520,29 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.5
+  version: 0.1.8
 spec:
   definition:
+    scope: Namespaced
     permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
-    image: "litmuschaos/ansible-runner:ci"
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -376,70 +575,13 @@ spec:
 
 ---
 
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Drain the node where application pod is scheduled
-kind: ChaosExperiment
-metadata:
-  name: drain-node
-  version: 0.1.1
-spec:
-  definition:
-    permissions:
-      apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "*"
-    image: "litmuschaos/ansible-runner:ci"
-    args:
-    - -c
-    - ansible-playbook ./experiments/generic/drain_node/drain_node_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
-    - name: LIVENESS_APP_LABEL
-      value: ''
-    
-    - name: APP_NODE
-      value: ''
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    - name: LIVENESS_APP_NAMESPACE
-      value: '' 
-
-    labels:
-      name: drain-node
----
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: "Kills a container belonging to an application pod \n"
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.6
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -461,9 +603,10 @@ spec:
           - "create"
           - "list"
           - "get"
+          - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -477,7 +620,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    # It only supported pumba
+    # It only supports pumba
     - name: LIB
       value: 'pumba'
 
