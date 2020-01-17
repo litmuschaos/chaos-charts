@@ -11,28 +11,28 @@ metadata:
   version: 0.1.4
 spec:
   permissions:
-    apiGroups:
-      - ""
-      - "extensions"
-      - "apps"
-      - "batch"
-      - "litmuschaos.io"
-      - "openebs.io"
-    resources:
-      - "daemonsets"
-      - "statefulsets"
-      - "deployments"
-      - "replicasets"
-      - "jobs"
-      - "pods"
-      - "pods/exec"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
-      - "persistentvolumeclaims"
-      - "cstorvolumereplicas"
-    verbs:
-      - "*"
+    - apiGroups:
+        - ""
+        - "extensions"
+        - "apps"
+        - "batch"
+        - "litmuschaos.io"
+        - "openebs.io"
+      resources:
+        - "daemonsets"
+        - "statefulsets"
+        - "deployments"
+        - "replicasets"
+        - "jobs"
+        - "pods"
+        - "pods/exec"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+        - "persistentvolumeclaims"
+        - "cstorvolumereplicas"
+      verbs:
+        - "*"
   definition:
     image: "litmuschaos/ansible-runner:latest"
     args:
