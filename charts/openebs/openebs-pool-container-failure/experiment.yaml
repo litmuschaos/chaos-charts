@@ -10,30 +10,30 @@ metadata:
   name: openebs-pool-container-failure
   version: 0.1.5
 spec:
-  permissions:
-    - apiGroups:
-        - ""
-        - "extensions"
-        - "apps"
-        - "batch"
-        - "litmuschaos.io"
-        - "openebs.io"
-      resources:
-        - "daemonsets"
-        - "statefulsets"
-        - "deployments"
-        - "replicasets"
-        - "jobs"
-        - "pods"
-        - "pods/exec"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-        - "persistentvolumeclaims"
-        - "cstorvolumereplicas"
-      verbs:
-        - "*"
   definition:
+    permissions:
+      - apiGroups:
+          - ""
+          - "extensions"
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+          - "openebs.io"
+        resources:
+          - "daemonsets"
+          - "statefulsets"
+          - "deployments"
+          - "replicasets"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
+        verbs:
+          - "*"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
