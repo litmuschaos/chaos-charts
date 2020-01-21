@@ -29,7 +29,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-target-container-failure
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-target-container-kill/
+      url: https://docs.litmuschaos.io/docs/openebs-target-container-failure/
   icon:
     - url: ""
       mediatype: ""
