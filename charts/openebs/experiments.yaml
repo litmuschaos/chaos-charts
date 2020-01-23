@@ -110,9 +110,10 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -120,16 +121,15 @@ spec:
           - "apps"
           - "batch"
           - "litmuschaos.io"
-          - "openebs.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
-          - "statefulsets"
           - "deployments"
-          - "replicasets"
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "services"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -137,7 +137,19 @@ spec:
           - "storageclasses"
           - "persistentvolumes"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+        - apiGroups:
+          - ""
+          resources:
+          - "nodes"
+          verbs:
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
