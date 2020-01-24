@@ -32,6 +32,8 @@ spec:
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/container_kill
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/container-kill/
+    - name: Video
+      url: https://www.youtube.com/watch?v=XKyMNdVsKMo
   icon:
     - url: 
       mediatype: ""

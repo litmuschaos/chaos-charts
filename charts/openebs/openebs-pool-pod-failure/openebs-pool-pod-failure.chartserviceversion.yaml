@@ -31,6 +31,8 @@ spec:
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-pool-pod-failure
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-pool-pod-failure/
+    - name: Video
+      url:
   icon:
     - url: ""
       mediatype: ""

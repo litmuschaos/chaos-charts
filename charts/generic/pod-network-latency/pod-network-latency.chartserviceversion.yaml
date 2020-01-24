@@ -32,6 +32,8 @@ spec:
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_network_latency
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-network-latency/
+    - name: Video
+      url: https://www.youtube.com/watch?v=QsQZyXVCcCw
   icon:
     - base64data: ""
       mediatype: ""

@@ -35,6 +35,8 @@ spec:
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_delete
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-delete/
+    - name: Video
+      url: https://www.youtube.com/watch?v=X3JvY_58V9A
   icon:
     - url: 
       mediatype: ""
