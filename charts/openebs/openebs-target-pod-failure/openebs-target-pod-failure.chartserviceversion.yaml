@@ -29,7 +29,9 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-target-pod-failure
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/      
+      url: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/   
+    - name: Video
+      url:   
   icon:
     - url: ""
       mediatype: ""

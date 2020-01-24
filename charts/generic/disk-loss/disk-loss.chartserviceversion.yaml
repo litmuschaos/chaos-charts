@@ -36,6 +36,8 @@ spec:
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/disk_loss
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/disk-loss/
+    - name: Video
+      url:
   icon:
     - url: 
       mediatype: ""
