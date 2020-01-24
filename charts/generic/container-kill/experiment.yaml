@@ -43,6 +43,10 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
     # It only supports pumba
     - name: LIB
       value: 'pumba'

@@ -41,13 +41,17 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
     - name: APP_CHECK
       value: 'true' 
 
     - name: CHAOS_NAMESPACE
       value: ''
         
-   # It supports GCP and AWS
+    # It supports GCP and AWS
     - name: CLOUD_PLATFORM
       value: 'GCP'
 
