@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: cpu-hog
-  version: 0.0.6
+  version: 0.0.7
   annotations:
     categories: Kubernetes
     vendor: CNCF

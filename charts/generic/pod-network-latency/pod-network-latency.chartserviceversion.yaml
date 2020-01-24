@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: pod-network-latency
-  version: 0.1.8
+  version: 0.1.9
   annotations:
     categories: Kubernetes
     vendor: CNCF
