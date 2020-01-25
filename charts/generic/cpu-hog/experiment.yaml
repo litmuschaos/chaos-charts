@@ -51,6 +51,10 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
     - name: PLATFORM
       value: 'GKE'
 
