@@ -10,6 +10,7 @@ metadata:
   version: 0.1.7
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -17,24 +18,27 @@ spec:
           - "apps"
           - "batch"
           - "litmuschaos.io"
-          - "openebs.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
-          - "statefulsets"
-          - "deployments"
-          - "replicasets"
           - "jobs"
           - "pods"
+          - "services"
           - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
+          - "configmaps"
+          - "secrets"
           - "persistentvolumeclaims"
           - "storageclasses"
           - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -60,7 +64,7 @@ spec:
       value: '100' # in percentage
 
     - name: TOTAL_CHAOS_DURATION
-      value: '240000' # in milliseconds
+      value: '120000' # in milliseconds
 
     - name: LIVENESS_APP_LABEL
       value: ''
