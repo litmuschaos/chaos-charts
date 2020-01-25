@@ -11,6 +11,7 @@ metadata:
   version: 0.1.5
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -19,21 +20,34 @@ spec:
           - "batch"
           - "litmuschaos.io"
           - "openebs.io"
+          - "storage.k8s.io"
         resources:
-          - "daemonsets"
-          - "statefulsets"
           - "deployments"
           - "replicasets"
           - "jobs"
           - "pods"
-          - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "storageclasses"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
-          - "persistentvolumeclaims"
-          - "cstorvolumereplicas"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
