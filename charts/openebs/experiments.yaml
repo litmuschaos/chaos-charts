@@ -207,6 +207,7 @@ metadata:
   version: 0.1.7
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -214,24 +215,27 @@ spec:
           - "apps"
           - "batch"
           - "litmuschaos.io"
-          - "openebs.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
-          - "statefulsets"
-          - "deployments"
-          - "replicasets"
           - "jobs"
           - "pods"
+          - "services"
           - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
+          - "configmaps"
+          - "secrets"
           - "persistentvolumeclaims"
           - "storageclasses"
           - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -370,6 +374,7 @@ metadata:
   version: 0.1.5
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -378,21 +383,34 @@ spec:
           - "batch"
           - "litmuschaos.io"
           - "openebs.io"
+          - "storage.k8s.io"
         resources:
-          - "daemonsets"
-          - "statefulsets"
           - "deployments"
           - "replicasets"
           - "jobs"
           - "pods"
-          - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "storageclasses"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
-          - "persistentvolumeclaims"
-          - "cstorvolumereplicas"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -440,9 +458,10 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
@@ -451,21 +470,27 @@ spec:
           - "batch"
           - "litmuschaos.io"
           - "openebs.io"
+          - "storage.k8s.io"
         resources:
           - "daemonsets"
-          - "statefulsets"
-          - "deployments"
           - "replicasets"
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
-          - "persistentvolumeclaims"
-          - "cstorvolumereplicas"
         verbs:
-          - "*"
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
