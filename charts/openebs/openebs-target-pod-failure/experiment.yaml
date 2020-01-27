@@ -41,11 +41,11 @@ spec:
           - "list"
           - "patch"
           - "update"
-        - apiGroups:
+      - apiGroups:
           - ""
-          resources:
+        resources:
           - "nodes"
-          verbs:
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
