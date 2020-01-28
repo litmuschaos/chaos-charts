@@ -138,74 +138,6 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Give a cpu spike on a node belonging to a deployment
-kind: ChaosExperiment
-metadata:
-  name: cpu-hog
-  version: 0.1.8
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "daemonsets"
-          - "jobs"
-          - "pods"
-          - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs :
-          - "get"
-          - "list"
-    image: "litmuschaos/ansible-runner:latest"
-    args:
-    - -c
-    - ansible-playbook ./experiments/generic/cpu_hog/cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Period to wait before injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: PLATFORM
-      value: 'GKE'
-
-    - name: LIB
-      value: ''
-      
-    labels:
-      name: cpu-hog
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
     Injects cpu consumption on pods belonging to an app deployment
 kind: ChaosExperiment
 metadata:
@@ -611,6 +543,73 @@ spec:
     labels:
       name: pod-network-latency
 
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a cpu spike on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-cpu-hog
+  version: 0.1.9
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/node_cpu_hog/node_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: PLATFORM
+      value: 'GKE'
+
+    - name: LIB
+      value: ''
+      
+    labels:
+      name: node-cpu-hog
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
