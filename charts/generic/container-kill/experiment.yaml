@@ -47,11 +47,13 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It only supports pumba
+    # It supports pumba and containerd 
     - name: LIB
       value: 'pumba'
 
-    # provide lib image
+    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
+    # For pumba image use: gaiaadm/pumba:0.4.8
+    # For containerd image use: gprasath/crictl:ci
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.4.8' 
 
