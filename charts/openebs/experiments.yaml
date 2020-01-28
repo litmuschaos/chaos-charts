@@ -110,7 +110,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -143,11 +143,11 @@ spec:
           - "list"
           - "patch"
           - "update"
-        - apiGroups:
+      - apiGroups:
           - ""
-          resources:
+        resources:
           - "nodes"
-          verbs:
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
