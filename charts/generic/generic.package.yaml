@@ -15,9 +15,9 @@ experiments:
   - name: pod-cpu-hog
     CSV: pod-cpu-hog.chartserviceversion.yaml
     desc: "pod-cpu-hog"
-  - name: cpu-hog
-    CSV: cpu-hog.chartserviceversion.yaml
-    desc: "cpu-hog"
+  - name: node-cpu-hog
+    CSV: node-cpu-hog.chartserviceversion.yaml
+    desc: "node-cpu-hog"
   - name: disk-fill
     CSV: disk-fill.chartserviceversion.yaml
     desc: "disk-fill"

@@ -12,13 +12,16 @@ spec:
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. It will install all the experiments which can be used to inject chaos into containerized appications.
 
   experiments:
-    - pod-network-loss
     - pod-delete
     - container-kill
     - pod-cpu-hog
+    - pod-network-loss
     - pod-network-latency
-    - node-drain
     - pod-network-corruption
+    - node-drain
+    - node-cpu-hog
+    - disk-loss
+    - disk-fill
 
   keywords:
     - Kubernetes
