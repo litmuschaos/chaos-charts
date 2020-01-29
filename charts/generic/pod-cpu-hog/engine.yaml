@@ -9,9 +9,9 @@ spec:
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   appinfo:
-    appns: default
+    appns: 'default'
     applabel: 'app=nginx'
-    appkind: deployment
+    appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
   components:
@@ -19,18 +19,19 @@ spec:
       image: 'litmuschaos/chaos-executor:1.0.0'
       type: 'go'
   # It can be delete/retain
-  jobCleanUpPolicy: delete
+  jobCleanUpPolicy: 'delete'
   experiments:
     - name: pod-cpu-hog
       spec:
         components:
-          - name: TARGET_CONTAINER
-            value: 'nginx'
-            #number of cpu cores to be consumed
-            #verify the resources the app has been launched with
-          - name: CPU_CORES
-            value: '1'
-            # in ms 
-          - name: TOTAL_CHAOS_DURATION
-            value: '60000' 
-          
+          env:
+            - name: TARGET_CONTAINER
+              value: 'nginx'
+              #number of cpu cores to be consumed
+              #verify the resources the app has been launched with
+            - name: CPU_CORES
+              value: '1'
+              # in ms 
+            - name: TOTAL_CHAOS_DURATION
+              value: '60000' 
+            

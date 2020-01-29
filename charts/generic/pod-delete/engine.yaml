@@ -5,9 +5,9 @@ metadata:
   namespace: default
 spec:
   appinfo:
-    appns: default
+    appns: 'default'
     applabel: 'app=nginx'
-    appkind: deployment
+    appkind: 'deployment'
   # It can be true/false
   annotationCheck: 'true'
   #ex. values: ns1:name=percona,ns2:run=nginx
@@ -19,17 +19,18 @@ spec:
       image: 'litmuschaos/chaos-executor:1.0.0'
       type: 'go'
   # It can be delete/retain
-  jobCleanUpPolicy: delete
+  jobCleanUpPolicy: 'delete'
   experiments:
     - name: pod-delete
       spec:
         components:
-          # set chaos duration (in sec) as desired
-          - name: TOTAL_CHAOS_DURATION
-            value: '30'
-          # set chaos interval (in sec) as desired
-          - name: CHAOS_INTERVAL
-            value: '10'
-          # pod failures without '--force' & default terminationGracePeriodSeconds
-          - name: FORCE
-            value: 'false'
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '10'
+            # pod failures without '--force' & default terminationGracePeriodSeconds
+            - name: FORCE
+              value: 'false'

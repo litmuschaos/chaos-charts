@@ -9,9 +9,9 @@ spec:
   #ex. values: ns1:name=percona,ns2:run=nginx  
   auxiliaryAppInfo: ''
   appinfo:
-    appns: default
+    appns: 'default'
     applabel: 'app=nginx'
-    appkind: deployment
+    appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
   components:
@@ -19,13 +19,14 @@ spec:
       image: 'litmuschaos/chaos-executor:1.0.0'
       type: 'go'
   # It can be delete/retain
-  jobCleanUpPolicy: delete
+  jobCleanUpPolicy: 'delete'
   experiments:
     - name: disk-fill
       spec:
         components:
-           # specify the fill percentage according to the disk pressure required
-          - name: FILL_PERCENTAGE
-            value: '80'
-          - name: TARGET_CONTAINER
-            value: 'nginx'
+          env:
+            # specify the fill percentage according to the disk pressure required
+            - name: FILL_PERCENTAGE
+              value: '80'
+            - name: TARGET_CONTAINER
+              value: 'nginx'
