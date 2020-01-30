@@ -33,4 +33,4 @@ spec:
               value: 'nginx' 
               #Network interface inside target container              
             - name: NETWORK_INTERFACE
-              value: eth0                   
+              value: 'eth0'                   
