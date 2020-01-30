@@ -1,0 +1,44 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name:  nginx-network-chaos
+  namespace: default
+spec: 
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  # It can be true/false
+  annotationCheck: 'true'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  monitoring: false
+  components:
+    runner:
+      image: 'litmuschaos/chaos-executor:1.0.0'
+      type: 'go'
+  appinfo: 
+    appns: 'default'
+    # FYI, To see app label, apply kubectl get pods --show-labels
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: nginx-sa
+  experiments:
+    - name: pod-network-latency
+      spec:
+        components:
+          env:
+            - name: ANSIBLE_STDOUT_CALLBACK
+              value: 'default'
+              #Container name where chaos has to be injected
+            - name: TARGET_CONTAINER
+              value: 'nginx' 
+              #Network interface inside target container
+            - name: NETWORK_INTERFACE
+              value: 'eth0'                   
+            - name: LIB_IMAGE
+              value: 'gaiaadm/pumba:0.6.5'
+            - name: NETWORK_LATENCY
+              value: '2000'
+            - name: TOTAL_CHAOS_DURATION
+              value: '60000'
+            - name: LIB
+              value: 'pumba'

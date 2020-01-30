@@ -1,0 +1,33 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: target-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=percona'
+    appkind: 'deployment'
+  chaosServiceAccount: nginx-sa
+  monitoring: false
+  components:
+    runner:
+      image: 'litmuschaos/chaos-executor:1.0.0'
+      type: 'go'
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-target-pod-failure
+      spec:
+        components:
+          env:
+            - name: FORCE
+              value: 'true'
+            - name: APP_PVC
+              value: 'pvc-c466262a-a5f2-4f0f-b594-5daddfc2e29d'    
+            - name: DEPLOY_TYPE
+              value: 'deployment'     
