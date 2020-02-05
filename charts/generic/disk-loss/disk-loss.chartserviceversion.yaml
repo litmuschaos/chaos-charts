@@ -1,12 +1,12 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-12-27T10:28:08Z
   name: disk-loss
   version: 0.1.9
   annotations:
     categories: Kubernetes
     vendor: Mayadata
-    createdAt: 2019-11-08T12:28:08Z
     support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
   displayName: disk-loss

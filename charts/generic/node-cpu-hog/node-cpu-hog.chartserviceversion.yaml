@@ -1,12 +1,12 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-08-12T10:28:08Z
   name: node-cpu-hog
   version: 0.0.8
   annotations:
     categories: Kubernetes
     vendor: CNCF
-    createdAt: 2019-08-12T10:28:08Z
     support: https://slack.kubernetes.io/
 spec:
   displayName: node-cpu-hog

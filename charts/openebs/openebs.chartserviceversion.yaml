@@ -1,6 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-08-12T10:28:08Z
   name: openebs
   version: 0.1.3
   annotations:
