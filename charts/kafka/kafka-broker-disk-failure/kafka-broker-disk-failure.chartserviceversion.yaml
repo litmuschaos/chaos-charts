@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2019-08-12T10:28:08Z
+  createdAt: 2019-11-15T10:28:08Z
   name: kafka-broker-disk-failure
   version: 0.1.7
   annotations:
