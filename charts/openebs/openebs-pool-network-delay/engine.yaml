@@ -1,0 +1,39 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: openebs
+spec:
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'openebs'
+    applabel: 'app=busybox'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-sa
+  monitoring: false
+  components:
+    runner:
+      image: 'litmuschaos/chaos-executor:1.0.0'
+      type: 'go'
+  # It can be delete/retain
+  chaosType: 'infra'
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-pool-network-delay
+      spec:
+        components:
+          # env:
+            - name: FORCE
+              value: 'true'
+
+            - name: APP_PVC
+              value: '' 
+
+            - name: OPENEBS_NAMESPACE
+              value: 'openebs'
+
+            - name: APP_NAMESPACE
+              value: ''
+
+            - name: APP_LABEL
+              value: ''
