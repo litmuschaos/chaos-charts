@@ -2,6 +2,7 @@ apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
     Network delay to pool pod belonging to a OpenEBS PVC
+    This experiment is using pumba lib for network chaos
 kind: ChaosExperiment
 metadata:
   labels:
@@ -39,9 +40,9 @@ spec:
           - "create"
           - "get"
           - "list"
+          - "patch"
           - "update"
           - "delete"
-          - "patch"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -79,10 +80,10 @@ spec:
       value: ''
 
     - name: DATA_PERSISTENCE
-      value: 'mysql'
+      value: ''
 
     labels:
       name: openebs-pool-network-delay
     configmaps:
-      - name: openebs-pool-network-delay
+      - name: openebs-pool-network-delay 
         mountPath: /mnt

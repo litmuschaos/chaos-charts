@@ -4,16 +4,16 @@ metadata:
   name: pool-chaos
   namespace: default
 spec:
-  auxiliaryAppInfo: 'false'
+  annotationCheck: 'false'
   appinfo:
-    appns: 'openebs'
-    applabel: 'app=nginx'
+    appns: 'default'
+    applabel: 'app=percona'
     appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
   components:
     runner:
-      image: 'litmuschaos/chaos-executor:1.0.0'
+      image: 'litmuschaos/chaos-runner:ci'
       type: 'go'
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
@@ -21,9 +21,24 @@ spec:
     - name: openebs-pool-network-delay
       spec:
         components:
-          # env:
+          env:
             - name: APP_PVC
               value: '' 
 
             - name: OPENEBS_NAMESPACE
               value: 'openebs'
+                  # in milliseconds
+            - name: NETWORK_DELAY
+              value: '60000'
+
+            # in milliseconds  
+            - name: TOTAL_CHAOS_DURATION
+              value: '60000'
+            
+            # in milliseconds
+            - name: CHAOS_INTERVAL
+              value: '1000'
+              
+            - name: DATA_PERSISTENCE
+              value: ''
+        
