@@ -31,17 +31,6 @@ spec:
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '10'
-              
-            - name: APP_NAMESPACE
-              value: 'kube-system'
-
-            # provide application labels
-            - name: APP_LABEL
-              value: 'k8s-app=kube-dns'
-
-            # provide application kind
-            - name: APP_KIND
-              value: 'deployment'
-              
+                
             - name: CHAOS_NAMESPACE
               value: 'kube-system'

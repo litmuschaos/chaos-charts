@@ -52,9 +52,3 @@ spec:
             # Use Region Name when running with AWS (ex: us-central1)
             - name: ZONE_NAME
               value: 'us-central1-a'
-            # ChaosEngine CR name associated with the experiment instance 
-            - name: CHAOSENGINE
-              value: ''
-            # Service account used by the litmus  
-            - name: CHAOS_SERVICE_ACCOUNT
-              value: ''
