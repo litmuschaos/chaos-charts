@@ -9,7 +9,7 @@ spec:
   # It can be active/stop
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
-  auxiliaryAppInfo: 'ns1:name=percona,ns2:run=nginx'
+  auxiliaryAppInfo: ''
   appinfo:
     appns: 'default'
     applabel: 'app=nginx'
