@@ -6,6 +6,8 @@ metadata:
 spec:
   # It can be true/false
   annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   appinfo:
@@ -15,16 +17,13 @@ spec:
   chaosServiceAccount: nginx-sa
   monitoring: false
   components:
-    runner:
-      image: 'litmuschaos/chaos-executor:1.0.0'
-      type: 'go'
   # It can be delete/retain
   jobCleanUpPolicy: 'delete' 
   experiments:
     - name: container-kill
       spec:
         components:
-          # specify the name of the container to be killed
           env:
+            # specify the name of the container to be killed
             - name: TARGET_CONTAINER
               value: 'nginx'
