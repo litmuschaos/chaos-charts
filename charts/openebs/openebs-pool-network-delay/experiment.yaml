@@ -28,7 +28,6 @@ spec:
           - "services"
           - "persistentvolumeclaims"
           - "storageclasses"
-          - "persistentvolumeclaims"
           - "persistentvolumes"
           - "chaosengines"
           - "chaosexperiments"
@@ -39,10 +38,10 @@ spec:
         verbs:
           - "create"
           - "get"
-          - "delete"
           - "list"
-          - "patch"
           - "update"
+          - "delete"
+          - "patch"
     image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
@@ -61,14 +60,17 @@ spec:
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
+    # in milliseconds
     - name: NETWORK_DELAY
-      value: '60000' # in milliseconds
+      value: '60000'
 
+    # in milliseconds  
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' # in milliseconds
-
+      value: '60000'
+    
+    # in milliseconds
     - name: CHAOS_INTERVAL
-      value: '1000' # in milliseconds
+      value: '1000'
 
     - name: LIVENESS_APP_LABEL
       value: ''
@@ -77,7 +79,7 @@ spec:
       value: ''
 
     - name: DATA_PERSISTENCE
-      value: 'busybox'
+      value: 'mysql'
 
     labels:
       name: openebs-pool-network-delay
