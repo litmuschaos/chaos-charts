@@ -1,0 +1,39 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: openebs-sa
+  namespace: openebs
+  labels:
+    name: openebs-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: Role
+metadata:
+  name: openebs-sa
+  namespace: openebs
+  labels:
+    name: openebs-sa
+rules:
+- apiGroups: ["","litmuschaos.io","batch","apps"]
+  resources: ["pods","deployments","jobs","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs : ["get","list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: RoleBinding
+metadata:
+  name: openebs-sa
+  namespace: openebs
+  labels:
+    name: openebs-sa
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: Role
+  name: openebs-sa
+subjects:
+- kind: ServiceAccount
+  name: openebs-sa
+  namespace: openebs
