@@ -14,7 +14,6 @@ spec:
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
-  components:
   chaosServiceAccount: coredns-sa
   monitoring: false
   # It can be delete/retain

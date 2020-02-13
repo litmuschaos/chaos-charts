@@ -16,7 +16,6 @@ spec:
     appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
-  components:
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:

@@ -14,7 +14,6 @@ spec:
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   monitoring: false
-  components:
   appinfo: 
     appns: 'default'
     # FYI, To see app label, apply kubectl get pods --show-labels
