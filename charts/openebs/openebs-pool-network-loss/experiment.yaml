@@ -14,24 +14,28 @@ spec:
     permissions:
       - apiGroups:
           - ""
-          - "extensions"
           - "apps"
-          - "batch"
           - "litmuschaos.io"
+          - "batch"
+          - "extensions"
           - "storage.k8s.io"
+          - "openebs.io"
         resources:
-          - "jobs"
           - "pods"
-          - "services"
           - "pods/exec"
+          - "jobs"
           - "configmaps"
-          - "secrets"
+          - "services"
           - "persistentvolumeclaims"
           - "storageclasses"
+          - "persistentvolumeclaims"
           - "persistentvolumes"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
+          - "cstorpools"
+          - "cstorvolumereplicas"
+          - "replicasets"
         verbs:
           - "create"
           - "get"
@@ -70,7 +74,7 @@ spec:
       value: ''
 
     - name: DATA_PERSISTENCE
-      value: 'busybox'
+      value: ''
 
     labels:
       name: openebs-pool-network-loss

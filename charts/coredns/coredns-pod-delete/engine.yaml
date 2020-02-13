@@ -10,12 +10,10 @@ spec:
     appkind: 'deployment'
   # It can be true/false
   annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
-  components:
-    runner:
-       image: 'litmuschaos/chaos-executor:1.0.0'
-       type: 'go'
   chaosServiceAccount: coredns-sa
   monitoring: false
   # It can be delete/retain
@@ -32,17 +30,6 @@ spec:
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '10'
-              
-            - name: APP_NAMESPACE
-              value: 'kube-system'
-
-            # provide application labels
-            - name: APP_LABEL
-              value: 'k8s-app=kube-dns'
-
-            # provide application kind
-            - name: APP_KIND
-              value: 'deployment'
-              
+                
             - name: CHAOS_NAMESPACE
               value: 'kube-system'

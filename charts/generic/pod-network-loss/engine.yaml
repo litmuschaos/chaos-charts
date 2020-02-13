@@ -9,13 +9,11 @@ spec:
   jobCleanUpPolicy: 'delete'
   # It can be true/false
   annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   monitoring: false
-  components:
-    runner:
-      image: 'litmuschaos/chaos-executor:1.0.0'
-      type: 'go'
   appinfo: 
     appns: 'default'
     # FYI, To see app label, apply kubectl get pods --show-labels
