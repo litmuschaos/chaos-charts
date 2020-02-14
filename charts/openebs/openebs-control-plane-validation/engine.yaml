@@ -12,7 +12,7 @@ spec:
     appns: 'openebs'
     applabel: 'name=maya-apiserver'
     appkind: 'deployment'
-  chaosServiceAccount: openebs-sa
+  chaosServiceAccount: control-plane-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
