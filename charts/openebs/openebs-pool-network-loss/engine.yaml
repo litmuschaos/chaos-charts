@@ -10,7 +10,7 @@ spec:
   engineState: 'active'
   appinfo:
     appns: 'default'
-    applabel: 'app=percona'
+    applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
@@ -25,23 +25,14 @@ spec:
             value: 'true'
 
           - name: APP_PVC
-            value: ''
+            value: 'demo-nginx-claim'
 
           - name: OPENEBS_NAMESPACE
-            value: ''
+            value: 'openebs'
 
           - name: NETWORK_PACKET_LOSS_PERCENTAGE
             value: '100'
 
           - name: TOTAL_CHAOS_DURATION
-            value: '120000'
-
-          - name: LIVENESS_APP_LABEL
-            value: ''
-      
-          - name: LIVENESS_APP_NAMESPACE
-            value: ''
-      
-          - name: DATA_PERSISTENCE
-            value: ''
+            value: '60000'
       
