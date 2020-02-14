@@ -12,7 +12,7 @@ spec:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  chaosServiceAccount: nginx-sa
+  chaosServiceAccount: pool-network-loss-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'

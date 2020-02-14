@@ -14,7 +14,7 @@ spec:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  chaosServiceAccount: nginx-sa
+  chaosServiceAccount: pod-cpu-hog-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'

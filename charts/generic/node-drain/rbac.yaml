@@ -2,17 +2,17 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: nginx-sa
+  name: node-drain-sa
   namespace: default
   labels:
-    name: nginx-sa
+    name: node-drain-sa
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: nginx-sa
+  name: node-drain-sa
   labels:
-    name: nginx-sa
+    name: node-drain-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","extensions"]
   resources: ["pods","jobs","chaosengines","daemonsets","pods/eviction","chaosexperiments","chaosresults"]
@@ -24,15 +24,15 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: nginx-sa
+  name: node-drain-sa
   labels:
-    name: nginx-sa
+    name: node-drain-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: nginx-sa
+  name: node-drain-sa
 subjects:
 - kind: ServiceAccount
-  name: nginx-sa
+  name: node-drain-sa
   namespace: default
   
