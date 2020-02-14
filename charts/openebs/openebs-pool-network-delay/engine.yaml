@@ -7,14 +7,10 @@ spec:
   annotationCheck: 'false'
   appinfo:
     appns: 'default'
-    applabel: 'app=percona'
+    applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: nginx-sa
   monitoring: false
-  components:
-    runner:
-      image: 'litmuschaos/chaos-runner:ci'
-      type: 'go'
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   experiments:
@@ -23,11 +19,12 @@ spec:
         components:
           env:
             - name: APP_PVC
-              value: '' 
+              value: 'demo-nginx-claim' 
 
             - name: OPENEBS_NAMESPACE
               value: 'openebs'
-                  # in milliseconds
+             
+            # in milliseconds
             - name: NETWORK_DELAY
               value: '60000'
 
