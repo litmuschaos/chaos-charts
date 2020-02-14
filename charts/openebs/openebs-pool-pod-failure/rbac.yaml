@@ -2,18 +2,18 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: nginx-sa
+  name: pool-pod-failure-sa
   namespace: default
   labels:
-    name: nginx-sa
+    name: pool-pod-failure-sa
 ---
 # Source: openebs/templates/clusterrole.yaml
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
-  name: nginx-sa
+  name: pool-pod-failure-sa
   labels:
-    name: nginx-sa
+    name: pool-pod-failure-sa
 rules:
 - apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io","openebs.io"]
   resources: ["pods","jobs","deployments","configmaps","secrets","replicasets","persistentvolumeclaims","storageclasses","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
@@ -25,14 +25,14 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
-  name: nginx-sa
+  name: pool-pod-failure-sa
   labels:
-    name: nginx-sa
+    name: pool-pod-failure-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole
-  name: nginx-sa
+  name: pool-pod-failure-sa
 subjects:
 - kind: ServiceAccount
-  name: nginx-sa
+  name: pool-pod-failure-sa
   namespace: default

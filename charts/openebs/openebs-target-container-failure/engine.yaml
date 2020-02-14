@@ -14,7 +14,7 @@ spec:
     appns: 'default'
     applabel: 'app=percona'
     appkind: 'deployment'
-  chaosServiceAccount: nginx-sa
+  chaosServiceAccount: target-container-failure-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
