@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: openebs-chaos
+  name: control-plane-chaos
   namespace: openebs
 spec:
   # It can be true/false
