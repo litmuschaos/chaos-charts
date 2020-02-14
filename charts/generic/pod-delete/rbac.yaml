@@ -2,18 +2,18 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: nginx-sa
+  name: pod-delete-sa
   namespace: default
   labels:
-    name: nginx-sa
+    name: pod-delete-sa
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
-  name: nginx-sa
+  name: pod-delete-sa
   namespace: default
   labels:
-    name: nginx-sa
+    name: pod-delete-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
   resources: ["pods","deployments","jobs","configmaps","chaosengines","chaosexperiments","chaosresults"]
@@ -25,16 +25,16 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: nginx-sa
+  name: pod-delete-sa
   namespace: default
   labels:
-    name: nginx-sa
+    name: pod-delete-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: nginx-sa
+  name: pod-delete-sa
 subjects:
 - kind: ServiceAccount
-  name: nginx-sa
+  name: pod-delete-sa
   namespace: default
 

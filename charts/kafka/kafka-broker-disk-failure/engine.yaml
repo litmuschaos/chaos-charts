@@ -14,7 +14,7 @@ spec:
     appns: 'default'
     applabel: 'app=cp-kafka'
     appkind: 'statefulset'
-  chaosServiceAccount: kafka-sa
+  chaosServiceAccount: kafka-broker-disk-failure-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete' 
