@@ -82,4 +82,4 @@ spec:
       name: openebs-pool-network-delay
     configmaps:
       - name: openebs-pool-network-delay 
-        mountPath: /mnt
+        mountPath: '/mnt'
