@@ -68,10 +68,6 @@ spec:
     # in milliseconds  
     - name: TOTAL_CHAOS_DURATION
       value: '60000'
-    
-    # in milliseconds
-    - name: CHAOS_INTERVAL
-      value: '1000'
 
     - name: LIVENESS_APP_LABEL
       value: ''
