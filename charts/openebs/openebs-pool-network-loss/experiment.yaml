@@ -78,6 +78,3 @@ spec:
 
     labels:
       name: openebs-pool-network-loss
-    configmaps:
-      - name: openebs-pool-network-loss
-        mountPath: /mnt
