@@ -16,7 +16,7 @@ metadata:
     name: target-container-failure-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps","storage.k8s.io"]
-  resources: ["pods","jobs","pods/exec","configmaps","secrets","persistentvolumeclaims","storageclasses","persistentvolumes","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","jobs","pods/exec","daemonsets","configmaps","secrets","persistentvolumeclaims","storageclasses","persistentvolumes","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
