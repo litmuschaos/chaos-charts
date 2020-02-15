@@ -14,10 +14,15 @@ spec:
     OpenEBS is the most active Container Attached Storage project. OpenEBS enables your DevOps teams to have their own storage policies for every workload and it is truly Kubernetes native and 100% in userspace. 
 
   experiments:
-    - openebs-pool-failure
-    - openebs-target-failure
+    - openebs-pool-pod-failure
+    - openebs-pool-container-failure
+    - openebs-target-pod-failure
+    - openebs-target-container-failure
     - openebs-target-network-delay
     - openebs-target-network-loss
+    - openebs-pool-network-delay
+    - openebs-pool-network-loss
+    - openebs-control-plane-validation
   keywords:
     - OpenEBS
     - CAS
