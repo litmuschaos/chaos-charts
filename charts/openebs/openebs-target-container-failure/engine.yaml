@@ -12,7 +12,7 @@ spec:
   auxiliaryAppInfo: ''
   appinfo:
     appns: 'default'
-    applabel: 'app=percona'
+    applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: target-container-failure-sa
   monitoring: false
