@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ServiceAccount
 metadata:
   name: pool-network-delay-sa
-  namespace: openebs
+  namespace: default
   labels:
     name: pool-network-delay-sa
 ---
@@ -31,4 +31,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: pool-network-delay-sa
-  namespace: openebs
+  namespace: default
