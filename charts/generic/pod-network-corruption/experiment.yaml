@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Namespaced
