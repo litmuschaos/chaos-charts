@@ -1,0 +1,23 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: nginx
+spec:
+  annotationCheck: 'true'
+  engineState: 'active'
+  appinfo:
+    appns: 'nginx'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: container-kill-sa
+  # use retain to keep the job for debug
+  jobCleanUpPolicy: 'delete' 
+  experiments:
+    - name: container-kill
+      spec:
+        components:
+          env:
+            # specify the name of the container to be killed
+            - name: TARGET_CONTAINER
+              value: 'nginx'
