@@ -1,0 +1,36 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  # It can be true/false
+  annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: k8-pod-delete-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: k8-pod-delete
+      spec:
+        components:
+          env:
+            # set chaos namespace
+            - name: NAME_SPACE
+              value: 'default'
+            # set chaos label name
+            - name: LABEL_NAME
+              value: 'nginx'
+            # pod endpoint 
+            - name: APP_ENDPOINT
+              value: 'localhost'
+            - name: FILE
+              value: 'experiment.json'

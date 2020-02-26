@@ -1,0 +1,60 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: k8-pod-delete
+  version: 0.0.1
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/chaostolkit:latest"
+    args:
+    - -c
+    - python k8_wrapper.py; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: NAME_SPACE
+      value: 'default'
+
+    - name: LABEL_NAME
+      value: 'nginx'
+
+    - name: APP_ENDPOINT
+      value: 'localhost'
+
+    - name: LIB
+      value: ''    
+    labels:
+      name: k8-pod-delete
