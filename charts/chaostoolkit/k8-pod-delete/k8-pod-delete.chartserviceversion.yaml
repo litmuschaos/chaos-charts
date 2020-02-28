@@ -11,8 +11,7 @@ metadata:
 spec:
   displayName: k8-pod-delete
   categoryDescription: |
-    K8 Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
- 
+    K8 Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
   keywords:
     - Kubernetes
     - State 
@@ -31,7 +30,7 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/k8-pod-delete/
     - name: Video
-      url: https://www.youtube.com/watch?v=X3JvY_58V9A
+      url: '' 
   icon:
     - url: 
       mediatype: ""
