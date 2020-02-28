@@ -30,7 +30,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:1.1.0"
+    image: "litmuschaos/ansible-runner:1.1.1"
     args:
     - -c
     - ansible-playbook ./experiments/kafka/kafka-broker-disk-failure/kafka-broker-disk-failure-ansible-logic.yml -i /etc/ansible/hosts -vv; exit 0
