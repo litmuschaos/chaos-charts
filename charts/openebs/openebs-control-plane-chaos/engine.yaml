@@ -17,7 +17,7 @@ spec:
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: openebs-control-plane-validation
+    - name: openebs-control-plane-chaos
       spec:
         components:
           env:

@@ -18,9 +18,9 @@ experiments:
   - name: openebs-target-network-loss
     CSV: openebs-target-network-loss.chartserviceversion.yaml 
     desc: "openebs-target-network-loss"
-  - name: openebs-control-plane-validation
-    CSV: openebs-control-plane-validation.chartserviceversion.yaml 
-    desc: "openebs-control-plane-validation"
+  - name: openebs-control-plane-chaos
+    CSV: openebs-control-plane-chaos.chartserviceversion.yaml 
+    desc: "openebs-control-plane-chaos"
   - name: openebs-pool-network-delay
     CSV: openebs-pool-network-delay.chartserviceversion.yaml 
     desc: "openebs-pool-network-delay"

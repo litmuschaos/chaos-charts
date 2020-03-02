@@ -22,7 +22,7 @@ spec:
     - openebs-target-network-loss
     - openebs-pool-network-delay
     - openebs-pool-network-loss
-    - openebs-control-plane-validation
+    - openebs-control-plane-chaos
   keywords:
     - OpenEBS
     - CAS
