@@ -28,7 +28,6 @@ spec:
             - name: NETWORK_DELAY
               value: '60000'
 
-            # in milliseconds  
             - name: TOTAL_CHAOS_DURATION
-              value: '60000'
+              value: '60' # in seconds
         

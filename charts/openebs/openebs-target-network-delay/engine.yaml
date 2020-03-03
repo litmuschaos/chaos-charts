@@ -25,11 +25,15 @@ spec:
           env:
             - name: TARGET_CONTAINER
               value: 'cstor-istgt'
+
             - name: APP_PVC
               value: 'demo-nginx-claim'    
+
             - name: DEPLOY_TYPE
-              value: 'deployment'       
+              value: 'deployment'   
+
             - name: NETWORK_DELAY
               value: '30000'
+              
             - name: TOTAL_CHAOS_DURATION
-              value: '60000' 
+              value: '60' # in seconds
