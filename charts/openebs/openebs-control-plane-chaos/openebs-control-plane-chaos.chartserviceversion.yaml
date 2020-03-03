@@ -1,14 +1,14 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: openebs-control-plane-validation
+  name: openebs-control-plane-chaos
   version: 0.1.1
   annotations:
     categories: OpenEBS
     vendor: CNCF
     support: https://slack.openebs.io/
 spec:
-  displayName: openebs-control-plane-validation 
+  displayName: openebs-control-plane-chaos
   categoryDescription: >
      Kill all openebs control plane pods and check if gets scheduled again. 
   keywords:
@@ -26,12 +26,12 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-control-plane-validation
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-control-plane-chaos
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-control-plane-validation/
+      url: https://docs.litmuschaos.io/docs/openebs-control-plane-chaos/
     - name: Video
       url:
   icon:
     - url: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-control-plane-validation/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-control-plane-chaos/experiment.yaml
