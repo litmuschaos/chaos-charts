@@ -1,6 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-10-15T10:28:08Z
   name: container-kill
   version: 0.1.9
   annotations:

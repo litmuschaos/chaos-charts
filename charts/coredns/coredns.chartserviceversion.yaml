@@ -1,6 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-12-30T10:28:08Z
   name: coredns
   version: 0.1.1
   annotations:
