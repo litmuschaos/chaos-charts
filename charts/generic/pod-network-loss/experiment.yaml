@@ -51,9 +51,9 @@ spec:
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # ime period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
