@@ -276,7 +276,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -333,7 +333,7 @@ spec:
       value: '60000' # in milliseconds
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' # in milliseconds
+      value: '60' # in seconds
             
     - name: LIVENESS_APP_LABEL
       value: ''
@@ -361,7 +361,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -418,7 +418,7 @@ spec:
       value: '100' # in percentage
 
     - name: TOTAL_CHAOS_DURATION
-      value: '120000' # in milliseconds
+      value: '120' # in seconds
 
     - name: LIVENESS_APP_LABEL
       value: ''
@@ -447,7 +447,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -504,9 +504,8 @@ spec:
     - name: NETWORK_DELAY
       value: '60000'
 
-    # in milliseconds  
     - name: TOTAL_CHAOS_DURATION
-      value: '60000'
+      value: '60' # in seconds
 
     - name: LIVENESS_APP_LABEL
       value: ''
@@ -703,7 +702,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -761,7 +760,7 @@ spec:
       value: '100' # in percentage
 
     - name: TOTAL_CHAOS_DURATION
-      value: '120000' # in milliseconds
+      value: '120' # in seconds
 
     - name: LIVENESS_APP_LABEL
       value: ''
