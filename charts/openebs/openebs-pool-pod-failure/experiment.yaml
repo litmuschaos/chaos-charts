@@ -25,6 +25,7 @@ spec:
           - "deployments"
           - "replicasets"
           - "jobs"
+          - "events"
           - "pods"
           - "configmaps"
           - "secrets"

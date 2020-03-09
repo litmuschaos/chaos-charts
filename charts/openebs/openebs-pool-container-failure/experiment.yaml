@@ -24,6 +24,7 @@ spec:
         resources:
           - "daemonsets"
           - "replicasets"
+          - "events"
           - "jobs"
           - "pods"
           - "pods/exec"

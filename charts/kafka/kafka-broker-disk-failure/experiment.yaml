@@ -19,6 +19,7 @@ spec:
           - "statefulsets"
           - "secrets"
           - "jobs"
+          - "events"
           - "pods"
           - "pods/exec"
           - "chaosengines"

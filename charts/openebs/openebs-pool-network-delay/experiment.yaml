@@ -25,6 +25,7 @@ spec:
           - "pods"
           - "pods/exec"
           - "jobs"
+          - "events"
           - "configmaps"
           - "services"
           - "persistentvolumeclaims"

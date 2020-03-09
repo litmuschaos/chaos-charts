@@ -16,7 +16,7 @@ metadata:
     name: pool-pod-failure-sa
 rules:
 - apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io","openebs.io"]
-  resources: ["pods","jobs","deployments","configmaps","secrets","replicasets","persistentvolumeclaims","storageclasses","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
+  resources: ["pods","jobs","deployments","events","configmaps","secrets","replicasets","persistentvolumeclaims","storageclasses","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
   resources: ["nodes"]

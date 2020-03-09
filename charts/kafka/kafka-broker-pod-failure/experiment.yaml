@@ -18,6 +18,7 @@ spec:
         resources:
           - "statefulsets"
           - "deployments"
+          - "events"
           - "configmaps"
           - "jobs"
           - "pods"
