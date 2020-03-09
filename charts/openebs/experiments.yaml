@@ -25,6 +25,7 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "events"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -125,6 +126,7 @@ spec:
         resources:
           - "deployments"
           - "jobs"
+          - "events"
           - "pods"
           - "pods/exec"
           - "configmaps"
@@ -218,6 +220,7 @@ spec:
         resources:
           - "pods"
           - "deployments"
+          - "events"
           - "jobs"
           - "configmaps"
           - "chaosengines"
@@ -292,6 +295,7 @@ spec:
           - "jobs"
           - "pods"
           - "services"
+          - "events"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -376,6 +380,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "services"
           - "pods/exec"
           - "configmaps"
@@ -464,6 +469,7 @@ spec:
           - "pods"
           - "pods/exec"
           - "jobs"
+          - "events"
           - "configmaps"
           - "services"
           - "persistentvolumeclaims"
@@ -548,6 +554,7 @@ spec:
           - "deployments"
           - "replicasets"
           - "jobs"
+          - "events"
           - "pods"
           - "configmaps"
           - "secrets"
@@ -634,6 +641,7 @@ spec:
         resources:
           - "daemonsets"
           - "replicasets"
+          - "events"
           - "jobs"
           - "pods"
           - "pods/exec"
@@ -718,6 +726,7 @@ spec:
         resources:
           - "pods"
           - "pods/exec"
+          - "events"
           - "jobs"
           - "configmaps"
           - "services"

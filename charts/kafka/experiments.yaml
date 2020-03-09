@@ -20,6 +20,7 @@ spec:
         resources:
           - "statefulsets"
           - "deployments"
+          - "events"
           - "configmaps"
           - "jobs"
           - "pods"
@@ -136,6 +137,7 @@ spec:
           - "statefulsets"
           - "secrets"
           - "jobs"
+          - "events"
           - "pods"
           - "pods/exec"
           - "chaosengines"

@@ -21,6 +21,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "pods/eviction"
           - "daemonsets"
           - "chaosengines"
@@ -93,6 +94,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "events"
           - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
@@ -154,6 +156,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -216,6 +219,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -284,6 +288,7 @@ spec:
           - "deployments"
           - "jobs"
           - "pods"
+          - "events"
           - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
@@ -352,6 +357,7 @@ spec:
       resources:
       - "jobs"
       - "pods"
+      - "events"
       - "chaosengines"
       - "chaosexperiments"
       - "chaosresults"
@@ -418,6 +424,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
@@ -498,6 +505,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -567,6 +575,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -632,6 +641,7 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "events"
           - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
