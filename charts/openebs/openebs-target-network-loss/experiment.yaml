@@ -22,6 +22,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
           - "services"
           - "pods/exec"
           - "configmaps"

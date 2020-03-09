@@ -23,6 +23,7 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "events"
           - "pods/exec"
           - "configmaps"
           - "secrets"

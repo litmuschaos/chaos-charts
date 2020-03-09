@@ -14,7 +14,7 @@ metadata:
     name: kafka-broker-pod-failure-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","deployments","jobs","pods/exec","statefulsets","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","deployments","events","jobs","pods/exec","statefulsets","configmaps","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","delete"]
 - apiGroups: [""]
   resources: ["nodes"]
