@@ -1,0 +1,38 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-28T10:28:08Z
+  name: node-cpu-hog
+  version: 0.0.1
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: node-memory-hog
+  categoryDescription: |
+    Kubernetes Node memory hog contains chaos to disrupt state of kubernetes resources. Experiments can inject a memory skipe on a node where the application pod is scheduled.
+    - Causes (forced/graceful) Memory hog on a perticular node where the application deployment is available.
+    - After test the recovery should be manual of the application pod and node in case they are not in appropriate state. The chances of such scenarios is when the memory percentance provided is greater than 100%.
+ 
+  keywords:
+    - Kubernetes
+    - Memory
+    - State 
+  platforms:
+    - GKE
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: udit
+      email: udit.gaurav@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_memory_hog
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-memory-hog/
+    - name: Video
+      url:
