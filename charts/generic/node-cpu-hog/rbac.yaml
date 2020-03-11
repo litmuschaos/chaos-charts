@@ -15,7 +15,7 @@ metadata:
     name: node-cpu-hog-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","daemonsets","jobs","pods/exec","events","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","jobs","events","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
   resources: ["nodes"]

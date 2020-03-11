@@ -19,7 +19,6 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
-          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"

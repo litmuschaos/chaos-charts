@@ -15,7 +15,7 @@ metadata:
     name: node-memory-hog-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","daemonsets","jobs","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","jobs","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
   resources: ["nodes"]
