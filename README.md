@@ -1,4 +1,6 @@
 # Chaos-Charts
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Flitmuschaos%2Fchaos-charts.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Flitmuschaos%2Fchaos-charts?ref=badge_shield)
+
 This repository hosts the Litmus Chaos Charts.
 
 ## Installation Steps for Chart Releases 
@@ -28,3 +30,7 @@ path of the experiment manifest within the parent chart. For example, to install
 ```bash
 find chaos-charts-1.1.0 -name experiment.yaml | grep 'generic/pod-delete' | xargs kubectl apply -n sock-shop -f
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Flitmuschaos%2Fchaos-charts.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Flitmuschaos%2Fchaos-charts?ref=badge_large)
