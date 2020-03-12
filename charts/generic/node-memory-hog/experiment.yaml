@@ -51,6 +51,11 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
+    ## specify the size as percent of total available memory (in percentage %)
+    ## Default value "90%"
+    - name: MEMORY_PERCENTAGE
+      value: '90'        
+
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
