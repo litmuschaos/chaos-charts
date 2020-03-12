@@ -23,6 +23,7 @@ spec:
     - node-cpu-hog
     - disk-loss
     - disk-fill
+    - node-memory-hog
 
   keywords:
     - Kubernetes
