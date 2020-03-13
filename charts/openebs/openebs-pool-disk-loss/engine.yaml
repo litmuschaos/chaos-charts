@@ -1,0 +1,85 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-disk-loss-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-pool-container-failure
+      spec:
+        components:
+          env:
+            - name: ANSIBLE_STDOUT_CALLBACK
+              value: 'default'
+
+            # Enter the App_label, if you set APP_CHECK to true
+            - name: APP_LABEL
+              value: ''
+
+            # Enter the APP_NAMESPACE, if you set APP_CHECK to true
+            - name: APP_NAMESPACE
+              value: ''
+              
+            - name: APP_PVC
+              value: ''
+
+            # This is a chaos namespace which will create all infra chaos resources in that namespace
+            - name: CHAOS_NAMESPACE
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.namespace
+
+            # Only GCP and AWS is supported
+            - name: CLOUD_PLATFORM
+              value: 'GCP'
+
+            # Enter the time duration in sec after the disk is dettached
+            - name: TOTAL_CHAOS_DURATION
+              value: '10'
+
+            # Period to wait before injection of chaos in sec
+            - name: RAMP_TIME
+              value: ''
+
+            # Enter the project id for gcp only
+            - name: PROJECT_ID 
+              value: ''
+
+            # Enter the node name
+            - name: NODE_NAME
+              value: '' 
+
+            # Enter the disk name
+            - name: DISK_NAME
+              value: ''  
+            
+            # Enter the device name
+            - name: DEVICE_NAME
+              value: ''
+
+            # Enter the zone name
+            - name: ZONE_NAME
+              value: '' 
+
+            # provide auxiliary application details - namespace and labels of the applications
+            # sample input is - "ns1:app=percona,ns2:name=nginx"
+            - name: AUXILIARY_APPINFO
+              value: ''
+              
+            - name: OPENEBS_NAMESPACE
+              value: 'openebs'
+  
