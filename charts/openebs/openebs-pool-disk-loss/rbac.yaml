@@ -16,7 +16,7 @@ metadata:
     name: pool-disk-loss-sa
 rules:
 - apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io","openebs.io"]
-  resources: ["pods","jobs","daemonsets","events","replicasets","pods/exec","configmaps","secrets","persistentvolumeclaims","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
+  resources: ["pods", "pods/log", "jobs", "events", "pods/exec", "cstorpools", "configmaps", "secrets", "storageclasses", "persistentvolumes", "persistentvolumeclaims", "cstorvolumereplicas", "chaosexperiments", "chaosresults", "chaosengines"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1

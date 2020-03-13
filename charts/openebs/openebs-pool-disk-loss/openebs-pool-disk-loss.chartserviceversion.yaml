@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2019-11-13T10:28:08Z
+  createdAt: 2020-03-13T10:28:08Z
   name: openebs-pool-disk-loss
   version: 0.1.0
   annotations:
@@ -12,7 +12,7 @@ spec:
   displayName: openebs-pool-disk-loss 
   categoryDescription: >
     OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
-    - Causes (forced/graceful) disk loss from the node pool..
+    - Causes (forced/graceful) disk loss from the node disk pool.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
 keywords:
     - Kubernetes

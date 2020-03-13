@@ -2,7 +2,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Kill OpenEBS pool disk loss.
+    OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
 kind: ChaosExperiment
 metadata:
   labels:
@@ -15,32 +15,35 @@ spec:
     permissions:
       - apiGroups:
           - ""
-          - "extensions"
           - "apps"
-          - "batch"
           - "litmuschaos.io"
-          - "openebs.io"
+          - "batch"
+          - "extensions"
           - "storage.k8s.io"
+          - "openebs.io"
         resources:
-          - "daemonsets"
-          - "replicasets"
-          - "events"
-          - "jobs"
           - "pods"
+          - "jobs"
+          - "pods/log"
+          - "events"
           - "pods/exec"
+          - "cstorpools"
           - "configmaps"
+          - "secrets"
+          - "storageclasses"
+          - "persistentvolumes"
           - "persistentvolumeclaims"
           - "cstorvolumereplicas"
-          - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
+          - "chaosengines"
         verbs:
           - "create"
-          - "get"
-          - "delete"
           - "list"
+          - "get"
           - "patch"
           - "update"
+          - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -52,7 +55,7 @@ spec:
         value: 'default'
 
       - name: TOTAL_CHAOS_DURATION
-        value: '15'
+        value: '60'
 
       # Period to wait before injection of chaos in sec
       - name: RAMP_TIME
@@ -79,12 +82,7 @@ spec:
 
       - name: DEVICE_NAME
         value: ''
-
-      # provide auxiliary application details - namespace and labels of the applications
-      # sample input is - "ns1:app=percona,ns2:name=nginx"
-      - name: AUXILIARY_APPINFO
-        value: ''
-
+        
       - name: LIVENESS_APP_LABEL
         value: ''
 
@@ -97,12 +95,10 @@ spec:
       - name: OPENEBS_NAMESPACE
         value: 'openebs'
     labels:
-      name: openebs-nfs-provisioner-kill
+      name: openebs-pool-disk-loss
     configmaps:
-    - name: test-data
+    - name: openebs-pool-disk-loss
       mountPath: /mnt/
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
-    
-  
