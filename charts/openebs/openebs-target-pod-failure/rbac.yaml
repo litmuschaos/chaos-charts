@@ -16,7 +16,7 @@ metadata:
     name: target-pod-failure-sa
 rules:
 - apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io"]
-  resources: ["pods","jobs","pods/logs","deployments","pods/exec","events","chaosexperiments","chaosresults","chaosengines","configmaps","secrets","services","persistentvolumeclaims","storageclasses","persistentvolumes"]
+  resources: ["pods","jobs","pods/log","deployments","pods/exec","events","chaosexperiments","chaosresults","chaosengines","configmaps","secrets","services","persistentvolumeclaims","storageclasses","persistentvolumes"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
   resources: ["nodes"]

@@ -27,7 +27,7 @@ rules:
     - "pods"
     - "pods/exec"
     - "jobs"
-    - "pods/logs"
+    - "pods/log"
     - "events"
     - "configmaps"
     - "services"
