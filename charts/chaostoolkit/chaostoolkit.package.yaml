@@ -1,0 +1,5 @@
+packageName: chaostoolkit 
+experiments:
+  - name: k8-pod-delete
+    CSV: k8-pod-delete.chartserviceversion.yaml
+    desc: "chaostoolkit pod delete experiment"
