@@ -8,7 +8,7 @@ metadata:
     categories: OpenEBS
     vendor: MayaData
     support: https://slack.openebs.io/
-    chartDescription: Injects generic openebs chaos 
+    chartDescription: Injects openebs chaos 
 spec:
   displayName: OpenEBS
   categoryDescription: >

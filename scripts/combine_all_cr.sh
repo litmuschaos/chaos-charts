@@ -12,7 +12,7 @@ do
 	       fi
         done
 done
-echo "validating combine charts for generic"
-cat ./charts/generic/experiments.yaml
+echo "validating combine charts for kubernetes"
+cat ./charts/kubernetes/experiments.yaml
 echo "validating combine charts for openebs"
 cat ./charts/openebs/experiments.yaml

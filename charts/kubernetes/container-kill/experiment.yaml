@@ -1,0 +1,62 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: "Kills a container belonging to an application pod \n"
+kind: ChaosExperiment
+metadata:
+  name: container-kill
+  version: 0.1.11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "daemonsets"
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "update"
+          - "patch"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/kubernetes/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # It supports pumba and containerd 
+    - name: LIB
+      value: 'pumba'
+
+    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
+    # For pumba image use: gaiaadm/pumba:0.4.8
+    # For containerd image use: gprasath/crictl:ci
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.4.8' 
+
+    labels:
+      name: container-kill
