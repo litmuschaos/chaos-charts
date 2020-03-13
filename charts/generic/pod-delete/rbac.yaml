@@ -16,7 +16,7 @@ metadata:
     name: pod-delete-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","deployments","events","jobs","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","deployments","pods/logs","events","jobs","configmaps","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
   resources: ["nodes"]
