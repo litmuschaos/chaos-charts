@@ -22,6 +22,7 @@ spec:
     - AWS(KOPS)
     - Packet(Kubeadm)
     - Konvoy
+    - EKS
   maturity: alpha
   chaosType: infra
   maintainers:

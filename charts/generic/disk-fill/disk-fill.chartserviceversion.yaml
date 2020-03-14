@@ -15,13 +15,13 @@ spec:
     - Causes (forced/graceful) Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers.
     - Causes Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.
     - Tests the Ephemeral Storage Limits, to ensure those parameters are sufficient.
- 
   keywords:
     - Kubernetes
     - Disk
     - State 
   platforms:
     - GKE
+    - EKS
   maturity: alpha
   chaosType: infra
   maintainers:

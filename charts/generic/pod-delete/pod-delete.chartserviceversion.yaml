@@ -23,6 +23,7 @@ spec:
     - Konvoy
     - Packet(Kubeadm)
     - Minikube
+    - EKS
   maturity: alpha
   maintainers:
     - name: ksatchit
