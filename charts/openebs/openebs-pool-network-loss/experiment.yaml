@@ -22,6 +22,7 @@ spec:
           - "openebs.io"
         resources:
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "events"
           - "jobs"
