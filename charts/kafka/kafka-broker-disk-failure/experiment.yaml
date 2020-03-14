@@ -19,6 +19,7 @@ spec:
           - "statefulsets"
           - "secrets"
           - "jobs"
+          - "pods/log"
           - "events"
           - "pods"
           - "pods/exec"

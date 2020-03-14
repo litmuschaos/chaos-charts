@@ -25,6 +25,7 @@ spec:
           - "deployments"
           - "replicasets"
           - "jobs"
+          - "pods/log"
           - "events"
           - "pods"
           - "configmaps"

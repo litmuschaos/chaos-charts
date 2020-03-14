@@ -20,6 +20,7 @@ spec:
           - "jobs"
           - "pods"
           - "events"
+          - "pods/log"
           - "pods/eviction"
           - "daemonsets"
           - "chaosengines"

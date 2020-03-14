@@ -17,6 +17,7 @@ spec:
       resources:
       - "jobs"
       - "pods"
+      - "pods/log"
       - "events"
       - "chaosengines"
       - "chaosexperiments"

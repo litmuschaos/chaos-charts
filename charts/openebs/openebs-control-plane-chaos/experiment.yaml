@@ -20,6 +20,7 @@ spec:
           - "apps"
         resources:
           - "pods"
+          - "pods/log"
           - "deployments"
           - "events"
           - "jobs"

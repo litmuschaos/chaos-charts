@@ -25,6 +25,7 @@ spec:
           - "pods"
           - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"

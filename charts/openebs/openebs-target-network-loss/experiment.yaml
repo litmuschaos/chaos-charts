@@ -24,6 +24,7 @@ spec:
           - "pods"
           - "events"
           - "services"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
