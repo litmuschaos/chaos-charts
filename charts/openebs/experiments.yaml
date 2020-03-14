@@ -105,6 +105,112 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-pool-disk-loss
+  version: 0.1.1
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "litmuschaos.io"
+          - "batch"
+          - "extensions"
+          - "storage.k8s.io"
+          - "openebs.io"
+        resources:
+          - "pods"
+          - "jobs"
+          - "pods/log"
+          - "events"
+          - "pods/exec"
+          - "cstorpools"
+          - "configmaps"
+          - "secrets"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "chaosengines"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-pool-disk-loss/openebs_pool_disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+      - name: ANSIBLE_STDOUT_CALLBACK
+        value: 'default'
+
+      - name: TOTAL_CHAOS_DURATION
+        value: '60'
+
+      # Period to wait before injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      - name: CHAOS_NAMESPACE
+        value: ''
+
+      # It supports GCP and AWS
+      - name: CLOUD_PLATFORM
+        value: 'GCP'
+
+      - name: PROJECT_ID 
+        value: ''
+
+      - name: NODE_NAME
+        value: ''
+
+      - name: DISK_NAME
+        value: ''
+
+      - name: ZONE_NAME
+        value: ''
+
+      - name: DEVICE_NAME
+        value: ''
+        
+      - name: LIVENESS_APP_LABEL
+        value: ''
+
+      - name: LIVENESS_APP_NAMESPACE
+        value: ''
+
+      - name: DATA_PERSISTENCE
+        value: ''
+
+      - name: OPENEBS_NAMESPACE
+        value: 'openebs'
+    labels:
+      name: openebs-pool-disk-loss
+    configmaps:
+    - name: openebs-pool-disk-loss
+      mountPath: /mnt/
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+---
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Kill the cstor target/Jiva controller pod and check if gets created again
 kind: ChaosExperiment
 metadata:
