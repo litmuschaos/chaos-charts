@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -22,6 +22,7 @@ spec:
           - "jobs"
           - "pods"
           - "events"
+          - "pods/log"
           - "pods/eviction"
           - "daemonsets"
           - "chaosengines"
@@ -80,7 +81,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -94,6 +95,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "pods/log"
           - "events"
           - "daemonsets"
           - "chaosengines"
@@ -144,7 +146,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Namespaced
@@ -156,6 +158,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -207,7 +210,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Namespaced
@@ -219,6 +222,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -274,7 +278,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Namespaced
@@ -288,6 +292,7 @@ spec:
           - "deployments"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "configmaps"
           - "chaosengines"
@@ -345,7 +350,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -357,6 +362,7 @@ spec:
       resources:
       - "jobs"
       - "pods"
+      - "pods/log"
       - "events"
       - "chaosengines"
       - "chaosexperiments"
@@ -412,7 +418,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -425,6 +431,7 @@ spec:
           - "jobs"
           - "pods"
           - "events"
+          - "pods/log"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
@@ -493,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -505,6 +512,7 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -560,7 +568,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -574,6 +582,7 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -627,7 +636,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -671,7 +680,7 @@ spec:
       value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60'
+      value: '120'
 
     ## specify the size as percent of total available memory (in percentage %)
     ## Default value "90%"
@@ -682,6 +691,7 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # It supports GKE and EKS platform
     - name: PLATFORM
       value: 'GKE'
 
@@ -698,7 +708,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -712,6 +722,7 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "events"
           - "pods/exec"
           - "chaosengines"

@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -27,6 +27,7 @@ spec:
           - "pods"
           - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"
@@ -105,13 +106,119 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+  name: openebs-pool-disk-loss
+  version: 0.1.1
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "litmuschaos.io"
+          - "batch"
+          - "extensions"
+          - "storage.k8s.io"
+          - "openebs.io"
+        resources:
+          - "pods"
+          - "jobs"
+          - "pods/log"
+          - "events"
+          - "pods/exec"
+          - "cstorpools"
+          - "configmaps"
+          - "secrets"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "chaosengines"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-pool-disk-loss/openebs_pool_disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+      - name: ANSIBLE_STDOUT_CALLBACK
+        value: 'default'
+
+      - name: TOTAL_CHAOS_DURATION
+        value: '60'
+
+      # Period to wait before injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      - name: CHAOS_NAMESPACE
+        value: ''
+
+      # It supports GCP and AWS
+      - name: CLOUD_PLATFORM
+        value: 'GCP'
+
+      - name: PROJECT_ID 
+        value: ''
+
+      - name: NODE_NAME
+        value: ''
+
+      - name: DISK_NAME
+        value: ''
+
+      - name: ZONE_NAME
+        value: ''
+
+      - name: DEVICE_NAME
+        value: ''
+        
+      - name: LIVENESS_APP_LABEL
+        value: ''
+
+      - name: LIVENESS_APP_NAMESPACE
+        value: ''
+
+      - name: DATA_PERSISTENCE
+        value: ''
+
+      - name: OPENEBS_NAMESPACE
+        value: 'openebs'
+    labels:
+      name: openebs-pool-disk-loss
+    configmaps:
+    - name: openebs-pool-disk-loss
+      mountPath: /mnt/
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+---
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Kill the cstor target/Jiva controller pod and check if gets created again
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -128,6 +235,7 @@ spec:
           - "jobs"
           - "events"
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -207,7 +315,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -219,6 +327,7 @@ spec:
           - "apps"
         resources:
           - "pods"
+          - "pods/log"
           - "deployments"
           - "events"
           - "jobs"
@@ -279,7 +388,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -297,6 +406,7 @@ spec:
           - "services"
           - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"
@@ -365,7 +475,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -382,6 +492,7 @@ spec:
           - "pods"
           - "events"
           - "services"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -452,7 +563,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -469,6 +580,7 @@ spec:
           - "pods"
           - "pods/exec"
           - "jobs"
+          - "pods/log"
           - "events"
           - "configmaps"
           - "services"
@@ -537,7 +649,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -554,6 +666,7 @@ spec:
           - "deployments"
           - "replicasets"
           - "jobs"
+          - "pods/log"
           - "events"
           - "pods"
           - "configmaps"
@@ -625,7 +738,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -644,6 +757,7 @@ spec:
           - "events"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -710,7 +824,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -725,6 +839,7 @@ spec:
           - "openebs.io"
         resources:
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "events"
           - "jobs"

@@ -27,3 +27,6 @@ experiments:
   - name: openebs-pool-network-loss
     CSV: openebs-pool-network-loss.chartserviceversion.yaml 
     desc: "openebs-pool-network-loss"
+  - name: openebs-pool-disk-loss
+    CSV: openebs-pool-disk-loss.chartserviceversion.yaml 
+    desc: "openebs-pool-disk-loss"

@@ -25,7 +25,7 @@ spec:
           env:
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
+              value: '120'
             ## specify the size as percent of total available memory (in percentage %)
             ## default value 90%
             - name: MEMORY_PERCENTAGE
