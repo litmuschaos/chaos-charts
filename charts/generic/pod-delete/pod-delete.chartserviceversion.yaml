@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-15T10:28:08Z
   name: pod-delete
-  version: 0.1.10
+  version: 0.1.11
   annotations:
     categories: Kubernetes
     vendor: CNCF
