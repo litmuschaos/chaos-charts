@@ -14,7 +14,6 @@ spec:
     Kubernetes Node memory hog contains chaos to disrupt the state of Kubernetes resources. Experiments can inject a memory spike on a node where the application pod is scheduled.
     - Memory hog on a particular node where the application deployment is available.
     - After the test, the recovery should be manual for the application pod and node in case they are not in an appropriate state. 
-
   keywords:
     - Kubernetes
     - Memory
@@ -22,6 +21,7 @@ spec:
     - Node
   platforms:
     - GKE
+    - EKS
   maturity: alpha
   chaosType: infra
   maintainers:
