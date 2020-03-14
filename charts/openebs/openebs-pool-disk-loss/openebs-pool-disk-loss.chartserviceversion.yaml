@@ -14,7 +14,7 @@ spec:
     OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
     - Causes (forced/graceful) disk loss from the node disk pool.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
-keywords:
+  keywords:
     - Kubernetes
     - Storage Pool
     - OpenEBS
