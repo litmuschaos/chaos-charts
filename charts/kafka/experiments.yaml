@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -21,6 +21,7 @@ spec:
           - "statefulsets"
           - "deployments"
           - "events"
+          - "pods/log"
           - "configmaps"
           - "jobs"
           - "pods"
@@ -123,7 +124,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -137,6 +138,7 @@ spec:
           - "statefulsets"
           - "secrets"
           - "jobs"
+          - "pods/log"
           - "events"
           - "pods"
           - "pods/exec"

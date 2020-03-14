@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -27,6 +27,7 @@ spec:
           - "pods"
           - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"
@@ -217,7 +218,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -234,6 +235,7 @@ spec:
           - "jobs"
           - "events"
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -313,7 +315,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -325,6 +327,7 @@ spec:
           - "apps"
         resources:
           - "pods"
+          - "pods/log"
           - "deployments"
           - "events"
           - "jobs"
@@ -385,7 +388,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -403,6 +406,7 @@ spec:
           - "services"
           - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"
@@ -471,7 +475,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -488,6 +492,7 @@ spec:
           - "pods"
           - "events"
           - "services"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -558,7 +563,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -575,6 +580,7 @@ spec:
           - "pods"
           - "pods/exec"
           - "jobs"
+          - "pods/log"
           - "events"
           - "configmaps"
           - "services"
@@ -643,7 +649,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -660,6 +666,7 @@ spec:
           - "deployments"
           - "replicasets"
           - "jobs"
+          - "pods/log"
           - "events"
           - "pods"
           - "configmaps"
@@ -731,7 +738,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -750,6 +757,7 @@ spec:
           - "events"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"
@@ -816,7 +824,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -831,6 +839,7 @@ spec:
           - "openebs.io"
         resources:
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "events"
           - "jobs"
