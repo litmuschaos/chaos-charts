@@ -56,6 +56,8 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # It supprts GKE and EKS Platform
+    # GKE is the default Platform
     - name: PLATFORM
       value: 'GKE'
 
