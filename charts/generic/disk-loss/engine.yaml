@@ -29,7 +29,7 @@ spec:
 
             # set cloud platform name
             - name: CLOUD_PLATFORM
-              value: 'GCP'
+              value: 'GKE'
 
             # set app_check to check application state
             - name: APP_CHECK

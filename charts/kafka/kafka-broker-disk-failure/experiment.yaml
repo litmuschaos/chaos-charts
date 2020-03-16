@@ -66,8 +66,9 @@ spec:
     - name: ZONE_NAME
       value: '' 
 
+    # GKE and AWS supported
     - name: CLOUD_PLATFORM
-      value: 'GCP'
+      value: 'GKE'
 
     - name: KAFKA_NAMESPACE
       value: ''
