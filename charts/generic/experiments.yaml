@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -43,7 +43,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -81,7 +81,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -108,7 +108,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -146,7 +146,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -170,7 +170,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -210,7 +210,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Namespaced
@@ -234,7 +234,7 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -278,7 +278,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -312,7 +312,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -350,7 +350,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -374,7 +374,7 @@ spec:
       - "create"
       - "update"
       - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -418,7 +418,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -443,7 +443,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -500,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -524,7 +524,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -568,7 +568,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -601,7 +601,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_cpu_hog/node_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -639,7 +639,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -671,7 +671,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -713,7 +713,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -740,7 +740,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.0"
+    image: "litmuschaos/ansible-runner:1.2.1"
     args:
     - -c
     - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

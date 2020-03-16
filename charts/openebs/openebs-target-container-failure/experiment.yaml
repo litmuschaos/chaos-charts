@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
