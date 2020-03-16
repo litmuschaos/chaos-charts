@@ -60,8 +60,13 @@ spec:
     - name: KAFKA_LIVENESS_IMAGE
       value: 'litmuschaos/kafka-client:ci'
 
+    # set to 'enabled' if you have auth set up
+    - name: KAFKA_SASL_AUTH
+      value: 'disabled'
+
+    # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT
-      value: '30000'
+      value: '30000' #in ms
 
     - name: TOTAL_CHAOS_DURATION
       value: '15'

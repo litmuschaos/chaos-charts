@@ -42,9 +42,9 @@ spec:
             - name: KAFKA_PORT
               value: '9092'
 
-            # in milliseconds  
+            # Recommended timeout for EKS platform: 60000 ms
             - name: KAFKA_CONSUMER_TIMEOUT
-              value: '70000'
+              value: '30000' # in milliseconds  
 
             # ensure to set the instance name if using KUDO operator
             - name: KAFKA_INSTANCE_NAME

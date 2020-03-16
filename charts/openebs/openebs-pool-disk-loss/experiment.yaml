@@ -64,9 +64,9 @@ spec:
       - name: CHAOS_NAMESPACE
         value: ''
 
-      # It supports GCP and AWS
+       # GKE and AWS supported
       - name: CLOUD_PLATFORM
-        value: 'GCP'
+        value: 'GKE'
 
       - name: PROJECT_ID 
         value: ''
