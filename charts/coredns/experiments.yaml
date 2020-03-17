@@ -55,6 +55,4 @@ spec:
       value: ''    
     labels:
       name: coredns-pod-delete
-
 ---
-
