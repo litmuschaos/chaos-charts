@@ -1,0 +1,30 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-16T10:28:08Z
+  name: elasticsearch
+  version: 0.0.2
+  annotations:
+    categories: elasticsearch
+    chartDescription: Injects chaos on elasticsearch components
+spec:
+  displayName: Elasticsearch Chaos
+  categoryDescription: >
+    Elasticsearch is a search engine based on the Lucene library. It provides a distributed, multitenant-capable full-text search engine with an HTTP web interface and schema-free JSON documents.
+  experiments:
+  keywords:
+    - Kubernetes
+    - Elasticsearch
+  maintainers:
+    - name: rahulchheda
+      email: rahul.chheda@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Elasticsearch Website
+      url: https://www.elastic.co/
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/elasticsearch/experiments.yaml

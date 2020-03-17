@@ -3,14 +3,14 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-09-26T10:28:08Z
   name: generic
-  version: 0.1.10
+  version: 0.1.11
   annotations:
     categories: Kubernetes
     chartDescription: Injects generic kubernetes chaos 
 spec:
   displayName: Generic Chaos
   categoryDescription: >
-    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easy management and discovery. It will install all the experiments which can be used to inject chaos into containerized appications.
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easier management and discovery. It will install all the experiments which can be used to inject chaos into containerized applications.
 
   experiments:
     - pod-delete
