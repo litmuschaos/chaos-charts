@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-03-16T10:28:08Z
   name: elasticsearch
-  version: 0.0.1
+  version: 0.0.2
   annotations:
     categories: elasticsearch
     chartDescription: Injects chaos on elasticsearch components
