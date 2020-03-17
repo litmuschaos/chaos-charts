@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: coredns-pod-delete
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     permissions:
@@ -56,3 +56,4 @@ spec:
     labels:
       name: coredns-pod-delete
 ---
+
