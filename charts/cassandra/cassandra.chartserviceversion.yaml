@@ -1,0 +1,30 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-17T10:28:08Z
+  name: cassandra
+  version: 0.0.1
+  annotations:
+    categories: cassandra
+    chartDescription: Injects chaos on cassandra components
+spec:
+  displayName: Cassandra Chaos
+  categoryDescription: >
+    The Apache Cassandra database is the right choice when you need scalability and high availability without compromising performance
+  experiments:
+  keywords:
+    - Kubernetes
+    - Cassandra
+  maintainers:
+    - name: ispeakc0de
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Cassandra Website
+      url: http://cassandra.apache.org/
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/cassandra/experiments.yaml
