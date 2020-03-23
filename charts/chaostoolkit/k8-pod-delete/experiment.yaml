@@ -5,11 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
-<<<<<<< HEAD
-  version: 0.0.1
-=======
   version: 0.0.2
->>>>>>> b61504e2eafd16511fd3f79ab1d2efcbeff908ce
 spec:
   definition:
     scope: Namespaced
