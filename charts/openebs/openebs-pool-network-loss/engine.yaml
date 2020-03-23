@@ -34,5 +34,5 @@ spec:
             value: '100'
 
           - name: TOTAL_CHAOS_DURATION
-            value: '60000'
+            value: '120' # in seconds
       

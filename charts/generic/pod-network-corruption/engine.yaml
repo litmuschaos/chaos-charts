@@ -24,11 +24,13 @@ spec:
       spec:
         components:
           env:
-            - name: ANSIBLE_STDOUT_CALLBACK
-              value: 'default'
-              #Container name where chaos has to be injected
+           #Container name where chaos has to be injected
             - name: TARGET_CONTAINER
               value: 'nginx' 
-              #Network interface inside target container              
+
+            #Network interface inside target container              
             - name: NETWORK_INTERFACE
-              value: 'eth0'                   
+              value: 'eth0'
+              
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds

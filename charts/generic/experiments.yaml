@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -21,6 +21,8 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
+          - "pods/log"
           - "pods/eviction"
           - "daemonsets"
           - "chaosengines"
@@ -79,7 +81,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -93,6 +95,8 @@ spec:
           - "jobs"
           - "pods"
           - "pods/exec"
+          - "pods/log"
+          - "events"
           - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
@@ -142,7 +146,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.5
+  version: 0.1.7
 spec:
   definition:
     scope: Namespaced
@@ -154,6 +158,8 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -181,7 +187,7 @@ spec:
       value: '1'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
@@ -204,7 +210,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
     scope: Namespaced
@@ -216,6 +222,8 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -250,9 +258,9 @@ spec:
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # Time period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -270,7 +278,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Namespaced
@@ -284,6 +292,8 @@ spec:
           - "deployments"
           - "jobs"
           - "pods"
+          - "pods/log"
+          - "events"
           - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
@@ -340,7 +350,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -352,6 +362,8 @@ spec:
       resources:
       - "jobs"
       - "pods"
+      - "pods/log"
+      - "events"
       - "chaosengines"
       - "chaosexperiments"
       - "chaosresults"
@@ -386,9 +398,9 @@ spec:
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # ime period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -406,7 +418,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -418,6 +430,8 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "events"
+          - "pods/log"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
@@ -452,9 +466,9 @@ spec:
     - name: CHAOS_NAMESPACE
       value: ''
         
-    # It supports GCP and AWS
+    # GKE and AWS supported
     - name: CLOUD_PLATFORM
-      value: 'GCP'
+      value: 'GKE'
 
     - name: PROJECT_ID 
       value: ''
@@ -486,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -498,6 +512,8 @@ spec:
         resources:
           - "jobs"
           - "pods"
+          - "pods/log"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -532,9 +548,9 @@ spec:
       value: '60000' #in ms
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # Time period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -552,7 +568,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.11
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -566,7 +582,8 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
-          - "pods/exec"
+          - "pods/log"
+          - "events"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -602,6 +619,8 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # It supprts GKE and EKS Platform
+    # GKE is the default Platform
     - name: PLATFORM
       value: 'GKE'
 
@@ -614,11 +633,85 @@ spec:
 
 apiVersion: litmuschaos.io/v1alpha1
 description:
+  message: |
+    Give a memory hog on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-memory-hog
+  version: 0.1.4
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120'
+
+    ## specify the size as percent of total available memory (in percentage %)
+    ## Default value "90%"
+    - name: MEMORY_PERCENTAGE
+      value: '90'        
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+     # It supprts GKE and EKS Platform
+     # GKE is the default Platform
+    - name: PLATFORM
+      value: 'GKE'
+
+    - name: LIB
+      value: 'litmus'
+      
+    labels:
+      name: node-memory-hog
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
   message: "Kills a container belonging to an application pod \n"
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -632,6 +725,8 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "pods/log"
+          - "events"
           - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"

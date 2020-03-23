@@ -15,7 +15,7 @@ metadata:
     name: disk-loss-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch"]
-  resources: ["pods","jobs","secrets","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","jobs","secrets","events","pods/log","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1

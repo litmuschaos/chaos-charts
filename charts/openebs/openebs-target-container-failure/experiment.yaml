@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -23,7 +23,9 @@ spec:
           - "daemonsets"
           - "jobs"
           - "pods"
+          - "events"
           - "pods/exec"
+          - "pods/log"
           - "configmaps"
           - "secrets"
           - "persistentvolumeclaims"

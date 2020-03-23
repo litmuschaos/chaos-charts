@@ -1,8 +1,9 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2020-01-07T10:28:08Z
   name: pod-network-corruption
-  version: 0.1.6
+  version: 0.1.8
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -21,6 +22,7 @@ spec:
     - GKE
     - Packet(Kubeadm) 
     - Minikube
+    - EKS
   maturity: alpha
   maintainers:
     - name: LaumiH

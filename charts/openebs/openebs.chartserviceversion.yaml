@@ -1,8 +1,9 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
+  createdAt: 2019-08-27T10:28:08Z
   name: openebs
-  version: 0.1.4
+  version: 0.1.7
   annotations:
     categories: OpenEBS
     vendor: MayaData
@@ -22,7 +23,8 @@ spec:
     - openebs-target-network-loss
     - openebs-pool-network-delay
     - openebs-pool-network-loss
-    - openebs-control-plane-validation
+    - openebs-control-plane-chaos
+    - openebs-pool-disk-loss
   keywords:
     - OpenEBS
     - CAS

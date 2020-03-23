@@ -30,3 +30,6 @@ experiments:
   - name: pod-network-corruption
     CSV: pod-network-corruption.chartserviceversion.yaml
     desc: "pod-network-corruption"
+  - name: node-memory-hog
+    CSV: node-memory-hog.chartserviceversion.yaml
+    desc: "node-memory-hog"

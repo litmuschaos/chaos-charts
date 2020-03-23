@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -24,8 +24,10 @@ spec:
         resources:
           - "daemonsets"
           - "replicasets"
+          - "events"
           - "jobs"
           - "pods"
+          - "pods/log"
           - "pods/exec"
           - "configmaps"
           - "secrets"

@@ -1,0 +1,31 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-02-24T10:28:08Z
+  name: chaostoolkit
+  version: 0.0.3
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects chaostoolkit chaos 
+spec:
+  displayName: chaostoolkit chaos
+  categoryDescription:
+  experiments:
+    - k8-pod-delete
+  keywords:
+    - Kubernetes
+    - pod
+    - State 
+  maintainers:
+    - name: sumit
+      email: sumit_nagal@intuit.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Intuit
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/chaostoolkit/kubernetes
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/chaostoolkit/icons/k8-pod-delete.png
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/chaostoolkit/experiments.yaml

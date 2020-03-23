@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -17,6 +17,8 @@ spec:
       resources:
       - "jobs"
       - "pods"
+      - "pods/log"
+      - "events"
       - "chaosengines"
       - "chaosexperiments"
       - "chaosresults"
@@ -51,9 +53,9 @@ spec:
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
-      value: '60000' #in ms
+      value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # ime period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 

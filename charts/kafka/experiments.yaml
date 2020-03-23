@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -20,6 +20,8 @@ spec:
         resources:
           - "statefulsets"
           - "deployments"
+          - "events"
+          - "pods/log"
           - "configmaps"
           - "jobs"
           - "pods"
@@ -60,8 +62,13 @@ spec:
     - name: KAFKA_LIVENESS_IMAGE
       value: 'litmuschaos/kafka-client:ci'
 
+    # set to 'enabled' if you have auth set up
+    - name: KAFKA_SASL_AUTH
+      value: 'disabled'
+
+    # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT
-      value: '30000'
+      value: '30000' #in ms
 
     - name: TOTAL_CHAOS_DURATION
       value: '15'
@@ -122,7 +129,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.5
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -136,6 +143,8 @@ spec:
           - "statefulsets"
           - "secrets"
           - "jobs"
+          - "pods/log"
+          - "events"
           - "pods"
           - "pods/exec"
           - "chaosengines"
@@ -181,8 +190,9 @@ spec:
     - name: ZONE_NAME
       value: '' 
 
+    # GKE and AWS supported
     - name: CLOUD_PLATFORM
-      value: 'GCP'
+      value: 'GKE'
 
     - name: KAFKA_NAMESPACE
       value: ''

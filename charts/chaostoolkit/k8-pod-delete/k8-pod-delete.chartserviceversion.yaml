@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: k8-pod-delete
-  version: 0.0.1
+  version: 0.0.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -26,11 +26,7 @@ spec:
     name: Intuit
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/chaostoolkit/k8-pod_delete
-    - name: Documentation
-      url: https://docs.litmuschaos.io/docs/k8-pod-delete/
-    - name: Video
-      url: '' 
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/chaostoolkit/kubernetes/pod-delete
   icon:
     - url: 
       mediatype: ""
