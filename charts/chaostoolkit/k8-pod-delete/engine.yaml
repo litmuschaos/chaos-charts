@@ -29,3 +29,7 @@ spec:
               value: 'localhost'
             - name: FILE
               value: 'pod-app-kill-count.json'
+            - name: REPORT
+              value: 'false'
+            - name: REPORT_ENDPOINT
+              value: 'none'

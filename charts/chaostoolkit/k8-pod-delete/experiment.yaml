@@ -55,5 +55,13 @@ spec:
     - name: PERCENTAGE
       value: '50'
 
+    # Variable to set for custom report upload
+    - name: REPORT
+      value: 'false'
+
+    # Variable to set for report upload endpoint
+    - name: REPORT_ENDPOINT
+      value: 'none'
+
     labels:
       name: k8-pod-delete
