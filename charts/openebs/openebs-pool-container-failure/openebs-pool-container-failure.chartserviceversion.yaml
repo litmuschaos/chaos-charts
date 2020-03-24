@@ -18,6 +18,7 @@ spec:
     - OpenEBS
   platforms:
     - GKE
+    - EKS
     - OpenShift
   maturity: alpha
   chaosType: infra
