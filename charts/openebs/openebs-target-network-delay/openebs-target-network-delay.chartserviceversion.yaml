@@ -18,6 +18,7 @@ spec:
     - Network Delay 
   platforms:
     - GKE
+    - EKS
     - OpenShift
   maturity: alpha
   chaosType: infra
