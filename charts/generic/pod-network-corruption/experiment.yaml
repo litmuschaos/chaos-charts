@@ -29,7 +29,14 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

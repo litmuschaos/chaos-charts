@@ -34,7 +34,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:1.2.1"
