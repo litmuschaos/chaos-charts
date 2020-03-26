@@ -39,7 +39,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
           - "patch"
@@ -108,7 +108,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -170,7 +177,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -234,7 +248,14 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -309,7 +330,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:1.2.1"
@@ -356,25 +377,32 @@ spec:
     scope: Namespaced
     permissions:
     - apiGroups:
-      - ""
-      - "batch"
-      - "litmuschaos.io"
+        - ""
+        - "batch"
+        - "litmuschaos.io"
       resources:
-      - "jobs"
-      - "pods"
-      - "pods/log"
-      - "events"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
       verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "create"
-      - "update"
-      - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+    - apiGroups:
+        - ""
+      resources: 
+        - "nodes"
+      verbs:
+        - "get"
+        - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -524,7 +552,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -598,7 +633,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:1.2.1"
@@ -668,7 +703,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:1.2.1"
@@ -740,7 +775,14 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
     - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
