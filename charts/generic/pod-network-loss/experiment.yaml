@@ -11,24 +11,31 @@ spec:
     scope: Namespaced
     permissions:
     - apiGroups:
-      - ""
-      - "batch"
-      - "litmuschaos.io"
+        - ""
+        - "batch"
+        - "litmuschaos.io"
       resources:
-      - "jobs"
-      - "pods"
-      - "pods/log"
-      - "events"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
       verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "create"
-      - "update"
-      - "delete"
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+    - apiGroups:
+        - ""
+      resources: 
+        - "nodes"
+      verbs:
+        - "get"
+        - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
