@@ -748,7 +748,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Namespaced
@@ -803,6 +803,14 @@ spec:
     # It supports pumba and containerd 
     - name: LIB
       value: 'pumba'
+
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
 
     # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
     # For pumba image use: gaiaadm/pumba:0.4.8
