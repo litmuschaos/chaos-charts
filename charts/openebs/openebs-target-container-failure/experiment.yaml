@@ -96,8 +96,16 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
-      value: "60"
+      value: '20'
+
+    - name: SOAK_TIME
+      value: '60'
       
     labels:
       name: openebs-target-container-failure

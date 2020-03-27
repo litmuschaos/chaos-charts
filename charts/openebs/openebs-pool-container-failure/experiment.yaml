@@ -77,6 +77,14 @@ spec:
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
     - name: DATA_PERSISTENCE
       value: ''
 
