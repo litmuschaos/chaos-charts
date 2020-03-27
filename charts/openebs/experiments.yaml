@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -98,8 +98,16 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
-      value: "60"
+      value: '20'
+
+    - name: SOAK_TIME
+      value: '60'
       
     labels:
       name: openebs-target-container-failure
@@ -766,7 +774,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -834,6 +842,14 @@ spec:
 
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
+
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
 
     - name: DATA_PERSISTENCE
       value: ''
