@@ -50,7 +50,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-pod-failure/openebs_target_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
