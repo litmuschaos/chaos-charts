@@ -29,13 +29,6 @@ spec:
         - "create"
         - "update"
         - "delete"
-    - apiGroups:
-        - ""
-      resources: 
-        - "nodes"
-      verbs:
-        - "get"
-        - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c

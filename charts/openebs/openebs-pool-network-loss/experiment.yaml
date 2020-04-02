@@ -45,13 +45,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
