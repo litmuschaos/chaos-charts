@@ -31,13 +31,6 @@ spec:
           - "update"
           - "patch"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
