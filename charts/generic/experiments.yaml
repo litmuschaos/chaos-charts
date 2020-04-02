@@ -81,7 +81,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -108,13 +108,6 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
@@ -153,7 +146,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -177,13 +170,6 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
@@ -224,7 +210,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -248,13 +234,6 @@ spec:
           - "patch"
           - "update"
           - "get"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
@@ -371,7 +350,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -395,13 +374,6 @@ spec:
         - "create"
         - "update"
         - "delete"
-    - apiGroups:
-        - ""
-      resources: 
-        - "nodes"
-      verbs:
-        - "get"
-        - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
@@ -528,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -552,13 +524,6 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
@@ -748,7 +713,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Namespaced
@@ -775,13 +740,6 @@ spec:
           - "update"
           - "patch"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
