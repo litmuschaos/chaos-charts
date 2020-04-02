@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -43,13 +43,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -403,7 +396,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -437,13 +430,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -497,7 +483,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -531,13 +517,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -592,7 +571,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -629,13 +608,6 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -774,7 +746,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -809,13 +781,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -875,7 +840,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -913,13 +878,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
