@@ -3,15 +3,15 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-12-30T10:28:08Z
   name: coredns
-  version: 0.1.2
+  version: 0.1.4
   annotations:
     categories: Kubernetes
     chartDescription: Injects coredns chaos 
 spec:
   displayName: CoreDNS chaos
   categoryDescription: >
-    CoreDNS is an open-source system for dns management of containerized applications.
-    It helps to resolve services to IP address. It will install all the experiments which can be used to inject chaos into containerized appications.
+    CoreDNS is an open-source system for DNS management of containerized applications.
+    It helps to resolve services to IP address. It will install all the experiments which can be used to inject chaos into containerized applications.
 
   experiments:
     - coredns-pod-delete

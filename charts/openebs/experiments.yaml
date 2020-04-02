@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -43,7 +43,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-container-failure/openebs_target_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -91,8 +91,16 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
-      value: "60"
+      value: '20'
+
+    - name: SOAK_TIME
+      value: '60'
       
     labels:
       name: openebs-target-container-failure
@@ -149,7 +157,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-disk-loss/openebs_pool_disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -262,7 +270,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-pod-failure/openebs_target_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -352,7 +360,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-control-plane-chaos/openebs_control_plane_chaos_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -391,7 +399,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -425,7 +433,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-network-delay/openebs_target_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -478,7 +486,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -512,7 +520,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-network-loss/openebs_target_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -566,7 +574,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -603,7 +611,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-network-delay/openebs_pool_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -694,7 +702,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-pod-failure/openebs_pool_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -741,7 +749,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -776,7 +784,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-container-failure/openebs_pool_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -803,6 +811,14 @@ spec:
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
     - name: DATA_PERSISTENCE
       value: ''
 
@@ -827,7 +843,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.4
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -865,7 +881,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-network-loss/openebs_pool_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

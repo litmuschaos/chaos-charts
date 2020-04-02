@@ -34,10 +34,10 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0

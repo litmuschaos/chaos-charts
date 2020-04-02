@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -41,7 +41,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.2.1"
+    image: "litmuschaos/ansible-runner:1.2.2"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-target-container-failure/openebs_target_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -89,8 +89,16 @@ spec:
     - name: DEPLOY_TYPE
       value: 'deployment'
 
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
-      value: "60"
+      value: '20'
+
+    - name: SOAK_TIME
+      value: '60'
       
     labels:
       name: openebs-target-container-failure

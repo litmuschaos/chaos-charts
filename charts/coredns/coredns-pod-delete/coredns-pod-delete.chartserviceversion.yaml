@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-12-30T10:28:08Z
   name: coredns-pod-delete
-  version: 0.1.5
+  version: 0.1.6
   annotations:
     categories: CoreDNS
     vendor: CNCF
@@ -34,5 +34,5 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/coredns-pod-delete/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=pwo5idKW7q8
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuchaos/chaos-charts/master/charts/coredns/coredns-pod-delete/experiment.yaml
