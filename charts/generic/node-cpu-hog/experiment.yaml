@@ -16,7 +16,6 @@ spec:
           - "apps"
           - "litmuschaos.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "pods/log"

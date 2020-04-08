@@ -22,7 +22,6 @@ spec:
           - "events"
           - "pods/log"
           - "pods/eviction"
-          - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"

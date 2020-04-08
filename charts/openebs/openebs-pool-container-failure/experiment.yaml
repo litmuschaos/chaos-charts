@@ -22,7 +22,6 @@ spec:
           - "openebs.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
           - "replicasets"
           - "events"
           - "jobs"
