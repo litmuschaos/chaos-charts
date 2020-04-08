@@ -57,11 +57,11 @@ spec:
     - name: APP_PVC
       value: ''
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
-    # For pumba image use : gaiaadm/pumba:0.4.8
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # For pumba image use : gaiaadm/pumba:0.6.5
     # For containerd image use : gprasath/crictl:ci
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.4.8'
+      value: 'gaiaadm/pumba:0.6.5'
 
     # Specify the container runtime used , to pick the relevant chaos util  
     - name: CONTAINER_RUNTIME
@@ -105,4 +105,3 @@ spec:
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt
-      
