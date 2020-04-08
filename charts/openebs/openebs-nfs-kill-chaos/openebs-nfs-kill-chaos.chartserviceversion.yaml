@@ -10,7 +10,7 @@ metadata:
 spec:
   displayName: openebs-nfs-kill-chaos
   categoryDescription: >
-     Kill the OpenEBS NFS provisioner container and check if gets scheduled again. 
+     Kill the OpenEBS NFS provisioner container and check if pods mounted with RWM modes. 
   keywords:
     - Kubernetes
     - OpenEBS

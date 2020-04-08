@@ -8,19 +8,19 @@
       name: nfs-kill-sa
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: Role
+kind: ClusterRole
 metadata:
   name: nfs-kill-sa
   namespace: default
   labels:
     name: nfs-kill-sa
 rules:
-- apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","jobs","daemonsets","pods/exec","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
+- apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io"]
+  resources: ["pods","pods/exec","pods/log", "deployments","events","jobs","configmaps","services","persistentvolumeclaims","storageclasses","persistentvolumes","chaosexperiments","chaosresults","chaosengines"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: RoleBinding
+kind: ClusterRoleBinding
 metadata:
   name: nfs-kill-sa
   namespace: default
@@ -28,7 +28,7 @@ metadata:
     name: nfs-kill-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: Role
+  kind: ClusterRole
   name: nfs-kill-sa
 subjects:
 - kind: ServiceAccount

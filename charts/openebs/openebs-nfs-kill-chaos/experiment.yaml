@@ -2,32 +2,39 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Kill all openebs control plane pod and check if gets scheduled again
+    Kill the OpenEBS NFS provisioner container and check if pods mounted with RWM modes.
 kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
-  name: openebs-control-plane-chaos
-  version: 0.1.3
+  name: openebs-nfs-kill-chaos
+  version: 0.1.0
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
+          - "apps"
           - "litmuschaos.io"
           - "batch"
-          - "apps"
+          - "extensions"
+          - "storage.k8s.io"
         resources:
           - "pods"
+          - "pods/exec"
           - "pods/log"
           - "deployments"
           - "events"
           - "jobs"
           - "configmaps"
-          - "chaosengines"
+          - "services"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
           - "chaosexperiments"
           - "chaosresults"
+          - "chaosengines"
         verbs:
           - "create"
           - "list"
@@ -43,7 +50,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:ci"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-nfs-provisioner-kill/openebs_nfs_provisioner_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -53,8 +60,9 @@ spec:
     - name: ANSIBLE_STDOUT_CALLBACK
       value: 'default'
 
+    # NFS default container
     - name: TARGET_CONTAINER
-      value: ''
+      value: 'nfs-provisioner'
 
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
@@ -64,6 +72,12 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # For pumba image use: gaiaadm/pumba:0.6.5
+    # For containerd image use: gprasath/crictl:ci
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.6.5' 
+
     # provide the chaos interval
     - name: CHAOS_INTERVAL
       value: '10'
@@ -72,11 +86,8 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
-    # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: gprasath/crictl:ci
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
-
     labels:
       name: openebs-nfs-kill-chaos
+    configmaps:
+      - name: openebs-nfs-kill-cm
+        mountPath: /mnt/
