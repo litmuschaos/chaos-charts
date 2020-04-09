@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
