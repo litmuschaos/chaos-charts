@@ -63,9 +63,9 @@ spec:
       value: ''
 
     # only pumba supported
-    # For pumba image use : gaiaadm/pumba:0.4.8
+    # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
+      value: 'gaiaadm/pumba:0.6.5' 
 
     - name: LIVENESS_APP_NAMESPACE
       value: '' 
@@ -89,4 +89,3 @@ spec:
     #configmaps:
     #- name: openebs-pool-container-failure
     #  mountPath: /mnt
-  
