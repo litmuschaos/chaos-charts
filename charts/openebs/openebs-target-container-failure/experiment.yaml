@@ -20,7 +20,6 @@ spec:
           - "litmuschaos.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "events"

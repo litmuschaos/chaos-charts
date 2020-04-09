@@ -21,7 +21,6 @@ spec:
           - "pods/exec"
           - "pods/log"
           - "events"
-          - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -58,5 +57,3 @@ spec:
       
     labels:
       name: disk-fill
-
-
