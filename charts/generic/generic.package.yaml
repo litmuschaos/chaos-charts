@@ -33,3 +33,6 @@ experiments:
   - name: node-memory-hog
     CSV: node-memory-hog.chartserviceversion.yaml
     desc: "node-memory-hog"
+  - name: pod-cpu-hog
+    CSV: pod-cpu-hog.chartserviceversion.yaml
+    desc: "pod-cpu-hog"    
