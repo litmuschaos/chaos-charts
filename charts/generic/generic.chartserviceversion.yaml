@@ -24,6 +24,7 @@ spec:
     - disk-loss
     - disk-fill
     - node-memory-hog
+    - pod-memory-hog
 
   keywords:
     - Kubernetes
@@ -32,6 +33,8 @@ spec:
     - Pod
     - Disk
     - Network
+    - CPU
+    - Memory
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
