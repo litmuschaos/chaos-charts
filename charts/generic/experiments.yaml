@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -23,8 +23,8 @@ spec:
           - "pods"
           - "events"
           - "pods/log"
-          - "pods/eviction"
           - "daemonsets"
+          - "pods/eviction"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -71,7 +71,6 @@ spec:
 
     labels:
       name: node-drain
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -97,7 +96,6 @@ spec:
           - "pods/exec"
           - "pods/log"
           - "events"
-          - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -134,9 +132,6 @@ spec:
       
     labels:
       name: disk-fill
-
-
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -579,7 +574,6 @@ spec:
           - "apps"
           - "litmuschaos.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "pods/log"
@@ -722,7 +716,6 @@ spec:
           - "batch"
           - "litmuschaos.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "pods/log"
