@@ -52,7 +52,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
