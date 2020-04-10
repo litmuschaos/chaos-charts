@@ -47,7 +47,7 @@ spec:
     # Enter the amount of memory in megabytes to be consumed by the application pod
     # default: 500 (Megabytes) 
     - name: MEMORY_CONSUMPTION
-      value: ''
+      value: '500'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
