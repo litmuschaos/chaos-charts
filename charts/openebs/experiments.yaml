@@ -22,7 +22,6 @@ spec:
           - "litmuschaos.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "events"
@@ -759,7 +758,6 @@ spec:
           - "openebs.io"
           - "storage.k8s.io"
         resources:
-          - "daemonsets"
           - "replicasets"
           - "events"
           - "jobs"

@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.15
+  version: 0.1.16
 spec:
   definition:
     scope: Cluster
@@ -55,13 +55,19 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supprts GKE and EKS Platform
-    # GKE is the default Platform
-    - name: PLATFORM
-      value: 'GKE'
-
-    - name: LIB
+    ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
+    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
+    - name: NODE_CPU_CORE
       value: ''
-      
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/cpu:latest' 
+   
     labels:
       name: node-cpu-hog
