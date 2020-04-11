@@ -24,6 +24,7 @@ spec:
         components:
           env:
             - name: APP_PVC
-              value: 'demo-nginx-claim'    
+              value: 'demo-nginx-claim'   
+               
             - name: DEPLOY_TYPE
               value: 'deployment'   

@@ -35,10 +35,6 @@ spec:
             - name: APP_CHECK
               value: 'true'
 
-            # This is a chaos namespace into which all infra chaos resources are created
-            - name: CHAOS_NAMESPACE
-              value: 'default'
-
             # GCP project ID
             - name: PROJECT_ID
               value: 'litmus-demo-123'
