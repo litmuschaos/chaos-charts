@@ -43,6 +43,10 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
+    # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
     - name: FORCE
       value: 'true'
 

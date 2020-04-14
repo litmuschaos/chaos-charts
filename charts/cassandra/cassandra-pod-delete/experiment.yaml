@@ -91,6 +91,10 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
     - name: FORCE
       value: ''
 
