@@ -2,14 +2,14 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2020-04-14T10:28:08Z
-  name: pod-delete
+  name: cassandra-pod-delete
   version: 0.1.0
   annotations:
     categories: Cassandra
     vendor: CNCF
     support: https://slack.kubernetes.io/
 spec:
-  displayName: pod-delete
+  displayName: cassandra-pod-delete
   categoryDescription: |
     This experiment causes (forced/graceful) pod failure of random replicas of an cassandra statefulset. 
     It tests statefulset sanity (replica availability & uninterrupted service) and recovery workflows of the cassandra pod
@@ -32,7 +32,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/cassandra/pod_delete
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/cassandra/cassandra-pod_delete
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/cassandra-pod-delete/
     - name: Video
@@ -40,4 +40,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts'cassandra/pod-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/cassandra/cassandra-pod-delete/experiment.yaml

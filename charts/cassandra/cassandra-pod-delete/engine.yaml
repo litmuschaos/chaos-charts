@@ -14,12 +14,12 @@ spec:
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ''
-  chaosServiceAccount: pod-delete-sa
+  chaosServiceAccount: cassandra-pod-delete-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: pod-delete
+    - name: cassandra-pod-delete
       spec:
         components:
           env:
