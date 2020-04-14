@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-04-14T10:28:08Z
+  name: pod-delete
+  version: 0.1.0
+  annotations:
+    categories: Cassandra
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-delete
+  categoryDescription: |
+    This experiment causes (forced/graceful) pod failure of random replicas of an cassandra statefulset. 
+    It tests statefulset sanity (replica availability & uninterrupted service) and recovery workflows of the cassandra pod
+  keywords:
+    - Kubernetes
+    - Cassandra
+    - Pod
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+  maturity: alpha
+  maintainers:
+    - name: Shubham Chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/cassandra/pod_delete
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/cassandra-pod-delete/
+    - name: Video
+      url: 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts'cassandra/pod-delete/experiment.yaml

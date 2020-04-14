@@ -1,0 +1,44 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-04-14T10:28:08Z
+  name: cassandra
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects cassandra kubernetes chaos 
+spec:
+  displayName: Cassandra Chaos
+  categoryDescription: >
+   Cassandra is a free and open-source, distributed, wide column store, NoSQL database management system designed to handle 
+   large amounts of data across many commodity servers, providing high availability with no single point of failure. 
+   It will install all the experiments which can be used to inject chaos into cassandra applications.
+
+  experiments:
+    - pod-delete
+  keywords:
+    - Kubernetes
+    - Pod
+    - Cassandra
+    - Statefulset
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Cassandra Website
+      url: http://cassandra.apache.org/
+    - name: Source Code
+      url: https://github.com/kubernetes/kubernetes
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/ 
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#cassandra-chaos
+  icon:
+    - url: 
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/cassandra/experiments.yaml
