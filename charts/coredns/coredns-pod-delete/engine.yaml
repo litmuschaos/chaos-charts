@@ -30,6 +30,6 @@ spec:
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '10'
-                
+
             - name: CHAOS_NAMESPACE
-              value: 'kube-system'
+              value: 'kube-system' 

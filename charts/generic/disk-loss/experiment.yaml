@@ -49,9 +49,6 @@ spec:
 
     - name: APP_CHECK
       value: 'true' 
-
-    - name: CHAOS_NAMESPACE
-      value: ''
         
     # GKE and AWS supported
     - name: CLOUD_PLATFORM

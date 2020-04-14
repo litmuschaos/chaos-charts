@@ -61,9 +61,6 @@ spec:
       - name: RAMP_TIME
         value: ''
 
-      - name: CHAOS_NAMESPACE
-        value: ''
-
        # GKE and AWS supported
       - name: CLOUD_PLATFORM
         value: 'GKE'
@@ -94,11 +91,14 @@ spec:
 
       - name: OPENEBS_NAMESPACE
         value: 'openebs'
+        
     labels:
       name: openebs-pool-disk-loss
+
     configmaps:
     - name: openebs-pool-disk-loss
       mountPath: /mnt/
+
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
