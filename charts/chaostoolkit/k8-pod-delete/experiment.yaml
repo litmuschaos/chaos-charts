@@ -41,7 +41,7 @@ spec:
       value: 'true'
 
     - name: FILE
-      value: 'pod-app-kill-count-aks.json'
+      value: 'pod-app-kill-count.json'
 
     - name: NAME_SPACE
       value: ''
