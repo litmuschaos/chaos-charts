@@ -1,0 +1,57 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: cassandra-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: 'default'
+    applabel: 'app=cassandra'
+    appkind: 'statefulset'
+  # It can be true/false
+  annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: cassandra-pod-delete-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: cassandra-pod-delete
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '15'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '15'
+              
+            # pod failures without '--force' & default terminationGracePeriodSeconds
+            - name: FORCE
+              value: 'false'
+
+            # provide cassandra service name
+            # default service: cassandra
+            - name: CASSANDRA_SVC_NAME
+              value: 'cassandra'
+
+            # provide the keyspace replication factor
+            - name: KEYSPACE_REPLICATION_FACTOR
+              value: '3'
+
+            # provide cassandra port 
+            # default port: 9042
+            - name: CASSANDRA_PORT
+              value: '9042'
+
+            # SET THE CASSANDRA_LIVENESS_CHECK
+            # IT CAN BE `enabled` OR `disabled`
+            - name: CASSANDRA_LIVENESS_CHECK
+              value: ''
+
+            

@@ -35,4 +35,3 @@ subjects:
 - kind: ServiceAccount
   name: node-drain-sa
   namespace: default
-  

@@ -2,36 +2,35 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: container-kill-sa
+  name: pod-memory-hog-sa
   namespace: default
   labels:
-    name: container-kill-sa
+    name: pod-memory-hog-sa
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: Role
 metadata:
-  name: container-kill-sa
+  name: pod-memory-hog-sa
   namespace: default
   labels:
-    name: container-kill-sa
+    name: pod-memory-hog-sa
 rules:
-- apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","jobs","pods/exec","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
+- apiGroups: ["","litmuschaos.io","batch"]
+  resources: ["pods","jobs","events","pods/log","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: RoleBinding
 metadata:
-  name: container-kill-sa
+  name: pod-memory-hog-sa
   namespace: default
   labels:
-    name: container-kill-sa
+    name: pod-memory-hog-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: container-kill-sa
+  name: pod-memory-hog-sa
 subjects:
 - kind: ServiceAccount
-  name: container-kill-sa
+  name: pod-memory-hog-sa
   namespace: default
-

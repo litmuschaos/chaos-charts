@@ -6,7 +6,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.8
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -21,8 +21,8 @@ spec:
           - "pods"
           - "events"
           - "pods/log"
-          - "pods/eviction"
           - "daemonsets"
+          - "pods/eviction"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -59,6 +59,11 @@ spec:
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
 
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME

@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -74,6 +74,10 @@ spec:
 
     - name: CHAOS_ITERATIONS
       value: '2'
+
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
 
     - name: DATA_PERSISTENCE
       value: ''
