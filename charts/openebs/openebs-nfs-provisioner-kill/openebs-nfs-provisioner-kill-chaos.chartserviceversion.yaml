@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: openebs-nfs-kill-chaos
+  name: openebs-nfs-provisioner-kill
   version: 0.1.0
   annotations:
     categories: OpenEBS
@@ -10,7 +10,7 @@ metadata:
 spec:
   displayName: openebs-nfs-kill-chaos
   categoryDescription: >
-     Kill the OpenEBS NFS provisioner container and check if pods mounted with RWM modes. 
+    Kill the OpenEBS NFS provisioner container and check if pods consuming the NFS PVs continue to be available and volumes are writable (RWM mode)
   keywords:
     - Kubernetes
     - OpenEBS
@@ -29,10 +29,10 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-nfs-provisioner-kill
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-nfs-kill-chaos/
+      url: https://docs.litmuschaos.io/docs/openebs-nfs-provisioner-kill/
     - name: Video
       url:
   icon:
     - url: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-nfs-kill-chaos/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-nfs-provisioner-kill/experiment.yaml

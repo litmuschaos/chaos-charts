@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nfs-kill-chaos
+  name: nfs-chaos
   namespace: default
 spec:
   # It can be true/false
@@ -12,12 +12,12 @@ spec:
     appns: 'minio'
     applabel: 'app=minio'
     appkind: 'deployment'
-  chaosServiceAccount: nfs-kill-sa
+  chaosServiceAccount: nfs-chaos-sa
   monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: openebs-nfs-kill-chaos
+    - name: openebs-nfs-provisioner-kill
       spec:
         components:
           env:
