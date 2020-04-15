@@ -33,7 +33,7 @@ spec:
     image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
-    - python /app/data/k8_wrapper.py; exit 0
+    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
     command:
     - /bin/bash
     env:
@@ -54,6 +54,12 @@ spec:
 
     - name: PERCENTAGE
       value: '50'
+
+    - name: REPORT
+      value: 'true'
+
+    - name: REPORT_ENDPOINT
+      value: 'none'
 
     labels:
       name: k8-pod-delete

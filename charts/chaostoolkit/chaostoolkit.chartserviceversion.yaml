@@ -3,10 +3,10 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-02-24T10:28:08Z
   name: chaostoolkit
-  version: 0.0.3
+  version: 0.0.4
   annotations:
     categories: Kubernetes
-    chartDescription: Injects chaostoolkit chaos 
+    chartDescription: Injects chaostoolkit chaos
 spec:
   displayName: chaostoolkit chaos
   categoryDescription:
@@ -15,7 +15,7 @@ spec:
   keywords:
     - Kubernetes
     - pod
-    - State 
+    - State
   maintainers:
     - name: sumit
       email: sumit_nagal@intuit.com
