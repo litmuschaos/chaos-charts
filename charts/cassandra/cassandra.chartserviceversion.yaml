@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-04-14T10:28:08Z
   name: cassandra
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     chartDescription: Injects cassandra kubernetes chaos 

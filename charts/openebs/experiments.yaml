@@ -224,7 +224,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -296,6 +296,10 @@ spec:
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'
+
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
 
     - name: CHAOS_INTERVAL
       value: '15'
@@ -655,7 +659,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -721,6 +725,10 @@ spec:
 
     - name: CHAOS_ITERATIONS
       value: '2'
+
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
 
     - name: DATA_PERSISTENCE
       value: ''
