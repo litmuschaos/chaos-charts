@@ -32,12 +32,12 @@ spec:
     - name: Cassandra Website
       url: http://cassandra.apache.org/
     - name: Source Code
-      url: https://github.com/kubernetes/kubernetes
-    - name: Kubernetes Slack
-      url: https://slack.kubernetes.io/ 
+      url: https://github.com/apache/cassandra
+    - name: Cassandra Slack
+      url: https://cassandra-slack.herokuapp.com
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/chaoshub/#cassandra-chaos
+      url: http://cassandra.apache.org/doc/latest/
   icon:
-    - url: 
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/cassandra/icons/cassandra.png
       mediatype: image/png
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/cassandra/experiments.yaml

@@ -81,6 +81,10 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
     - name: CHAOS_INTERVAL
       value: '15'
 

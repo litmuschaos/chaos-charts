@@ -75,6 +75,10 @@ spec:
     - name: CHAOS_ITERATIONS
       value: '2'
 
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
     - name: DATA_PERSISTENCE
       value: ''
 

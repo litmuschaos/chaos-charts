@@ -7,7 +7,7 @@ metadata:
   annotations:
     categories: Cassandra
     vendor: CNCF
-    support: https://slack.kubernetes.io/
+    support: https://cassandra-slack.herokuapp.com
 spec:
   displayName: cassandra-pod-delete
   categoryDescription: |
@@ -32,7 +32,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/cassandra/cassandra-pod_delete
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/cassandra/pod_delete
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/cassandra-pod-delete/
     - name: Video
