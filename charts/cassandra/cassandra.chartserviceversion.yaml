@@ -5,7 +5,7 @@ metadata:
   name: cassandra
   version: 0.1.2
   annotations:
-    categories: Kubernetes
+    categories: Cassandra
     chartDescription: Injects cassandra kubernetes chaos 
 spec:
   displayName: Cassandra Chaos
