@@ -30,3 +30,6 @@ experiments:
   - name: openebs-pool-disk-loss
     CSV: openebs-pool-disk-loss.chartserviceversion.yaml 
     desc: "openebs-pool-disk-loss"
+  - name: openebs-nfs-provisioner-kill
+    CSV: openebs-nfs-provisioner-kill.chartserviceversion.yaml 
+    desc: "openebs-nfs-provisioner-kill"

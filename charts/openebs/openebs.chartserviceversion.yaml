@@ -25,6 +25,7 @@ spec:
     - openebs-pool-network-loss
     - openebs-control-plane-chaos
     - openebs-pool-disk-loss
+    - openebs-nfs-provisioner-kill
   keywords:
     - OpenEBS
     - CAS
