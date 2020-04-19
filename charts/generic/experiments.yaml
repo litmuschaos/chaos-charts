@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.7
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -23,8 +23,8 @@ spec:
           - "pods"
           - "events"
           - "pods/log"
-          - "pods/eviction"
           - "daemonsets"
+          - "pods/eviction"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -39,7 +39,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
           - "patch"
@@ -62,6 +62,11 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
@@ -71,7 +76,6 @@ spec:
 
     labels:
       name: node-drain
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -81,7 +85,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.7
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -97,7 +101,6 @@ spec:
           - "pods/exec"
           - "pods/log"
           - "events"
-          - "daemonsets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -131,12 +134,14 @@ spec:
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
       value: ''
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
       
     labels:
       name: disk-fill
-
-
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -146,7 +151,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.7
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -206,11 +211,79 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    Injects memory consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-memory-hog
+  version: 0.1.1
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/pod_memory_hog/pod_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    # Provide name of target container
+    # where chaos has to be injected
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # Enter the amount of memory in megabytes to be consumed by the application pod
+    # default: 500 (Megabytes) 
+    - name: MEMORY_CONSUMPTION
+      value: '500'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/app-memory-stress:latest' 
+    labels:
+      name: pod-memory-hog
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Inject network packet corruption into application pod
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.6
+  version: 0.1.8
 spec:
   definition:
     scope: Namespaced
@@ -278,7 +351,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.10
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -309,7 +382,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
@@ -328,6 +401,10 @@ spec:
 
     # Period to wait before injection of chaos in sec
     - name: RAMP_TIME
+      value: ''
+
+    # provide the kill count
+    - name: KILL_COUNT
       value: ''
 
     - name: FORCE
@@ -350,30 +427,30 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.11
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
     permissions:
     - apiGroups:
-      - ""
-      - "batch"
-      - "litmuschaos.io"
+        - ""
+        - "batch"
+        - "litmuschaos.io"
       resources:
-      - "jobs"
-      - "pods"
-      - "pods/log"
-      - "events"
-      - "chaosengines"
-      - "chaosexperiments"
-      - "chaosresults"
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
       verbs:
-      - "get"
-      - "list"
-      - "patch"
-      - "create"
-      - "update"
-      - "delete"
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
     image: "litmuschaos/ansible-runner:latest"
     args:
     - -c
@@ -418,7 +495,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -462,9 +539,6 @@ spec:
 
     - name: APP_CHECK
       value: 'true' 
-
-    - name: CHAOS_NAMESPACE
-      value: ''
         
     # GKE and AWS supported
     - name: CLOUD_PLATFORM
@@ -500,7 +574,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.11
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -568,7 +642,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.14
+  version: 0.1.16
 spec:
   definition:
     scope: Cluster
@@ -579,7 +653,6 @@ spec:
           - "apps"
           - "litmuschaos.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "pods/log"
@@ -598,7 +671,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
@@ -619,14 +692,20 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supprts GKE and EKS Platform
-    # GKE is the default Platform
-    - name: PLATFORM
-      value: 'GKE'
-
-    - name: LIB
+    ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
+    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
+    - name: NODE_CPU_CORE
       value: ''
-      
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/cpu:latest' 
+   
     labels:
       name: node-cpu-hog
 ---
@@ -638,7 +717,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -667,7 +746,7 @@ spec:
           - ""
         resources: 
           - "nodes"
-        verbs :
+        verbs:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
@@ -693,13 +772,14 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-     # It supprts GKE and EKS Platform
-     # GKE is the default Platform
-    - name: PLATFORM
-      value: 'GKE'
-
+    # Provide the LIB here
+    # Only litmus supported
     - name: LIB
       value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'alexeiled/stress-ng:latest' 
       
     labels:
       name: node-memory-hog
@@ -711,7 +791,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.12
+  version: 0.1.16
 spec:
   definition:
     scope: Namespaced
@@ -722,7 +802,6 @@ spec:
           - "batch"
           - "litmuschaos.io"
         resources:
-          - "daemonsets"
           - "jobs"
           - "pods"
           - "pods/log"
@@ -760,11 +839,19 @@ spec:
     - name: LIB
       value: 'pumba'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.4.8, gprasath/crictl:ci
-    # For pumba image use: gaiaadm/pumba:0.4.8
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # For pumba image use: gaiaadm/pumba:0.6.5
     # For containerd image use: gprasath/crictl:ci
     - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.4.8' 
+      value: 'gaiaadm/pumba:0.6.5' 
 
     labels:
       name: container-kill

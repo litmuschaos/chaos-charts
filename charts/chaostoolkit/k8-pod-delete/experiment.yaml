@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
-  version: 0.0.2
+  version: 0.0.3
 spec:
   definition:
     scope: Namespaced
@@ -33,7 +33,7 @@ spec:
     image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
-    - python /app/data/k8_wrapper.py; exit 0
+    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
     command:
     - /bin/bash
     env:
@@ -55,11 +55,9 @@ spec:
     - name: PERCENTAGE
       value: '50'
 
-    # Variable to set for custom report upload
     - name: REPORT
-      value: 'false'
+      value: 'true'
 
-    # Variable to set for report upload endpoint
     - name: REPORT_ENDPOINT
       value: 'none'
 

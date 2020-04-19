@@ -24,12 +24,13 @@ spec:
             # set chaos label name
             - name: LABEL_NAME
               value: 'nginx'
-            # pod endpoint 
+            # pod endpoint
             - name: APP_ENDPOINT
               value: 'localhost'
             - name: FILE
               value: 'pod-app-kill-count.json'
             - name: REPORT
-              value: 'false'
+              value: 'true'
             - name: REPORT_ENDPOINT
               value: 'none'
+

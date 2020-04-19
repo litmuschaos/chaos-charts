@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-11T10:28:08Z
   name: openebs-target-pod-failure
-  version: 0.1.9
+  version: 0.1.10
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -18,6 +18,7 @@ spec:
     - OpenEBS
   platforms:
     - GKE
+    - EKS
     - OpenShift
   maturity: alpha
   chaosType: infra

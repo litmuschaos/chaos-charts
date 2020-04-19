@@ -14,7 +14,7 @@ spec:
     K8 Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
   keywords:
     - Kubernetes
-    - State 
+    - State
   platforms:
      - Minikube
   maturity: alpha
@@ -28,6 +28,6 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus/tree/master/experiments/chaostoolkit/kubernetes/pod-delete
   icon:
-    - url: 
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/chaostoolkit/k8-pod-delete/experiment.yaml

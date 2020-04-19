@@ -7,7 +7,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.10
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster

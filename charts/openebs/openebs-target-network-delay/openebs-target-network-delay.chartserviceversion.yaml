@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-17T10:28:08Z
   name: openebs-target-network-delay
-  version: 0.1.7
+  version: 0.1.8
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -18,6 +18,7 @@ spec:
     - Network Delay 
   platforms:
     - GKE
+    - EKS
     - OpenShift
   maturity: alpha
   chaosType: infra

@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-08-27T10:28:08Z
   name: openebs
-  version: 0.1.7
+  version: 0.1.8
   annotations:
     categories: OpenEBS
     vendor: MayaData
@@ -25,6 +25,7 @@ spec:
     - openebs-pool-network-loss
     - openebs-control-plane-chaos
     - openebs-pool-disk-loss
+    - openebs-nfs-provisioner-kill
   keywords:
     - OpenEBS
     - CAS

@@ -26,10 +26,6 @@ spec:
             - name: APP_PVC
               value: 'demo-nginx-claim'
 
-            # This is a chaos namespace which will create all infra chaos resources in that namespace
-            - name: CHAOS_NAMESPACE
-              value: ''
-
             # GKE and AWS supported
             - name: CLOUD_PLATFORM
               value: 'GKE'

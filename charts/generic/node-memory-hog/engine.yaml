@@ -30,13 +30,4 @@ spec:
             ## specify the size as percent of total available memory (in percentage %)
             ## default value 90%
             - name: MEMORY_PERCENTAGE
-              value: '90'   
-
-             # It supprts GKE and EKS Platform
-             # GKE is the default Platform
-            - name: PLATFORM
-              value: 'GKE'
-              
-            # chaos lib used to inject the chaos
-            - name: LIB
-              value: 'litmus'
+              value: '90'
