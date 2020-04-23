@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-03-17T10:28:08Z
   name: mysql
-  version: 0.0.1
+  version: 0.0.2
   annotations:
     categories: mysql
     chartDescription: Injects chaos on mysql components
