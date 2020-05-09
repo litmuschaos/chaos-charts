@@ -62,6 +62,11 @@ spec:
 
     - name: DISK_NAME
       value: ''  
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
           
     - name: ZONE_NAME
       value: '' 
