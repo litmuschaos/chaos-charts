@@ -495,7 +495,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -552,6 +552,11 @@ spec:
 
     - name: DISK_NAME
       value: ''  
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
           
     - name: ZONE_NAME
       value: '' 
