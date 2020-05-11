@@ -26,3 +26,11 @@ spec:
             # specify the name of the container to be killed
             - name: TARGET_CONTAINER
               value: 'nginx'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
+
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
