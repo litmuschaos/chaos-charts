@@ -85,7 +85,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -139,12 +139,12 @@ spec:
     # Only litmus supported
     - name: LIB
       value: 'litmus'
-    
+
     # Provide the container runtime path
     # Default set to docker
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
-      
+
     labels:
       name: disk-fill
 ---
