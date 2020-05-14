@@ -652,7 +652,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.16
+  version: 0.1.17
 spec:
   definition:
     scope: Cluster
@@ -714,10 +714,11 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/cpu:latest' 
+      value: 'litmuschaos/stress-ng:latest' 
    
     labels:
       name: node-cpu-hog
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
