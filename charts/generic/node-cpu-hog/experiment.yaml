@@ -67,7 +67,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/cpu:latest' 
+      value: 'litmuschaos/stress-ng:latest' 
    
     labels:
       name: node-cpu-hog
