@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-03-17T10:28:08Z
   name: mongodb
-  version: 0.0.2
+  version: 0.0.1
   annotations:
     categories: mongodb
     chartDescription: Injects chaos on mongodb components
