@@ -8,7 +8,7 @@ metadata:
     categories: Kubernetes
     chartDescription: Injects chaostoolkit chaos
 spec:
-  displayName: Chaostoolkit Chaos
+  displayName: chaostoolkit chaos
   categoryDescription:
   experiments:
     - k8-pod-delete
