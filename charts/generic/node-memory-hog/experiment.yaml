@@ -67,7 +67,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'alexeiled/stress-ng:latest' 
+      value: 'litmuschaos/stress-ng:latest' 
       
     labels:
       name: node-memory-hog
