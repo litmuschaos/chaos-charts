@@ -728,7 +728,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
