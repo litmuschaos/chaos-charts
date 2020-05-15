@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.16
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
