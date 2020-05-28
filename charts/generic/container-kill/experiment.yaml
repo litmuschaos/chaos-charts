@@ -56,6 +56,11 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
+    # provide the container runtime path for containerd
+    # applicable only for containerd runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
+
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
