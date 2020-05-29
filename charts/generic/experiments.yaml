@@ -802,7 +802,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -863,9 +863,9 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-killer:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: gprasath/crictl:ci
+    # For containerd image use: litmuschaos/container-killer:latest
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
