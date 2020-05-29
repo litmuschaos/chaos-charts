@@ -68,7 +68,7 @@ spec:
       value: '5'
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-chaos:latest'
+      value: 'litmuschaos/pod-deleter:latest'
 
     - name: LIB
       value: ''    
