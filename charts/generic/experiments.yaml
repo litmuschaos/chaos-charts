@@ -802,7 +802,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.16
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
@@ -853,6 +853,11 @@ spec:
     # provide the chaos interval
     - name: CHAOS_INTERVAL
       value: '10'
+
+    # provide the container runtime path for containerd
+    # applicable only for containerd runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
 
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
