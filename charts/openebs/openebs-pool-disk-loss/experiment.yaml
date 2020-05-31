@@ -44,7 +44,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.4.0"
+    image: "litmuschaos/ansible-runner:1.4.1-RC1"
     args:
     - -c
     - ansible-playbook ./experiments/openebs/openebs-pool-disk-loss/openebs_pool_disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
