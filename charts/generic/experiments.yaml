@@ -356,7 +356,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Namespaced
@@ -417,6 +417,9 @@ spec:
 
     - name: CHAOS_INTERVAL
       value: '5'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-deleter:latest'
 
     - name: LIB
       value: ''    
@@ -802,7 +805,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -854,13 +857,18 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
+    # provide the container runtime path for containerd
+    # applicable only for containerd runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
+
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-killer:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: gprasath/crictl:ci
+    # For containerd image use: litmuschaos/container-killer:latest
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
