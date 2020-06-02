@@ -6,7 +6,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
