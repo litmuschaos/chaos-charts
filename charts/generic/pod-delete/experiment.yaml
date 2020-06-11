@@ -71,6 +71,6 @@ spec:
       value: 'litmuschaos/pod-deleter:latest'
 
     - name: LIB
-      value: ''    
+      value: 'litmus'    
     labels:
       name: pod-delete
