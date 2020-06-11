@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -44,6 +44,7 @@ spec:
           - "list"
           - "patch"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -76,6 +77,7 @@ spec:
 
     labels:
       name: node-drain
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -85,7 +87,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -112,6 +114,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -147,6 +150,7 @@ spec:
 
     labels:
       name: disk-fill
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -156,7 +160,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Namespaced
@@ -181,6 +185,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -220,7 +225,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Namespaced
@@ -245,6 +250,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always 
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_memory_hog/pod_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -288,7 +294,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Namespaced
@@ -313,6 +319,7 @@ spec:
           - "update"
           - "get"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -356,7 +363,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Namespaced
@@ -391,6 +398,7 @@ spec:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -435,7 +443,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Namespaced
@@ -460,6 +468,7 @@ spec:
         - "update"
         - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -503,7 +512,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -529,6 +538,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -587,7 +597,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Namespaced
@@ -612,6 +622,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -655,7 +666,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Cluster
@@ -688,6 +699,7 @@ spec:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_cpu_hog/node_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -731,7 +743,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -764,6 +776,7 @@ spec:
           - "get"
           - "list"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -797,6 +810,7 @@ spec:
       
     labels:
       name: node-memory-hog
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -805,7 +819,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.18
+  version: 0.1.19
 spec:
   definition:
     scope: Namespaced
@@ -832,6 +846,7 @@ spec:
           - "patch"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -874,5 +889,6 @@ spec:
 
     labels:
       name: container-kill
+
 ---
 
