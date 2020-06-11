@@ -356,7 +356,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Namespaced
@@ -422,7 +422,7 @@ spec:
       value: 'litmuschaos/pod-deleter:latest'
 
     - name: LIB
-      value: ''    
+      value: 'litmus'    
     labels:
       name: pod-delete
 
