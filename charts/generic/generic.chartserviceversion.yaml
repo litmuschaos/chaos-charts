@@ -25,6 +25,7 @@ spec:
     - disk-fill
     - node-memory-hog
     - pod-memory-hog
+    - kubelet-service-kill
 
   keywords:
     - Kubernetes

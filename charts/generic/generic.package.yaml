@@ -36,3 +36,7 @@ experiments:
   - name: pod-memory-hog
     CSV: pod-memory-hog.chartserviceversion.yaml
     desc: "pod-memory-hog"   
+  - name: kubelet-service-kill
+    CSV: kubelet-service-kill.chartserviceversion.yaml
+    desc: "kubelet-service-kill"
+    
