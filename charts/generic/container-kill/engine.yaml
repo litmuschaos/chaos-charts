@@ -34,13 +34,4 @@ spec:
             # provide the total chaos duration
             - name: TOTAL_CHAOS_DURATION
               value: '20'
-
-            # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
-            # For pumba image use: gaiaadm/pumba:0.6.5
-            # For containerd image use: litmuschaos/container-kill-helper:latest
-            - name: LIB_IMAGE  
-              value: 'gaiaadm/pumba:0.6.5' 
-
-            # It supports pumba and containerd 
-            - name: LIB
-              value: 'pumba'
+              
