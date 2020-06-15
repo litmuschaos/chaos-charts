@@ -6,7 +6,7 @@ setup_git() {
 }
 
 commit_updated_changes() {
-  git checkout master
+  git checkout v1.5.x
   git status
   git add .
   git commit --message " $TRAVIS_BUILD_NUMBER: version upgraded for chaos-charts"
@@ -15,7 +15,7 @@ commit_updated_changes() {
 
 upload_files() {
   git remote -v
-  git push origin master
+  git push origin v1.5.x
 }
 
 setup_git
