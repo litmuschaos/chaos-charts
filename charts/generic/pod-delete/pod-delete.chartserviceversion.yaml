@@ -33,7 +33,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_delete
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-delete
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-delete/
     - name: Video
