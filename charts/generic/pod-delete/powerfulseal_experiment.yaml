@@ -39,14 +39,17 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-delete
+    - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
       value: '15'
@@ -65,10 +68,7 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-helper:latest'
-
     - name: LIB
-      value: 'litmus'    
+      value: 'powerfulseal'    
     labels:
       name: pod-delete
