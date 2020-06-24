@@ -72,5 +72,7 @@ spec:
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
+    securityContext:
+    
     labels:
       name: container-kill
