@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-13T10:28:08Z
   name: disk-loss
-  version: 0.1.10
+  version: 0.1.11
   annotations:
     categories: Kubernetes
     vendor: Mayadata

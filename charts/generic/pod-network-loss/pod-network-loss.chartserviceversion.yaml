@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-11T10:28:08Z
   name: pod-network-loss
-  version: 0.1.11
+  version: 0.1.12
   annotations:
     categories: Kubernetes
     vendor: CNCF

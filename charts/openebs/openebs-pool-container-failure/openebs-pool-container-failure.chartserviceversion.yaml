@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-13T10:28:08Z
   name: openebs-pool-container-failure
-  version: 0.1.12
+  version: 0.1.13
   annotations:
     categories: OpenEBS
     vendor: CNCF
