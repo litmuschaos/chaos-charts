@@ -934,7 +934,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.21
+  version: 0.1.22
 spec:
   definition:
     scope: Namespaced
@@ -1002,6 +1002,10 @@ spec:
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
+    securityContext:
+      containerSecurityContext:
+        privileged: true
+    
     labels:
       name: container-kill
 
