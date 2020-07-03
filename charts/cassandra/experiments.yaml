@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cassandra-pod-delete
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     scope: Namespaced

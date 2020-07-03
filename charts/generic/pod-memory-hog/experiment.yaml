@@ -6,7 +6,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced

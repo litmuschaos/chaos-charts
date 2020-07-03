@@ -8,7 +8,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -68,7 +68,7 @@ spec:
     - name: LIB
       value: 'litmus'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -87,7 +87,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -134,7 +134,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -160,7 +160,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -184,40 +184,41 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-cpu-hog
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+    
+    - name: CHAOS_INTERVAL
+      value: '10'
 
-    - name: TARGET_CONTAINER
-      value: ''
-
+    ## Number of CPU cores to stress
     - name: CPU_CORES
       value: '1'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
+    ## Percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
-    # Period to wait before injection of chaos in sec
+    ## Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
     - name: LIB
       value: 'litmus'
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/app-cpu-stress:latest' 
+      
     labels:
       name: pod-cpu-hog
 
 ---
 
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -225,7 +226,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -249,42 +250,38 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
-    imagePullPolicy: Always 
+    image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_memory_hog/pod_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-memory-hog
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+      - name: TOTAL_CHAOS_DURATION
+        value: '30'
 
-    # Provide name of target container
-    # where chaos has to be injected
-    - name: TARGET_CONTAINER
-      value: ''
+      - name: CHAOS_INTERVAL
+        value: '10'
 
-    # Enter the amount of memory in megabytes to be consumed by the application pod
-    # default: 500 (Megabytes) 
-    - name: MEMORY_CONSUMPTION
-      value: '500'
+      ## enter the amount of memory in megabytes to be consumed by the application pod
+      - name: MEMORY_CONSUMPTION
+        value: '500'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
 
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
+      ## Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''     
 
-    - name: LIB
-      value: 'litmus'
+      ## env var that describes the library used to execute the chaos
+      ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
+      - name: LIB
+        value: 'litmus'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/app-memory-stress:latest' 
     labels:
       name: pod-memory-hog
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -294,7 +291,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Namespaced
@@ -345,7 +342,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # Time period to wait before injection of chaos in sec
+    # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -363,7 +360,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -409,7 +406,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -440,7 +437,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Namespaced
@@ -491,7 +488,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # ime period to wait before injection of chaos in sec
+    # ime period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -509,7 +506,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -548,7 +545,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -594,7 +591,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Namespaced
@@ -645,7 +642,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # Time period to wait before injection of chaos in sec
+    # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -663,7 +660,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.18
+  version: 0.1.19
 spec:
   definition:
     scope: Cluster
@@ -710,7 +707,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -740,7 +737,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -786,7 +783,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -804,7 +801,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -856,7 +853,7 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'        
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -880,7 +877,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.20
+  version: 0.1.21
 spec:
   definition:
     scope: Namespaced
@@ -921,7 +918,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
