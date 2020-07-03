@@ -26,6 +26,8 @@ spec:
     - node-memory-hog
     - pod-memory-hog
     - kubelet-service-kill
+    - pod-network-duplication
+    
 
   keywords:
     - Kubernetes
