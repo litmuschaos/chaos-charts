@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.20
+  version: 0.1.21
 spec:
   definition:
     scope: Namespaced
@@ -45,7 +45,7 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -73,6 +73,8 @@ spec:
       value: 'gaiaadm/pumba:0.6.5' 
 
     securityContext:
+      containerSecurityContext:
+        privileged: true
     
     labels:
       name: container-kill

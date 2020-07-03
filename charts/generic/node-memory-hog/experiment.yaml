@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.8
+  version: 0.1.9
 spec:
   definition:
     scope: Cluster
@@ -57,7 +57,7 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'        
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 

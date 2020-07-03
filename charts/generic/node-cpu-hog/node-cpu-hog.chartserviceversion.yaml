@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-28T10:28:08Z
   name: node-cpu-hog
-  version: 0.0.11
+  version: 0.0.12
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -33,7 +33,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_cpu_hog
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/node_cpu_hog
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-cpu-hog/
     - name: Video
