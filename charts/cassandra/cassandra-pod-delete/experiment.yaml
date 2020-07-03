@@ -88,7 +88,7 @@ spec:
     - name: CASSANDRA_LIVENESS_CHECK
       value: ''
 
-    ## Period to wait before injection of chaos  
+    ## Period to wait before and after injection of chaos  
     - name: RAMP_TIME
       value: ''
 
