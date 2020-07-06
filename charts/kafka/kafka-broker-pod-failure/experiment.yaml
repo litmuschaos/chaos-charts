@@ -116,9 +116,12 @@ spec:
       value: ''
 
     ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus, powerfulseal
+    ## default: litmus. Supported values: litmus
     - name: LIB
       value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-delete-helper:latest'
  
     labels:
       name: kafka-broker-pod-failure
