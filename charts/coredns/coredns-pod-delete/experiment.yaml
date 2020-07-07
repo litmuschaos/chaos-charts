@@ -54,7 +54,12 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
+    #supported libs are litmus and powerfulseal
     - name: LIB
-      value: ''    
+      value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-delete-helper:latest'
+
     labels:
       name: coredns-pod-delete
