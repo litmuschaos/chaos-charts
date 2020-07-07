@@ -41,4 +41,7 @@ experiments:
     desc: "kubelet-service-kill"
   - name: pod-network-duplication
     CSV: pod-network-duplication.chartserviceversion.yaml
-    desc: "pod-network-duplication"    
+    desc: "pod-network-duplication" 
+  - name: node-taint
+    CSV: node-taint.chartserviceversion.yaml
+    desc: "node-taint"    
