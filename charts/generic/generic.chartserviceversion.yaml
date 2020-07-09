@@ -27,8 +27,8 @@ spec:
     - pod-memory-hog
     - kubelet-service-kill
     - pod-network-duplication
+    - node-taint
     
-
   keywords:
     - Kubernetes
     - Container
