@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-09-26T10:28:08Z
   name: generic
-  version: 0.1.14
+  version: 0.1.15
   annotations:
     categories: Kubernetes
     chartDescription: Injects generic kubernetes chaos 
