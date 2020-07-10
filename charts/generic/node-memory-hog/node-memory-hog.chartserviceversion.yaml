@@ -36,7 +36,7 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-memory-hog/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=ECxlWgQ8F5w
   icon:
     - url: ""
       mediatype: ""

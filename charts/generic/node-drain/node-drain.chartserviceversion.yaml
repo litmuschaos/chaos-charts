@@ -37,7 +37,7 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-drain/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=LQVCZUQ4-ok
   icon:
     - url: ""
       mediatype: ""
