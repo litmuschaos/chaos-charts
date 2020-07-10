@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-11T10:28:08Z
   name: disk-fill
-  version: 0.0.10
+  version: 0.0.11
   annotations:
     categories: Kubernetes
     vendor: CNCF
