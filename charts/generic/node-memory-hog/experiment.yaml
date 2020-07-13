@@ -37,17 +37,14 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-memory-hog
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
       value: '120'
