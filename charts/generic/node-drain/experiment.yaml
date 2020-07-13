@@ -41,17 +41,15 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-drain
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+   
     - name: LIVENESS_APP_LABEL
       value: ''
     
