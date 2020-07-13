@@ -1,0 +1,23 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: docker-service-kill 
+  version: 0.1.0
+  annotations:
+    categories: docker-service-kill
+    repository: https://github.com/litmuschaos/litmus-ansible/tree/master/generic/docker-service-kill
+    support: https://kubernetes.slack.com/messages/CNXNB0ZTN
+spec:
+  displayName: docker-service-kill 
+  categoryDescription: >
+    Randomly stops Docker services temporarily 
+  keywords: ['pods', 'kubernetes', 'sample-category', 'nginx'] 
+  maturity: alpha 
+  minKubeVersion: 1.12.0 
+  provider: {'name': 'Wipro'}
+  maintainers: ['ankur.ghosh3@wipro.com'] 
+  contributors: ['ankur.ghosh3@wipro.com'] 
+  links: ['https://docs.litmuschaos.io/docs/getstarted/'] 
+  icon:
+    - url: 
+      mediatype: ""
