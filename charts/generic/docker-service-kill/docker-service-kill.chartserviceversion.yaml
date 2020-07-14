@@ -11,7 +11,7 @@ spec:
   displayName: docker-service-kill 
   categoryDescription: >
     Randomly stops Docker services temporarily 
-  keywords: ['pods', 'kubernetes', 'sample-category', 'nginx'] 
+  keywords: ['pods', 'kubernetes', 'nginx'] 
   maturity: alpha 
   minKubeVersion: 1.12.0 
   provider: {'name': 'Wipro'}

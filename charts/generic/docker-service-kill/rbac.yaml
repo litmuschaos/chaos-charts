@@ -11,7 +11,6 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRole
 metadata:
   name: docker-service-kill-sa
-  namespace: default
   labels:
     name: docker-service-kill-sa
 rules:
@@ -26,7 +25,6 @@ apiVersion: rbac.authorization.k8s.io/v1beta1
 kind: ClusterRoleBinding
 metadata:
   name: docker-service-kill-sa
-  namespace: default
   labels:
     name: docker-service-kill-sa
 roleRef:
