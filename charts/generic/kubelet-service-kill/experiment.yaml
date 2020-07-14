@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -37,17 +37,15 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/kubelet_service_kill/kubelet_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/kubelet-service-kill
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+   
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 

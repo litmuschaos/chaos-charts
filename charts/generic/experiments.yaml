@@ -65,7 +65,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -100,17 +100,15 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-drain
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+   
     - name: LIVENESS_APP_LABEL
       value: ''
     
@@ -144,7 +142,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -170,17 +168,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/disk-fill
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TARGET_CONTAINER
       value: ''
@@ -425,7 +420,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -449,17 +444,15 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-corruption
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -571,7 +564,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.15
+  version: 0.1.16
 spec:
   definition:
     scope: Namespaced
@@ -595,17 +588,15 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-loss
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -725,7 +716,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.15
+  version: 0.1.16
 spec:
   definition:
     scope: Namespaced
@@ -749,17 +740,15 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-latency
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -794,7 +783,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.19
+  version: 0.1.20
 spec:
   definition:
     scope: Cluster
@@ -826,17 +815,14 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_cpu_hog/node_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-cpu-hog
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'
@@ -871,7 +857,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -903,17 +889,15 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/kubelet_service_kill/kubelet_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/kubelet-service-kill
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+   
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
@@ -935,7 +919,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.9
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -967,17 +951,14 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-memory-hog
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
       value: '120'
@@ -1011,7 +992,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.22
+  version: 0.1.23
 spec:
   definition:
     scope: Namespaced
@@ -1037,17 +1018,14 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/container-kill
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TARGET_CONTAINER
       value: ''
