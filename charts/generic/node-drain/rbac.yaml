@@ -14,7 +14,7 @@ metadata:
   labels:
     name: node-drain-sa
 rules:
-- apiGroups: ["","litmuschaos.io","batch","extensions"]
+- apiGroups: ["","litmuschaos.io","batch","extensions","apps"]
   resources: ["pods","jobs","events","chaosengines","pods/log","daemonsets","pods/eviction","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
