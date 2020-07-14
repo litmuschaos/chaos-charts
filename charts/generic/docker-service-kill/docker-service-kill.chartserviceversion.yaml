@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: docker-service-kill 
-  version: 0.1.0
+  version: 0.1.1
   annotations:
     categories: docker-service-kill
     repository: https://github.com/litmuschaos/litmus-ansible/tree/master/generic/docker-service-kill
