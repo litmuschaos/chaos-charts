@@ -922,7 +922,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.3
+  version: 0.1.4
 spec:
   definition:
     scope: Cluster
@@ -972,6 +972,11 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    # provide node name
+    - name: APP_NODE
+      value: ''
+
     labels:
       name: kubelet-service-kill
 
