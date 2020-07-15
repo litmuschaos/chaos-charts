@@ -55,5 +55,10 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    # provide node name
+    - name: APP_NODE
+      value: ''
+
     labels:
       name: kubelet-service-kill
