@@ -41,7 +41,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.0"
     imagePullPolicy: Always
     args:
     - -c
