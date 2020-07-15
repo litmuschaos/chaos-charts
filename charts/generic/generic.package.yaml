@@ -44,4 +44,7 @@ experiments:
     desc: "pod-network-duplication" 
   - name: node-taint
     CSV: node-taint.chartserviceversion.yaml
-    desc: "node-taint"    
+    desc: "node-taint"
+  - name: docker-service-kill
+    CSV: docker-service-kill.chartserviceversion.yaml
+    desc: "docker-service-kill"
