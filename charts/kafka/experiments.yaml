@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.10
+  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -137,7 +137,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.7
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -164,7 +164,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.0"
     imagePullPolicy: Always
     args:
     - -c
