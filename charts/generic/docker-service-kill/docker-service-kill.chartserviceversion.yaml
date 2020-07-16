@@ -32,7 +32,7 @@ spec:
     name: Wipro
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/docker_service_kill
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/docker_service_kill
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/docker-service-kill/
     - name: Video
