@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2020-06-13T10:28:08Z
+  createdAt: 2020-07-14T10:28:08Z
   name: docker-service-kill
   version: 0.1.0
   annotations:
