@@ -28,6 +28,7 @@ spec:
     - kubelet-service-kill
     - pod-network-duplication
     - node-taint
+    - docker-service-kill
     
   keywords:
     - Kubernetes
