@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-13T10:28:08Z
   name: node-taint
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     vendor: Mayadata

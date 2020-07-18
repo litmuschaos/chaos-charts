@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-07-01T10:28:08Z
   name: pod-network-duplication
-  version: 0.1.1
+  version: 0.1.2
   annotations:
     categories: Kubernetes
     vendor: CNCF
