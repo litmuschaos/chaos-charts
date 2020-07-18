@@ -23,6 +23,7 @@ spec:
     - Packet(Kubeadm) 
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: LaumiH

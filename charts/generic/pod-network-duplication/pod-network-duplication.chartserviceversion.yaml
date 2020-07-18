@@ -23,6 +23,7 @@ spec:
     - Minikube 
     - Packet(Kubeadm)
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: Udit Gaurav
