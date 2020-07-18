@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-03-28T10:28:08Z
   name: node-memory-hog
-  version: 0.1.4
+  version: 0.1.5
   annotations:
     categories: Kubernetes
     vendor: CNCF

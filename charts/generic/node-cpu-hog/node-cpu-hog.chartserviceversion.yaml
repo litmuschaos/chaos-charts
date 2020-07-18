@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-28T10:28:08Z
   name: node-cpu-hog
-  version: 0.0.13
+  version: 0.0.14
   annotations:
     categories: Kubernetes
     vendor: CNCF

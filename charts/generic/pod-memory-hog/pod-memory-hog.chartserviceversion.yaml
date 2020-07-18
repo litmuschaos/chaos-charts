@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-04-10T10:28:08Z
   name: pod-memory-hog
-  version: 0.1.3
+  version: 0.1.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
