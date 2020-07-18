@@ -24,6 +24,7 @@ spec:
     - Packet(Kubeadm)
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: ksatchit

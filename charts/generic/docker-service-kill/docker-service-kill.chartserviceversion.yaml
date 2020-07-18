@@ -23,6 +23,7 @@ spec:
 
   platforms:
     - GKE    
+    - AKS
   maturity: alpha
   maintainers:
     - name: Ankur Ghosh

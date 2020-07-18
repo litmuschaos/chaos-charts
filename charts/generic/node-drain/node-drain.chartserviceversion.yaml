@@ -23,6 +23,7 @@ spec:
     - Packet(Kubeadm)
     - Konvoy
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
