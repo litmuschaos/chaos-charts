@@ -14,7 +14,6 @@ spec:
     Node CPU hog contains chaos to disrupt the state of Kubernetes resources. Experiments can inject a CPU spike on a node where the application pod is scheduled.
     - CPU hog on a particular node where the application deployment is available.
     - After test, the recovery should be manual for the application pod and node in case they are not in an appropriate state.
-
   keywords:
     - Kubernetes
     - CPU
