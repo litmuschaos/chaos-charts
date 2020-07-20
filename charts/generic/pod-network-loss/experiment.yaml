@@ -48,6 +48,9 @@ spec:
     - name: NETWORK_INTERFACE
       value: 'eth0'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' #in PERCENTAGE
 
