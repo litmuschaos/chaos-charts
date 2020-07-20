@@ -68,6 +68,9 @@ spec:
     - name: NETWORK_DELAY
       value: '60000'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
