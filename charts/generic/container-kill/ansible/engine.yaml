@@ -5,7 +5,7 @@ metadata:
   namespace: default
 spec:
   # It can be true/false
-  annotationCheck: 'false'
+  annotationCheck: 'true'
   # It can be active/stop
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
@@ -14,18 +14,24 @@ spec:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  chaosServiceAccount: node-cpu-hog-sa
+  chaosServiceAccount: container-kill-sa
   monitoring: false
   # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
+  jobCleanUpPolicy: 'delete' 
   experiments:
-    - name: node-cpu-hog
+    - name: container-kill
       spec:
         components:
           env:
-            # set chaos duration (in sec) as desired
+            # specify the name of the container to be killed
+            - name: TARGET_CONTAINER
+              value: 'nginx'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
+
+            # provide the total chaos duration
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
-            
-            - name: NODE_CPU_CORE
-              value: ''
+              value: '20'
+              
