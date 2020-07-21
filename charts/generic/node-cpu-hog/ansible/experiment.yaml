@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.19
+  version: 0.1.20
 spec:
   definition:
     scope: Cluster
