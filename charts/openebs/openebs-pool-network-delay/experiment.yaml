@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.6
+  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -67,6 +67,9 @@ spec:
     # in milliseconds
     - name: NETWORK_DELAY
       value: '60000'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
