@@ -43,6 +43,9 @@ spec:
     - name: TARGET_CONTAINER
       value: ''
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+      
     - name: NETWORK_INTERFACE
       value: 'eth0'
 
