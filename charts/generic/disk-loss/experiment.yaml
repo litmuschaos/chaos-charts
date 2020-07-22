@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.15
+  version: 0.1.16
 spec:
   definition:
     scope: Cluster
