@@ -29,7 +29,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.6.0"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
