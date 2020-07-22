@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-13T10:28:08Z
   name: node-drain
-  version: 0.1.11
+  version: 0.1.12
   annotations:
     categories: Kubernetes
     vendor: Mayadata
@@ -23,6 +23,7 @@ spec:
     - Packet(Kubeadm)
     - Konvoy
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:

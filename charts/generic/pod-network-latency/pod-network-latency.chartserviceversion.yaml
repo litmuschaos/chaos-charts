@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-11T10:28:08Z
   name: pod-network-latency
-  version: 0.1.12
+  version: 0.1.13
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -22,6 +22,7 @@ spec:
     - Minikube 
     - Packet(Kubeadm)
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: ksatchit

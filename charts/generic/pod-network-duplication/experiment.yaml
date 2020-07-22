@@ -29,7 +29,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:1.6.0"
+    image: "litmuschaos/go-runner:1.6.1"
     args:
     - -c
     - ./experiments/pod-network-duplication
@@ -38,17 +38,27 @@ spec:
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
+
     - name: RAMP_TIME
       value: ''
+
     - name: TARGET_CONTAINER
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
     - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
       value: '100' # in percentage
+
     - name: LIB
       value: 'pumba'      
+
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5'
+
     labels:
       name: pod-network-duplication

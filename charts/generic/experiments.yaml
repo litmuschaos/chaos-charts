@@ -40,18 +40,28 @@ spec:
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
+
     - name: RAMP_TIME
       value: ''
+
     - name: TARGET_CONTAINER
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
     - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
       value: '100' # in percentage
+
     - name: LIB
       value: 'pumba'      
+
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5'
+
     labels:
       name: pod-network-duplication
 
@@ -463,6 +473,9 @@ spec:
     - name: NETWORK_INTERFACE
       value: 'eth0'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
       value: '100' #in PERCENTAGE
 
@@ -606,6 +619,9 @@ spec:
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' #in PERCENTAGE
@@ -758,6 +774,9 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_LATENCY
       value: '60000' #in ms
@@ -1033,8 +1052,8 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '120'
 
-    ## specify the size as percent of total available memory (in percentage %)
-    ## Default value "90%"
+    ## specify the size as percent of total available memory (in percentage)
+    ## Default value "90"
     - name: MEMORY_PERCENTAGE
       value: '90'        
 

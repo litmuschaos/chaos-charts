@@ -456,6 +456,9 @@ spec:
     - name: APP_PVC
       value: ''
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE
@@ -543,6 +546,9 @@ spec:
 
     - name: APP_PVC
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
@@ -738,6 +744,9 @@ spec:
     # in milliseconds
     - name: NETWORK_DELAY
       value: '60000'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
@@ -1009,6 +1018,9 @@ spec:
     # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' # in percentage

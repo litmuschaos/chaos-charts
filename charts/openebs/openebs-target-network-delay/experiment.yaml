@@ -41,7 +41,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.6.0"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -57,6 +57,9 @@ spec:
 
     - name: APP_PVC
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5

@@ -30,7 +30,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.6.0"
+    image: "litmuschaos/go-runner:1.6.1"
     args:
     - -c
     - ./experiments/pod-memory-hog
