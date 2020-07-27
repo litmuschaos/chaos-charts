@@ -32,4 +32,4 @@ roleRef:
 subjects:
 - kind: ServiceAccount
   name: chaos-admin
-  namespace: msaasfmea4-perf-infra-usw2-ppd-pfi
+  namespace: default
