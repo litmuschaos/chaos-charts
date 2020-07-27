@@ -3,12 +3,12 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-02-24T10:28:08Z
   name: chaostoolkit
-  version: 0.0.4
+  version: 0.0.5
   annotations:
     categories: Kubernetes
     chartDescription: Injects chaostoolkit chaos
 spec:
-  displayName: chaostoolkit chaos
+  displayName: Chaostoolkit Chaos
   categoryDescription:
   experiments:
     - k8-pod-delete

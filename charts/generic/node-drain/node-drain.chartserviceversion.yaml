@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-13T10:28:08Z
   name: node-drain
-  version: 0.1.9
+  version: 0.1.12
   annotations:
     categories: Kubernetes
     vendor: Mayadata
@@ -23,6 +23,7 @@ spec:
     - Packet(Kubeadm)
     - Konvoy
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
@@ -33,11 +34,11 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_drain
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/node_drain
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-drain/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=LQVCZUQ4-ok
   icon:
     - url: ""
       mediatype: ""

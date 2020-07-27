@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-15T10:28:08Z
   name: container-kill
-  version: 0.1.11
+  version: 0.1.13
   annotations:
     categories: "Kubernetes"
     vendor: "CNCF"
@@ -22,6 +22,7 @@ spec:
     - Minikube 
     - Packet(Kubeadm)
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -31,7 +32,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/container_kill
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/container_kill
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/container-kill/
     - name: Video

@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-04-10T10:28:08Z
   name: pod-memory-hog
-  version: 0.1.1
+  version: 0.1.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -22,6 +22,7 @@ spec:
     - Packet(Kubeadm)
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: Udit Gaurav
@@ -31,11 +32,11 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_memory_hog
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/pod_memory_hog
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-memory-hog/
     - name: Video
-      url: 
+      url: https://www.youtube.com/watch?v=HuAXg8W5Tzo 
   icon:
     - base64data: ""
       mediatype: ""

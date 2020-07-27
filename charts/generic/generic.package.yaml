@@ -36,3 +36,15 @@ experiments:
   - name: pod-memory-hog
     CSV: pod-memory-hog.chartserviceversion.yaml
     desc: "pod-memory-hog"   
+  - name: kubelet-service-kill
+    CSV: kubelet-service-kill.chartserviceversion.yaml
+    desc: "kubelet-service-kill"
+  - name: pod-network-duplication
+    CSV: pod-network-duplication.chartserviceversion.yaml
+    desc: "pod-network-duplication" 
+  - name: node-taint
+    CSV: node-taint.chartserviceversion.yaml
+    desc: "node-taint"
+  - name: docker-service-kill
+    CSV: docker-service-kill.chartserviceversion.yaml
+    desc: "docker-service-kill"

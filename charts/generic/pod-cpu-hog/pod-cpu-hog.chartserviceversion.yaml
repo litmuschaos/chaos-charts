@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-07T10:28:08Z
   name: pod-cpu-hog
-  version: 0.1.6
+  version: 0.1.8
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -22,6 +22,7 @@ spec:
     - Packet(Kubeadm)
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -31,7 +32,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_cpu_hog
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/pod_cpu_hog
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-cpu-hog/
     - name: Video

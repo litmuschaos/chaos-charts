@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-10-15T10:28:08Z
   name: pod-delete
-  version: 0.1.11
+  version: 0.1.13
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -24,6 +24,7 @@ spec:
     - Packet(Kubeadm)
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: ksatchit
@@ -33,7 +34,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_delete
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-delete
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-delete/
     - name: Video

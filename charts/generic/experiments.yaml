@@ -1,5 +1,72 @@
 ---
 
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects network packet duplication on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-duplication
+  version: 0.1.2
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+    - apiGroups:
+        - ""
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments/pod-network-duplication
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: RAMP_TIME
+      value: ''
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
+      value: '100' # in percentage
+
+    - name: LIB
+      value: 'pumba'      
+
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5'
+
+    labels:
+      name: pod-network-duplication
+
+---
+
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -8,7 +75,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.10
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -43,16 +110,15 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_drain/node_drain_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-drain
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+   
     - name: LIVENESS_APP_LABEL
       value: ''
     
@@ -67,7 +133,7 @@ spec:
     - name: LIB
       value: 'litmus'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -76,6 +142,7 @@ spec:
 
     labels:
       name: node-drain
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -85,7 +152,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.10
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -111,16 +178,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/disk_fill/disk_fill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/disk-fill
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TARGET_CONTAINER
       value: ''
@@ -131,7 +196,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -139,9 +204,92 @@ spec:
     # Only litmus supported
     - name: LIB
       value: 'litmus'
-      
+
+    # Provide the container runtime path
+    # Default set to docker
+    - name: CONTAINER_PATH
+      value: '/var/lib/docker/containers'
+
     labels:
       name: disk-fill
+
+---
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Taint the node where application pod is scheduled
+kind: ChaosExperiment
+metadata:
+  name: node-taint
+  version: 0.1.1
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "daemonsets"
+          - "pods/eviction"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+          - "patch"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/node-taint
+    command:
+    - /bin/bash
+    env:
+
+    - name: APP_NODE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # set taint label & effect
+    # key=value:effect or key:effect
+    - name: TAINTS
+      value: '' 
+
+    labels:
+      name: node-taint
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -151,7 +299,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -175,39 +323,41 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-cpu-hog
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+    
+    - name: CHAOS_INTERVAL
+      value: '10'
 
-    - name: TARGET_CONTAINER
-      value: ''
-
+    ## Number of CPU cores to stress
     - name: CPU_CORES
       value: '1'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
+    ## Percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
-    # Period to wait before injection of chaos in sec
+    ## Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
     - name: LIB
       value: 'litmus'
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/app-cpu-stress:latest' 
+      
     labels:
       name: pod-cpu-hog
 
 ---
 
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -215,7 +365,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -239,41 +389,38 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_memory_hog/pod_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-memory-hog
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+      - name: TOTAL_CHAOS_DURATION
+        value: '30'
 
-    # Provide name of target container
-    # where chaos has to be injected
-    - name: TARGET_CONTAINER
-      value: ''
+      - name: CHAOS_INTERVAL
+        value: '10'
 
-    # Enter the amount of memory in megabytes to be consumed by the application pod
-    # default: 500 (Megabytes) 
-    - name: MEMORY_CONSUMPTION
-      value: '500'
+      ## enter the amount of memory in megabytes to be consumed by the application pod
+      - name: MEMORY_CONSUMPTION
+        value: '500'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
 
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
+      ## Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''     
 
-    - name: LIB
-      value: 'litmus'
+      ## env var that describes the library used to execute the chaos
+      ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
+      - name: LIB
+        value: 'litmus'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/app-memory-stress:latest' 
     labels:
       name: pod-memory-hog
-
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -283,7 +430,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.8
+  version: 0.1.12
 spec:
   definition:
     scope: Namespaced
@@ -307,16 +454,15 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_corruption/pod_network_corruption_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-corruption
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -327,13 +473,16 @@ spec:
     - name: NETWORK_INTERFACE
       value: 'eth0'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # Time period to wait before injection of chaos in sec
+    # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -351,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.12
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -385,21 +534,19 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-delete
     command:
     - /bin/bash
     env:
 
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -413,8 +560,11 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-delete-helper:latest'
+
     - name: LIB
-      value: ''    
+      value: 'litmus'    
     labels:
       name: pod-delete
 
@@ -427,7 +577,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.13
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
@@ -451,16 +601,15 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_loss/pod_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-loss
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -471,13 +620,16 @@ spec:
     - name: NETWORK_INTERFACE
       value: 'eth0'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' #in PERCENTAGE
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # ime period to wait before injection of chaos in sec
+    # ime period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -495,7 +647,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.11
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -521,6 +673,7 @@ spec:
           - "update"
           - "delete"
     image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
@@ -533,7 +686,7 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -552,6 +705,11 @@ spec:
 
     - name: DISK_NAME
       value: ''  
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
           
     - name: ZONE_NAME
       value: '' 
@@ -574,7 +732,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.13
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
@@ -598,16 +756,15 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_network_latency/pod_network_latency_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-network-latency
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -618,13 +775,16 @@ spec:
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5' 
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_LATENCY
       value: '60000' #in ms
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
-    # Time period to wait before injection of chaos in sec
+    # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -642,7 +802,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.16
+  version: 0.1.20
 spec:
   definition:
     scope: Cluster
@@ -674,21 +834,19 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_cpu_hog/node_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/node-cpu-hog
     command:
     - /bin/bash
     env:
 
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -704,20 +862,86 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/cpu:latest' 
+      value: 'litmuschaos/stress-ng:latest' 
    
     labels:
       name: node-cpu-hog
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Give a memory hog on a node belonging to a deployment
+    Kills the docker service on the application node to check the resiliency.
 kind: ChaosExperiment
 metadata:
-  name: node-memory-hog
-  version: 0.1.6
+  name: docker-service-kill
+  version: 0.1.1
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/docker_service_kill/docker_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '90' # in seconds
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+    labels:
+      name: docker-service-kill
+
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kills the kubelet service on the application node to check the resiliency.
+kind: ChaosExperiment
+metadata:
+  name: kubelet-service-kill
+  version: 0.1.4
 spec:
   definition:
     scope: Cluster
@@ -749,26 +973,91 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/node_memory_hog/node_memory_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/kubelet-service-kill
+    command:
+    - /bin/bash
+    env:
+   
+    - name: TOTAL_CHAOS_DURATION
+      value: '90' # in seconds
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    # provide node name
+    - name: APP_NODE
+      value: ''
+
+    labels:
+      name: kubelet-service-kill
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a memory hog on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-memory-hog
+  version: 0.1.11
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/node-memory-hog
     command:
     - /bin/bash
     env:
 
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
     - name: TOTAL_CHAOS_DURATION
       value: '120'
 
-    ## specify the size as percent of total available memory (in percentage %)
-    ## Default value "90%"
+    ## specify the size as percent of total available memory (in percentage)
+    ## Default value "90"
     - name: MEMORY_PERCENTAGE
       value: '90'        
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -779,10 +1068,11 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'alexeiled/stress-ng:latest' 
+      value: 'litmuschaos/stress-ng:latest' 
       
     labels:
       name: node-memory-hog
+
 ---
 
 apiVersion: litmuschaos.io/v1alpha1
@@ -791,7 +1081,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.16
+  version: 0.1.23
 spec:
   definition:
     scope: Namespaced
@@ -817,21 +1107,19 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/container_kill/container_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/container-kill
     command:
     - /bin/bash
     env:
 
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
     - name: TARGET_CONTAINER
       value: ''
 
-    # Period to wait before injection of chaos in sec
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
@@ -843,17 +1131,27 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
+    # provide the container runtime path for containerd
+    # applicable only for containerd runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
+
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
     # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: gprasath/crictl:ci
+    # For containerd image use: litmuschaos/container-kill-helper:latest
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
 
+    securityContext:
+      containerSecurityContext:
+        privileged: true
+    
     labels:
       name: container-kill
+
 ---
 

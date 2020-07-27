@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-pool-network-delay
-  version: 0.1.3
+  version: 0.1.4
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -28,7 +28,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-pool-network-delay
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-network-delay
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-pool-network-delay/
     - name: Video

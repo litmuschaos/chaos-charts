@@ -1,0 +1,74 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Taint the node where application pod is scheduled
+kind: ChaosExperiment
+metadata:
+  name: node-taint
+  version: 0.1.1
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "daemonsets"
+          - "pods/eviction"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+          - "patch"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/node-taint
+    command:
+    - /bin/bash
+    env:
+
+    - name: APP_NODE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # set taint label & effect
+    # key=value:effect or key:effect
+    - name: TAINTS
+      value: '' 
+
+    labels:
+      name: node-taint
