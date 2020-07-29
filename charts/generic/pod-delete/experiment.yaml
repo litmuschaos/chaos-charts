@@ -65,9 +65,6 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-helper:latest'
-
     - name: LIB
       value: 'litmus'    
     labels:

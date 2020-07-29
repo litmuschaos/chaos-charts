@@ -43,7 +43,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'

@@ -65,7 +65,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/stress-ng:latest' 
+      value: 'litmuschaos/go-runner:latest' 
       
     labels:
       name: node-memory-hog
