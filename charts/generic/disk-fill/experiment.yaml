@@ -58,6 +58,9 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest'
+
     # Provide the container runtime path
     # Default set to docker
     - name: CONTAINER_PATH

@@ -46,7 +46,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'

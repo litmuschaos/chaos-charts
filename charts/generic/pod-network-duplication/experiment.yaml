@@ -58,7 +58,7 @@ spec:
       value: 'pumba'      
 
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5'
+      value: 'litmuschaos/go-runner:latest'
 
     labels:
       name: pod-network-duplication
