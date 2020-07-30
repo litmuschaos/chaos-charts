@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.22
+  version: 0.1.23
 spec:
   definition:
     scope: Namespaced
@@ -30,7 +30,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.6.0"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c

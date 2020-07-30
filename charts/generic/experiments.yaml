@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-duplication
-  version: 0.1.2
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -60,7 +60,7 @@ spec:
       value: 'pumba'      
 
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5'
+      value: 'litmuschaos/go-runner:latest'
 
     labels:
       name: pod-network-duplication
@@ -152,7 +152,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.14
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -204,6 +204,9 @@ spec:
     # Only litmus supported
     - name: LIB
       value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest'
 
     # Provide the container runtime path
     # Default set to docker
@@ -430,7 +433,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.12
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -468,7 +471,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -500,7 +503,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.18
+  version: 0.1.19
 spec:
   definition:
     scope: Namespaced
@@ -560,9 +563,6 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-helper:latest'
-
     - name: LIB
       value: 'litmus'    
     labels:
@@ -577,7 +577,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -615,7 +615,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -732,7 +732,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.17
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -773,7 +773,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -802,7 +802,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.20
+  version: 0.1.21
 spec:
   definition:
     scope: Cluster
@@ -862,7 +862,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/stress-ng:latest' 
+      value: 'litmuschaos/go-runner:latest' 
    
     labels:
       name: node-cpu-hog
@@ -1008,7 +1008,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.11
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -1068,7 +1068,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/stress-ng:latest' 
+      value: 'litmuschaos/go-runner:latest' 
       
     labels:
       name: node-memory-hog
@@ -1081,7 +1081,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.23
+  version: 0.1.24
 spec:
   definition:
     scope: Namespaced
@@ -1123,7 +1123,9 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supports pumba and containerd 
+    # It supports pumba and litmus
+    # pumba: for docker runtime
+    # litmus: for containerd/crio runtime
     - name: LIB
       value: 'pumba'
 
@@ -1140,11 +1142,8 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
-    # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: litmuschaos/container-kill-helper:latest
     - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     securityContext:
       containerSecurityContext:

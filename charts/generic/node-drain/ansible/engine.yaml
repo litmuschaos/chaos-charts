@@ -25,4 +25,4 @@ spec:
           env:
             # set node name
             - name: APP_NODE
-              value: 'node-1'
+              value: 'node-01'

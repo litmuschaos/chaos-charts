@@ -32,6 +32,13 @@ spec:
           - "patch"
           - "update"
           - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
