@@ -22,6 +22,8 @@ spec:
     - name: node-drain
       spec:
         components:
+          nodeSelector: 
+            kubernetes.io/hostname: 'node02'        
           env:
             # set node name
             - name: APP_NODE
