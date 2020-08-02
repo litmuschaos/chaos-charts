@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-02-24T10:28:08Z
   name: Kubernetes
-  version: 0.0.6
+  version: 0.0.7
   annotations:
     categories: Kubernetes
     chartDescription: Injects chaostoolkit chaos
