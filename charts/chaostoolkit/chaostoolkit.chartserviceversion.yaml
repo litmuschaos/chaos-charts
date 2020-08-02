@@ -2,13 +2,13 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2020-02-24T10:28:08Z
-  name: chaostoolkit
+  name: Kubernetes
   version: 0.0.6
   annotations:
     categories: Kubernetes
     chartDescription: Injects chaostoolkit chaos
 spec:
-  displayName: Chaostoolkit Chaos
+  displayName: Kubernetes Chaos
   categoryDescription:
   experiments:
     - k8-pod-delete
