@@ -33,7 +33,7 @@ spec:
               value: 'eth0'     
 
             - name: LIB_IMAGE
-              value: 'litmuschaos/go-runner:latest'
+              value: 'litmuschaos/go-runner:1.6.2'
 
             - name: NETWORK_LATENCY
               value: '60000'

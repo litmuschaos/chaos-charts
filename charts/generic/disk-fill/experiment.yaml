@@ -31,7 +31,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -59,7 +59,7 @@ spec:
       value: 'litmus'
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.6.2'
 
     # Provide the container runtime path
     # Default set to docker
