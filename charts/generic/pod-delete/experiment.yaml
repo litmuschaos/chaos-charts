@@ -39,7 +39,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -64,9 +64,6 @@ spec:
 
     - name: CHAOS_INTERVAL
       value: '5'
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-helper:latest'
 
     - name: LIB
       value: 'litmus'    

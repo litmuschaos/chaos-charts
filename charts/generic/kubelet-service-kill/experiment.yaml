@@ -37,7 +37,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.2"
     imagePullPolicy: Always
     args:
     - -c

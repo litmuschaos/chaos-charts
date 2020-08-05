@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.16
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
@@ -29,7 +29,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -43,10 +43,13 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:1.6.2' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' #in PERCENTAGE

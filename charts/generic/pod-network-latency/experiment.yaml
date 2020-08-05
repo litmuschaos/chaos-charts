@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.16
+  version: 0.1.17
 spec:
   definition:
     scope: Namespaced
@@ -29,7 +29,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -46,7 +46,10 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:1.6.2' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_LATENCY
       value: '60000' #in ms
