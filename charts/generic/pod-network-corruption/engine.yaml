@@ -28,6 +28,9 @@ spec:
             - name: TARGET_CONTAINER
               value: 'nginx' 
 
+            - name: LIB_IMAGE
+              value: 'litmuschaos/go-runner:1.6.2'
+
             #Network interface inside target container              
             - name: NETWORK_INTERFACE
               value: 'eth0'

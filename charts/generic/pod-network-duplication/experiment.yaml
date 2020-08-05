@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-duplication
-  version: 0.1.3
+  version: 0.1.2
 spec:
   definition:
     scope: Namespaced
@@ -29,7 +29,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:1.6.1"
+    image: "litmuschaos/go-runner:1.6.2"
     args:
     - -c
     - ./experiments/pod-network-duplication
@@ -58,7 +58,7 @@ spec:
       value: 'pumba'      
 
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5'
+      value: 'litmuschaos/go-runner:1.6.2'
 
     labels:
       name: pod-network-duplication
