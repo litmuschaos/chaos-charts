@@ -10,7 +10,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.13
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -120,7 +120,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-disk-loss
-  version: 0.1.3
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -156,7 +156,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -228,7 +228,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.11
+  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -270,7 +270,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -330,7 +330,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
     scope: Namespaced
@@ -365,7 +365,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -405,7 +405,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.12
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -439,7 +439,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -455,6 +455,9 @@ spec:
 
     - name: APP_PVC
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
@@ -493,7 +496,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.13
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -527,7 +530,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -543,6 +546,9 @@ spec:
 
     - name: APP_PVC
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
@@ -582,7 +588,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-nfs-provisioner-kill
-  version: 0.1.2
+  version: 0.1.4
 spec:
   definition:
     scope: Cluster
@@ -624,7 +630,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -679,7 +685,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.6
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -716,7 +722,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -738,6 +744,9 @@ spec:
     # in milliseconds
     - name: NETWORK_DELAY
       value: '60000'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
@@ -766,7 +775,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.8
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -808,7 +817,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -860,7 +869,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.13
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -894,7 +903,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -953,7 +962,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.6
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -991,7 +1000,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1009,6 +1018,9 @@ spec:
     # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' # in percentage

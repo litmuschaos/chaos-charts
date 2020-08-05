@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.8
+  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -50,7 +50,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c

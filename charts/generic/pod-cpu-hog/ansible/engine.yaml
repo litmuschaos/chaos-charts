@@ -1,0 +1,38 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-cpu-hog-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: pod-cpu-hog
+      spec:
+        components:
+          env:
+            # Provide name of target container
+            # where chaos has to be injected
+            - name: TARGET_CONTAINER
+              value: 'nginx'
+
+            #number of cpu cores to be consumed
+            #verify the resources the app has been launched with
+            - name: CPU_CORES
+              value: '1'
+
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+            

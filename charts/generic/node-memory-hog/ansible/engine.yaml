@@ -1,0 +1,33 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: node-memory-hog-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: node-memory-hog
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '120'
+
+            ## specify the size as percent of total available memory (in percentage %)
+            ## default value 90%
+            - name: MEMORY_PERCENTAGE
+              value: '90'

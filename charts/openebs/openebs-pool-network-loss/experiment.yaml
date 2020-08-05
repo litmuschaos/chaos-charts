@@ -7,7 +7,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.6
+  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -45,7 +45,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -63,6 +63,9 @@ spec:
     # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE  
       value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' # in percentage

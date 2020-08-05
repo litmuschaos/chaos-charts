@@ -7,7 +7,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-duplication
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -31,7 +31,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     args:
     - -c
     - ./experiments/pod-network-duplication
@@ -40,18 +40,28 @@ spec:
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
+
     - name: RAMP_TIME
       value: ''
+
     - name: TARGET_CONTAINER
       value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
     - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
       value: '100' # in percentage
+
     - name: LIB
       value: 'pumba'      
+
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5'
+
     labels:
       name: pod-network-duplication
 
@@ -65,7 +75,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.13
+  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -100,7 +110,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -142,7 +152,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.14
+  version: 0.1.16
 spec:
   definition:
     scope: Cluster
@@ -168,7 +178,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -213,7 +223,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-taint
-  version: 0.1.1
+  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -248,7 +258,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -289,7 +299,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.11
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -313,7 +323,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -355,7 +365,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.3
+  version: 0.1.5
 spec:
   definition:
     scope: Namespaced
@@ -379,7 +389,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     args:
     - -c
     - ./experiments/pod-memory-hog
@@ -420,7 +430,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.11
+  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -444,7 +454,7 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -462,6 +472,9 @@ spec:
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
       value: '100' #in PERCENTAGE
@@ -487,7 +500,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.18
+  version: 0.1.20
 spec:
   definition:
     scope: Namespaced
@@ -521,7 +534,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -564,7 +577,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.16
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -588,7 +601,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -606,6 +619,9 @@ spec:
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_PACKET_LOSS_PERCENTAGE
       value: '100' #in PERCENTAGE
@@ -631,7 +647,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.14
+  version: 0.1.16
 spec:
   definition:
     scope: Cluster
@@ -656,7 +672,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -716,7 +732,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.16
+  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -740,7 +756,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -758,6 +774,9 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
 
     - name: NETWORK_LATENCY
       value: '60000' #in ms
@@ -783,7 +802,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.20
+  version: 0.1.22
 spec:
   definition:
     scope: Cluster
@@ -815,7 +834,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -857,7 +876,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: docker-service-kill
-  version: 0.1.1
+  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -889,7 +908,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -922,7 +941,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.3
+  version: 0.1.6
 spec:
   definition:
     scope: Cluster
@@ -954,7 +973,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -972,6 +991,11 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    # provide node name
+    - name: APP_NODE
+      value: ''
+
     labels:
       name: kubelet-service-kill
 
@@ -984,7 +1008,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.10
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -1016,7 +1040,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1028,8 +1052,8 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '120'
 
-    ## specify the size as percent of total available memory (in percentage %)
-    ## Default value "90%"
+    ## specify the size as percent of total available memory (in percentage)
+    ## Default value "90"
     - name: MEMORY_PERCENTAGE
       value: '90'        
 
@@ -1057,7 +1081,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.23
+  version: 0.1.25
 spec:
   definition:
     scope: Namespaced
@@ -1083,7 +1107,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c

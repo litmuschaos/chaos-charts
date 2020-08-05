@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-disk-loss
-  version: 0.1.3
+  version: 0.1.5
 spec:
   definition:
     scope: Cluster
@@ -44,7 +44,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c

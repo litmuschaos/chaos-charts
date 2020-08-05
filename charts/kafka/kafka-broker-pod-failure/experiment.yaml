@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.10
+  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -40,7 +40,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c

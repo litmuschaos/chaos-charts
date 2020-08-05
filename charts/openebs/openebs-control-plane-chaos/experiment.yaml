@@ -8,7 +8,7 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.4
+  version: 0.1.6
 spec:
   definition:
     scope: Namespaced
@@ -43,7 +43,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.6.1"
     imagePullPolicy: Always
     args:
     - -c

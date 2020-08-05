@@ -51,6 +51,9 @@ spec:
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
 
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
     - name: NETWORK_LATENCY
       value: '60000' #in ms
 
