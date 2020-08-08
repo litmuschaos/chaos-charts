@@ -11,8 +11,8 @@ metadata:
 spec:
   displayName: pod-autoscaler
   categoryDescription: |
-    The experiment aims to check the ability of nodes to accommodate the number of replicas of the same application pod.
-    Scale- this experiment can be used for different scenarios as well, like for checking the Node auto-scaling feature. If the pods are unable to schedule then the nodes are getting auto-scaled or not.
+    The experiment aims to check the ability of nodes to accommodate the number of replicas a given application pod.
+    This experiment can be used for other scenarios as well, such as for checking the Node auto-scaling feature. For example, check if the pods are successfully rescheduled within a specified period in cases where the existing nodes are already running at the specified limits.
   keywords:
     - Kubernetes
     - Scale
@@ -22,7 +22,7 @@ spec:
   platforms:
     - GKE
     - EKS
-    - AKS
+    - Minikube
   maturity: alpha
   chaosType: infra
   maintainers:
