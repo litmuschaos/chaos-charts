@@ -1,0 +1,44 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-08-08T10:28:08Z
+  name: pod-autoscaler
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-autoscaler
+  categoryDescription: |
+    The experiment aims to check the ability of nodes to accommodate the number of replicas of the same application pod.
+    Scale- this experiment can be used for different scenarios as well, like for checking the Node auto-scaling feature. If the pods are unable to schedule then the nodes are getting auto-scaled or not.
+  keywords:
+    - Kubernetes
+    - Scale
+    - State
+    - Node
+    - Replicas
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-autoscaler
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/pod-autoscaler/
+    - name: Video
+      url: 
+  icon: 
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-autoscaler/experiment.yaml

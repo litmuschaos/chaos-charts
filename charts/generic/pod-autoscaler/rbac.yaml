@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pod-autoscaler-sa
+  namespace: default
+  labels:
+    name: pod-autoscaler-sa
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRole
+metadata:
+  name: pod-autoscaler-sa
+  labels:
+    name: pod-autoscaler-sa
+rules:
+- apiGroups: ["","litmuschaos.io","batch","apps"]
+  resources: ["pods","deployments","jobs","events","chaosengines","pods/log","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get","list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1beta1
+kind: ClusterRoleBinding
+metadata:
+  name: pod-autoscaler-sa
+  labels:
+    name: pod-autoscaler-sa
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pod-autoscaler-sa
+subjects:
+- kind: ServiceAccount
+  name: pod-autoscaler-sa
+  namespace: default
