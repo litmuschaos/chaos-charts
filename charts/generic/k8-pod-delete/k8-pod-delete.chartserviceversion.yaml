@@ -26,8 +26,8 @@ spec:
     name: Intuit
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/chaostoolkit/kubernetes/pod-delete
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
   icon:
     - url:
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/chaostoolkit/k8-pod-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/k8-pod-delete/experiment.yaml
