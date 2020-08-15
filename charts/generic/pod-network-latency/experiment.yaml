@@ -29,7 +29,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.7.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -46,7 +46,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.7.0' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'

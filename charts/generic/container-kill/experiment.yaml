@@ -30,7 +30,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.7.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -66,7 +66,7 @@ spec:
       value: '20'
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.7.0' 
 
     securityContext:
       containerSecurityContext:
