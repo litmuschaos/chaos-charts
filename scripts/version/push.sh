@@ -15,7 +15,7 @@ commit_updated_changes() {
 
 upload_files() {
   git remote -v
-  git push origin master
+  git push origin v1.7.x 
 }
 
 setup_git
