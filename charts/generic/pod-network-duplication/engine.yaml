@@ -29,7 +29,7 @@ spec:
               value: '60' # in seconds
 
             - name: LIB_IMAGE
-              value: 'litmuschaos/go-runner:latest'
+              value: 'litmuschaos/go-runner:1.7.0'
 
             #Network interface inside target container
             - name: NETWORK_INTERFACE

@@ -37,7 +37,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.7.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -65,7 +65,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.7.0' 
       
     labels:
       name: node-memory-hog
