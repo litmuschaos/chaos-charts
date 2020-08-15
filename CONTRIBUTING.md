@@ -6,5 +6,5 @@ contributions. This repository is the canonical source for the chaos charts that
 Chaos Charts are a groups of categorized chaos experiments, represented as custom resource definitions that can be executed by the 
 [Litmus Chaos Operator](https://github.com/litmuschaos/chaos-operator). We would love to see your charts added to the list of community-charts. 
 
-To get started, refer the [developer guide](https://github.com/litmuschaos/litmus/tree/master/contribute/developer_guide)
+To get started, refer the [developer guide](https://github.com/litmuschaos/litmus-go/tree/master/contribute/developer-guide)
 
