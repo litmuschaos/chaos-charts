@@ -29,6 +29,7 @@ spec:
     - pod-network-duplication
     - node-taint
     - docker-service-kill
+    - pod-autoscaler
     
   keywords:
     - Kubernetes
