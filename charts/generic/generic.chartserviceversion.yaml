@@ -30,6 +30,7 @@ spec:
     - node-taint
     - docker-service-kill
     - pod-autoscaler
+    - k8-pod-delete
     
   keywords:
     - Kubernetes
