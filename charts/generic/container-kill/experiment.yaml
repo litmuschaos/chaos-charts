@@ -4,7 +4,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.23
+  version: 0.1.24
 spec:
   definition:
     scope: Namespaced
@@ -46,7 +46,9 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supports pumba and containerd 
+    # It supports pumba and litmus
+    # pumba: for docker runtime
+    # litmus: for containerd/crio runtime
     - name: LIB
       value: 'pumba'
 
@@ -63,11 +65,8 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '20'
 
-    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, litmuschaos/container-kill-helper:latest
-    # For pumba image use: gaiaadm/pumba:0.6.5
-    # For containerd image use: litmuschaos/container-kill-helper:latest
     - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'litmuschaos/go-runner:latest' 
 
     securityContext:
       containerSecurityContext:

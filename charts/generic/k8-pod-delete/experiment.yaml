@@ -1,5 +1,3 @@
----
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -7,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
-  version: 0.0.3
+  version: 0.0.4
 spec:
   definition:
     scope: Namespaced
@@ -32,6 +30,13 @@ spec:
           - "patch"
           - "update"
           - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
     image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
@@ -65,6 +70,3 @@ spec:
 
     labels:
       name: k8-pod-delete
-
----
-

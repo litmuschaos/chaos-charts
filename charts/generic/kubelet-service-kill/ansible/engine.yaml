@@ -22,6 +22,11 @@ spec:
     - name: kubelet-service-kill
       spec:
         components:
+          nodeSelector: 
+            kubernetes.io/hostname: 'node02'        
           env:
             - name: TOTAL_CHAOS_DURATION
               value: '90' # in seconds
+             # provide the actual name of node under test
+            - name: APP_NODE
+              value: 'node-01'

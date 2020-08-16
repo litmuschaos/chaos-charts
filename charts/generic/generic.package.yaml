@@ -48,3 +48,9 @@ experiments:
   - name: docker-service-kill
     CSV: docker-service-kill.chartserviceversion.yaml
     desc: "docker-service-kill"
+  - name: pod-autoscaler
+    CSV: pod-autoscaler.chartserviceversion.yaml
+    desc: "pod-autoscaler"
+  - name: k8-pod-delete
+    CSV: k8-pod-delete.chartserviceversion.yaml
+    desc: "k8-pod-delete"

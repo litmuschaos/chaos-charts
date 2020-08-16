@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
-  version: 0.1.18
+  version: 0.1.19
 spec:
   definition:
     scope: Namespaced
@@ -39,7 +39,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.6.0"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c

@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos
+  name: nginx-chaos-custom-all-health
   namespace: default
 spec:
   appinfo:
@@ -23,12 +23,12 @@ spec:
               value: 'default'
             # set chaos label name
             - name: LABEL_NAME
-              value: 'nginx'
+              value: 'app=nginx'
             # pod endpoint
             - name: APP_ENDPOINT
               value: 'localhost'
             - name: FILE
-              value: 'pod-app-kill-count.json'
+              value: 'pod-custom-kill-all.json'
             - name: REPORT
               value: 'true'
             - name: REPORT_ENDPOINT

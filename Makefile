@@ -19,11 +19,6 @@ combineExpCR:
 	@echo "--------Combining Experiments CR-------"
 	bash ./scripts/combine_all_cr.sh
 
-.PHONY: combineExpCR
-combineExpCR:
-	@echo "--------Combining Experiments CR-------"
-	bash ./scripts/combine_all_cr.sh
-
 .PHONY: push
 push:
 	@echo "---------git push to master-------"

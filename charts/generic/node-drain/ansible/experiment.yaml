@@ -6,7 +6,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.13
+  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -41,7 +41,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:1.6.0"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c

@@ -1,0 +1,67 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Scale the application replicas and test the node autoscaling on cluster
+kind: ChaosExperiment
+metadata:
+  name: pod-autoscaler
+  version: 0.1.0
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "deployments"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/pod-autoscaler
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Number of replicas to scale
+    - name: REPLICA_COUNT
+      value: '5'
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+  
+    labels:
+      name: pod-autoscaler
