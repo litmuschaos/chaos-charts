@@ -33,4 +33,6 @@ spec:
               value: 'true'
             - name: REPORT_ENDPOINT
               value: 'none'
+            - name: TEST_NAMESPACE
+              value: 'default'
 
