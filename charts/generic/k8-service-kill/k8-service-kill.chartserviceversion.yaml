@@ -1,21 +1,19 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: aws-ec2-terminate
-  version: 0.0.1
+  name: k8-pod-delete
+  version: 0.0.4
   annotations:
     categories: Kubernetes
     vendor: CNCF
     createdAt: 2020-02-24T10:28:08Z
     support: https://slack.kubernetes.io/
 spec:
-  displayName: aws-ec2-terminate
+  displayName: k8-pod-delete
   categoryDescription: |
-    AWS EC2 terminate contains chaos to disrupt state of aws resources running part of kuberntes cluster workload. It uses chaostoolkit to inject random pod delete failures against specified applications
+    K8 Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
   keywords:
     - Kubernetes
-    - AWS
-    - EC2
     - State
   platforms:
      - Minikube
@@ -32,4 +30,4 @@ spec:
   icon:
     - url:
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/aws-ec2-terminate/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/k8-pod-delete/experiment.yaml
