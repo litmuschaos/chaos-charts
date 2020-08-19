@@ -4,8 +4,8 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: k8-pod-delete
-  version: 0.0.4
+  name: k8-service-kill
+  version: 0.0.1
 spec:
   definition:
     scope: Namespaced
@@ -48,7 +48,7 @@ spec:
       value: 'true'
 
     - name: FILE
-      value: 'pod-app-kill-count.json'
+      value: 'service-app-kill-health.json'
 
     - name: NAME_SPACE
       value: ''
@@ -73,4 +73,4 @@ spec:
 
 
     labels:
-      name: k8-pod-delete
+      name: k8-service-kill

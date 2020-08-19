@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos-app-health
+  name: nginx-chaos-service-health
   namespace: default
 spec:
   appinfo:
@@ -10,11 +10,11 @@ spec:
     appkind: 'deployment'
   annotationCheck: 'true'
   engineState: 'active'
-  chaosServiceAccount: k8-pod-delete-sa
+  chaosServiceAccount: chaos-admin
   monitoring: false
   jobCleanUpPolicy: 'retain'
   experiments:
-    - name: k8-pod-delete
+    - name: k8-service-kill
       spec:
         components:
           env:
@@ -28,12 +28,11 @@ spec:
             - name: APP_ENDPOINT
               value: 'localhost'
             - name: FILE
-              value: 'pod-app-kill-health.json'
+              value: 'service-app-kill-health.json'
             - name: REPORT
               value: 'true'
             - name: REPORT_ENDPOINT
               value: 'none'
             - name: TEST_NAMESPACE
               value: 'default'
-
 
