@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: aws-ec2-terminate
+  name: k8-aws-ec2-terminate
   version: 0.0.1
   annotations:
     categories: Kubernetes
@@ -9,9 +9,9 @@ metadata:
     createdAt: 2020-02-24T10:28:08Z
     support: https://slack.kubernetes.io/
 spec:
-  displayName: aws-ec2-terminate
+  displayName: k8-aws-ec2-terminate
   categoryDescription: |
-    AWS EC2 terminate contains chaos to disrupt state of aws resources running part of kuberntes cluster workload. It uses chaostoolkit to inject random pod delete failures against specified applications
+    AWS EC2 terminate contains chaos to disrupt state of aws resources running part of kuberntes cluster workload. It uses chaostoolkit to inject ec2 instance termination against a specified applications          
   keywords:
     - Kubernetes
     - AWS
@@ -32,4 +32,4 @@ spec:
   icon:
     - url:
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/k8-aws-ec2-terminate/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/k8-aws-ec2-terminate/experiment.yaml
