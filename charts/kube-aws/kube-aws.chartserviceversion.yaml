@@ -34,6 +34,6 @@ experiments:
     - name: Documentation
       url: 
   icon:
-    - url: 
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/icons/kube-aws.png
       mediatype: image/png
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/litmus-python/tree/master/chaos-test
