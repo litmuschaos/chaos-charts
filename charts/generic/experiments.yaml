@@ -57,7 +57,10 @@ spec:
       value: '100' # in percentage
 
     - name: LIB
-      value: 'pumba'      
+      value: 'pumba'   
+
+    - name: TARGET_POD
+      value: ''   
 
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
@@ -204,6 +207,9 @@ spec:
     # Only litmus supported
     - name: LIB
       value: 'litmus'
+
+    - name: TARGET_POD
+      value: ''
 
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
@@ -424,6 +430,9 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    - name: TARGET_POD
+      value: ''
       
     labels:
       name: pod-cpu-hog
@@ -491,6 +500,9 @@ spec:
       ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
       - name: LIB
         value: 'litmus'
+
+      - name: TARGET_POD
+        value: ''
 
     labels:
       name: pod-memory-hog
@@ -561,6 +573,9 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-network-corruption
 
@@ -635,6 +650,9 @@ spec:
 
     - name: LIB
       value: 'litmus'    
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-delete
 
@@ -705,6 +723,9 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-network-loss
 
@@ -1047,6 +1068,9 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-network-latency
 
@@ -1464,6 +1488,9 @@ spec:
     # litmus: for containerd/crio runtime
     - name: LIB
       value: 'pumba'
+
+    - name: TARGET_POD
+      value: ''
 
     # provide the chaos interval
     - name: CHAOS_INTERVAL
