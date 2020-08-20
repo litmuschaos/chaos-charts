@@ -34,7 +34,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/node_drain
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-drain
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-drain/
     - name: Video
