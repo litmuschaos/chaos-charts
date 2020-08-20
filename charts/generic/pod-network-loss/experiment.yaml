@@ -63,5 +63,8 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-network-loss

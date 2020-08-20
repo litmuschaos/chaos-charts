@@ -55,7 +55,10 @@ spec:
       value: '100' # in percentage
 
     - name: LIB
-      value: 'pumba'      
+      value: 'pumba'   
+
+    - name: TARGET_POD
+      value: ''   
 
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'

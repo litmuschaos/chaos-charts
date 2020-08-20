@@ -58,6 +58,9 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    - name: TARGET_POD
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
