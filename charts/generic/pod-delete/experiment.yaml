@@ -67,5 +67,8 @@ spec:
 
     - name: LIB
       value: 'litmus'    
+
+    - name: TARGET_POD
+      value: ''
     labels:
       name: pod-delete

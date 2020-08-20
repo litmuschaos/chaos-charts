@@ -52,6 +52,9 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    - name: TARGET_POD
+      value: ''
+
     # provide the chaos interval
     - name: CHAOS_INTERVAL
       value: '10'
