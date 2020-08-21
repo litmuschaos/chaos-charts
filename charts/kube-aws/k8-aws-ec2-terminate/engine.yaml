@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: aws-ec2-terminate
+  name: k8-aws-ec2-terminate
   namespace: default
 spec:
   appinfo:
@@ -18,7 +18,7 @@ spec:
       runnerannotation:
         iam.amazonaws.com/role: "k8s-chaosec2access"
   experiments:
-    - name: aws-ec2-terminate
+    - name: k8-aws-ec2-terminate
       spec:
         components:
           experimentannotation:
