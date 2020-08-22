@@ -4,7 +4,7 @@ description:
     Deletes an aws instance belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: aws-ec2-terminate
+  name: k8-aws-ec2-terminate
   version: 0.0.1
 spec:
   definition:
@@ -101,5 +101,5 @@ spec:
       value: 'default'
 
     labels:
-      name: aws-ec2-terminate
+      name: k8-aws-ec2-terminate
 
