@@ -24,7 +24,7 @@ spec:
   links:
     - name: Longhorn
       url: https://rancher.com/project-longhorn-now-available-kubernetes/
-    - name: Doumnetation
+    - name: Documentation
       url: https://docs.rancher.cn/longhorn/#current-status
   icon:
     - url: 
