@@ -10,9 +10,8 @@ metadata:
 spec:
   displayName: Kube AWS
   categoryDescription: >
-  kube-aws contains chaos to disrupt state of aws resources running part of kubernetes cluster
-
-experiments:
+    kube-aws contains chaos to disrupt state of aws resources running part of kubernetes cluster
+  experiments:
     - k8-aws-ec2-terminate
   keywords:
     - AWS

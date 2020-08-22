@@ -54,3 +54,6 @@ experiments:
   - name: k8-pod-delete
     CSV: k8-pod-delete.chartserviceversion.yaml
     desc: "k8-pod-delete"
+  - name: k8-service-kill
+    CSV: k8-service-kill.chartserviceversion.yaml
+    desc: "k8-service-kill"
