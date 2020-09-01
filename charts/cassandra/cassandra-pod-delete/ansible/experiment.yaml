@@ -42,14 +42,17 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/cassandra-pod-delete
+    - ansible-playbook ./experiments/cassandra/pod-delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
 
     # provide cassandra service name
     # default service: cassandra
@@ -97,9 +100,9 @@ spec:
       value: ''
 
     ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus
+    ## default: litmus. Supported values: litmus, powerfulseal
     - name: LIB
-      value: 'litmus'
+      value: ''
 
     labels:
       name: cassandra-pod-delete
