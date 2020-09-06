@@ -15,8 +15,8 @@ spec:
     templates:
     - name: argowf-chaos
       steps:
-        - - name: run-node-cpu-hog
-            template: run-node-cpu-hog
+        - name: run-node-cpu-hog
+          template: run-node-cpu-hog
     - name: run-node-cpu-hog
       inputs:
         artifacts:
