@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-01-28T10:28:08Z
   name: node-cpu-hog
-  version: 0.0.11
+  version: 0.0.15
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -14,7 +14,6 @@ spec:
     Node CPU hog contains chaos to disrupt the state of Kubernetes resources. Experiments can inject a CPU spike on a node where the application pod is scheduled.
     - CPU hog on a particular node where the application deployment is available.
     - After test, the recovery should be manual for the application pod and node in case they are not in an appropriate state.
-
   keywords:
     - Kubernetes
     - CPU
@@ -23,6 +22,7 @@ spec:
   platforms:
     - GKE
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
@@ -33,11 +33,11 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/node_cpu_hog
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-cpu-hog
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/node-cpu-hog/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=jpJttftsZqA
   icon: 
     - url: 
       mediatype: ""

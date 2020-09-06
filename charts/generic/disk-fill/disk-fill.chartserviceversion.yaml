@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-11T10:28:08Z
   name: disk-fill
-  version: 0.0.9
+  version: 0.0.12
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -22,6 +22,7 @@ spec:
   platforms:
     - GKE
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
@@ -32,11 +33,11 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/disk_fill
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/disk-fill
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/disk-fill/
     - name: Video
-      url:
+      url: https://www.youtube.com/watch?v=pbok737rUPQ
   icon:
     - url: 
       mediatype: ""

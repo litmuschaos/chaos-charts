@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-11T10:28:08Z
   name: openebs-target-pod-failure
-  version: 0.1.10
+  version: 0.1.11
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -30,7 +30,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-target-pod-failure
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-target-pod-failure
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-target-pod-failure/   
     - name: Video

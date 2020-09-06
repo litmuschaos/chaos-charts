@@ -3,7 +3,7 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2020-01-07T10:28:08Z
   name: pod-network-corruption
-  version: 0.1.8
+  version: 0.1.10
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -23,6 +23,7 @@ spec:
     - Packet(Kubeadm) 
     - Minikube
     - EKS
+    - AKS
   maturity: alpha
   maintainers:
     - name: LaumiH
@@ -32,7 +33,7 @@ spec:
     name: Laura-Marie Henning
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/generic/pod_network_corruption
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-corruption
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/pod-network-corruption/
     - name: Video

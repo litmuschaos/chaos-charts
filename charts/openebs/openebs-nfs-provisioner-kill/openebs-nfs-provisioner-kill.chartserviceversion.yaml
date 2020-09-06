@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   name: openebs-nfs-provisioner-kill
-  version: 0.1.2
+  version: 0.1.3
   annotations:
     categories: OpenEBS
     vendor: CNCF
@@ -27,7 +27,7 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/openebs/openebs-nfs-provisioner-kill
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-nfs-provisioner-kill
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/openebs-nfs-provisioner-kill/
     - name: Video

@@ -5,7 +5,7 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.9
+  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -29,33 +29,37 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/pod_cpu_hog/pod_cpu_hog_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments/pod-cpu-hog
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+    
+    - name: CHAOS_INTERVAL
+      value: '10'
 
-    - name: TARGET_CONTAINER
-      value: ''
-
+    ## Number of CPU cores to stress
     - name: CPU_CORES
       value: '1'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
+    ## Percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
-    # Period to wait before injection of chaos in sec
+    ## Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
     - name: LIB
       value: 'litmus'
 
-    - name: LIB_IMAGE
-      value: 'litmuschaos/app-cpu-stress:latest' 
+    - name: TARGET_POD
+      value: ''
+      
     labels:
       name: pod-cpu-hog

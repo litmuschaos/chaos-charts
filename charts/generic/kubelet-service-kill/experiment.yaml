@@ -1,0 +1,64 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kills the kubelet service on the application node to check the resiliency.
+kind: ChaosExperiment
+metadata:
+  name: kubelet-service-kill
+  version: 0.1.4
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments/kubelet-service-kill
+    command:
+    - /bin/bash
+    env:
+   
+    - name: TOTAL_CHAOS_DURATION
+      value: '90' # in seconds
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    # provide node name
+    - name: APP_NODE
+      value: ''
+
+    labels:
+      name: kubelet-service-kill
