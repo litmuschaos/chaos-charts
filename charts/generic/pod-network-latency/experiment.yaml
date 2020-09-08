@@ -64,6 +64,10 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: TARGET_POD
       value: ''
     labels:
