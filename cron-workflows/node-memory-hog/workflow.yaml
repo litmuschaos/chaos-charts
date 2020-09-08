@@ -6,6 +6,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
   name: node-memory-cron-wf
+  namespace: litmus
 spec:
   schedule: "0/10 * * * *"
   concurrencyPolicy: "Forbid"
