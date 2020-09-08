@@ -1,0 +1,115 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: argowf-chaos-
+spec:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  arguments:
+    parameters:
+      - name: appNamespace
+        value: "default"
+      - name: adminModeNamespace
+        value: "litmus"
+      - name: appLabel
+        value: "nginx"
+      - name: fileName
+        value: "pod-app-kill-count.json"
+  templates:
+    - name: argowf-chaos
+      steps:
+        - - name: run-chaos
+            template: run-chaos
+          - name: run-benchmark
+            template: run-benchmark
+        - - name: revert-chaos
+            template: revert-chaos
+
+    - name: run-chaos
+      inputs:
+        artifacts:
+        - name: run-chaos
+          path: /tmp/chaosengine.yaml
+          raw:
+            data: |
+              apiVersion: litmuschaos.io/v1alpha1
+              kind: ChaosEngine
+              metadata:
+                name: nginx-chaos
+                namespace: {{workflow.parameters.adminModeNamespace}}
+              spec:
+                appinfo:
+                  appns: {{workflow.parameters.appNamespace}}
+                  applabel: "app={{workflow.parameters.appLabel}}"
+                  appkind: deployment
+                jobCleanUpPolicy: retain
+                monitoring: false
+                annotationCheck: 'false'
+                engineState: 'active'
+                chaosServiceAccount: litmus-admin
+                experiments:
+                  - name: k8-pod-delete
+                    spec:
+                      components:
+                        env:
+                          - name: NAME_SPACE
+                            value: {{workflow.parameters.appNamespace}}
+                          - name: LABEL_NAME
+                            value: {{workflow.parameters.appLabel}}
+                          - name: FILE
+                            value: {{workflow.parameters.fileName}}
+                          - name: REPORT
+                            value: 'true'
+                          - name: REPORT_ENDPOINT
+                            value: 'none'
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: ['kubectl apply -f /tmp/chaosengine.yaml -n {{workflow.parameters.adminModeNamespace}} | echo "sleeping for 120s" | sleep 120 ']
+
+    - name: run-benchmark
+      inputs:
+        artifacts:
+        - name: run-benchmark
+          path: /tmp/bench.yaml
+          raw:
+            data: |
+              apiVersion: batch/v1
+              kind: Job
+              metadata:
+                labels:
+                  app: nginx-bench
+                name: nginx-bench
+              spec:
+                template:
+                  metadata:
+                    labels:
+                      app: nginx-bench
+                  spec:
+                    restartPolicy: Never
+                    containers:
+                    - args:
+                      - -c
+                      - /go/bin/main -r -c10 -t${BENCHMARK_DURATION} -n 10000000 http://${NGINX_SVC_NAME}:${NGINX_PORT_NUM}/; exit 0
+                      command:
+                      - /bin/sh
+                      env:
+                        - name: NGINX_SVC_NAME
+                          value: "nginx.default.svc.cluster.local"
+                        - name: NGINX_PORT_NUM
+                          value: "80"
+                        - name: BENCHMARK_DURATION
+                          value: "300"
+                      image: devth/alpine-bench
+                      imagePullPolicy: Always
+                      name: nginx-bench
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: ['kubectl apply -f /tmp/bench.yaml -n {{workflow.parameters.appNamespace}}']
+
+    - name: revert-chaos
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: [' sleep 20 | kubectl delete chaosengine nginx-chaos -n {{workflow.parameters.adminModeNamespace}}']
