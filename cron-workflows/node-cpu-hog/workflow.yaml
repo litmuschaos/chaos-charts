@@ -1,0 +1,55 @@
+## Refer to https://github.com/litmuschaos/chaos-workflows.git to setup the argo infrastructure
+## Uses admin mode of litmus execution
+
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: node-cpu-cron-wf
+  namespace: litmus
+spec:
+  schedule: "5/10 * * * *"
+  concurrencyPolicy: "Forbid"
+  startingDeadlineSeconds: 0
+  workflowSpec:
+    entrypoint: argowf-chaos
+    serviceAccountName: argo-chaos
+    templates:
+    - name: argowf-chaos
+      steps:
+        - name: run-node-cpu-hog
+          template: run-node-cpu-hog
+    - name: run-node-cpu-hog
+      inputs:
+        artifacts:
+        - name: run-node-cpu-hog
+          path: /tmp/chaosengine-1.yaml
+          raw:
+            data: |
+              apiVersion: litmuschaos.io/v1alpha1
+              kind: ChaosEngine
+              metadata:
+                name: node-cpu-hog
+                namespace: litmus
+              spec:
+                appinfo:
+                  appns: kube-system
+                  applabel: "k8s-app=kube-proxy"
+                  appkind: daemonset
+                jobCleanUpPolicy: retain
+                monitoring: true
+                annotationCheck: 'false'
+                engineState: 'active'
+                chaosServiceAccount: litmus-admin
+                experiments:
+                  - name: node-cpu-hog
+                    spec:
+                      components:
+                        env:
+                          - name: TOTAL_CHAOS_DURATION
+                            value: "60"
+                          - name: NODE_CPU_CORE
+                            value: ""
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: ['kubectl apply -f /tmp/chaosengine-1.yaml -n litmus']

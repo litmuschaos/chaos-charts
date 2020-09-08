@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-node-memory-hog-
+  generateName: argowf-chaos-pod-delete-
   namespace: litmus
 spec:
   entrypoint: argowf-chaos
@@ -24,31 +24,33 @@ spec:
       inputs:
         artifacts:
           - name: install-experiment
-            path: /tmp/node-memory-hog.yaml
+            path: /tmp/pod-delete.yaml
             raw:
               data: |
                 apiVersion: litmuschaos.io/v1alpha1
                 description:
                   message: |
-                    Give a memory hog on a node belonging to a deployment
+                    Deletes a pod belonging to a deployment/statefulset/daemonset
                 kind: ChaosExperiment
                 metadata:
-                  name: node-memory-hog
-                  version: 0.1.12
+                  name: pod-delete
+                  version: 0.1.19
                 spec:
                   definition:
-                    scope: Cluster
+                    scope: Namespaced
                     permissions:
                       - apiGroups:
                           - ""
-                          - "batch"
                           - "apps"
+                          - "batch"
                           - "litmuschaos.io"
                         resources:
+                          - "deployments"
                           - "jobs"
                           - "pods"
                           - "pods/log"
                           - "events"
+                          - "configmaps"
                           - "chaosengines"
                           - "chaosexperiments"
                           - "chaosresults"
@@ -70,40 +72,38 @@ spec:
                     imagePullPolicy: Always
                     args:
                     - -c
-                    - ./experiments/node-memory-hog
+                    - ./experiments/pod-delete
                     command:
                     - /bin/bash
                     env:
 
                     - name: TOTAL_CHAOS_DURATION
-                      value: '120'
-
-                    ## specify the size as percent of total available memory (in percentage)
-                    ## Default value "90"
-                    - name: MEMORY_PERCENTAGE
-                      value: '90'        
+                      value: '15'
 
                     # Period to wait before and after injection of chaos in sec
                     - name: RAMP_TIME
                       value: ''
 
-                    # Provide the LIB here
-                    # Only litmus supported
-                    - name: LIB
-                      value: 'litmus'
+                    # provide the kill count
+                    - name: KILL_COUNT
+                      value: ''
 
-                    # provide lib image
-                    - name: LIB_IMAGE
-                      value: 'litmuschaos/go-runner:latest' 
-                      
+                    - name: FORCE
+                      value: 'true'
+
+                    - name: CHAOS_INTERVAL
+                      value: '5'
+
+                    - name: LIB
+                      value: 'litmus'    
                     labels:
-                      name: node-memory-hog
+                      name: pod-delete
       container:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
           [
-            "kubectl apply -f /tmp/node-memory-hog.yaml -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl apply -f /tmp/pod-delete.yaml -n {{workflow.parameters.adminModeNamespace}}",
           ]
 
     - name: run-chaos
@@ -116,7 +116,7 @@ spec:
                 apiVersion: litmuschaos.io/v1alpha1
                 kind: ChaosEngine
                 metadata:
-                  name: kube-proxy-node-memory-hog-chaos
+                  name: kube-proxy-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
                 spec:
                   appinfo:
@@ -129,15 +129,16 @@ spec:
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   experiments:
-                    - name: node-memory-hog
+                    - name: pod-delete
                       spec:
                         components:
                           env:
-                            - name: MEMORY_PERCENTAGE
-                              value: '90'
-
                             - name: TOTAL_CHAOS_DURATION
-                              value: '240' # in seconds
+                              value: "10"
+                            - name: CHAOS_INTERVAL
+                              value: "10"
+                            - name: FORCE
+                              value: "false"
       container:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
@@ -152,5 +153,5 @@ spec:
         command: [sh, -c]
         args:
           [
-            " sleep 20 | kubectl delete chaosengine kube-proxy-node-memory-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            " sleep 20 | kubectl delete chaosengine kube-proxy-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
