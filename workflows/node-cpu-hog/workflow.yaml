@@ -14,7 +14,7 @@ spec:
       steps:
         - - name: install-experiment
             template: install-experiment
-          - name: run-chaos
+        - - name: run-chaos
             template: run-chaos
         - - name: revert-chaos
             template: revert-chaos
@@ -22,7 +22,7 @@ spec:
     - name: install-experiment
       inputs:
         artifacts:
-          - name:
+          - name: install-experiment
             path: /tmp/node-cpu-hog.yaml
             raw:
               data: |
