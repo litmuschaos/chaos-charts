@@ -77,6 +77,10 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: CHAOS_INTERVAL
       value: '15'
 

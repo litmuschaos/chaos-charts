@@ -60,6 +60,10 @@ spec:
     - name: TARGET_POD
       value: ''   
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
