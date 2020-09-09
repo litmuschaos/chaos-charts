@@ -62,6 +62,10 @@ spec:
     - name: TARGET_POD
       value: ''   
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
@@ -209,6 +213,10 @@ spec:
       value: 'litmus'
 
     - name: TARGET_POD
+      value: ''
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
       value: ''
 
     - name: LIB_IMAGE
@@ -574,6 +582,10 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: TARGET_POD
       value: ''
     labels:
@@ -638,15 +650,15 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the kill count
-    - name: KILL_COUNT
-      value: ''
-
     - name: FORCE
       value: 'true'
 
     - name: CHAOS_INTERVAL
       value: '5'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB
       value: 'litmus'    
@@ -723,6 +735,10 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: TARGET_POD
       value: ''
@@ -960,6 +976,10 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: TARGET_POD
       value: ''
@@ -1399,6 +1419,10 @@ spec:
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
+    
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
