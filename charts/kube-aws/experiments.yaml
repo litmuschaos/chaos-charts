@@ -7,7 +7,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-aws-ec2-terminate
-  version: 0.0.1
 spec:
   definition:
     scope: Namespaced

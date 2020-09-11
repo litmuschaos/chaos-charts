@@ -10,7 +10,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -120,7 +119,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-disk-loss
-  version: 0.1.3
 spec:
   definition:
     scope: Cluster
@@ -228,7 +226,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-pod-failure
-  version: 0.1.11
 spec:
   definition:
     scope: Cluster
@@ -330,7 +327,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -405,7 +401,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-delay
-  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -496,7 +491,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -588,7 +582,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-nfs-provisioner-kill
-  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -685,7 +678,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -775,7 +767,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-pod-failure
-  version: 0.1.8
 spec:
   definition:
     scope: Cluster
@@ -869,7 +860,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-container-failure
-  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -962,7 +952,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster
