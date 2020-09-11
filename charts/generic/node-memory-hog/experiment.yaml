@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.12
 spec:
   definition:
     scope: Cluster

@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.4
 spec:
   definition:
     scope: Cluster

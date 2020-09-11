@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
