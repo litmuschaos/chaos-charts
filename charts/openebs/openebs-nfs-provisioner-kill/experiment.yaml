@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-nfs-provisioner-kill
-  version: 0.1.2
 spec:
   definition:
     scope: Cluster

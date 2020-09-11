@@ -3,7 +3,6 @@ kind: ChartServiceVersion
 metadata:
   createdAt: 2019-11-15T10:28:08Z
   name: kafka-broker-disk-failure
-  version: 0.1.9
   annotations:
     categories: Kafka
     vendor: Mayadata

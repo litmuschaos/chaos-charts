@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.15
 spec:
   definition:
     scope: Cluster
