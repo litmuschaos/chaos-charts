@@ -31,3 +31,7 @@ spec:
             ## default value 90
             - name: MEMORY_PERCENTAGE
               value: '90'
+            
+             # ENTER THE NAME OF THE APPLICATION NODE
+            - name: APP_NODE
+              value: ''
