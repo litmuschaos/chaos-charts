@@ -56,7 +56,7 @@ spec:
       value: '100' # in percentage
 
     - name: LIB
-      value: 'pumba'   
+      value: 'litmus'   
 
     - name: TARGET_POD
       value: ''   
@@ -67,6 +67,17 @@ spec:
 
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
 
     labels:
       name: pod-network-duplication
@@ -668,7 +679,7 @@ spec:
       value: ''
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -676,6 +687,17 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
     labels:
       name: pod-network-corruption
 
@@ -821,7 +843,7 @@ spec:
       value: ''
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -829,6 +851,17 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
     labels:
       name: pod-network-loss
 
@@ -1135,7 +1168,7 @@ spec:
       value: ''
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -1143,6 +1176,18 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
+
     labels:
       name: pod-network-latency
 
@@ -1573,8 +1618,8 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
-    # provide the container runtime path for containerd
-    # applicable only for containerd runtime
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
     - name: CONTAINER_PATH
       value: '/run/containerd/containerd.sock'
 
