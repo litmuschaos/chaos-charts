@@ -499,7 +499,7 @@ spec:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
-      value: '30'
+      value: '60'
     
     - name: CHAOS_INTERVAL
       value: '10'
@@ -516,8 +516,14 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    ## env var that describes the library used to execute the chaos
+    ## default: litmus. Supported values: litmus, pumba    
     - name: LIB
       value: 'litmus'
+
+    ## It is used in pumba lib only    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba'  
 
     - name: TARGET_POD
       value: ''
@@ -566,7 +572,7 @@ spec:
     - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: '60'
 
       - name: CHAOS_INTERVAL
         value: '10'
@@ -584,9 +590,13 @@ spec:
         value: ''     
 
       ## env var that describes the library used to execute the chaos
-      ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
+      ## default: litmus. Supported values: litmus, pumba
       - name: LIB
         value: 'litmus'
+
+      ## It is used in pumba lib only    
+      - name: LIB_IMAGE
+        value: 'gaiaadm/pumba'
 
       - name: TARGET_POD
         value: ''
@@ -1338,6 +1348,10 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+            
     # provide node name
     - name: APP_NODE
       value: ''
