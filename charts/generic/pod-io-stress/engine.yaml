@@ -33,6 +33,3 @@ spec:
 
             - name: TARGET_POD
               value: ''
-            
-              
-            
