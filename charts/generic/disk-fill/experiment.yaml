@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -59,6 +58,10 @@ spec:
       value: 'litmus'
 
     - name: TARGET_POD
+      value: ''
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
       value: ''
 
     - name: LIB_IMAGE

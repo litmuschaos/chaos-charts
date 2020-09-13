@@ -34,7 +34,6 @@ spec:
                 kind: ChaosExperiment
                 metadata:
                   name: node-cpu-hog
-                  version: 0.1.21
                 spec:
                   definition:
                     scope: Cluster

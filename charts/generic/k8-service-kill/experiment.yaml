@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-service-kill
-  version: 0.0.1
 spec:
   definition:
     scope: Namespaced

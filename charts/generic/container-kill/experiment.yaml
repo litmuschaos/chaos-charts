@@ -4,7 +4,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.24
 spec:
   definition:
     scope: Namespaced
@@ -70,6 +69,10 @@ spec:
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
+    
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 

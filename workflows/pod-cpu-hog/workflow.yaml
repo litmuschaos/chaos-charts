@@ -34,7 +34,6 @@ spec:
                 kind: ChaosExperiment
                 metadata:
                   name: pod-cpu-hog
-                  version: 0.1.11
                 spec:
                   definition:
                     scope: Namespaced

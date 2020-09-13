@@ -7,7 +7,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cassandra-pod-delete
-  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -78,6 +77,10 @@ spec:
 
     - name: TOTAL_CHAOS_DURATION
       value: '15'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: CHAOS_INTERVAL
       value: '15'

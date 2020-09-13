@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.21
 spec:
   definition:
     scope: Cluster
@@ -53,9 +52,15 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    
+
     ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
     ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
     - name: NODE_CPU_CORE
+      value: ''
+
+    # ENTER THE NAME OF THE APPLICATION NODE
+    - name: APP_NODE
       value: ''
 
     # PROVIDE THE LIB HERE

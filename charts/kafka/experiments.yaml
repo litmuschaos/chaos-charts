@@ -7,7 +7,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-pod-failure
-  version: 0.1.10
 spec:
   definition:
     scope: Cluster
@@ -137,7 +136,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster

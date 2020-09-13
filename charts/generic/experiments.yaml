@@ -7,7 +7,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-duplication
-  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -62,6 +61,10 @@ spec:
     - name: TARGET_POD
       value: ''   
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
@@ -78,7 +81,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -155,7 +157,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -211,6 +212,10 @@ spec:
     - name: TARGET_POD
       value: ''
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
@@ -232,7 +237,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-taint
-  version: 0.1.1
 spec:
   definition:
     scope: Cluster
@@ -308,7 +312,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-autoscaler
-  version: 0.1.0
 spec:
   definition:
     scope: Cluster
@@ -378,7 +381,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -447,7 +449,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.3
 spec:
   definition:
     scope: Namespaced
@@ -515,7 +516,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
-  version: 0.1.13
 spec:
   definition:
     scope: Namespaced
@@ -573,6 +573,10 @@ spec:
 
     - name: LIB
       value: 'pumba'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: TARGET_POD
       value: ''
@@ -638,15 +642,15 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the kill count
-    - name: KILL_COUNT
-      value: ''
-
     - name: FORCE
       value: 'true'
 
     - name: CHAOS_INTERVAL
       value: '5'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB
       value: 'litmus'    
@@ -665,7 +669,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
-  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -724,6 +727,10 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: TARGET_POD
       value: ''
     labels:
@@ -738,7 +745,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
-  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -823,7 +829,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-service-kill
-  version: 0.0.1
 spec:
   definition:
     scope: Namespaced
@@ -902,7 +907,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -961,6 +965,10 @@ spec:
     - name: LIB
       value: 'pumba'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: TARGET_POD
       value: ''
     labels:
@@ -975,7 +983,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
-  version: 0.1.21
 spec:
   definition:
     scope: Cluster
@@ -1023,9 +1030,15 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    
+
     ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
     ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
     - name: NODE_CPU_CORE
+      value: ''
+
+    # ENTER THE NAME OF THE APPLICATION NODE
+    - name: APP_NODE
       value: ''
 
     # PROVIDE THE LIB HERE
@@ -1049,7 +1062,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: docker-service-kill
-  version: 0.1.1
 spec:
   definition:
     scope: Cluster
@@ -1114,7 +1126,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.4
 spec:
   definition:
     scope: Cluster
@@ -1181,7 +1192,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
-  version: 0.1.12
 spec:
   definition:
     scope: Cluster
@@ -1228,7 +1238,11 @@ spec:
     ## specify the size as percent of total available memory (in percentage)
     ## Default value "90"
     - name: MEMORY_PERCENTAGE
-      value: '90'        
+      value: '90'    
+
+     # ENTER THE NAME OF THE APPLICATION NODE
+    - name: APP_NODE
+      value: ''    
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -1255,7 +1269,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
-  version: 0.0.4
 spec:
   definition:
     scope: Namespaced
@@ -1333,7 +1346,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.24
 spec:
   definition:
     scope: Namespaced
@@ -1399,6 +1411,10 @@ spec:
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
+    
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
