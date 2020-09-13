@@ -33,6 +33,7 @@ spec:
     - k8-pod-delete
     - k8-service-kill
     - node-io-stress
+    - pod-io-stress
     
   keywords:
     - Kubernetes

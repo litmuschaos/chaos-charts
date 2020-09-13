@@ -60,3 +60,6 @@ experiments:
   - name: node-io-stress
     CSV: node-io-stress.chartserviceversion.yaml
     desc: "node-io-stress"
+  - name: pod-io-stress
+    CSV: pod-io-stress.chartserviceversion.yaml
+    desc: "pod-io-stress"    
