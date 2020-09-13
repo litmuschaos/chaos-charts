@@ -61,7 +61,7 @@ spec:
       value: ''
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -69,5 +69,16 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
+    - name: CONTAINER_PATH
+      value: '/run/containerd/containerd.sock'
     labels:
       name: pod-network-corruption

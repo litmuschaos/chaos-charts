@@ -37,3 +37,14 @@ spec:
               
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            # default to docker
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the container runtime path
+            # applicable only for containerd and crio runtime
+            - name: CONTAINER_PATH
+              value: '/run/containerd/containerd.sock'
