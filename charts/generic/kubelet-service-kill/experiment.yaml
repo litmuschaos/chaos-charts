@@ -55,6 +55,10 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+            
     # provide node name
     - name: APP_NODE
       value: ''
