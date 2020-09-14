@@ -23,6 +23,7 @@ spec:
       spec:
         components:
           nodeSelector: 
+            # provide the node labels
             kubernetes.io/hostname: 'node02'        
           env:
             # set node name

@@ -37,7 +37,7 @@ spec:
     - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-      value: '120'
+        value: '120'
 
       ## specify the size as percentage of free space on the file system
       ## default value 90 (in percentage)
