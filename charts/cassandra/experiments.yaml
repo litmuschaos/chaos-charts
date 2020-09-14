@@ -64,7 +64,7 @@ spec:
     # provide cassandra port 
     # default port: 9042
     - name: CASSANDRA_PORT
-      value: ''
+      value: '9042'
 
     # provide liveness deployement port
     # default port: 8088, It only supports 8088 port
@@ -92,10 +92,6 @@ spec:
 
     ## Period to wait before and after injection of chaos  
     - name: RAMP_TIME
-      value: ''
-
-    # provide the kill count
-    - name: KILL_COUNT
       value: ''
 
     - name: FORCE
