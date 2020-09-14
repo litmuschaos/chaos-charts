@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2020-09-12T10:28:08Z
-  name: 
+  name: node-io-stress
   version: 0.1.0
   annotations:
     categories: Kubernetes
@@ -34,12 +34,12 @@ spec:
     name: Mayadata
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-io-stress
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs//
+      url: https://docs.litmuschaos.io/docs/node-io-stress/
     - name: Video
       url:
   icon:
     - url: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic//experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-io-stress/experiment.yaml

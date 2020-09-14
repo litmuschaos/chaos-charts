@@ -48,9 +48,6 @@ spec:
     command:
     - /bin/bash
     env:
-   
-    - name: LIVENESS_APP_LABEL
-      value: ''
     
     - name: APP_NODE
       value: ''
@@ -66,9 +63,6 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-
-    - name: LIVENESS_APP_NAMESPACE
-      value: '' 
 
     labels:
       name: node-drain
