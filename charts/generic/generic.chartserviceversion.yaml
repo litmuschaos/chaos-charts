@@ -32,6 +32,8 @@ spec:
     - pod-autoscaler
     - k8-pod-delete
     - k8-service-kill
+    - node-io-stress
+    - pod-io-stress
     
   keywords:
     - Kubernetes
@@ -39,6 +41,8 @@ spec:
     - Node
     - Pod
     - Disk
+    - IO
+    - Filesystem
     - Network
     - CPU
     - Memory

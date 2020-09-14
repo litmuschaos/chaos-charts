@@ -57,3 +57,9 @@ experiments:
   - name: k8-service-kill
     CSV: k8-service-kill.chartserviceversion.yaml
     desc: "k8-service-kill"
+  - name: node-io-stress
+    CSV: node-io-stress.chartserviceversion.yaml
+    desc: "node-io-stress"
+  - name: pod-io-stress
+    CSV: pod-io-stress.chartserviceversion.yaml
+    desc: "pod-io-stress"    

@@ -55,8 +55,8 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
-    # provide the container runtime path for containerd
-    # applicable only for containerd runtime
+    # provide the container runtime path
+    # applicable only for containerd and crio runtime
     - name: CONTAINER_PATH
       value: '/run/containerd/containerd.sock'
 
