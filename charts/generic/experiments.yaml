@@ -30,7 +30,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     args:
     - -c
     - ./experiments/pod-network-duplication
@@ -66,7 +66,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.8.0'
 
     # provide the name of container runtime
     # it supports docker, containerd, crio
@@ -126,7 +126,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -193,7 +193,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -234,7 +234,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
       
     labels:
       name: node-io-stress
@@ -273,7 +273,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -308,7 +308,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.8.0'
 
     # Provide the container runtime path
     # Default set to docker
@@ -362,7 +362,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -435,7 +435,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -495,7 +495,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -569,7 +569,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     args:
     - -c
     - ./experiments/pod-memory-hog
@@ -640,7 +640,7 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -654,7 +654,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -738,7 +738,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -804,7 +804,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -818,7 +818,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -892,7 +892,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -976,7 +976,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     args:
     - -c
     - ./experiments/pod-io-stress
@@ -1129,7 +1129,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1146,7 +1146,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -1225,7 +1225,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1257,7 +1257,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
    
     labels:
       name: node-cpu-hog
@@ -1366,7 +1366,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1436,7 +1436,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1468,7 +1468,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
       
     labels:
       name: node-memory-hog
@@ -1584,7 +1584,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1630,7 +1630,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.8.0' 
 
     securityContext:
       containerSecurityContext:

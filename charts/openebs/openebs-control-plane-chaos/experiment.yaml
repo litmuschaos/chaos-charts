@@ -42,7 +42,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.8.0"
     imagePullPolicy: Always
     args:
     - -c
