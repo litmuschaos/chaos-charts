@@ -1387,7 +1387,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'ubuntu:16.04' 
             
     # provide node name
     - name: APP_NODE
