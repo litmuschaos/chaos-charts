@@ -9,7 +9,7 @@ metadata:
     vendor: CNCF
     support: https://slack.kubernetes.io/
 spec:
-  displayName: 
+  displayName: node-io-stress
   categoryDescription: |
     This experiment causes disk stress on the Kubernetes node. The experiment aims to verify the resiliency of applications that share this disk resource for ephemeral or persistent storage purposes..
     - Disk stress on a particular node filesystem where the application deployment is available.
