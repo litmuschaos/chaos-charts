@@ -18,6 +18,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -29,6 +30,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     args:
     - -c

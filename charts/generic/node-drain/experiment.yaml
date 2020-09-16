@@ -15,6 +15,7 @@ spec:
           - "batch"
           - "extensions"
           - "litmuschaos.io"
+          - "apps"
         resources:
           - "jobs"
           - "pods"

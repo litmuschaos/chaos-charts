@@ -21,7 +21,6 @@ spec:
           - "pods"
           - "pods/log"
           - "events"
-          - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -32,13 +31,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
