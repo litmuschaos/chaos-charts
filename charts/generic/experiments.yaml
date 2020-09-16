@@ -30,6 +30,7 @@ spec:
         - "create"
         - "update"
         - "delete"
+        - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
@@ -101,6 +102,7 @@ spec:
           - "batch"
           - "extensions"
           - "litmuschaos.io"
+          - "apps"
         resources:
           - "jobs"
           - "pods"
@@ -273,6 +275,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -362,6 +365,7 @@ spec:
           - "get"
           - "list"
           - "patch"
+          - "update"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -485,6 +489,7 @@ spec:
           - "pods"
           - "pods/log"
           - "events"
+          - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -495,6 +500,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -558,6 +564,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -569,6 +576,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
@@ -640,6 +648,7 @@ spec:
           - "patch"
           - "update"
           - "get"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -720,7 +729,6 @@ spec:
           - "pods"
           - "pods/log"
           - "events"
-          - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -731,13 +739,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -804,6 +806,7 @@ spec:
         - "create"
         - "update"
         - "delete"
+        - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -965,6 +968,7 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -976,6 +980,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
@@ -1129,6 +1134,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1584,6 +1590,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
