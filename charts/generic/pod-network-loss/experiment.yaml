@@ -28,6 +28,7 @@ spec:
         - "create"
         - "update"
         - "delete"
+        - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
