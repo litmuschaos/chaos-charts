@@ -236,7 +236,7 @@ spec:
           - "kubectl apply -f /tmp/chaosengine-pod-delete.yaml -n
             {{workflow.parameters.adminModeNamespace}} | sleep 90"
 
-    - name: revert-all-chaos
+    - name: revert-kube-proxy-chaos
       container:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
