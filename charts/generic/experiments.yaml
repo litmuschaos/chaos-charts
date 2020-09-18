@@ -75,9 +75,9 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the container runtime path
+    # provide the socket file path
     # applicable only for containerd and crio runtime
-    - name: CONTAINER_PATH
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
 
     labels:
@@ -697,9 +697,9 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the container runtime path
+    # provide the socket file path
     # applicable only for containerd and crio runtime
-    - name: CONTAINER_PATH
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
     labels:
       name: pod-network-corruption
@@ -855,9 +855,9 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the container runtime path
+    # provide the socket file path
     # applicable only for containerd and crio runtime
-    - name: CONTAINER_PATH
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
     labels:
       name: pod-network-loss
@@ -1183,9 +1183,9 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the container runtime path
+    # provide the socket file path
     # applicable only for containerd and crio runtime
-    - name: CONTAINER_PATH
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
 
     labels:
@@ -1617,9 +1617,9 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
-    # provide the container runtime path
+    # provide the socket file path
     # applicable only for containerd and crio runtime
-    - name: CONTAINER_PATH
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
 
     # provide the name of container runtime
