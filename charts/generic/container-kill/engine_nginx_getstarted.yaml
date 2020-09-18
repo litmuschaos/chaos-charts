@@ -36,7 +36,7 @@ spec:
               value: '20'
 
             - name: LIB_IMAGE  
-              value: 'litmuschaos/go-runner:1.8.0' 
+              value: 'litmuschaos/go-runner:1.8.1' 
 
             # provide the name of container runtime
             # it supports docker, containerd, crio
