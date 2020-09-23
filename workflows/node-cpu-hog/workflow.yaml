@@ -138,12 +138,8 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          [
-            'kubectl apply -f /tmp/chaosengine.yaml -n {{workflow.parameters.adminModeNamespace}} | echo "sleeping for 120s" | sleep 120 ',
-          ]
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-chaos
       container:
@@ -151,5 +147,5 @@ spec:
         command: [sh, -c]
         args:
           [
-            " sleep 20 | kubectl delete chaosengine kube-proxy-node-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine kube-proxy-node-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]

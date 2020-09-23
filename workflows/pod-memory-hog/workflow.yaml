@@ -140,12 +140,8 @@ spec:
                             - name: CHAOS_KILL_COMMAND
                               value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          [
-            'kubectl apply -f /tmp/chaosengine.yaml -n {{workflow.parameters.adminModeNamespace}} | echo "sleeping for 120s" | sleep 120 ',
-          ]
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-chaos
       container:
@@ -153,5 +149,5 @@ spec:
         command: [sh, -c]
         args:
           [
-            " sleep 20 | kubectl delete chaosengine kube-proxy-pod-memory-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine kube-proxy-pod-memory-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
