@@ -23,7 +23,7 @@ spec:
       inputs:
         artifacts:
         - name: run-node-memory-hog
-          path: /tmp/chaosengine-2.yaml
+          path: /tmp/chaosengine.yaml
           raw:
             data: |
               apiVersion: litmuschaos.io/v1alpha1
@@ -51,6 +51,5 @@ spec:
                           - name: MEMORY_PERCENTAGE
                             value: "90"
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args: ['kubectl apply -f /tmp/chaosengine-2.yaml -n litmus']
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]

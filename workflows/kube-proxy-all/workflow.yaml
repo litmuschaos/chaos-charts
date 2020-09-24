@@ -70,11 +70,8 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          - "kubectl apply -f /tmp/chaosengine-node-cpu-hog.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 90"
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine-node-cpu-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-memory-hog
       inputs:
@@ -111,11 +108,8 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          - "kubectl apply -f /tmp/chaosengine-pod-memory-hog.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 90"
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine-pod-memory-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-cpu-hog
       inputs:
@@ -152,11 +146,8 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          - "kubectl apply -f /tmp/chaosengine-pod-cpu-hog.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 90"
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine-pod-cpu-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: node-memory-hog
       inputs:
@@ -190,11 +181,8 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          - "kubectl apply -f /tmp/chaosengine-node-memory-hog.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 90"
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine-node-memory-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-delete
       inputs:
@@ -230,16 +218,13 @@ spec:
                             - name: FORCE
                               value: "false"
       container:
-        image: lachlanevenson/k8s-kubectl
-        command: [sh, -c]
-        args:
-          - "kubectl apply -f /tmp/chaosengine-pod-delete.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 90"
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine-pod-delete.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-kube-proxy-chaos
       container:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "sleep 100 | kubectl delete chaosengines --all -n
+          - "kubectl delete chaosengines --all -n
             {{workflow.parameters.adminModeNamespace}}"
