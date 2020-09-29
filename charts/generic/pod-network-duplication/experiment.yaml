@@ -28,7 +28,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/go-runner:1.8.1"
+    image: "litmuschaos/go-runner:1.8.2"
     args:
     - -c
     - ./experiments/pod-network-duplication
@@ -64,7 +64,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.8.1'
+      value: 'litmuschaos/go-runner:1.8.2'
 
     # provide the name of container runtime
     # it supports docker, containerd, crio

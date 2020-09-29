@@ -28,7 +28,7 @@ spec:
           - "patch"
           - "update"
           - "get"
-    image: "litmuschaos/go-runner:1.8.1"
+    image: "litmuschaos/go-runner:1.8.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -42,7 +42,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.8.1' 
+      value: 'litmuschaos/go-runner:1.8.2' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'

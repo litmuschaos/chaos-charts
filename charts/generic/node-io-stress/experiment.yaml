@@ -36,7 +36,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.8.1"
+    image: "litmuschaos/go-runner:1.8.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -77,7 +77,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.8.1' 
+      value: 'litmuschaos/go-runner:1.8.2' 
       
     labels:
       name: node-io-stress
