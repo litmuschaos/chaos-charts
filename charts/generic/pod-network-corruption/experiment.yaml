@@ -33,7 +33,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-corruption
+    - ./experiments -name pod-network-corruption
     command:
     - /bin/bash
     env:

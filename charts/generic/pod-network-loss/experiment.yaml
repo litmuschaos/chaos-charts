@@ -33,7 +33,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-loss
+    - ./experiments -name pod-network-loss
     command:
     - /bin/bash
     env:

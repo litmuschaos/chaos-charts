@@ -33,7 +33,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-latency
+    - ./experiments -name pod-network-latency
     command:
     - /bin/bash
     env:
