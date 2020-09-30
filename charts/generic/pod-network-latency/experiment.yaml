@@ -77,6 +77,16 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPs
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
     # provide the socket file path
     # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
