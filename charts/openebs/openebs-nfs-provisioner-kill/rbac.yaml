@@ -7,7 +7,7 @@ metadata:
   labels:
     name: nfs-chaos-sa
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: nfs-chaos-sa
@@ -18,7 +18,7 @@ rules:
   resources: ["pods","pods/exec","pods/log", "deployments","events","jobs","configmaps","services","persistentvolumeclaims","storageclasses","persistentvolumes","chaosexperiments","chaosresults","chaosengines"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: nfs-chaos-sa
