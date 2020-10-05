@@ -41,7 +41,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-autoscaler
+    - ./experiments -name pod-autoscaler
     command:
     - /bin/bash
     env:

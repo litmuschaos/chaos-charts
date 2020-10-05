@@ -40,7 +40,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-io-stress
+    - ./experiments -name node-io-stress
     command:
     - /bin/bash
     env:
