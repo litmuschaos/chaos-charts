@@ -40,7 +40,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-cpu-hog
+    - ./experiments -name node-cpu-hog
     command:
     - /bin/bash
     env:

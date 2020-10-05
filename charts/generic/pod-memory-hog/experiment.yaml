@@ -34,7 +34,7 @@ spec:
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ./experiments/pod-memory-hog
+    - ./experiments -name pod-memory-hog
     command:
     - /bin/bash
     env:
