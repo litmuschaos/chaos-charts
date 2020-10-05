@@ -34,7 +34,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/container-kill
+    - ./experiments -name container-kill
     command:
     - /bin/bash
     env:

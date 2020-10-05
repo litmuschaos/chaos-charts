@@ -4,9 +4,14 @@
 # The workflow will trigger when a release tag is created
 name: ChaosCharts-Release
 on:
-  push:
-    tags:
-    - '*'
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
     
 jobs:
   release:

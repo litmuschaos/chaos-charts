@@ -48,7 +48,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/cassandra-pod-delete
+    - ./experiments -name cassandra-pod-delete
     command:
     - /bin/bash
     env:

@@ -45,7 +45,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-taint
+    - ./experiments -name node-taint
     command:
     - /bin/bash
     env:

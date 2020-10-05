@@ -34,7 +34,7 @@ spec:
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ./experiments/pod-network-duplication
+    - ./experiments -name pod-network-duplication
     command:
     - /bin/bash
     env:
@@ -142,7 +142,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-drain
+    - ./experiments -name node-drain
     command:
     - /bin/bash
     env:
@@ -209,7 +209,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-io-stress
+    - ./experiments -name node-io-stress
     command:
     - /bin/bash
     env:
@@ -290,7 +290,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/disk-fill
+    - ./experiments -name disk-fill
     command:
     - /bin/bash
     env:
@@ -380,7 +380,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-taint
+    - ./experiments -name node-taint
     command:
     - /bin/bash
     env:
@@ -453,7 +453,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-autoscaler
+    - ./experiments -name pod-autoscaler
     command:
     - /bin/bash
     env:
@@ -515,7 +515,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-cpu-hog
+    - ./experiments -name pod-cpu-hog
     command:
     - /bin/bash
     env:
@@ -590,7 +590,7 @@ spec:
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ./experiments/pod-memory-hog
+    - ./experiments -name pod-memory-hog
     command:
     - /bin/bash
     env:
@@ -663,7 +663,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-corruption
+    - ./experiments -name pod-network-corruption
     command:
     - /bin/bash
     env:
@@ -764,7 +764,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-delete
+    - ./experiments -name pod-delete
     command:
     - /bin/bash
     env:
@@ -831,7 +831,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-loss
+    - ./experiments -name pod-network-loss
     command:
     - /bin/bash
     env:
@@ -1014,7 +1014,7 @@ spec:
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ./experiments/pod-io-stress
+    - ./experiments -name pod-io-stress
     command:
     - /bin/bash
     env:
@@ -1169,7 +1169,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-latency
+    - ./experiments -name pod-network-latency
     command:
     - /bin/bash
     env:
@@ -1275,7 +1275,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-cpu-hog
+    - ./experiments -name node-cpu-hog
     command:
     - /bin/bash
     env:
@@ -1416,7 +1416,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/kubelet-service-kill
+    - ./experiments -name kubelet-service-kill
     command:
     - /bin/bash
     env:
@@ -1486,7 +1486,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-memory-hog
+    - ./experiments -name node-memory-hog
     command:
     - /bin/bash
     env:
@@ -1635,7 +1635,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/container-kill
+    - ./experiments -name container-kill
     command:
     - /bin/bash
     env:

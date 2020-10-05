@@ -34,7 +34,7 @@ spec:
     image: "litmuschaos/go-runner:latest"
     args:
     - -c
-    - ./experiments/pod-io-stress
+    - ./experiments -name pod-io-stress
     command:
     - /bin/bash
     env:

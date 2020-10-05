@@ -40,7 +40,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/kubelet-service-kill
+    - ./experiments -name kubelet-service-kill
     command:
     - /bin/bash
     env:
