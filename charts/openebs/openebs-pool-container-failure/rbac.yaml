@@ -8,7 +8,7 @@ metadata:
     name: pool-container-failure-sa
 ---
 # Source: openebs/templates/clusterrole.yaml
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
 metadata:
   name: pool-container-failure-sa
@@ -19,7 +19,7 @@ rules:
   resources: ["pods","jobs","events","pods/log","replicasets","pods/exec","configmaps","secrets","persistentvolumeclaims","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
   verbs: ["create","list","get","patch","update","delete"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
+apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding
 metadata:
   name: pool-container-failure-sa

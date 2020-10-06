@@ -1,0 +1,45 @@
+# The CI will create a release branch 
+# with CR updated with release tag
+
+# The workflow will trigger when a release tag is created
+name: ChaosCharts-Release
+on:
+  workflow_dispatch:
+    inputs:
+      logLevel:
+        description: 'Log level'     
+        required: true
+        default: 'warning'
+      tags:
+        description: 'Test scenario tags'
+    
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+
+    # It will checkout to the relase branch provided in the secret
+    - name: Checkout to release branch
+      run: |
+        git config --local user.email "litmuschaos@gmail.com"
+        git config --local user.name "LitmusChaos"
+        git checkout -b ${{ secrets.RELEASE_BRANCH }}
+
+    # It will update the image tag as provided in the secret
+    - name: Update the chaos-charts version
+      run: |
+        find charts -type f -exec sed -i 's/\:latest/\:${{ secrets.RELEASE_VERSION }}/g' {} \;
+
+    - name: Commit files
+      run: |
+        git add .          
+        git commit -s -m "New Release ${{ secrets.RELEASE_VERSION }}"
+  
+    # It will push the changes in realse branch
+    - name: Push changes
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        branch: ${{ secrets.RELEASE_BRANCH }}
