@@ -1,7 +1,6 @@
 ## Refer to https://github.com/litmuschaos/chaos-workflows.git to setup the argo infrastructure
 ## Uses admin mode of litmus execution
 
-
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
