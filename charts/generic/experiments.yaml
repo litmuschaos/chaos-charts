@@ -90,6 +90,11 @@ spec:
     - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: pod-network-duplication
 
@@ -328,6 +333,11 @@ spec:
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: disk-fill
 
@@ -548,6 +558,11 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
       
     labels:
       name: pod-cpu-hog
@@ -620,6 +635,11 @@ spec:
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
         value: 'gaiaadm/pumba'
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
 
       - name: TARGET_POD
         value: ''
@@ -721,6 +741,12 @@ spec:
     # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
     labels:
       name: pod-network-corruption
 
@@ -791,6 +817,12 @@ spec:
 
     - name: TARGET_POD
       value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
     labels:
       name: pod-delete
 
@@ -889,6 +921,12 @@ spec:
     # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
     labels:
       name: pod-network-loss
 
@@ -1051,6 +1089,11 @@ spec:
       # provide lib image
       - name: LIB_IMAGE
         value: 'gaiaadm/pumba' 
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
 
     labels:
       name: pod-io-stress
@@ -1227,6 +1270,11 @@ spec:
     # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
 
     labels:
       name: pod-network-latency
@@ -1678,6 +1726,11 @@ spec:
 
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
 
     securityContext:
       containerSecurityContext:

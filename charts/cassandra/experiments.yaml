@@ -98,6 +98,11 @@ spec:
     - name: FORCE
       value: ''
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     ## env var that describes the library used to execute the chaos
     ## default: litmus. Supported values: litmus
     - name: LIB
