@@ -65,6 +65,11 @@ spec:
       - name: LIB_IMAGE
         value: 'gaiaadm/pumba'
 
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
       - name: TARGET_POD
         value: ''
 

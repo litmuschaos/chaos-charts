@@ -78,6 +78,11 @@ spec:
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     securityContext:
       containerSecurityContext:
         privileged: true
