@@ -8,10 +8,7 @@ spec:
   arguments:
     parameters:
       - name: adminModeNamespace
-        valueFrom:
-          configMapKeyRef:
-            name: litmus-portal-admin-config #This config map is created as a part of namespaced scope installation of litmus-portal, https://raw.githubusercontent.com/litmuschaos/litmus/master/litmus-portal/namespaced-K8s-template.yml
-            key: AgentNamespace
+        value: litmus
   templates:
     - name: argowf-chaos
       steps:
