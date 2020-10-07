@@ -73,5 +73,10 @@ spec:
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: disk-fill

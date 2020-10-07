@@ -92,5 +92,10 @@ spec:
     - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: pod-network-latency
