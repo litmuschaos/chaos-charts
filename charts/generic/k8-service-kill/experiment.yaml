@@ -73,3 +73,4 @@ spec:
 
     labels:
       name: k8-service-kill
+      app.kubernetes.io/part-of: litmus

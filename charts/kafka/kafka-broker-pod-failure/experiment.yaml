@@ -124,3 +124,4 @@ spec:
  
     labels:
       name: kafka-broker-pod-failure
+      app.kubernetes.io/part-of: litmus

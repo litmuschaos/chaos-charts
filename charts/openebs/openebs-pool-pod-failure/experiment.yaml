@@ -84,6 +84,7 @@ spec:
 
     labels:
       name: openebs-pool-pod-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt

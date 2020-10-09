@@ -74,3 +74,4 @@ spec:
 
     labels:
       name: node-drain
+      app.kubernetes.io/part-of: litmus

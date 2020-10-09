@@ -99,3 +99,4 @@ spec:
       
     labels:
       name: pod-network-corruption
+      app.kubernetes.io/part-of: litmus

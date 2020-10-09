@@ -70,3 +70,4 @@ spec:
 
     labels:
       name: openebs-control-plane-chaos
+      app.kubernetes.io/part-of: litmus

@@ -75,3 +75,4 @@ spec:
 
     labels:
       name: pod-memory-hog
+      app.kubernetes.io/part-of: litmus

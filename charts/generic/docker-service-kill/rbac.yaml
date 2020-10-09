@@ -6,6 +6,7 @@ metadata:
   namespace: default
   labels:
     name: docker-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -13,6 +14,7 @@ metadata:
   name: docker-service-kill-sa
   labels:
     name: docker-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
   resources: ["pods","jobs","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
@@ -27,6 +29,7 @@ metadata:
   name: docker-service-kill-sa
   labels:
     name: docker-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

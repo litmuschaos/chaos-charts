@@ -88,6 +88,7 @@ spec:
 
     labels:
       name: openebs-nfs-provisioner-kill
+      app.kubernetes.io/part-of: litmus
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/

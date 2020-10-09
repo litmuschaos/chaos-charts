@@ -4,6 +4,7 @@ metadata:
   name: k8-service-kill-sa
   labels:
     name: k8-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRole
@@ -11,6 +12,7 @@ metadata:
   name: k8-service-kill-sa
   labels:
     name: k8-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 rules:
 - apiGroups: ["","apps","batch","extensions","litmuschaos.io","openebs.io","storage.k8s.io"]
   resources: ["chaosengines","chaosexperiments","chaosresults","configmaps","cstorpools","cstorvolumereplicas","events","jobs","persistentvolumeclaims","persistentvolumes","pods","pods/exec","pods/log","secrets","storageclasses","chaosengines","chaosexperiments","chaosresults","configmaps","cstorpools","cstorvolumereplicas","daemonsets","deployments","events","jobs","persistentvolumeclaims","persistentvolumes","pods","pods/eviction","pods/exec","pods/log","replicasets","secrets","services","statefulsets","storageclasses"]
@@ -25,6 +27,7 @@ metadata:
   name: k8-service-kill-sa
   labels:
     name: k8-service-kill-sa
+    app.kubernetes.io/part-of: litmus
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: ClusterRole

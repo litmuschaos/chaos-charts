@@ -81,3 +81,4 @@ spec:
       
     labels:
       name: node-io-stress
+      app.kubernetes.io/part-of: litmus

@@ -83,3 +83,4 @@ spec:
 
     labels:
       name: openebs-pool-network-loss
+      app.kubernetes.io/part-of: litmus

@@ -71,3 +71,4 @@ spec:
       
     labels:
       name: node-memory-hog
+      app.kubernetes.io/part-of: litmus

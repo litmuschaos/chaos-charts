@@ -76,6 +76,7 @@ spec:
           
     labels:
       name: disk-loss
+      app.kubernetes.io/part-of: litmus
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
