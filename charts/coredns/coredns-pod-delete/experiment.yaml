@@ -62,3 +62,4 @@ spec:
 
     labels:
       name: coredns-pod-delete
+      app.kubernetes.io/part-of: litmus

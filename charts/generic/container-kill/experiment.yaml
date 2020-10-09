@@ -89,3 +89,4 @@ spec:
     
     labels:
       name: container-kill
+      app.kubernetes.io/part-of: litmus

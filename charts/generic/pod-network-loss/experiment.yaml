@@ -99,3 +99,4 @@ spec:
       
     labels:
       name: pod-network-loss
+      app.kubernetes.io/part-of: litmus

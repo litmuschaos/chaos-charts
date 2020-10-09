@@ -79,3 +79,4 @@ spec:
 
     labels:
       name: pod-io-stress
+      app.kubernetes.io/part-of: litmus

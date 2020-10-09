@@ -99,3 +99,4 @@ spec:
 
     labels:
       name: pod-network-latency
+      app.kubernetes.io/part-of: litmus

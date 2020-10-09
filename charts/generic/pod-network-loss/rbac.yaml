@@ -5,6 +5,7 @@ metadata:
   namespace: default
   labels:
     name: pod-network-loss-sa
+    app.kubernetes.io/part-of: litmus
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
@@ -13,6 +14,7 @@ metadata:
   namespace: default
   labels:
     name: pod-network-loss-sa
+    app.kubernetes.io/part-of: litmus
 rules:
 - apiGroups: ["","litmuschaos.io","batch"]
   resources: ["pods","jobs","events","pods/log","chaosengines","chaosexperiments","chaosresults"]
@@ -25,6 +27,7 @@ metadata:
   namespace: default
   labels:
     name: pod-network-loss-sa
+    app.kubernetes.io/part-of: litmus
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role

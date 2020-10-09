@@ -58,4 +58,5 @@ spec:
       value: 'litmus'
     labels:
       name: docker-service-kill
+      app.kubernetes.io/part-of: litmus
 

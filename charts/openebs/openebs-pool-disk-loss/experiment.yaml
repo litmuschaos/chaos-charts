@@ -94,6 +94,7 @@ spec:
         
     labels:
       name: openebs-pool-disk-loss
+      app.kubernetes.io/part-of: litmus
 
     configmaps:
     - name: openebs-pool-disk-loss

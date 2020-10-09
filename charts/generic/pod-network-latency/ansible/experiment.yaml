@@ -66,3 +66,4 @@ spec:
       value: 'pumba'
     labels:
       name: pod-network-latency
+      app.kubernetes.io/part-of: litmus

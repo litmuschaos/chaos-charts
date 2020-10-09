@@ -59,3 +59,4 @@ spec:
       value: 'litmuschaos/app-cpu-stress:latest' 
     labels:
       name: pod-cpu-hog
+      app.kubernetes.io/part-of: litmus

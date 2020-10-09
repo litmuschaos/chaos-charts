@@ -104,6 +104,7 @@ spec:
       value: ''
     labels:
       name: kafka-broker-disk-failure
+      app.kubernetes.io/part-of: litmus
     secrets:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/

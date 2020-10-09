@@ -101,6 +101,7 @@ spec:
       
     labels:
       name: openebs-target-container-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt

@@ -82,6 +82,7 @@ spec:
 
     labels:
       name: openebs-target-network-delay
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt

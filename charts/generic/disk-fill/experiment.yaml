@@ -80,3 +80,4 @@ spec:
 
     labels:
       name: disk-fill
+      app.kubernetes.io/part-of: litmus

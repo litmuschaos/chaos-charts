@@ -74,3 +74,4 @@ spec:
       value: 'litmus'    
     labels:
       name: pod-delete
+      app.kubernetes.io/part-of: litmus

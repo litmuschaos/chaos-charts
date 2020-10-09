@@ -95,3 +95,4 @@ spec:
 
     labels:
       name: pod-network-duplication
+      app.kubernetes.io/part-of: litmus
