@@ -103,6 +103,7 @@ spec:
 
     labels:
       name: k8-aws-ec2-terminate
+      app.kubernetes.io/part-of: litmus
 
 
 ---

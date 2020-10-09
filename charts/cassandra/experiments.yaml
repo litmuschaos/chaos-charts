@@ -110,6 +110,7 @@ spec:
 
     labels:
       name: cassandra-pod-delete
+      app.kubernetes.io/part-of: litmus
 
 ---
 

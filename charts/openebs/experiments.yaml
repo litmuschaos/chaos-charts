@@ -103,6 +103,7 @@ spec:
       
     labels:
       name: openebs-target-container-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt
@@ -205,6 +206,7 @@ spec:
         
     labels:
       name: openebs-pool-disk-loss
+      app.kubernetes.io/part-of: litmus
 
     configmaps:
     - name: openebs-pool-disk-loss
@@ -311,6 +313,7 @@ spec:
 
     labels:
       name: openebs-target-pod-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-pod-failure
     #  mountPath: /mnt
@@ -389,6 +392,7 @@ spec:
 
     labels:
       name: openebs-control-plane-chaos
+      app.kubernetes.io/part-of: litmus
 
 ---
 
@@ -476,6 +480,7 @@ spec:
 
     labels:
       name: openebs-target-network-delay
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt
@@ -566,6 +571,7 @@ spec:
 
     labels:
       name: openebs-target-network-loss
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-network-loss
     #  mountPath: /mnt
@@ -662,6 +668,7 @@ spec:
 
     labels:
       name: openebs-nfs-provisioner-kill
+      app.kubernetes.io/part-of: litmus
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/
@@ -754,6 +761,7 @@ spec:
 
     labels:
       name: openebs-pool-network-delay
+      app.kubernetes.io/part-of: litmus 
 
 ---
 
@@ -843,6 +851,7 @@ spec:
 
     labels:
       name: openebs-pool-pod-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt
@@ -937,6 +946,7 @@ spec:
 
     labels:
       name: openebs-pool-container-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-pool-container-failure
     #  mountPath: /mnt
@@ -1028,6 +1038,7 @@ spec:
 
     labels:
       name: openebs-pool-network-loss
+      app.kubernetes.io/part-of: litmus
 
 ---
 
