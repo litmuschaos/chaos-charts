@@ -41,17 +41,14 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/kafka/kafka-broker-pod-failure/kafka-broker-pod-failure-ansible-logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments -name kafka-broker-pod-failure
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: KAFKA_KIND
       value: 'statefulset'
@@ -61,10 +58,6 @@ spec:
 
     - name: KAFKA_LIVENESS_IMAGE
       value: 'litmuschaos/kafka-client:ci'
-
-    # set to 'enabled' if you have auth set up
-    - name: KAFKA_SASL_AUTH
-      value: 'disabled'
 
     # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT
@@ -79,6 +72,11 @@ spec:
     # provide the kill count
     - name: KILL_COUNT
       value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'    
 
     - name: FORCE
       value: 'true'
@@ -120,9 +118,6 @@ spec:
     ## default: litmus. Supported values: litmus
     - name: LIB
       value: 'litmus'
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/pod-delete-helper:latest'
  
     labels:
       name: kafka-broker-pod-failure
