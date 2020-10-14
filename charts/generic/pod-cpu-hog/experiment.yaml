@@ -68,6 +68,12 @@ spec:
     - name: TARGET_POD
       value: ''
 
+    - name: CHAOS_INJECT_COMMAND
+      value: 'md5sum /dev/zero'
+
+    - name: CHAOS_KILL_COMMAND
+      value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
+
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE
