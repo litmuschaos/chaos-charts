@@ -37,7 +37,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.8.0?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} | sleep 30"
 
     - name: node-cpu-hog
