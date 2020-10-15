@@ -72,7 +72,7 @@ spec:
                     imagePullPolicy: Always
                     args:
                     - -c
-                    - ./experiments/node-memory-hog
+                    - ./experiments -name node-memory-hog
                     command:
                     - /bin/bash
                     env:
