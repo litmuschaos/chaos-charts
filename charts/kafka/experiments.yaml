@@ -41,7 +41,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -158,7 +158,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c

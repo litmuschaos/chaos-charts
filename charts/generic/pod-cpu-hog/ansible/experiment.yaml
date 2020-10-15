@@ -28,7 +28,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
