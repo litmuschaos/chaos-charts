@@ -30,7 +30,7 @@ spec:
               value: 'nginx' 
 
             - name: LIB_IMAGE
-              value: 'litmuschaos/go-runner:latest'
+              value: 'litmuschaos/go-runner:1.9.0'
 
             #Network interface inside target container
             - name: NETWORK_INTERFACE

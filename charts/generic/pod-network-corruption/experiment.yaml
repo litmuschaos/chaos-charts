@@ -29,7 +29,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -43,7 +43,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'

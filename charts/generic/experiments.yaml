@@ -31,7 +31,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     args:
     - -c
     - ./experiments -name pod-network-duplication
@@ -67,7 +67,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.9.0'
 
     # provide the name of container runtime
     # it supports docker, containerd, crio
@@ -144,7 +144,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -212,7 +212,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -253,7 +253,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
       
     labels:
       name: node-io-stress
@@ -294,7 +294,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -329,7 +329,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.9.0'
 
     # Provide the container runtime path
     # Default set to docker
@@ -390,7 +390,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -464,7 +464,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -527,7 +527,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -615,7 +615,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     args:
     - -c
     - ./experiments -name pod-memory-hog
@@ -697,7 +697,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -711,7 +711,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -805,7 +805,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -879,7 +879,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -893,7 +893,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -984,7 +984,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1071,7 +1071,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     args:
     - -c
     - ./experiments -name pod-io-stress
@@ -1161,7 +1161,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/chaostoolkit:latest"
+    image: "litmuschaos/chaostoolkit:1.9.0"
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
@@ -1233,7 +1233,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1250,7 +1250,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -1345,7 +1345,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1377,7 +1377,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
    
     labels:
       name: node-cpu-hog
@@ -1488,7 +1488,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1559,7 +1559,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1591,7 +1591,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
       
     labels:
       name: node-memory-hog
@@ -1637,7 +1637,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/chaostoolkit:latest"
+    image: "litmuschaos/chaostoolkit:1.9.0"
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
@@ -1710,7 +1710,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.9.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1756,7 +1756,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.0' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
