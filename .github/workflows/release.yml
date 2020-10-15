@@ -10,8 +10,11 @@ on:
         description: 'Log level'     
         required: true
         default: 'warning'
-      tags:
-        description: 'Test scenario tags'
+      tag:
+        description: 'Releae tag'
+        required: true
+      branch:
+        description: 'Release branch name'
     
 jobs:
   release:
@@ -25,21 +28,22 @@ jobs:
       run: |
         git config --local user.email "litmuschaos@gmail.com"
         git config --local user.name "LitmusChaos"
-        git checkout -b ${{ secrets.RELEASE_BRANCH }}
-
+        git checkout -b ${{ github.event.inputs.branch }}
+        
     # It will update the image tag as provided in the secret
     - name: Update the chaos-charts version
       run: |
-        find charts -type f -exec sed -i 's/\:latest/\:${{ secrets.RELEASE_VERSION }}/g' {} \;
+        find charts -type f -exec sed -i 's/\:latest/\:${{ github.event.inputs.tag }}/g' {} \;
+        find scripts/version -type f -exec sed -i 's/master/${{ github.event.inputs.branch }}/g' {} \;
 
     - name: Commit files
       run: |
         git add .          
-        git commit -s -m "New Release ${{ secrets.RELEASE_VERSION }}"
+        git commit -s -m "New Release ${{ github.event.inputs.tag }}"
   
     # It will push the changes in realse branch
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
-        branch: ${{ secrets.RELEASE_BRANCH }}
+        branch: ${{ github.event.inputs.branch }}
