@@ -7,7 +7,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-loss
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -84,3 +83,4 @@ spec:
 
     labels:
       name: openebs-pool-network-loss
+      app.kubernetes.io/part-of: litmus

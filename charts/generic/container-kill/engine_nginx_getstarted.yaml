@@ -35,10 +35,16 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '20'
 
-            # For containerd image use: litmuschaos/container-kill-helper:latest
             - name: LIB_IMAGE  
-              value: 'gaiaadm/pumba:0.6.5' 
+              value: 'litmuschaos/go-runner:latest' 
 
-            # It supports pumba and containerd 
-            - name: LIB
-              value: 'pumba'
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            # default to docker
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the container runtime path for containerd
+            # applicable only for containerd runtime
+            - name: CONTAINER_PATH
+              value: '/run/containerd/containerd.sock'

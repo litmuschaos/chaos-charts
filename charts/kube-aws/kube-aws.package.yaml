@@ -1,0 +1,6 @@
+packageName: kube-aws 
+experiments:
+  - name: k8-aws-ec2-terminate 
+    CSV: k8-aws-ec2-terminate.chartserviceversion.yaml
+    desc: "k8-aws-ec2-terminate"
+

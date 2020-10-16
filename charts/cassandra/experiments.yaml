@@ -7,7 +7,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cassandra-pod-delete
-  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -37,6 +36,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
       - apiGroups:
           - ""
         resources: 
@@ -44,17 +44,14 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/cassandra/pod-delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments -name cassandra-pod-delete
     command:
     - /bin/bash
     env:
-
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     # provide cassandra service name
     # default service: cassandra
@@ -68,7 +65,7 @@ spec:
     # provide cassandra port 
     # default port: 9042
     - name: CASSANDRA_PORT
-      value: ''
+      value: '9042'
 
     # provide liveness deployement port
     # default port: 8088, It only supports 8088 port
@@ -82,6 +79,10 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '15'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: CHAOS_INTERVAL
       value: '15'
 
@@ -94,20 +95,22 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the kill count
-    - name: KILL_COUNT
-      value: ''
-
     - name: FORCE
       value: ''
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus, powerfulseal
+    ## default: litmus. Supported values: litmus
     - name: LIB
-      value: ''
+      value: 'litmus'
 
     labels:
       name: cassandra-pod-delete
+      app.kubernetes.io/part-of: litmus
 
 ---
 

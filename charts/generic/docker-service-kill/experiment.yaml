@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: docker-service-kill
-  version: 0.1.1
 spec:
   definition:
     scope: Cluster
@@ -59,4 +58,5 @@ spec:
       value: 'litmus'
     labels:
       name: docker-service-kill
+      app.kubernetes.io/part-of: litmus
 

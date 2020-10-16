@@ -6,7 +6,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
-  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -75,3 +74,4 @@ spec:
 
     labels:
       name: node-drain
+      app.kubernetes.io/part-of: litmus

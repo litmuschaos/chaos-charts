@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
-  version: 0.1.5
 spec:
   definition:
     scope: Namespaced
@@ -64,3 +63,4 @@ spec:
       value: 'litmuschaos/app-memory-stress:latest' 
     labels:
       name: pod-memory-hog
+      app.kubernetes.io/part-of: litmus

@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
-  version: 0.1.15
 spec:
   definition:
     scope: Cluster
@@ -31,11 +30,12 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/disk-fill
+    - ./experiments -name disk-fill
     command:
     - /bin/bash
     env:
@@ -58,6 +58,13 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    - name: TARGET_POD
+      value: ''
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
@@ -66,5 +73,11 @@ spec:
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
 
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: disk-fill
+      app.kubernetes.io/part-of: litmus

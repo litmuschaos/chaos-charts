@@ -1,0 +1,158 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: argo-chaos-node-cpu-cron-wf
+  namespace: litmus
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: "Forbid"
+  startingDeadlineSeconds: 0
+  workflowSpec:
+    entrypoint: argowf-chaos
+    serviceAccountName: argo-chaos
+    securityContext:
+      runAsUser: 1000
+      runAsNonRoot: true
+    arguments:
+      parameters:
+        - name: adminModeNamespace
+          value: "litmus"
+    templates:
+      - name: argowf-chaos
+        steps:
+          - - name: install-experiment
+              template: install-experiment
+          - - name: run-chaos
+              template: run-chaos
+          - - name: revert-chaos
+              template: revert-chaos
+
+      - name: install-experiment
+        inputs:
+          artifacts:
+            - name: install-experiment
+              path: /tmp/node-cpu-hog.yaml
+              raw:
+                data: |
+                  apiVersion: litmuschaos.io/v1alpha1
+                  description:
+                    message: |
+                      Give a cpu spike on a node belonging to a deployment
+                  kind: ChaosExperiment
+                  metadata:
+                    name: node-cpu-hog
+                  spec:
+                    definition:
+                      scope: Cluster
+                      permissions:
+                        - apiGroups:
+                            - ""
+                            - "batch"
+                            - "apps"
+                            - "litmuschaos.io"
+                          resources:
+                            - "jobs"
+                            - "pods"
+                            - "pods/log"
+                            - "events"
+                            - "chaosengines"
+                            - "chaosexperiments"
+                            - "chaosresults"
+                          verbs:
+                            - "create"
+                            - "list"
+                            - "get"
+                            - "patch"
+                            - "update"
+                            - "delete"
+                        - apiGroups:
+                            - ""
+                          resources: 
+                            - "nodes"
+                          verbs:
+                            - "get"
+                            - "list"
+                      image: "litmuschaos/go-runner:latest"
+                      imagePullPolicy: Always
+                      args:
+                      - -c
+                      - ./experiments -name node-cpu-hog
+                      command:
+                      - /bin/bash
+                      env:
+
+                      - name: TOTAL_CHAOS_DURATION
+                        value: '60'
+
+                      # Period to wait before and after injection of chaos in sec
+                      - name: RAMP_TIME
+                        value: ''
+
+                      ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
+                      ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
+                      - name: NODE_CPU_CORE
+                        value: ''
+
+                      # PROVIDE THE LIB HERE
+                      # ONLY LITMUS SUPPORTED
+                      - name: LIB
+                        value: 'litmus'
+
+                      # provide lib image
+                      - name: LIB_IMAGE
+                        value: 'litmuschaos/go-runner:latest' 
+                    
+                      labels:
+                        name: node-cpu-hog
+        container:
+          image: lachlanevenson/k8s-kubectl
+          command: [sh, -c]
+          args:
+            [
+              "kubectl apply -f /tmp/node-cpu-hog.yaml -n {{workflow.parameters.adminModeNamespace}}",
+            ]
+
+      - name: run-chaos
+        inputs:
+          artifacts:
+            - name: run-chaos
+              path: /tmp/chaosengine.yaml
+              raw:
+                data: |
+                  apiVersion: litmuschaos.io/v1alpha1
+                  kind: ChaosEngine
+                  metadata:
+                    name: kube-proxy-node-cpu-hog-chaos
+                    namespace: {{workflow.parameters.adminModeNamespace}}
+                  spec:
+                    appinfo:
+                      appns: kube-system
+                      applabel: "k8s-app=kube-proxy"
+                      appkind: daemonset
+                    jobCleanUpPolicy: retain
+                    monitoring: false
+                    annotationCheck: 'false'
+                    engineState: 'active'
+                    chaosServiceAccount: litmus-admin
+                    experiments:
+                      - name: node-cpu-hog
+                        spec:
+                          components:
+                            env:
+                              - name: NODE_CPU_CORE
+                                value: '1'
+
+                              - name: TOTAL_CHAOS_DURATION
+                                value: '60' # in seconds
+        container:
+          image: litmuschaos/litmus-checker:latest
+          args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
+      - name: revert-chaos
+        container:
+          image: lachlanevenson/k8s-kubectl
+          command: [sh, -c]
+          args:
+            [
+              "kubectl delete chaosengine kube-proxy-node-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            ]

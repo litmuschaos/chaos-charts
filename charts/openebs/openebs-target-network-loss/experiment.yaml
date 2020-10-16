@@ -7,7 +7,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-network-loss
-  version: 0.1.14
 spec:
   definition:
     scope: Cluster
@@ -83,6 +82,7 @@ spec:
 
     labels:
       name: openebs-target-network-loss
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-network-loss
     #  mountPath: /mnt

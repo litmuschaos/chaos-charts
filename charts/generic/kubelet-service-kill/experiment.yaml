@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
-  version: 0.1.4
 spec:
   definition:
     scope: Cluster
@@ -41,7 +40,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/kubelet-service-kill
+    - ./experiments -name kubelet-service-kill
     command:
     - /bin/bash
     env:
@@ -56,9 +55,14 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'ubuntu:16.04' 
+            
     # provide node name
     - name: APP_NODE
       value: ''
 
     labels:
       name: kubelet-service-kill
+      app.kubernetes.io/part-of: litmus

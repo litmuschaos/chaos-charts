@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-nfs-provisioner-kill
-  version: 0.1.2
 spec:
   definition:
     scope: Cluster
@@ -89,6 +88,7 @@ spec:
 
     labels:
       name: openebs-nfs-provisioner-kill
+      app.kubernetes.io/part-of: litmus
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/

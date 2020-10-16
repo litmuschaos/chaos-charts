@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-pool-network-delay
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -85,3 +84,4 @@ spec:
 
     labels:
       name: openebs-pool-network-delay
+      app.kubernetes.io/part-of: litmus 

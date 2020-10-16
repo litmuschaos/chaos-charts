@@ -6,7 +6,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-taint
-  version: 0.1.1
 spec:
   definition:
     scope: Cluster
@@ -41,11 +40,12 @@ spec:
           - "get"
           - "list"
           - "patch"
+          - "update"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/node-taint
+    - ./experiments -name node-taint
     command:
     - /bin/bash
     env:
@@ -72,3 +72,4 @@ spec:
 
     labels:
       name: node-taint
+      app.kubernetes.io/part-of: litmus

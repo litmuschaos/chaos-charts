@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-control-plane-chaos
-  version: 0.1.4
 spec:
   definition:
     scope: Namespaced
@@ -71,3 +70,4 @@ spec:
 
     labels:
       name: openebs-control-plane-chaos
+      app.kubernetes.io/part-of: litmus

@@ -1,0 +1,82 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    IO stress on a app pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-io-stress
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name pod-io-stress
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '120'
+
+      ## specify the size as percentage of free space on the file system
+      ## default value 90 (in percentage)
+      - name: FILESYSTEM_UTILIZATION_PERCENTAGE
+        value: '10'
+
+      ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
+      ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
+      - name: FILESYSTEM_UTILIZATION_BYTES
+        value: ''
+
+      ## Total number of workers default value is 4
+      - name: NUMBER_OF_WORKERS
+        value: '4'    
+
+      ## Percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''        
+
+      # Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      # Provide the LIB here
+      # Only pumba supported
+      - name: LIB
+        value: 'pumba'
+
+      # provide lib image
+      - name: LIB_IMAGE
+        value: 'gaiaadm/pumba' 
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+    labels:
+      name: pod-io-stress
+      app.kubernetes.io/part-of: litmus

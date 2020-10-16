@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-autoscaler
-  version: 0.1.0
 spec:
   definition:
     scope: Cluster
@@ -42,7 +41,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-autoscaler
+    - ./experiments -name pod-autoscaler
     command:
     - /bin/bash
     env:
@@ -65,3 +64,4 @@ spec:
   
     labels:
       name: pod-autoscaler
+      app.kubernetes.io/part-of: litmus

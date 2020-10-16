@@ -1,0 +1,177 @@
+apiVersion: argoproj.io/v1alpha1
+kind: CronWorkflow
+metadata:
+  name: argo-chaos-hello-world-pod-delete-cron-wf
+spec:
+  schedule: "0 * * * *"
+  concurrencyPolicy: "Forbid"
+  startingDeadlineSeconds: 0
+  workflowSpec:
+    entrypoint: argowf-chaos
+    serviceAccountName: argo-chaos
+    securityContext:
+      runAsUser: 1000
+      runAsNonRoot: true
+    arguments:
+      parameters:
+        - name: adminModeNamespace
+          value: litmus
+    templates:
+      - name: argowf-chaos
+        steps:
+          - - name: install-experiment
+              template: install-experiment
+          - - name: run-chaos
+              template: run-chaos
+          - - name: revert-chaos
+              template: revert-chaos
+
+      - name: install-experiment
+        inputs:
+          artifacts:
+            - name: install-experiment
+              path: /tmp/pod-delete.yaml
+              raw:
+                data: |
+                  apiVersion: litmuschaos.io/v1alpha1
+                  description:
+                    message: |
+                      Deletes a pod belonging to a deployment/statefulset/daemonset
+                  kind: ChaosExperiment
+                  metadata:
+                    name: pod-delete
+                  spec:
+                    definition:
+                      scope: Namespaced
+                      permissions:
+                        - apiGroups:
+                            - ""
+                            - "apps"
+                            - "batch"
+                            - "litmuschaos.io"
+                          resources:
+                            - "deployments"
+                            - "jobs"
+                            - "pods"
+                            - "pods/log"
+                            - "events"
+                            - "configmaps"
+                            - "chaosengines"
+                            - "chaosexperiments"
+                            - "chaosresults"
+                          verbs:
+                            - "create"
+                            - "list"
+                            - "get"
+                            - "patch"
+                            - "update"
+                            - "delete"
+                        - apiGroups:
+                            - ""
+                          resources: 
+                            - "nodes"
+                          verbs:
+                            - "get"
+                            - "list"
+                      image: "litmuschaos/go-runner:latest"
+                      imagePullPolicy: Always
+                      args:
+                      - -c
+                      - ./experiments -name pod-delete
+                      command:
+                      - /bin/bash
+                      env:
+
+                      - name: TOTAL_CHAOS_DURATION
+                        value: '15'
+
+                      # Period to wait before and after injection of chaos in sec
+                      - name: RAMP_TIME
+                        value: ''
+
+                      # provide the kill count
+                      - name: KILL_COUNT
+                        value: ''
+
+                      - name: FORCE
+                        value: 'true'
+
+                      - name: CHAOS_INTERVAL
+                        value: '5'
+
+                      - name: LIB
+                        value: 'litmus'    
+                      labels:
+                        name: pod-delete
+        container:
+          image: lachlanevenson/k8s-kubectl
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 50m
+          command: [sh, -c]
+          args:
+            [
+              "kubectl apply -f /tmp/pod-delete.yaml -n {{workflow.parameters.adminModeNamespace}}",
+            ]
+
+      - name: run-chaos
+        inputs:
+          artifacts:
+            - name: run-chaos
+              path: /tmp/chaosengine.yaml
+              raw:
+                data: |
+                  apiVersion: litmuschaos.io/v1alpha1
+                  kind: ChaosEngine
+                  metadata:
+                    name: pod-delete-chaos
+                    namespace: {{workflow.parameters.adminModeNamespace}}
+                  spec:
+                    appinfo:
+                      appns: {{workflow.parameters.adminModeNamespace}}
+                      applabel: 'app=hello-world'
+                      appkind: deployment
+                    jobCleanUpPolicy: retain
+                    monitoring: false
+                    annotationCheck: 'false'
+                    engineState: 'active'
+                    chaosServiceAccount: litmus-namespace-admin
+                    experiments:
+                      - name: pod-delete
+                        spec:
+                          components:
+                            resources:
+                              requests:
+                                memory: 128Mi
+                                cpu: 50m
+                              limits:
+                                memory: 128Mi
+                                cpu: 50m
+                            env:
+                              - name: TOTAL_CHAOS_DURATION
+                                value: "30"
+                              - name: CHAOS_INTERVAL
+                                value: "10"
+                              - name: FORCE
+                                value: "false"
+        container:
+          image: litmuschaos/litmus-checker:latest
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 50m
+          args:
+            - -file=/tmp/chaosengine.yaml
+            - -saveName=/tmp/engine-name
+
+      - name: revert-chaos
+        container:
+          image: lachlanevenson/k8s-kubectl
+          resources:
+            limits:
+              memory: 128Mi
+              cpu: 50m
+          command: [sh, -c]
+          args:
+            - "kubectl delete chaosengine pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}"

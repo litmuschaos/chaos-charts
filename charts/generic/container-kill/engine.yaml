@@ -34,4 +34,15 @@ spec:
             # provide the total chaos duration
             - name: TOTAL_CHAOS_DURATION
               value: '20'
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            # default to docker
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the socket file path
+            # applicable only for containerd runtime
+            - name: SOCKET_PATH
+              value: '/run/containerd/containerd.sock'
               

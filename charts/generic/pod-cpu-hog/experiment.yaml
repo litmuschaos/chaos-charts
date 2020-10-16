@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
-  version: 0.1.11
 spec:
   definition:
     scope: Namespaced
@@ -19,6 +18,7 @@ spec:
           - "pods"
           - "pods/log"
           - "events"
+          - "pods/exec"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -29,16 +29,17 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-cpu-hog
+    - ./experiments -name pod-cpu-hog
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
-      value: '30'
+      value: '60'
     
     - name: CHAOS_INTERVAL
       value: '10'
@@ -55,8 +56,29 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    ## env var that describes the library used to execute the chaos
+    ## default: litmus. Supported values: litmus, pumba    
     - name: LIB
       value: 'litmus'
+
+    ## It is used in pumba lib only    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba'  
+
+    - name: TARGET_POD
+      value: ''
+
+    - name: CHAOS_INJECT_COMMAND
+      value: 'md5sum /dev/zero'
+
+    - name: CHAOS_KILL_COMMAND
+      value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
       
     labels:
       name: pod-cpu-hog
+      app.kubernetes.io/part-of: litmus

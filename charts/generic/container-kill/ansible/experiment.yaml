@@ -4,7 +4,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.23
 spec:
   definition:
     scope: Namespaced
@@ -74,3 +73,4 @@ spec:
 
     labels:
       name: container-kill
+      app.kubernetes.io/part-of: litmus

@@ -4,7 +4,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
-  version: 0.1.24
 spec:
   definition:
     scope: Namespaced
@@ -30,11 +29,12 @@ spec:
           - "update"
           - "patch"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/container-kill
+    - ./experiments -name container-kill
     command:
     - /bin/bash
     env:
@@ -46,27 +46,42 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supports pumba and litmus
-    # pumba: for docker runtime
-    # litmus: for containerd/crio runtime
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
+      
+    - name: TARGET_POD
+      value: ''
 
     # provide the chaos interval
     - name: CHAOS_INTERVAL
       value: '10'
 
-    # provide the container runtime path for containerd
-    # applicable only for containerd runtime
-    - name: CONTAINER_PATH
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
       value: '/run/containerd/containerd.sock'
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
 
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
+    
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
 
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
 
     securityContext:
       containerSecurityContext:
@@ -74,3 +89,4 @@ spec:
     
     labels:
       name: container-kill
+      app.kubernetes.io/part-of: litmus

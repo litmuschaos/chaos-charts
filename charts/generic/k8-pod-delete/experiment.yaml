@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
-  version: 0.0.4
 spec:
   definition:
     scope: Namespaced
@@ -67,6 +66,11 @@ spec:
 
     - name: REPORT_ENDPOINT
       value: 'none'
+    
+    - name: TEST_NAMESPACE
+      value: 'default'
+
 
     labels:
       name: k8-pod-delete
+      app.kubernetes.io/part-of: litmus

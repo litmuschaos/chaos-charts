@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -67,3 +66,4 @@ spec:
       value: 'pumba'
     labels:
       name: pod-network-latency
+      app.kubernetes.io/part-of: litmus

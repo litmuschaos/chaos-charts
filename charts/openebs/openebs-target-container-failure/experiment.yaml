@@ -8,7 +8,6 @@ metadata:
   labels:
     litmuschaos.io/name: openebs
   name: openebs-target-container-failure
-  version: 0.1.13
 spec:
   definition:
     scope: Cluster
@@ -102,6 +101,7 @@ spec:
       
     labels:
       name: openebs-target-container-failure
+      app.kubernetes.io/part-of: litmus
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt

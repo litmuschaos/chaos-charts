@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
-  version: 0.1.18
 spec:
   definition:
     scope: Namespaced
@@ -29,11 +28,12 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-network-latency
+    - ./experiments -name pod-network-latency
     command:
     - /bin/bash
     env:
@@ -62,6 +62,41 @@ spec:
       value: ''
 
     - name: LIB
-      value: 'pumba'
+      value: 'litmus'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_POD
+      value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPs
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
     labels:
       name: pod-network-latency
+      app.kubernetes.io/part-of: litmus

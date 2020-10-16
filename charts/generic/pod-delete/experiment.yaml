@@ -21,7 +21,6 @@ spec:
           - "pods"
           - "pods/log"
           - "events"
-          - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -32,18 +31,12 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+          - "deletecollection"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments/pod-delete
+    - ./experiments -name pod-delete
     command:
     - /bin/bash
     env:
@@ -55,17 +48,27 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the kill count
-    - name: KILL_COUNT
-      value: ''
-
     - name: FORCE
       value: 'true'
 
     - name: CHAOS_INTERVAL
       value: '5'
 
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
     - name: LIB
       value: 'litmus'    
+
+    - name: TARGET_POD
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
     labels:
       name: pod-delete
+      app.kubernetes.io/part-of: litmus

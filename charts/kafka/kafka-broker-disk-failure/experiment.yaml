@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kafka-broker-disk-failure
-  version: 0.1.7
 spec:
   definition:
     scope: Cluster
@@ -105,6 +104,7 @@ spec:
       value: ''
     labels:
       name: kafka-broker-disk-failure
+      app.kubernetes.io/part-of: litmus
     secrets:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/

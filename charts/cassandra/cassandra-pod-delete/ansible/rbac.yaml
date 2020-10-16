@@ -7,29 +7,28 @@ metadata:
   labels:
     name: cassandra-pod-delete-sa
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
   name: cassandra-pod-delete-sa
+  namespace: default
   labels:
     name: cassandra-pod-delete-sa
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","deployments","statefulsets","pods/log","pods/exec","services","events","jobs","configmaps","chaosengines","chaosexperiments","chaosresults"]
+  resources: ["pods","deployments","statefulsets","services","pods/log","pods/exec","events","jobs","chaosengines","chaosexperiments","chaosresults"]
   verbs: ["create","list","get","patch","update","delete"]
-- apiGroups: [""]
-  resources: ["nodes"]
-  verbs: ["get","list"]
 ---
-apiVersion: rbac.authorization.k8s.io/v1beta1
-kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
   name: cassandra-pod-delete-sa
+  namespace: default
   labels:
     name: cassandra-pod-delete-sa
 roleRef:
   apiGroup: rbac.authorization.k8s.io
-  kind: ClusterRole
+  kind: Role
   name: cassandra-pod-delete-sa
 subjects:
 - kind: ServiceAccount
