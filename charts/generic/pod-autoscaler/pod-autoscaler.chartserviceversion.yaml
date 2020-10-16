@@ -23,6 +23,7 @@ spec:
     - GKE
     - EKS
     - Minikube
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
