@@ -113,6 +113,8 @@ spec:
                                 value: '500'
                               - name: TOTAL_CHAOS_DURATION
                                 value: '60' # in seconds
+                              - name: CHAOS_KILL_COMMAND
+                                value: "kill $(find /proc -name exe -lname '*/dd' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' |  head -n 1)"
         container:
           image: litmuschaos/litmus-checker:latest
           args: ["-file=/tmp/chaosengine-pod-memory-hog.yaml","-saveName=/tmp/engine-name"]
@@ -151,6 +153,8 @@ spec:
                                 value: '1'
                               - name: TOTAL_CHAOS_DURATION
                                 value: '60' # in seconds
+                              - name: CHAOS_KILL_COMMAND
+                                value: "kill $(find /proc -name exe -lname '*/md5sum' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' |  head -n 1)"
         container:
           image: litmuschaos/litmus-checker:latest
           args: ["-file=/tmp/chaosengine-pod-cpu-hog.yaml","-saveName=/tmp/engine-name"]
