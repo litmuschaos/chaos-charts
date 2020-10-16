@@ -24,6 +24,7 @@ spec:
   platforms:
     - GKE
     - EKS
+    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:
