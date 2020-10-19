@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -72,3 +77,5 @@ spec:
     labels:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
