@@ -31,6 +31,8 @@ spec:
         value: "pod-app-kill-health.json"
       - name: chaosServiceAccount
         value: k8-pod-delete-sa
+      - name: reportEndpoint
+        value: none
   templates:
     - name: argowf-chaos
       steps:
@@ -48,7 +50,6 @@ spec:
             template: revert-chaos-rbac
         - - name: revert-chaos-experiments
             template: revert-chaos-experiments
-    
     - name: pdbcreate
       container:
         image: alpine:latest
@@ -113,7 +114,7 @@ spec:
                           - name: REPORT
                             value: 'false'
                           - name: REPORT_ENDPOINT
-                            value: 'none'
+                            value: '{{workflow.parameters.reportEndpoint}}'
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
@@ -163,7 +164,7 @@ spec:
                           - name: REPORT
                             value: 'false'
                           - name: REPORT_ENDPOINT
-                            value: 'none'
+                            value: '{{workflow.parameters.reportEndpoint}}'
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:

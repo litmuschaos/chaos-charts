@@ -22,7 +22,7 @@ spec:
     labels:
       name: k8-pod-delete    
       app.kubernetes.io/part-of: litmus
-    image: "docker.artifactory.a.intuit.com/oicp/standard/external/chaostoolkit:latest"
+    image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0

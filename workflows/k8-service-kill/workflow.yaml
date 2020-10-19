@@ -31,6 +31,8 @@ spec:
         value: "service-app-kill-health.json"
       - name: chaosServiceAccount
         value: chaos-admin
+      - name: reportEndpoint
+        value: none
   templates:
     - name: argowf-chaos
       steps:
@@ -87,9 +89,9 @@ spec:
                           - name: FILE
                             value: {{workflow.parameters.fileName}}
                           - name: REPORT
-                            value: 'true'
+                            value: 'false'
                           - name: REPORT_ENDPOINT
-                            value: 'https://eventbus-e2e.intuit.com/v2/ip-quality-reliability-realtime-prf'
+                            value: '{{workflow.parameters.reportEndpoint}}'
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
@@ -139,7 +141,7 @@ spec:
                           - name: REPORT
                             value: 'false'
                           - name: REPORT_ENDPOINT
-                            value: 'none'
+                            value: '{{workflow.parameters.reportEndpoint}}'
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
