@@ -8,7 +8,7 @@ kind: ChaosExperiment
 metadata:
   name: pod-network-duplication
   labels:
-    name: pod-network-loss
+    name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -103,6 +103,8 @@ spec:
     labels:
       name: pod-network-duplication
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -114,6 +116,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-drain
+  labels:
+    name: node-drain
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -176,6 +183,8 @@ spec:
     labels:
       name: node-drain
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -186,6 +195,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-io-stress
+  labels:
+    name: node-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -263,6 +277,8 @@ spec:
     labels:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -273,6 +289,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-fill
+  labels:
+    name: disk-fill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -349,6 +370,8 @@ spec:
     labels:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -360,6 +383,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-taint
+  labels:
+    name: node-taint
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -427,6 +455,8 @@ spec:
     labels:
       name: node-taint
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -437,6 +467,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-autoscaler
+  labels:
+    name: pod-autoscaler
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -497,6 +532,8 @@ spec:
     labels:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -507,6 +544,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-cpu-hog
+  labels:
+    name: pod-cpu-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -584,6 +626,8 @@ spec:
     labels:
       name: pod-cpu-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -595,6 +639,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-memory-hog
+  labels:
+    name: pod-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -668,6 +717,8 @@ spec:
     labels:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -678,6 +729,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-corruption
+  labels:
+    name: pod-network-corruption
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -773,6 +829,8 @@ spec:
     labels:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -783,6 +841,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
+  labels:
+    name: pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   version: 0.1.19
 spec:
   definition:
@@ -850,6 +913,8 @@ spec:
     labels:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -860,6 +925,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
+  labels:
+    name: pod-network-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -955,6 +1025,8 @@ spec:
     labels:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -965,6 +1037,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: disk-loss
+  labels:
+    name: disk-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -1037,6 +1114,8 @@ spec:
     labels:
       name: disk-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -1051,6 +1130,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-io-stress
+  labels:
+    name: pod-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -1125,6 +1209,8 @@ spec:
     labels:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1135,6 +1221,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-service-kill
+  labels:
+    name: k8-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -1204,6 +1295,8 @@ spec:
     labels:
       name: k8-service-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1214,6 +1307,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-latency
+  labels:
+    name: pod-network-latency
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -1309,6 +1407,8 @@ spec:
     labels:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1319,6 +1419,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-cpu-hog
+  labels:
+    name: node-cpu-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -1387,6 +1492,8 @@ spec:
     labels:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1397,6 +1504,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: docker-service-kill
+  labels:
+    name: docker-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -1451,6 +1563,8 @@ spec:
     labels:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 
 ---
@@ -1462,6 +1576,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
+  labels:
+    name: kubelet-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -1523,6 +1642,8 @@ spec:
     labels:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1533,6 +1654,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -1601,6 +1727,8 @@ spec:
     labels:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1611,6 +1739,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
+  labels:
+    name: k8-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -1680,6 +1813,8 @@ spec:
     labels:
       name: k8-pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -1689,6 +1824,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: container-kill
+  labels:
+    name: container-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -1775,6 +1915,8 @@ spec:
     labels:
       name: container-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 

@@ -9,6 +9,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-container-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-container-failure
 spec:
   definition:
@@ -104,6 +108,8 @@ spec:
     labels:
       name: openebs-target-container-failure
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt
@@ -119,6 +125,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-disk-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-disk-loss
 spec:
   definition:
@@ -207,6 +217,8 @@ spec:
     labels:
       name: openebs-pool-disk-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
     configmaps:
     - name: openebs-pool-disk-loss
@@ -227,6 +239,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-pod-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-pod-failure
 spec:
   definition:
@@ -314,6 +330,8 @@ spec:
     labels:
       name: openebs-target-pod-failure
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-pod-failure
     #  mountPath: /mnt
@@ -329,6 +347,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-control-plane-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-control-plane-chaos
 spec:
   definition:
@@ -393,6 +415,8 @@ spec:
     labels:
       name: openebs-control-plane-chaos
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -404,6 +428,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-network-delay
 spec:
   definition:
@@ -481,6 +509,8 @@ spec:
     labels:
       name: openebs-target-network-delay
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt
@@ -495,6 +525,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-network-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-network-loss
 spec:
   definition:
@@ -572,6 +606,8 @@ spec:
     labels:
       name: openebs-target-network-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-network-loss
     #  mountPath: /mnt
@@ -587,6 +623,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-nfs-provisioner-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-nfs-provisioner-kill
 spec:
   definition:
@@ -669,6 +709,8 @@ spec:
     labels:
       name: openebs-nfs-provisioner-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/
@@ -684,6 +726,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-network-delay
 spec:
   definition:
@@ -762,6 +808,8 @@ spec:
     labels:
       name: openebs-pool-network-delay
       app.kubernetes.io/part-of: litmus 
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 
@@ -774,6 +822,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-pod-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-pod-failure
 spec:
   definition:
@@ -852,6 +904,8 @@ spec:
     labels:
       name: openebs-pool-pod-failure
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt
@@ -868,6 +922,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-container-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-container-failure
 spec:
   definition:
@@ -947,6 +1005,8 @@ spec:
     labels:
       name: openebs-pool-container-failure
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-pool-container-failure
     #  mountPath: /mnt
@@ -961,6 +1021,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-network-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-network-loss
 spec:
   definition:
@@ -1039,6 +1103,8 @@ spec:
     labels:
       name: openebs-pool-network-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 ---
 

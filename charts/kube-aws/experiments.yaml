@@ -7,6 +7,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-aws-ec2-terminate
+  labels:
+    name: k8-aws-ec2-terminate
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -104,6 +109,8 @@ spec:
     labels:
       name: k8-aws-ec2-terminate
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
 
 ---
