@@ -7,6 +7,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-network-delay
 spec:
   definition:
@@ -85,3 +89,5 @@ spec:
     labels:
       name: openebs-pool-network-delay
       app.kubernetes.io/part-of: litmus 
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

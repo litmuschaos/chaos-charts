@@ -7,6 +7,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-control-plane-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-control-plane-chaos
 spec:
   definition:
@@ -71,3 +75,5 @@ spec:
     labels:
       name: openebs-control-plane-chaos
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

@@ -7,6 +7,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-container-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-container-failure
 spec:
   definition:
@@ -102,6 +106,8 @@ spec:
     labels:
       name: openebs-target-container-failure
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt

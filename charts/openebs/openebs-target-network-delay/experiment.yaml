@@ -6,6 +6,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-target-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-target-network-delay
 spec:
   definition:
@@ -83,6 +87,8 @@ spec:
     labels:
       name: openebs-target-network-delay
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt

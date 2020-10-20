@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-delete
+  labels:
+    name: pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   version: 0.1.19
 spec:
   definition:
@@ -72,3 +77,5 @@ spec:
     labels:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
