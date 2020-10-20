@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-io-stress
+  labels:
+    name: node-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -82,3 +87,5 @@ spec:
     labels:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
