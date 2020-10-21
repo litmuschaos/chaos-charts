@@ -62,7 +62,11 @@ spec:
 
       ## Percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''        
+        value: ''    
+
+      ## specify the target pod name
+      - name: TARGET_POD
+        value: ''    
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
