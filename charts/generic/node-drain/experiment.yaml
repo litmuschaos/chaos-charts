@@ -55,7 +55,7 @@ spec:
     - /bin/bash
     env:
     
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     - name: TOTAL_CHAOS_DURATION
@@ -69,7 +69,7 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-
+      
     labels:
       name: node-drain
       app.kubernetes.io/part-of: litmus

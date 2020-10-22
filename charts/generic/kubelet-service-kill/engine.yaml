@@ -30,5 +30,5 @@ spec:
               value: '90' # in seconds
               
              # provide the actual name of node under test
-            - name: APP_NODE
+            - name: TARGET_NODE
               value: 'node-01'

@@ -65,7 +65,7 @@ spec:
       value: 'ubuntu:16.04' 
             
     # provide node name
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     labels:
