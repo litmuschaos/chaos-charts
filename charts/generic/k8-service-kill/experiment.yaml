@@ -44,7 +44,7 @@ spec:
     labels:
       name: k8-service-kill    
       app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:1.9.0"
+    image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
