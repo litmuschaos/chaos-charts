@@ -7,6 +7,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-pool-disk-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
   name: openebs-pool-disk-loss
 spec:
   definition:
@@ -95,6 +99,8 @@ spec:
     labels:
       name: openebs-pool-disk-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
 
     configmaps:
     - name: openebs-pool-disk-loss

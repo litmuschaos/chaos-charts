@@ -6,6 +6,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-io-stress
+  labels:
+    name: pod-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -57,7 +62,11 @@ spec:
 
       ## Percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''        
+        value: ''    
+
+      ## specify the target pod name
+      - name: TARGET_POD
+        value: ''    
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
@@ -80,3 +89,5 @@ spec:
     labels:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

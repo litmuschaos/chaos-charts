@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-service-kill
+  labels:
+    name: k8-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
@@ -72,3 +77,4 @@ spec:
     
     - name: TEST_NAMESPACE
       value: 'default'
+
