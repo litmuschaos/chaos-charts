@@ -41,6 +41,9 @@ spec:
         verbs :
           - "get"
           - "list"
+    labels:
+      name: k8-service-kill    
+      app.kubernetes.io/part-of: litmus
     image: "litmuschaos/chaostoolkit:latest"
     args:
     - -c
@@ -75,9 +78,3 @@ spec:
     - name: TEST_NAMESPACE
       value: 'default'
 
-
-    labels:
-      name: k8-service-kill
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
