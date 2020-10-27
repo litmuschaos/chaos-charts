@@ -165,7 +165,7 @@ spec:
     - /bin/bash
     env:
     
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     - name: TOTAL_CHAOS_DURATION
@@ -179,7 +179,7 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-
+      
     labels:
       name: node-drain
       app.kubernetes.io/part-of: litmus
@@ -257,8 +257,8 @@ spec:
     - name: NUMBER_OF_WORKERS
       value: '4'    
 
-    ## enter the name of the desired node
-    - name: APP_NODE
+    ## enter the name of the target node
+    - name: TARGET_NODE
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -273,6 +273,15 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
       
     labels:
       name: node-io-stress
@@ -432,7 +441,7 @@ spec:
     - /bin/bash
     env:
 
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     - name: TOTAL_CHAOS_DURATION
@@ -1599,8 +1608,8 @@ spec:
     - name: NODE_CPU_CORE
       value: ''
 
-    # ENTER THE NAME OF THE APPLICATION NODE
-    - name: APP_NODE
+    # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
       value: ''
 
     # PROVIDE THE LIB HERE
@@ -1611,6 +1620,15 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
    
     labels:
       name: node-cpu-hog
@@ -1759,7 +1777,7 @@ spec:
       value: 'ubuntu:16.04' 
             
     # provide node name
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     labels:
@@ -1891,8 +1909,8 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'    
 
-     # ENTER THE NAME OF THE APPLICATION NODE
-    - name: APP_NODE
+     # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -1907,6 +1925,15 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
       
     labels:
       name: node-memory-hog
