@@ -73,9 +73,6 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-<<<<<<< HEAD
-      value: 'litmuschaos/go-runner:1.9.1' 
-=======
       value: 'litmuschaos/go-runner:latest' 
 
     ## percentage of total nodes to target
@@ -86,7 +83,6 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
->>>>>>> 4bc9fc3... chore(infra-chaos): Adding node-aff-perc & sequence in node-level chaos (#359)
    
     labels:
       name: node-cpu-hog
