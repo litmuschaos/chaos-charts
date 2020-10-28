@@ -11,7 +11,7 @@ metadata:
     name: kafka-broker-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -128,7 +128,7 @@ spec:
       name: kafka-broker-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -143,7 +143,7 @@ metadata:
     name: kafka-broker-disk-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -245,7 +245,7 @@ spec:
       name: kafka-broker-disk-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
     secrets:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/

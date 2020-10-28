@@ -11,7 +11,7 @@ metadata:
     name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -104,7 +104,7 @@ spec:
       name: pod-network-duplication
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -120,7 +120,7 @@ metadata:
     name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -184,7 +184,7 @@ spec:
       name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -199,7 +199,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -272,7 +272,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -287,7 +287,7 @@ spec:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -302,7 +302,7 @@ metadata:
     name: disk-fill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -380,7 +380,7 @@ spec:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -457,7 +457,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -526,7 +526,7 @@ spec:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -541,7 +541,7 @@ metadata:
     name: pod-autoscaler
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -603,7 +603,7 @@ spec:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -618,7 +618,7 @@ metadata:
     name: pod-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -697,7 +697,7 @@ spec:
       name: pod-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -713,7 +713,7 @@ metadata:
     name: pod-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -788,7 +788,7 @@ spec:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -803,7 +803,7 @@ metadata:
     name: pod-network-corruption
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -900,7 +900,7 @@ spec:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -915,7 +915,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
   version: 0.1.19
 spec:
   definition:
@@ -984,7 +984,7 @@ spec:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -999,7 +999,7 @@ metadata:
     name: pod-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -1096,7 +1096,7 @@ spec:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -1111,7 +1111,7 @@ metadata:
     name: disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -1185,7 +1185,7 @@ spec:
       name: disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -1265,7 +1265,7 @@ metadata:
     name: pod-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -1345,7 +1345,7 @@ spec:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -1360,7 +1360,7 @@ metadata:
     name: k8-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -1443,7 +1443,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -1540,7 +1540,7 @@ spec:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -1677,7 +1677,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -1741,7 +1741,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -1756,7 +1756,7 @@ spec:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -1771,7 +1771,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -1827,7 +1827,7 @@ spec:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 
 ---
@@ -1843,7 +1843,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -1906,7 +1906,7 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -1982,7 +1982,7 @@ metadata:
     name: node-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -2046,7 +2046,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.9.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -2061,7 +2061,7 @@ spec:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -2076,7 +2076,7 @@ metadata:
     name: k8-pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -2147,7 +2147,7 @@ spec:
       name: k8-pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
@@ -2161,7 +2161,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -2249,7 +2249,7 @@ spec:
       name: container-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.9.1
 
 ---
 
