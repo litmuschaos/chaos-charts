@@ -6,6 +6,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-taint
+  labels:
+    name: node-taint
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -50,7 +55,7 @@ spec:
     - /bin/bash
     env:
 
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     - name: TOTAL_CHAOS_DURATION
@@ -73,3 +78,5 @@ spec:
     labels:
       name: node-taint
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

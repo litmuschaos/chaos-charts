@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: kubelet-service-kill
+  labels:
+    name: kubelet-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -60,9 +65,11 @@ spec:
       value: 'ubuntu:16.04' 
             
     # provide node name
-    - name: APP_NODE
+    - name: TARGET_NODE
       value: ''
 
     labels:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

@@ -1,14 +1,14 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos-service-health
+  name: k8-service-kill-health
   namespace: default
 spec:
   appinfo:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  annotationCheck: 'true'
+  annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: chaos-admin
   monitoring: false

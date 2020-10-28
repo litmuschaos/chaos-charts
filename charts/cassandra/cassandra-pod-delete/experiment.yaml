@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: cassandra-pod-delete
+  labels:
+    name: cassandra-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -109,3 +114,5 @@ spec:
     labels:
       name: cassandra-pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

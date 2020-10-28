@@ -25,6 +25,9 @@ spec:
   minKubeVersion: 1.12.0
   provider:
     name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 1.9.1
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-nfs-provisioner-kill

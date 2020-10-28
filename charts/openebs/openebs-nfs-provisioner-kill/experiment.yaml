@@ -7,6 +7,10 @@ kind: ChaosExperiment
 metadata:
   labels:
     litmuschaos.io/name: openebs
+    name: openebs-nfs-provisioner-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
   name: openebs-nfs-provisioner-kill
 spec:
   definition:
@@ -89,6 +93,8 @@ spec:
     labels:
       name: openebs-nfs-provisioner-kill
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/

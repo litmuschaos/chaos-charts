@@ -67,3 +67,5 @@ spec:
     labels:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

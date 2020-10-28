@@ -1,0 +1,36 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  annotationCheck: 'false'
+  engineState: 'active'
+  chaosServiceAccount: ebs-loss-sa
+  monitoring: false
+  # It can be retain/delete
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: ebs-loss
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # Instance ID of the target ec2 instance 
+            - name: EC2_INSTANCE_ID
+              value: ''
+
+            # provide EBS volume id attached to the given instance
+            - name: EBS_VOL_ID
+              value: ''              
+
+            # Enter the device name which you wanted to mount only for AWS.   
+            - name: DEVICE_NAME
+              value: '/dev/sdb'
+              
+            # provide the region name of the instace
+            - name: REGION
+              value: ''

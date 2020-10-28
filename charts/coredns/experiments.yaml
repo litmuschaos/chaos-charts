@@ -7,6 +7,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: coredns-pod-delete
+  labels:
+    name: coredns-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     permissions:
@@ -65,6 +70,8 @@ spec:
     labels:
       name: coredns-pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1
 
 ---
 

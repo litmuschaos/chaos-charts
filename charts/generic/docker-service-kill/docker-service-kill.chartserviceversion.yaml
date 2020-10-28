@@ -14,13 +14,11 @@ spec:
     docker-service-kill contains killing docker service gracefully for a certain chaos duration.
     - Causes replicas may be evicted or becomes unreachable on account on nodes turning unschedulable (Not Ready) due to docker service kill.
     - The application node should be healthy once chaos is stopped and the services are reaccessable. 
-  
   keywords:
     - Kubernetes
     - Node
     - Service
     - Docker 
-
   platforms:
     - GKE    
     - AKS
@@ -31,6 +29,9 @@ spec:
   minKubeVersion: 1.12.0
   provider:
     name: Wipro
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 1.9.1
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/docker_service_kill

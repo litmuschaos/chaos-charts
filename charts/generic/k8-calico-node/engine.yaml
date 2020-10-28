@@ -1,38 +1,39 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos-service-health
+  name: k8-calico-node
   namespace: default
 spec:
   appinfo:
     appns: 'default'
-    applabel: 'app=nginx'
-    appkind: 'deployment'
-  annotationCheck: 'true'
+    applabel: "k8s-app=calico-node"
+    appkind: deployment
+  annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: chaos-admin
   monitoring: false
   jobCleanUpPolicy: 'retain'
   experiments:
-    - name: k8-service-kill
+    - name: k8-pod-delete
       spec:
         components:
           env:
             # set chaos namespace
             - name: NAME_SPACE
-              value: 'default'
+              value: kube-system
             # set chaos label name
             - name: LABEL_NAME
-              value: 'nginx'
+              value: k8s-app=calico-node
             # pod endpoint
             - name: APP_ENDPOINT
               value: 'localhost'
             - name: FILE
-              value: 'service-app-kill-health.json'
+              value: 'pod-custom-kill-health.json'
             - name: REPORT
               value: 'true'
             - name: REPORT_ENDPOINT
               value: 'none'
             - name: TEST_NAMESPACE
               value: 'default'
+
 

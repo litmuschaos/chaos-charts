@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -53,8 +58,8 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'    
 
-     # ENTER THE NAME OF THE APPLICATION NODE
-    - name: APP_NODE
+     # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -69,7 +74,18 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:1.9.1' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
       
     labels:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

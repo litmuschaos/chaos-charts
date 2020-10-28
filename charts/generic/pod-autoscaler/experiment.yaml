@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-autoscaler
+  labels:
+    name: pod-autoscaler
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Cluster
@@ -57,6 +62,10 @@ spec:
     - name: REPLICA_COUNT
       value: '5'
 
+    # provide volume mount path
+    - name: VOLUME_MOUNT_PATH
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -65,3 +74,5 @@ spec:
     labels:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1

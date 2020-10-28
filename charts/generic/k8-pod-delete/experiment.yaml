@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: k8-pod-delete
+  labels:
+    name: k8-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.9.1
 spec:
   definition:
     scope: Namespaced
@@ -74,3 +79,5 @@ spec:
     labels:
       name: k8-pod-delete
       app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.9.1
