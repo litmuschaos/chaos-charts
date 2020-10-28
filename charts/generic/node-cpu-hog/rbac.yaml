@@ -18,7 +18,7 @@ metadata:
 rules:
 - apiGroups: ["","litmuschaos.io","batch","apps"]
   resources: ["pods","jobs","events","chaosengines","pods/log","chaosexperiments","chaosresults"]
-  verbs: ["create","list","get","patch","update","delete"]
+  verbs: ["create","list","get","patch","update","delete","deletecollection"]
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["get","list"]
