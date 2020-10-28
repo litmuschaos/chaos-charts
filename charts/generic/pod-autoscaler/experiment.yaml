@@ -62,10 +62,6 @@ spec:
     - name: REPLICA_COUNT
       value: '5'
 
-    # provide volume mount path
-    - name: VOLUME_MOUNT_PATH
-      value: ''
-
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
