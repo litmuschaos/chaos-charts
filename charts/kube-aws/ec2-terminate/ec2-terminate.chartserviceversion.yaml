@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-10-28T10:28:08Z
+  name: ec2-terminate
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: Mayadata
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: ec2-terminate
+  categoryDescription: |
+    This experiment causes termination of an EC2 instance for a certain chaos duration.
+    - Causes termination of an EC2 instance before bringing it back to running state after the specified chaos duration.
+    - It helps to check the performance of the application on the ec2 instance. 
+  keywords:
+    - Kubernetes
+    - AWS
+    - Termination
+  platforms:
+    - AWS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: uditgaurav@mayadata.io
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ec2-terminate
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/ec2-terminate/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/ec2-terminate/experiment.yaml

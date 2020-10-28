@@ -13,6 +13,7 @@ spec:
     kube-aws contains chaos to disrupt state of aws resources running part of kubernetes cluster
   experiments:
     - k8-aws-ec2-terminate
+    - ec2-terminate
     - ebs-loss
   keywords:
     - AWS
