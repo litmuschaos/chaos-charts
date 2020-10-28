@@ -6,4 +6,7 @@ experiments:
   - name: ec2-terminate 
     CSV: ec2-terminate.chartserviceversion.yaml
     desc: "ec2-terminate"    
+  - name: ebs-loss 
+    CSV: ebs-loss.chartserviceversion.yaml
+    desc: "ebs-loss"
 

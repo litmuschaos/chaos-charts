@@ -14,6 +14,7 @@ spec:
   experiments:
     - k8-aws-ec2-terminate
     - ec2-terminate
+    - ebs-loss
   keywords:
     - AWS
     - EC2
@@ -21,7 +22,6 @@ spec:
   maintainers:
     - name: sumit
       email: sumit_nagal@intuit.com
-  minKubeVersion: 1.12.0
   provider:
     name: Intuit
   links:
