@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Scale the application replicas and test the node autoscaling on cluster
+    Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: pod-autoscaler
+  name: ec2-terminate
   labels:
-    name: pod-autoscaler
+    name: ec2-terminate
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -17,14 +17,13 @@ spec:
       - apiGroups:
           - ""
           - "batch"
-          - "apps"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
-          - "pods/log"
-          - "deployments"
           - "events"
+          - "pods/log"
+          - "secrets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -35,22 +34,14 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-autoscaler
+    - ./experiments -name ec2-terminate
     command:
     - /bin/bash
     env:
-
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
@@ -58,21 +49,22 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # Number of replicas to scale
-    - name: REPLICA_COUNT
-      value: '5'
-
-    # provide volume mount path
-    - name: VOLUME_MOUNT_PATH
+    - name: EC2_INSTANCE_ID
       value: ''
 
-    # PROVIDE THE LIB HERE
-    # ONLY LITMUS SUPPORTED
+    - name: REGION
+      value: ''
+
+    # provide the LIB
+    # only litmus supported
     - name: LIB
-      value: 'litmus'
-  
+      value: 'litmus'  
+          
     labels:
-      name: pod-autoscaler
+      name: ec2-terminate
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
