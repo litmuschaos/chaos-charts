@@ -594,10 +594,6 @@ spec:
     - name: REPLICA_COUNT
       value: '5'
 
-    # provide volume mount path
-    - name: VOLUME_MOUNT_PATH
-      value: ''
-
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -1322,6 +1318,10 @@ spec:
       ## Percentage of total pods to target
       - name: PODS_AFFECTED_PERC
         value: ''    
+
+      # provide volume mount path
+      - name: VOLUME_MOUNT_PATH
+        value: ''
 
       ## specify the target pod name
       - name: TARGET_POD
