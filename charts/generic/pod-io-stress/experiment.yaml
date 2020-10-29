@@ -64,6 +64,10 @@ spec:
       - name: PODS_AFFECTED_PERC
         value: ''    
 
+      # provide volume mount path
+      - name: VOLUME_MOUNT_PATH
+        value: ''
+
       ## specify the target pod name
       - name: TARGET_POD
         value: ''    
