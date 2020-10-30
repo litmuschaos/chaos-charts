@@ -18,7 +18,7 @@ spec:
       spec:
         components:
           env:
-            # set chaos namespace
+            # set chaos namespace, we assume you are using the addon-metricset-ns if not modify the below namespace
             - name: NAME_SPACE
               value: addon-metricset-ns
             # set chaos label name
@@ -30,7 +30,7 @@ spec:
             - name: FILE
               value: 'pod-custom-kill-health.json'
             - name: REPORT
-              value: 'true'
+              value: 'false'
             - name: REPORT_ENDPOINT
               value: 'none'
             - name: TEST_NAMESPACE

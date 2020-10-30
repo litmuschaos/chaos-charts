@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: k8-custom-metrics-apiserver
+  name: k8-prometheus-pushgateway
   namespace: default
 spec:
   appinfo:
     appns: 'default'
-    applabel: "k8s-app=custom-metrics-apiserver"
+    applabel: "k8s-app=prometheus-pushgateway"
     appkind: deployment
   annotationCheck: 'false'
   engineState: 'active'
@@ -18,19 +18,19 @@ spec:
       spec:
         components:
           env:
-            # set chaos namespace
+            # set chaos namespace, we assume you are using the addon-metricset-ns if not modify the below namespace
             - name: NAME_SPACE
               value: addon-metricset-ns
             # set chaos label name
             - name: LABEL_NAME
-              value: k8s-app=custom-metrics-apiserver
+              value: k8s-app=prometheus-pushgateway
             # pod endpoint
             - name: APP_ENDPOINT
               value: 'localhost'
             - name: FILE
               value: 'pod-custom-kill-health.json'
             - name: REPORT
-              value: 'true'
+              value: 'false'
             - name: REPORT_ENDPOINT
               value: 'none'
             - name: TEST_NAMESPACE
