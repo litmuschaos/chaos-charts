@@ -68,8 +68,8 @@ spec:
       - name: VOLUME_MOUNT_PATH
         value: ''
 
-      ## specify the target pod name
-      - name: TARGET_POD
+      ## specify the comma separated target pods
+      - name: TARGET_PODS
         value: ''    
 
       # Period to wait before and after injection of chaos in sec

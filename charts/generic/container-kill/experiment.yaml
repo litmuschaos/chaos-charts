@@ -54,7 +54,7 @@ spec:
     - name: LIB
       value: 'litmus'
       
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the chaos interval
