@@ -1,0 +1,77 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Restart node
+kind: ChaosExperiment
+metadata:
+  name: node-restart
+  version: 0.1.0
+  labels:
+    name: node-restart
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "secrets"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-restart
+    command:
+    - /bin/bash
+    env:
+    - name: SSH_USER
+      value: 'root'
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:latest"
+
+    # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
+      value: ''
+
+    labels:
+      name: node-restart
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/
