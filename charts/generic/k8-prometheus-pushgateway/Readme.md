@@ -1,5 +1,5 @@
 # Remote namespace 
-* navigate to current directory `charts/generic/k8-alb-ingress-controller/`
+* navigate to current directory `charts/generic/k8-prometheus-pushgateway/`
 * Apply experiments for K8 - `kubectl apply -f experiment.yaml`
 * Validate the experiments for k8 - `kubectl get chaosexperiments`
 * Setup RBAC as admin mode - `kubectl apply -f rbac-admin.yaml`

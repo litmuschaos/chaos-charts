@@ -84,7 +84,7 @@ spec:
 
     # provide the target ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPs
+    - name: TARGET_IPS
       value: ''
 
     # provide the target hosts
