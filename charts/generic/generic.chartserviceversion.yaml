@@ -34,6 +34,7 @@ spec:
     - k8-service-kill
     - node-io-stress
     - pod-io-stress
+    - node-restart
     
   keywords:
     - Kubernetes

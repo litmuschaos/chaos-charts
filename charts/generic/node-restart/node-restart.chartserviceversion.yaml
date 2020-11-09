@@ -1,0 +1,41 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-01-28T10:28:08Z
+  name: node-restart
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: node-restart
+  categoryDescription: |
+    Node restart contains chaos to restart the node via SSH.
+  keywords:
+    - Kubernetes
+    - Restart
+    - State
+    - Node
+    - SSH
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: machacekondra
+      email: machacek.ondra@gmail.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-restart
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-restart
+  icon: 
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-restart/experiment.yaml
