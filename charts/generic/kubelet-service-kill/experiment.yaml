@@ -64,7 +64,7 @@ spec:
     - name: LIB_IMAGE
       value: 'ubuntu:16.04' 
             
-    # provide node name
+    # provide the target node name
     - name: TARGET_NODE
       value: ''
 

@@ -67,8 +67,8 @@ spec:
     - name: NUMBER_OF_WORKERS
       value: '4'    
 
-    ## enter the name of the target node
-    - name: TARGET_NODE
+    ## enter the comma separated target nodes name
+    - name: TARGET_NODES
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
