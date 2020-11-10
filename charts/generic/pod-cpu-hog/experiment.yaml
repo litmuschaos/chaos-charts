@@ -70,7 +70,7 @@ spec:
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba'  
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     - name: CHAOS_INJECT_COMMAND

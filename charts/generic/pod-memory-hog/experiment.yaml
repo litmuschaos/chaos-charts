@@ -78,7 +78,7 @@ spec:
       - name: SEQUENCE
         value: 'parallel'
 
-      - name: TARGET_POD
+      - name: TARGET_PODS
         value: ''
 
     labels:

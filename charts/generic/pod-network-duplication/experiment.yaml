@@ -62,7 +62,7 @@ spec:
     - name: LIB
       value: 'litmus'   
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''   
 
     ## percentage of total pods to target
