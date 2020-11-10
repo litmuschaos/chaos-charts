@@ -82,7 +82,7 @@ spec:
 
     # provide the target ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPs
+    - name: TARGET_IPS
       value: ''
 
     # provide the target hosts
@@ -384,67 +384,6 @@ spec:
 
 ---
 
-# Generic Chaos experiment for Application team, who want to participate in Game Day
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups: ["","apps","batch"]
-        resources: ["jobs","deployments","daemonsets"]
-        verbs: ["create","list","get","patch","delete"]
-      - apiGroups: ["","litmuschaos.io"]
-        resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults","deployments","jobs"]
-        verbs: ["get","create","update","patch","delete","list"] 
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs : ["get","list"]
-    labels:
-      name: k8-pod-delete    
-      app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
-
----
-
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -527,6 +466,86 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
+
+---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Restart node
+kind: ChaosExperiment
+metadata:
+  name: node-restart
+  version: 0.1.0
+  labels:
+    name: node-restart
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "secrets"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-restart
+    command:
+    - /bin/bash
+    env:
+    - name: SSH_USER
+      value: 'root'
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:latest"
+
+    # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
+      value: ''
+
+    labels:
+      name: node-restart
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/
 
 ---
 
@@ -878,7 +897,7 @@ spec:
 
     # provide the target ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPs
+    - name: TARGET_IPS
       value: ''
 
     # provide the target hosts
@@ -1074,7 +1093,7 @@ spec:
 
     # provide the target ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPs
+    - name: TARGET_IPS
       value: ''
 
     # provide the target hosts
@@ -1189,67 +1208,6 @@ spec:
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
-
----
-
-# Generic Chaos experiment for Application team, who want to participate in Game Day
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups: ["","apps","batch"]
-        resources: ["jobs","deployments","daemonsets"]
-        verbs: ["create","list","get","patch","delete"]
-      - apiGroups: ["","litmuschaos.io"]
-        resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults","deployments","jobs"]
-        verbs: ["get","create","update","patch","delete","list"] 
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs : ["get","list"]
-    labels:
-      name: k8-pod-delete    
-      app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
 
 ---
 
@@ -1522,7 +1480,7 @@ spec:
 
     # provide the target ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPs
+    - name: TARGET_IPS
       value: ''
 
     # provide the target hosts
@@ -1545,128 +1503,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
-
----
-
-# Generic Chaos experiment for Application team, who want to participate in Game Day
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups: ["","apps","batch"]
-        resources: ["jobs","deployments","daemonsets"]
-        verbs: ["create","list","get","patch","delete"]
-      - apiGroups: ["","litmuschaos.io"]
-        resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults","deployments","jobs"]
-        verbs: ["get","create","update","patch","delete","list"] 
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs : ["get","list"]
-    labels:
-      name: k8-pod-delete    
-      app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
-
----
-
-# Generic Chaos experiment for Application team, who want to participate in Game Day
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups: ["","apps","batch"]
-        resources: ["jobs","deployments","daemonsets"]
-        verbs: ["create","list","get","patch","delete"]
-      - apiGroups: ["","litmuschaos.io"]
-        resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults","deployments","jobs"]
-        verbs: ["get","create","update","patch","delete","list"] 
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs : ["get","list"]
-    labels:
-      name: k8-pod-delete    
-      app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
 
 ---
 
@@ -1911,67 +1747,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
-
----
-
-# Generic Chaos experiment for Application team, who want to participate in Game Day
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups: ["","apps","batch"]
-        resources: ["jobs","deployments","daemonsets"]
-        verbs: ["create","list","get","patch","delete"]
-      - apiGroups: ["","litmuschaos.io"]
-        resources: ["pods","configmaps","events","services","chaosengines","chaosexperiments","chaosresults","deployments","jobs"]
-        verbs: ["get","create","update","patch","delete","list"] 
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs : ["get","list"]
-    labels:
-      name: k8-pod-delete    
-      app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py ; exit 0
-    command:
-    - /bin/bash
-    env:
-
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
 
 ---
 
