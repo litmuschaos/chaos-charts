@@ -64,7 +64,7 @@ spec:
     - name: LIB
       value: 'litmus'   
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''   
 
     ## percentage of total pods to target
@@ -356,7 +356,7 @@ spec:
     - name: LIB
       value: 'litmus'
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     ## percentage of total pods to target
@@ -698,7 +698,7 @@ spec:
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba'  
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     - name: CHAOS_INJECT_COMMAND
@@ -800,7 +800,7 @@ spec:
       - name: SEQUENCE
         value: 'parallel'
 
-      - name: TARGET_POD
+      - name: TARGET_PODS
         value: ''
 
     labels:
@@ -886,7 +886,7 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the name of container runtime
@@ -991,7 +991,7 @@ spec:
     - name: LIB
       value: 'litmus'    
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     ## it defines the sequence of chaos execution for multiple target pods
@@ -1082,7 +1082,7 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the name of container runtime
@@ -1281,8 +1281,8 @@ spec:
       - name: VOLUME_MOUNT_PATH
         value: ''
 
-      ## specify the target pod name
-      - name: TARGET_POD
+      ## specify the comma separated target pods
+      - name: TARGET_PODS
         value: ''    
 
       # Period to wait before and after injection of chaos in sec
@@ -1469,7 +1469,7 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the name of container runtime
@@ -1986,7 +1986,7 @@ spec:
     - name: LIB
       value: 'litmus'
       
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the chaos interval
