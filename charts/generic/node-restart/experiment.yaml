@@ -1,27 +1,26 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
+    Restart node
 kind: ChaosExperiment
 metadata:
-  name: pod-delete
+  name: node-restart
+  version: 0.1.0
   labels:
-    name: pod-delete
+    name: node-restart
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
-  version: 0.1.19
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
       - apiGroups:
           - ""
-          - "apps"
           - "batch"
+          - "apps"
           - "litmuschaos.io"
         resources:
-          - "deployments"
           - "jobs"
           - "pods"
           - "pods/log"
@@ -29,6 +28,7 @@ spec:
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
+          - "secrets"
         verbs:
           - "create"
           - "list"
@@ -36,46 +36,42 @@ spec:
           - "patch"
           - "update"
           - "delete"
-          - "deletecollection"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-delete
+    - ./experiments -name node-restart
     command:
     - /bin/bash
     env:
+    - name: SSH_USER
+      value: 'root'
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '15'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: FORCE
-      value: 'true'
-
-    - name: CHAOS_INTERVAL
-      value: '5'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
     - name: LIB
-      value: 'litmus'    
+      value: 'litmus'
 
-    - name: TARGET_PODS
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:latest"
+
+    # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
       value: ''
 
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
     labels:
-      name: pod-delete
+      name: node-restart
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/

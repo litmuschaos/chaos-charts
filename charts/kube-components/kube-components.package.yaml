@@ -1,0 +1,26 @@
+packageName: kube-components
+experiments:
+  - name: k8-kiam
+    CSV: k8-kiam.chartserviceversion.yaml
+    desc: "k8-kiam"   
+  - name: k8-prometheus-operator
+    CSV: k8-prometheus-operator.chartserviceversion.yaml
+    desc: "k8-prometheus-operator"   
+  - name: k8-alb-ingress-controller
+    CSV: k8-alb-ingress-controller.chartserviceversion.yaml
+    desc: "k8-alb-ingress-controller"   
+  - name: k8-kube-proxy
+    CSV: k8-kube-proxy.chartserviceversion.yaml
+    desc: "k8-kube-proxy"   
+  - name: k8-prometheus-pushgateway
+    CSV: k8-prometheus-pushgateway.chartserviceversion.yaml
+    desc: "k8-prometheus-pushgateway"   
+  - name: k8-calico-node
+    CSV: k8-calico-node.chartserviceversion.yaml
+    desc: "k8-calico-node"   
+  - name: k8-prometheus-k8s-prometheus
+    CSV: k8-prometheus-k8s-prometheus.chartserviceversion.yaml
+    desc: "k8-prometheus-k8s-prometheus"   
+  - name: k8-wavefront-collector
+    CSV: k8-wavefront-collector.chartserviceversion.yaml
+    desc: "k8-wavefront-collector"   
