@@ -1,1217 +1,4 @@
 ---
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects network packet duplication on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-network-duplication
-  labels:
-    name: pod-network-duplication
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    args:
-    - -c
-    - ./experiments -name pod-network-duplication
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    - name: RAMP_TIME
-      value: ''
-
-    - name: TARGET_CONTAINER
-      value: ''
-
-    - name: TC_IMAGE
-      value: 'gaiadocker/iproute2'
-
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
-      value: '100' # in percentage
-
-    - name: LIB
-      value: 'litmus'   
-
-    - name: TARGET_PODS
-      value: ''   
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
-
-    # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
-    - name: CONTAINER_RUNTIME
-      value: 'docker'
-
-    # provide the target ips
-    # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPS
-      value: ''
-
-    # provide the target hosts
-    # chaos injection will be triggered for these destination hosts
-    - name: TARGET_HOSTS
-      value: ''
-
-    # provide the socket file path
-    # applicable only for containerd and crio runtime
-    - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-
-    labels:
-      name: pod-network-duplication
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Drain the node where application pod is scheduled
-kind: ChaosExperiment
-metadata:
-  name: node-drain
-  labels:
-    name: node-drain
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "extensions"
-          - "litmuschaos.io"
-          - "apps"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "daemonsets"
-          - "pods/eviction"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-drain
-    command:
-    - /bin/bash
-    env:
-    
-    - name: TARGET_NODE
-      value: ''
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-      
-    labels:
-      name: node-drain
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Give IO disk stress on a node belonging to a deployment
-kind: ChaosExperiment
-metadata:
-  name: node-io-stress
-  labels:
-    name: node-io-stress
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-io-stress
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '120'
-
-    ## specify the size as percentage of free space on the file system
-    ## default value 90 (in percentage)
-    - name: FILESYSTEM_UTILIZATION_PERCENTAGE
-      value: '10'
-
-    ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
-    ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
-    - name: FILESYSTEM_UTILIZATION_BYTES
-      value: ''
-
-    ## Total number of workers default value is 4
-    - name: NUMBER_OF_WORKERS
-      value: '4'    
-
-    ## enter the name of the target node
-    - name: TARGET_NODE
-      value: ''    
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-
-    ## percentage of total nodes to target
-    - name: NODES_AFFECTED_PERC
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target nodes
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: node-io-stress
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Fillup Ephemeral Storage of a Resource
-kind: ChaosExperiment
-metadata:
-  name: disk-fill
-  labels:
-    name: disk-fill
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions: 
-      - apiGroups:
-          - ""
-          - "apps"
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/exec"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name disk-fill
-    command:
-    - /bin/bash
-    env:
-
-    - name: TARGET_CONTAINER
-      value: ''
-    
-    - name: FILL_PERCENTAGE
-      value: '80'
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    - name: TARGET_PODS
-      value: ''
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
-
-    # Provide the container runtime path
-    # Default set to docker
-    - name: CONTAINER_PATH
-      value: '/var/lib/docker/containers'
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-
-    labels:
-      name: disk-fill
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Taint the node where application pod is scheduled
-kind: ChaosExperiment
-metadata:
-  name: node-taint
-  labels:
-    name: node-taint
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "extensions"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "daemonsets"
-          - "pods/eviction"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
-          - "update"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-taint
-    command:
-    - /bin/bash
-    env:
-
-    - name: TARGET_NODE
-      value: ''
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # set taint label & effect
-    # key=value:effect or key:effect
-    - name: TAINTS
-      value: '' 
-
-    labels:
-      name: node-taint
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Restart node
-kind: ChaosExperiment
-metadata:
-  name: node-restart
-  version: 0.1.0
-  labels:
-    name: node-restart
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-          - "secrets"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-restart
-    command:
-    - /bin/bash
-    env:
-    - name: SSH_USER
-      value: 'root'
-
-    # PROVIDE THE LIB HERE
-    # ONLY LITMUS SUPPORTED
-    - name: LIB
-      value: 'litmus'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
-
-    # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
-      value: ''
-
-    labels:
-      name: node-restart
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-    secrets:
-      - name: id-rsa
-        mountPath: /mnt/
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Scale the application replicas and test the node autoscaling on cluster
-kind: ChaosExperiment
-metadata:
-  name: pod-autoscaler
-  labels:
-    name: pod-autoscaler
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "deployments"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-autoscaler
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # Number of replicas to scale
-    - name: REPLICA_COUNT
-      value: '5'
-
-    # PROVIDE THE LIB HERE
-    # ONLY LITMUS SUPPORTED
-    - name: LIB
-      value: 'litmus'
-  
-    labels:
-      name: pod-autoscaler
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects cpu consumption on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-cpu-hog
-  labels:
-    name: pod-cpu-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-cpu-hog
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-    
-    - name: CHAOS_INTERVAL
-      value: '10'
-
-    ## Number of CPU cores to stress
-    - name: CPU_CORES
-      value: '1'
-
-    ## Percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    ## Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus, pumba    
-    - name: LIB
-      value: 'litmus'
-
-    ## It is used in pumba lib only    
-    - name: LIB_IMAGE
-      value: 'gaiaadm/pumba'  
-
-    - name: TARGET_PODS
-      value: ''
-
-    - name: CHAOS_INJECT_COMMAND
-      value: 'md5sum /dev/zero'
-
-    - name: CHAOS_KILL_COMMAND
-      value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-cpu-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects memory consumption on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-memory-hog
-  labels:
-    name: pod-memory-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    args:
-    - -c
-    - ./experiments -name pod-memory-hog
-    command:
-    - /bin/bash
-    env:
-      - name: TOTAL_CHAOS_DURATION
-        value: '60'
-
-      - name: CHAOS_INTERVAL
-        value: '10'
-
-      ## enter the amount of memory in megabytes to be consumed by the application pod
-      - name: MEMORY_CONSUMPTION
-        value: '500'
-
-      ## percentage of total pods to target
-      - name: PODS_AFFECTED_PERC
-        value: ''
-
-      ## Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''     
-
-      ## env var that describes the library used to execute the chaos
-      ## default: litmus. Supported values: litmus, pumba
-      - name: LIB
-        value: 'litmus'
-
-      ## It is used in pumba lib only    
-      - name: LIB_IMAGE
-        value: 'gaiaadm/pumba'
-        
-      - name: CHAOS_KILL_COMMAND
-        value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
-
-      ## it defines the sequence of chaos execution for multiple target pods
-      ## supported values: serial, parallel
-      - name: SEQUENCE
-        value: 'parallel'
-
-      - name: TARGET_PODS
-        value: ''
-
-    labels:
-      name: pod-memory-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Inject network packet corruption into application pod
-kind: ChaosExperiment
-metadata:
-  name: pod-network-corruption
-  labels:
-    name: pod-network-corruption
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "delete"
-          - "list"
-          - "patch"
-          - "update"
-          - "get"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-network-corruption
-    command:
-    - /bin/bash
-    env:
-    
-    - name: TARGET_CONTAINER
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    - name: TC_IMAGE
-      value: 'gaiadocker/iproute2'
-
-    - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
-      value: '100' #in PERCENTAGE
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # Time period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: LIB
-      value: 'litmus'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: TARGET_PODS
-      value: ''
-
-    # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
-    - name: CONTAINER_RUNTIME
-      value: 'docker'
-
-    # provide the target ips
-    # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPS
-      value: ''
-
-    # provide the target hosts
-    # chaos injection will be triggered for these destination hosts
-    - name: TARGET_HOSTS
-      value: ''
-
-    # provide the socket file path
-    # applicable only for containerd and crio runtime
-    - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-network-corruption
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: pod-delete
-  labels:
-    name: pod-delete
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-  version: 0.1.19
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups:
-          - ""
-          - "apps"
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "deployments"
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-delete
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '15'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: FORCE
-      value: 'true'
-
-    - name: CHAOS_INTERVAL
-      value: '5'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: LIB
-      value: 'litmus'    
-
-    - name: TARGET_PODS
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-delete
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects network packet loss on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-network-loss
-  labels:
-    name: pod-network-loss
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-network-loss
-    command:
-    - /bin/bash
-    env:
-    
-    - name: TARGET_CONTAINER
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    - name: TC_IMAGE
-      value: 'gaiadocker/iproute2'
-
-    - name: NETWORK_PACKET_LOSS_PERCENTAGE
-      value: '100' #in PERCENTAGE
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # ime period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: LIB
-      value: 'litmus'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: TARGET_PODS
-      value: ''
-
-    # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
-    - name: CONTAINER_RUNTIME
-      value: 'docker'
-
-    # provide the target ips
-    # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPS
-      value: ''
-
-    # provide the target hosts
-    # chaos injection will be triggered for these destination hosts
-    - name: TARGET_HOSTS
-      value: ''
-
-    # provide the socket file path
-    # applicable only for containerd and crio runtime
-    - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-network-loss
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
-kind: ChaosExperiment
-metadata:
-  name: disk-loss
-  labels:
-    name: disk-loss
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "secrets"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-    image: "litmuschaos/ansible-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '15'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: APP_CHECK
-      value: 'true' 
-        
-    # GKE and AWS supported
-    - name: CLOUD_PLATFORM
-      value: 'GKE'
-
-    - name: PROJECT_ID 
-      value: ''
-
-    - name: NODE_NAME
-      value: '' 
-
-    - name: DISK_NAME
-      value: ''  
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
-    - name: ZONE_NAME
-      value: '' 
-
-    - name: DEVICE_NAME
-      value: '' 
-          
-    labels:
-      name: disk-loss
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-
----
-
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1310,7 +97,177 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Restart node
+kind: ChaosExperiment
+metadata:
+  name: node-restart
+  version: 0.1.0
+  labels:
+    name: node-restart
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "secrets"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-restart
+    command:
+    - /bin/bash
+    env:
+    - name: SSH_USER
+      value: 'root'
 
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:latest"
+
+    # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
+      value: ''
+
+    labels:
+      name: node-restart
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Fillup Ephemeral Storage of a Resource
+kind: ChaosExperiment
+metadata:
+  name: disk-fill
+  labels:
+    name: disk-fill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions: 
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/exec"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name disk-fill
+    command:
+    - /bin/bash
+    env:
+
+    - name: TARGET_CONTAINER
+      value: ''
+    
+    - name: FILL_PERCENTAGE
+      value: '80'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    - name: TARGET_PODS
+      value: ''
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest'
+
+    # Provide the container runtime path
+    # Default set to docker
+    - name: CONTAINER_PATH
+      value: '/var/lib/docker/containers'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: disk-fill
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1393,7 +350,6 @@ spec:
 
 
 ---
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1505,7 +461,695 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kills the kubelet service on the application node to check the resiliency.
+kind: ChaosExperiment
+metadata:
+  name: kubelet-service-kill
+  labels:
+    name: kubelet-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name kubelet-service-kill
+    command:
+    - /bin/bash
+    env:
+   
+    - name: TOTAL_CHAOS_DURATION
+      value: '90' # in seconds
 
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'ubuntu:16.04' 
+            
+    # provide node name
+    - name: TARGET_NODE
+      value: ''
+
+    labels:
+      name: kubelet-service-kill
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects cpu consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-cpu-hog
+  labels:
+    name: pod-cpu-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-cpu-hog
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+    
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    ## Number of CPU cores to stress
+    - name: CPU_CORES
+      value: '1'
+
+    ## Percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    ## Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    ## env var that describes the library used to execute the chaos
+    ## default: litmus. Supported values: litmus, pumba    
+    - name: LIB
+      value: 'litmus'
+
+    ## It is used in pumba lib only    
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba'  
+
+    - name: TARGET_PODS
+      value: ''
+
+    - name: CHAOS_INJECT_COMMAND
+      value: 'md5sum /dev/zero'
+
+    - name: CHAOS_KILL_COMMAND
+      value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: pod-cpu-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects network packet duplication on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-duplication
+  labels:
+    name: pod-network-duplication
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+    - apiGroups:
+        - ""
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+        - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name pod-network-duplication
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: RAMP_TIME
+      value: ''
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
+      value: '100' # in percentage
+
+    - name: LIB
+      value: 'litmus'   
+
+    - name: TARGET_PODS
+      value: ''   
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest'
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPS
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: pod-network-duplication
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Taint the node where application pod is scheduled
+kind: ChaosExperiment
+metadata:
+  name: node-taint
+  labels:
+    name: node-taint
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "daemonsets"
+          - "pods/eviction"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+          - "patch"
+          - "update"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-taint
+    command:
+    - /bin/bash
+    env:
+
+    - name: TARGET_NODE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # set taint label & effect
+    # key=value:effect or key:effect
+    - name: TAINTS
+      value: '' 
+
+    labels:
+      name: node-taint
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kills the docker service on the application node to check the resiliency.
+kind: ChaosExperiment
+metadata:
+  name: docker-service-kill
+  labels:
+    name: docker-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/generic/docker_service_kill/docker_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '90' # in seconds
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+    labels:
+      name: docker-service-kill
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Scale the application replicas and test the node autoscaling on cluster
+kind: ChaosExperiment
+metadata:
+  name: pod-autoscaler
+  labels:
+    name: pod-autoscaler
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "deployments"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-autoscaler
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Number of replicas to scale
+    - name: REPLICA_COUNT
+      value: '5'
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+  
+    labels:
+      name: pod-autoscaler
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give IO disk stress on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-io-stress
+  labels:
+    name: node-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-io-stress
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120'
+
+    ## specify the size as percentage of free space on the file system
+    ## default value 90 (in percentage)
+    - name: FILESYSTEM_UTILIZATION_PERCENTAGE
+      value: '10'
+
+    ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
+    ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
+    - name: FILESYSTEM_UTILIZATION_BYTES
+      value: ''
+
+    ## Total number of workers default value is 4
+    - name: NUMBER_OF_WORKERS
+      value: '4'    
+
+    ## enter the name of the target node
+    - name: TARGET_NODE
+      value: ''    
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: node-io-stress
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Drain the node where application pod is scheduled
+kind: ChaosExperiment
+metadata:
+  name: node-drain
+  labels:
+    name: node-drain
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "extensions"
+          - "litmuschaos.io"
+          - "apps"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "daemonsets"
+          - "pods/eviction"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+          - "patch"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-drain
+    command:
+    - /bin/bash
+    env:
+    
+    - name: TARGET_NODE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+      
+    labels:
+      name: node-drain
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1599,16 +1243,15 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Kills the docker service on the application node to check the resiliency.
+    Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
 kind: ChaosExperiment
 metadata:
-  name: docker-service-kill
+  name: disk-loss
   labels:
-    name: docker-service-kill
+    name: disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -1619,13 +1262,13 @@ spec:
       - apiGroups:
           - ""
           - "batch"
-          - "apps"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
-          - "pods/log"
           - "events"
+          - "pods/log"
+          - "secrets"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -1636,18 +1279,11 @@ spec:
           - "patch"
           - "update"
           - "delete"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/ansible-runner:ci"
+    image: "litmuschaos/ansible-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/docker_service_kill/docker_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
     command:
     - /bin/bash
     env:
@@ -1655,281 +1291,49 @@ spec:
       value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '90' # in seconds
-
-    # Period to wait before injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: LIB
-      value: 'litmus'
-    labels:
-      name: docker-service-kill
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Kills the kubelet service on the application node to check the resiliency.
-kind: ChaosExperiment
-metadata:
-  name: kubelet-service-kill
-  labels:
-    name: kubelet-service-kill
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name kubelet-service-kill
-    command:
-    - /bin/bash
-    env:
-   
-    - name: TOTAL_CHAOS_DURATION
-      value: '90' # in seconds
+      value: '15'
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
+    - name: APP_CHECK
+      value: 'true' 
+        
+    # GKE and AWS supported
+    - name: CLOUD_PLATFORM
+      value: 'GKE'
+
+    - name: PROJECT_ID 
+      value: ''
+
+    - name: NODE_NAME
+      value: '' 
+
+    - name: DISK_NAME
+      value: ''  
+
+    # provide the LIB
+    # only litmus supported
     - name: LIB
-      value: 'litmus'
+      value: 'litmus'  
+          
+    - name: ZONE_NAME
+      value: '' 
 
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'ubuntu:16.04' 
-            
-    # provide node name
-    - name: TARGET_NODE
-      value: ''
-
+    - name: DEVICE_NAME
+      value: '' 
+          
     labels:
-      name: kubelet-service-kill
+      name: disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
 
 ---
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Give a memory hog on a node belonging to a deployment
-kind: ChaosExperiment
-metadata:
-  name: node-memory-hog
-  labels:
-    name: node-memory-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-memory-hog
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '120'
-
-    ## specify the size as percent of total available memory (in percentage)
-    ## Default value "90"
-    - name: MEMORY_PERCENTAGE
-      value: '90'    
-
-     # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
-      value: ''    
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-
-    ## percentage of total nodes to target
-    - name: NODES_AFFECTED_PERC
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target nodes
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: node-memory-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-kind: ChaosExperiment
-metadata:
-  name: k8-pod-delete
-  labels:
-    name: k8-pod-delete
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      - apiGroups:
-          - ""
-          - "apps"
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "deployments"
-          - "jobs"
-          - "pods"
-          - "configmaps"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs :
-          - "get"
-          - "list"
-    image: "litmuschaos/chaostoolkit:latest"
-    args:
-    - -c
-    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: CHAOSTOOLKIT_IN_POD
-      value: 'true'
-
-    - name: FILE
-      value: 'pod-app-kill-count.json'
-
-    - name: NAME_SPACE
-      value: ''
-
-    - name: LABEL_NAME
-      value: ''
-
-    - name: APP_ENDPOINT
-      value: ''
-
-    - name: PERCENTAGE
-      value: '50'
-
-    - name: REPORT
-      value: 'true'
-
-    - name: REPORT_ENDPOINT
-      value: 'none'
-    
-    - name: TEST_NAMESPACE
-      value: 'default'
-
-
-    labels:
-      name: k8-pod-delete
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: "Kills a container belonging to an application pod \n"
@@ -2031,4 +1435,493 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects memory consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-memory-hog
+  labels:
+    name: pod-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name pod-memory-hog
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '60'
 
+      - name: CHAOS_INTERVAL
+        value: '10'
+
+      ## enter the amount of memory in megabytes to be consumed by the application pod
+      - name: MEMORY_CONSUMPTION
+        value: '500'
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      ## Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''     
+
+      ## env var that describes the library used to execute the chaos
+      ## default: litmus. Supported values: litmus, pumba
+      - name: LIB
+        value: 'litmus'
+
+      ## It is used in pumba lib only    
+      - name: LIB_IMAGE
+        value: 'gaiaadm/pumba'
+        
+      - name: CHAOS_KILL_COMMAND
+        value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      - name: TARGET_PODS
+        value: ''
+
+    labels:
+      name: pod-memory-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects network packet loss on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-loss
+  labels:
+    name: pod-network-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+    - apiGroups:
+        - ""
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+        - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-network-loss
+    command:
+    - /bin/bash
+    env:
+    
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_PACKET_LOSS_PERCENTAGE
+      value: '100' #in PERCENTAGE
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # ime period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_PODS
+      value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPS
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: pod-network-loss
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a memory hog on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources: 
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-memory-hog
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120'
+
+    ## specify the size as percent of total available memory (in percentage)
+    ## Default value "90"
+    - name: MEMORY_PERCENTAGE
+      value: '90'    
+
+     # ENTER THE NAME OF THE TARGET NODE
+    - name: TARGET_NODE
+      value: ''    
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: node-memory-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: k8-pod-delete
+  labels:
+    name: k8-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/chaostoolkit:latest"
+    args:
+    - -c
+    - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: CHAOSTOOLKIT_IN_POD
+      value: 'true'
+
+    - name: FILE
+      value: 'pod-app-kill-count.json'
+
+    - name: NAME_SPACE
+      value: ''
+
+    - name: LABEL_NAME
+      value: ''
+
+    - name: APP_ENDPOINT
+      value: ''
+
+    - name: PERCENTAGE
+      value: '50'
+
+    - name: REPORT
+      value: 'true'
+
+    - name: REPORT_ENDPOINT
+      value: 'none'
+    
+    - name: TEST_NAMESPACE
+      value: 'default'
+
+
+    labels:
+      name: k8-pod-delete
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Inject network packet corruption into application pod
+kind: ChaosExperiment
+metadata:
+  name: pod-network-corruption
+  labels:
+    name: pod-network-corruption
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+          - "get"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-network-corruption
+    command:
+    - /bin/bash
+    env:
+    
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    - name: NETWORK_INTERFACE
+      value: 'eth0'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
+      value: '100' #in PERCENTAGE
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Time period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: LIB
+      value: 'litmus'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_PODS
+      value: ''
+
+    # provide the name of container runtime
+    # it supports docker, containerd, crio
+    # default to docker
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the target ips
+    # chaos injection will be triggered for these destination ips
+    - name: TARGET_IPS
+      value: ''
+
+    # provide the target hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: TARGET_HOSTS
+      value: ''
+
+    # provide the socket file path
+    # applicable only for containerd and crio runtime
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: pod-network-corruption
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
