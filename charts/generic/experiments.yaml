@@ -257,8 +257,8 @@ spec:
     - name: NUMBER_OF_WORKERS
       value: '4'    
 
-    ## enter the name of the target node
-    - name: TARGET_NODE
+    ## enter the comma separated target nodes name
+    - name: TARGET_NODES
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -525,6 +525,13 @@ spec:
     - name: SSH_USER
       value: 'root'
 
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -534,8 +541,12 @@ spec:
     - name: LIB_IMAGE
       value: "litmuschaos/go-runner:latest"
 
-    # ENTER THE NAME OF THE TARGET NODE
+    # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
+      value: ''
+
+    # ENTER THE TARGET NODE IP
+    - name: TARGET_NODE_IP
       value: ''
 
     labels:
@@ -1570,8 +1581,8 @@ spec:
     - name: NODE_CPU_CORE
       value: ''
 
-    # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
       value: ''
 
     # PROVIDE THE LIB HERE
@@ -1738,7 +1749,7 @@ spec:
     - name: LIB_IMAGE
       value: 'ubuntu:16.04' 
             
-    # provide node name
+    # provide the target node name
     - name: TARGET_NODE
       value: ''
 
@@ -1810,8 +1821,8 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'    
 
-     # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
