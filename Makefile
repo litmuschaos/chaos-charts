@@ -17,7 +17,7 @@ versionmaker:
 .PHONY: combineExpCR
 combineExpCR:
 	@echo "--------Combining Experiments CR-------"
-	bash ./scripts/combine_all_cr.sh
+	go run ./scripts/combine-all-crs.go
 
 .PHONY: push
 push:
