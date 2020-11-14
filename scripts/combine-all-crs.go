@@ -22,6 +22,8 @@ func main() {
 	}
 	for _, directory := range directories {
 
+		CRNames := []string{}
+
 		// set path of combined CR file path
 		filePath := directory + "/experiments.yaml"
 
@@ -40,15 +42,16 @@ func main() {
 			isFileExist := IsFileExist(subdirectory + "/experiment.yaml")
 			if isFileExist {
 
-				isDuplicate, err := IsDuplicateCR(filePath, subdirectory+"/experiment.yaml")
-				if err != nil {
-					log.Fatalf("err: %v", err)
+				CRName, err := GetCRName(subdirectory + "/experiment.yaml")
+				if err != nil || CRName == "" {
+					log.Fatalf("unable to extract the CR name, err: %v", err)
 				}
 
-				if !isDuplicate {
+				if !Contains(CRName, CRNames) {
 					if err := CopyData(filePath, subdirectory+"/experiment.yaml"); err != nil {
 						log.Fatalf("unable to copy data for %v experiment, err: %v", subdirectory, err)
 					}
+					CRNames = append(CRNames, CRName)
 				}
 			}
 		}
@@ -122,25 +125,31 @@ func InitializeFile(filePath string) error {
 	return nil
 }
 
-// IsDuplicateCR check the availability the redundant experiment CR
-func IsDuplicateCR(to, from string) (bool, error) {
+// GetCRName return the name of cr from the manifest
+func GetCRName(from string) (string, error) {
 	decUnstructured := yaml.NewDecodingSerializer(unstructured.UnstructuredJSONScheme)
 	// Decode YAML manifest into unstructured.Unstructured
 	child := &unstructured.Unstructured{}
 	childData, err := ioutil.ReadFile(from)
 	if err != nil {
-		return false, err
-	}
-
-	parentData, err := ioutil.ReadFile(to)
-	if err != nil {
-		return false, err
+		return "", err
 	}
 
 	_, _, err = decUnstructured.Decode(childData, nil, child)
 	if err != nil {
-		return false, err
+		return "", err
 	}
 
-	return strings.Contains(string(parentData), child.GetName()), nil
+	return child.GetName(), nil
+}
+
+// Contains check for the existance of elemennt inside slice
+func Contains(element string, slice []string) bool {
+
+	for index := range slice {
+		if slice[index] == element {
+			return true
+		}
+	}
+	return false
 }

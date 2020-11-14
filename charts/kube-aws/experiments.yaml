@@ -190,3 +190,74 @@ spec:
       mountPath: /tmp/
 
 ---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching an ebs volume from ec2 instance.
+kind: ChaosExperiment
+metadata:
+  name: ec2-terminate
+  labels:
+    name: ec2-terminate
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name ec2-terminate
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: EC2_INSTANCE_ID
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
+    labels:
+      name: ec2-terminate
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+---

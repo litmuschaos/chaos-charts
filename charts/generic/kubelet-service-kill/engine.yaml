@@ -29,6 +29,6 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '90' # in seconds
               
-             # provide the actual name of node under test
+             # provide the target node name
             - name: TARGET_NODE
               value: 'node-01'

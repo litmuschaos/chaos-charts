@@ -26,7 +26,7 @@ spec:
             # provide the node labels
             kubernetes.io/hostname: 'node02'        
           env:
-            # set node name
+            # set target node name
             - name: TARGET_NODE
               value: 'node-01'
               

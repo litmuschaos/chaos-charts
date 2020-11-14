@@ -153,6 +153,13 @@ spec:
     - name: SSH_USER
       value: 'root'
 
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -162,8 +169,12 @@ spec:
     - name: LIB_IMAGE
       value: "litmuschaos/go-runner:latest"
 
-    # ENTER THE NAME OF THE TARGET NODE
+    # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
+      value: ''
+
+    # ENTER THE TARGET NODE IP
+    - name: TARGET_NODE_IP
       value: ''
 
     labels:
@@ -527,7 +538,7 @@ spec:
     - name: LIB_IMAGE
       value: 'ubuntu:16.04' 
             
-    # provide node name
+    # provide the target node name
     - name: TARGET_NODE
       value: ''
 
@@ -1038,8 +1049,8 @@ spec:
     - name: NUMBER_OF_WORKERS
       value: '4'    
 
-    ## enter the name of the target node
-    - name: TARGET_NODE
+    ## enter the comma separated target nodes name
+    - name: TARGET_NODES
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -1214,8 +1225,8 @@ spec:
     - name: NODE_CPU_CORE
       value: ''
 
-    # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
       value: ''
 
     # PROVIDE THE LIB HERE
@@ -1696,8 +1707,8 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '90'    
 
-     # ENTER THE NAME OF THE TARGET NODE
-    - name: TARGET_NODE
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -1809,6 +1820,89 @@ spec:
 
     labels:
       name: k8-pod-delete
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: pod-delete
+  labels:
+    name: pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  version: 0.1.19
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-delete
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: CHAOS_INTERVAL
+      value: '5'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: LIB
+      value: 'litmus'    
+
+    - name: TARGET_PODS
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
