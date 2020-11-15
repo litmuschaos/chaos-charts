@@ -28,7 +28,7 @@ spec:
         - "create"
         - "update"
         - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -68,4 +68,4 @@ spec:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0

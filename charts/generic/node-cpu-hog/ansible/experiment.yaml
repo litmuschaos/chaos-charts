@@ -9,7 +9,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -41,7 +41,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -78,4 +78,4 @@ spec:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
