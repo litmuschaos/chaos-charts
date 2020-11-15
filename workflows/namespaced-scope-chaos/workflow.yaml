@@ -11,7 +11,7 @@ spec:
   arguments:
     parameters:
       - name: adminModeNamespace
-        value: litmus
+        value: kubera
   templates:
     - name: argowf-chaos
       steps:

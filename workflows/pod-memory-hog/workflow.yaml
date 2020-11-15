@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: argowf-chaos-pod-memory-hog-
-  namespace: litmus
+  namespace: kubera
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -12,7 +12,7 @@ spec:
   arguments:
     parameters:
       - name: adminModeNamespace
-        value: "litmus"
+        value: "kubera"
   templates:
     - name: argowf-chaos
       steps:

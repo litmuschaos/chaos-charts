@@ -2,7 +2,7 @@ apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
   name: argo-chaos-node-cpu-cron-wf
-  namespace: litmus
+  namespace: kubera
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -16,7 +16,7 @@ spec:
     arguments:
       parameters:
         - name: adminModeNamespace
-          value: "litmus"
+          value: "kubera"
     templates:
       - name: argowf-chaos
         steps:
