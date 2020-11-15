@@ -63,6 +63,4 @@ experiments:
   - name: pod-io-stress
     CSV: pod-io-stress.chartserviceversion.yaml
     desc: "pod-io-stress"    
-  - name: node-restart
-    CSV: node-restart.chartserviceversion.yaml
-    desc: "node-restart"
+  
