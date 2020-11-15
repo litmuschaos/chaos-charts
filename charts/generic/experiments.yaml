@@ -10,7 +10,7 @@ metadata:
     name: node-restart
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -43,7 +43,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -68,7 +68,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
+      value: "litmuschaos/go-runner:1.10.0"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -82,7 +82,7 @@ spec:
       name: node-restart
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
     secrets:
       - name: id-rsa
         mountPath: /mnt/
@@ -100,7 +100,7 @@ metadata:
     name: pod-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -126,7 +126,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     args:
     - -c
     - ./experiments -name pod-memory-hog
@@ -175,7 +175,7 @@ spec:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -188,7 +188,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -215,7 +215,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -261,7 +261,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -276,7 +276,7 @@ spec:
       name: container-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -290,7 +290,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -322,7 +322,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -354,7 +354,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -369,7 +369,7 @@ spec:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -383,7 +383,7 @@ metadata:
     name: k8-pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -454,7 +454,7 @@ spec:
       name: k8-pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -468,7 +468,7 @@ metadata:
     name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -493,7 +493,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     args:
     - -c
     - ./experiments -name pod-network-duplication
@@ -529,7 +529,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.10.0'
 
     # provide the name of container runtime
     # it supports docker, containerd, crio
@@ -561,7 +561,7 @@ spec:
       name: pod-network-duplication
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 ---
@@ -576,7 +576,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -612,7 +612,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -645,7 +645,7 @@ spec:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -659,7 +659,7 @@ metadata:
     name: k8-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -741,7 +741,7 @@ metadata:
     name: pod-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -766,7 +766,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -780,7 +780,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -838,7 +838,7 @@ spec:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -852,7 +852,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -884,7 +884,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -915,7 +915,7 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -929,7 +929,7 @@ metadata:
     name: disk-fill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -956,7 +956,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -991,7 +991,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.10.0'
 
     # Provide the container runtime path
     # Default set to docker
@@ -1007,7 +1007,7 @@ spec:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1021,7 +1021,7 @@ metadata:
     name: disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1046,7 +1046,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1095,7 +1095,7 @@ spec:
       name: disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -1112,7 +1112,7 @@ metadata:
     name: pod-autoscaler
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1145,7 +1145,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1174,7 +1174,7 @@ spec:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1188,7 +1188,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1220,7 +1220,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1261,7 +1261,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -1276,7 +1276,7 @@ spec:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 ---
@@ -1291,7 +1291,7 @@ metadata:
     name: pod-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -1317,7 +1317,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     args:
     - -c
     - ./experiments -name pod-io-stress
@@ -1375,7 +1375,7 @@ spec:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1389,7 +1389,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1445,7 +1445,7 @@ spec:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 
 ---
@@ -1460,7 +1460,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -1485,7 +1485,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1502,7 +1502,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -1557,7 +1557,7 @@ spec:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1571,7 +1571,7 @@ metadata:
     name: node-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1603,7 +1603,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1635,7 +1635,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -1650,7 +1650,7 @@ spec:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1664,7 +1664,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
   version: 0.1.19
 spec:
   definition:
@@ -1692,7 +1692,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1733,7 +1733,7 @@ spec:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1747,7 +1747,7 @@ metadata:
     name: pod-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -1773,7 +1773,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1826,7 +1826,7 @@ spec:
       name: pod-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 ---
@@ -1841,7 +1841,7 @@ metadata:
     name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Cluster
@@ -1877,7 +1877,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1905,7 +1905,7 @@ spec:
       name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1919,7 +1919,7 @@ metadata:
     name: pod-network-corruption
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.10.0
 spec:
   definition:
     scope: Namespaced
@@ -1944,7 +1944,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.10.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -1958,7 +1958,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.10.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -2016,6 +2016,6 @@ spec:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.10.0
 
 ---
