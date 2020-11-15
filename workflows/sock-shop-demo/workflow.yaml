@@ -32,6 +32,63 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=sock-shop","-typeName=weak", "-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
 
+    - name: run-chaos
+      inputs:
+        artifacts:
+          - name: run-chaos
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: catalogue-pod-delete-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=catalogue'
+                    appkind: 'deployment'
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  auxiliaryAppInfo: ''
+                  chaosServiceAccount: litmus-admin
+                  monitoring: true
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-delete
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 1
+                            probePollingInterval: 1
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '10'
+                
+                            # set chaos interval (in sec) as desired
+                            - name: CHAOS_INTERVAL
+                              value: '10'
+                
+                            # pod failures without '--force' & default terminationGracePeriodSeconds
+                            - name: FORCE
+                              value: 'false'
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]          
+
     - name: install-experiment
       inputs:
         artifacts:
@@ -116,63 +173,6 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest"]
     
-    - name: run-chaos
-      inputs:
-        artifacts:
-          - name: run-chaos
-            path: /tmp/chaosengine.yaml
-            raw:
-              data: |
-                apiVersion: litmuschaos.io/v1alpha1
-                kind: ChaosEngine
-                metadata:
-                  name: catalogue-pod-delete-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
-                spec:
-                  appinfo:
-                    appns: 'sock-shop'
-                    applabel: 'name=catalogue'
-                    appkind: 'deployment'
-                  annotationCheck: 'false'
-                  engineState: 'active'
-                  auxiliaryAppInfo: ''
-                  chaosServiceAccount: litmus-admin
-                  monitoring: true
-                  jobCleanUpPolicy: 'retain'
-                  components:
-                    runner:
-                      imagePullPolicy: Always
-                  experiments:
-                    - name: pod-delete
-                      spec:
-                        probe:
-                        - name: "check-frontend-access-url"
-                          type: "httpProbe"
-                          httpProbe/inputs:
-                            url: "http://front-end.sock-shop.svc.cluster.local"
-                            expectedResponseCode: "200"
-                          mode: "Continuous"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 1
-                            retry: 1
-                            probePollingInterval: 1
-                        components:
-                          env:
-                            - name: TOTAL_CHAOS_DURATION
-                              value: '10'
-                
-                            # set chaos interval (in sec) as desired
-                            - name: CHAOS_INTERVAL
-                              value: '10'
-                
-                            # pod failures without '--force' & default terminationGracePeriodSeconds
-                            - name: FORCE
-                              value: 'false'
-      container:
-        image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]              
-
     - name: revert-chaos
       container:
         image: lachlanevenson/k8s-kubectl
