@@ -1,5 +1,3 @@
----
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -131,7 +129,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
-
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -252,4 +249,3 @@ spec:
       
 
 ---
-

@@ -32,6 +32,6 @@ spec:
             - name: MEMORY_PERCENTAGE
               value: '90'
             
-             # ENTER THE NAME OF THE TARGET NODE
-            - name: TARGET_NODE
+            # ENTER THE COMMA SEPARATED TARGET NODES NAME
+            - name: TARGET_NODES
               value: ''

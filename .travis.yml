@@ -1,4 +1,7 @@
-dist: xenial # ubuntu 16.04 distro
+dist: bionic
+language: go
+go:
+  - 1.14.2
 script:
   # Install dependencies
   - make deps

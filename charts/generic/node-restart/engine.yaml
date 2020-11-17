@@ -22,9 +22,16 @@ spec:
     - name: node-restart
       spec:
         components:
+          nodeSelector: 
+            # provide the node labels
+            kubernetes.io/hostname: 'node02'  
           env:
-             # ENTER THE NAME OF THE TARGET NODE
+             # ENTER THE TARGET NODE NAME
             - name: TARGET_NODE
+              value: 'node01'
+
+            # ENTER THE TARGET NODE IP
+            - name: TARGET_NODE_IP
               value: ''
 
              # ENTER THE USER TO BE USED FOR SSH AUTH
