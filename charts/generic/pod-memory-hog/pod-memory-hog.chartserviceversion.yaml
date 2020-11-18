@@ -23,6 +23,7 @@ spec:
     - Minikube
     - EKS
     - AKS
+    - OpenShift(OKD)
   maturity: alpha
   maintainers:
     - name: Udit Gaurav

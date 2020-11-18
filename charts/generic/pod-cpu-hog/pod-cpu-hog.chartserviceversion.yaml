@@ -23,6 +23,7 @@ spec:
     - Minikube
     - EKS
     - AKS
+    - Kind
   maturity: alpha
   maintainers:
     - name: ksatchit

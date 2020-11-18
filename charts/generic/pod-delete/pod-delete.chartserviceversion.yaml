@@ -25,6 +25,9 @@ spec:
     - Minikube
     - EKS
     - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
   maturity: alpha
   maintainers:
     - name: ksatchit
