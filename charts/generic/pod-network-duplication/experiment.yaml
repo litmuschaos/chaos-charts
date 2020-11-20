@@ -78,14 +78,14 @@ spec:
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the target ips
+    # provide the destination ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPS
+    - name: DESTINATION_IPS
       value: ''
 
-    # provide the target hosts
+    # provide the destination hosts
     # chaos injection will be triggered for these destination hosts
-    - name: TARGET_HOSTS
+    - name: DESTINATION_HOSTS
       value: ''
 
     # provide the socket file path
