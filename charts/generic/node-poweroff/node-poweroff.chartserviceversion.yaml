@@ -19,9 +19,7 @@ spec:
     - Node
     - SSH
   platforms:
-    - GKE
-    - EKS
-    - AKS
+    - KVM/LibVirt based K8s
   maturity: alpha
   chaosType: infra
   maintainers:
