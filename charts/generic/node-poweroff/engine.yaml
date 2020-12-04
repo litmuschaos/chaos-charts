@@ -1,0 +1,39 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: node-poweroff-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: node-poweroff
+      spec:
+        components:
+          nodeSelector: 
+            # provide the node labels
+            kubernetes.io/hostname: 'node02'  
+          env:
+             # ENTER THE TARGET NODE NAME
+            - name: TARGET_NODE
+              value: ''
+
+            # ENTER THE TARGET NODE IP
+            - name: TARGET_NODE_IP
+              value: ''
+
+             # ENTER THE USER TO BE USED FOR SSH AUTH
+            - name: SSH_USER
+              value: ''
