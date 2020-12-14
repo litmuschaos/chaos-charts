@@ -51,6 +51,7 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # lib can be litmus or pumba
     - name: LIB
       value: 'litmus'
       
@@ -62,13 +63,12 @@ spec:
       value: '10'
 
     # provide the socket file path
-    # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
+      value: '/var/run/docker.sock'
 
     # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
+    # for litmus LIB, it supports docker, containerd, crio
+    # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
@@ -88,10 +88,6 @@ spec:
     - name: SEQUENCE
       value: 'parallel'
 
-    securityContext:
-      containerSecurityContext:
-        privileged: true
-    
     labels:
       name: container-kill
       app.kubernetes.io/part-of: litmus
