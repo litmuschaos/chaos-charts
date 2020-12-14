@@ -65,7 +65,8 @@ spec:
     # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-
+   
+    # lib can be litmus or pumba
     - name: LIB
       value: 'litmus'
 
@@ -77,8 +78,8 @@ spec:
       value: ''
 
     # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
+    # for litmus LIB, it supports docker, containerd, crio
+    # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
@@ -93,9 +94,8 @@ spec:
       value: ''
 
     # provide the socket file path
-    # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
+      value: '/var/run/docker.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
