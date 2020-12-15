@@ -74,7 +74,7 @@ spec:
       value: 'litmuschaos/go-runner:latest'
 
     # Provide the container runtime path
-    # Default set to docker
+    # Default set to docker container path
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
 

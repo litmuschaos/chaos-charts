@@ -1,0 +1,50 @@
+apiVersion: policy/v1beta1
+kind: PodSecurityPolicy
+metadata:
+  name: litmus
+  annotations:
+    seccomp.security.alpha.kubernetes.io/allowedProfileNames: '*'
+spec:
+  privileged: true
+  # Required to prevent escalations to root.
+  allowPrivilegeEscalation: true
+  # Allow core volume types.
+  volumes:
+    - 'configMap'
+    - 'emptyDir'
+    - 'projected'
+    - 'secret'
+    - 'downwardAPI'
+    # Assume that persistentVolumes set up by the cluster admin are safe to use.
+    - 'persistentVolumeClaim'
+  allowedHostPaths:
+    # substitutes this path with an appropriate socket path
+    # ex: '/var/run/docker.sock', '/run/containerd/containerd.sock', '/run/crio/crio.sock'
+    - pathPrefix: "/var/run/docker.sock"
+    # substitutes this path with an appropriate container path
+    # ex: '/var/lib/docker/containers', '/var/lib/containerd/io.containerd.runtime.v1.linux/k8s.io', '/var/lib/containers/storage/overlay/'
+    - pathPrefix: "/var/lib/docker/containers"
+  allowedCapabilities:
+    - "NET_ADMIN"
+    - "SYS_ADMIN"
+  hostNetwork: false
+  hostIPC: false
+  hostPID: true
+  runAsUser:
+    rule: 'RunAsAny'
+  seLinux:
+    # This policy assumes the nodes are using AppArmor rather than SELinux.
+    rule: 'RunAsAny'
+  supplementalGroups:
+    rule: 'MustRunAs'
+    ranges:
+      # Forbid adding the root group.
+      - min: 1
+        max: 65535
+  fsGroup:
+    rule: 'MustRunAs'
+    ranges:
+      # Forbid adding the root group.
+      - min: 1
+        max: 65535
+  readOnlyRootFilesystem: false
