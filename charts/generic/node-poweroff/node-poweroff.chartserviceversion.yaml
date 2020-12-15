@@ -19,7 +19,7 @@ spec:
     - Node
     - SSH
   platforms:
-    - KVM/LibVirt based K8s
+    - Kubevirt VMs
   maturity: alpha
   chaosType: infra
   maintainers:
