@@ -11,8 +11,6 @@ spec:
   annotationCheck: 'true'
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx 
-  auxiliaryAppInfo: ''
   monitoring: false
   appinfo: 
     appns: 'default'
@@ -25,8 +23,6 @@ spec:
       spec:
         components:
           env:
-            - name: LIB_IMAGE
-              value: 'litmuschaos/go-runner:latest'
 
             #Network interface inside target container
             - name: NETWORK_INTERFACE

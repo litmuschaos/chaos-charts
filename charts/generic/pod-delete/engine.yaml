@@ -12,8 +12,6 @@ spec:
   annotationCheck: 'true'
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx
-  auxiliaryAppInfo: ''
   chaosServiceAccount: pod-delete-sa
   monitoring: false
   # It can be delete/retain
