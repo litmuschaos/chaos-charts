@@ -159,6 +159,11 @@ spec:
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
         value: 'gaiaadm/pumba'
+
+      # provide the socket file path
+      # it is used in pumba lib
+      - name: SOCKET_PATH
+        value: '/var/run/docker.sock'        
         
       - name: CHAOS_KILL_COMMAND
         value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
@@ -1456,7 +1461,12 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'gaiaadm/pumba' 
+        value: 'gaiaadm/pumba'
+
+      # provide the socket file path
+      # it is used in pumba lib
+      - name: SOCKET_PATH
+        value: '/var/run/docker.sock'         
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -1899,6 +1909,11 @@ spec:
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba'  
+
+    # provide the socket file path
+    # it is used in pumba lib
+    - name: SOCKET_PATH
+      value: '/var/run/docker.sock'      
 
     - name: TARGET_PODS
       value: ''
