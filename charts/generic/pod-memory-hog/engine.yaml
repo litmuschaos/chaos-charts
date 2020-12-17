@@ -21,11 +21,6 @@ spec:
       spec:
         components:
           env:
-            # Provide name of target container
-            # where chaos has to be injected
-            - name: TARGET_CONTAINER
-              value: 'nginx'
-
             # Enter the amount of memory in megabytes to be consumed by the application pod
             - name: MEMORY_CONSUMPTION
               value: '500'
@@ -33,5 +28,3 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
             
-            - name: CHAOS_KILL_COMMAND
-              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"            

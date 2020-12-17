@@ -21,11 +21,6 @@ spec:
       spec:
         components:
           env:
-            # Provide name of target container
-            # where chaos has to be injected
-            - name: TARGET_CONTAINER
-              value: 'nginx'
-
             #number of cpu cores to be consumed
             #verify the resources the app has been launched with
             - name: CPU_CORES
@@ -33,10 +28,3 @@ spec:
 
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
-
-            - name: CHAOS_INJECT_COMMAND
-              value: 'md5sum /dev/zero'
-
-            - name: CHAOS_KILL_COMMAND
-              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
-                    
