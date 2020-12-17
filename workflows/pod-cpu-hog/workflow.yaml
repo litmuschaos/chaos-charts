@@ -60,7 +60,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:1.11.0"
+                    image: "litmuschaos/go-runner:1.11.1"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -128,7 +128,7 @@ spec:
                     - name: pod-cpu-hog
                       spec:
                         components:
-                          experimentImage: "litmuschaos/go-runner:1.11.0"
+                          experimentImage: "litmuschaos/go-runner:1.11.1"
                           env:
                             - name: TARGET_CONTAINER
                               value: 'kube-proxy'

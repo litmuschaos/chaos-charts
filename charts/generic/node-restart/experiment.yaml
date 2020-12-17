@@ -10,7 +10,7 @@ metadata:
     name: node-restart
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.11.0
+    app.kubernetes.io/version: 1.11.1
 spec:
   definition:
     scope: Cluster
@@ -43,7 +43,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.11.0"
+    image: "litmuschaos/go-runner:1.11.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -68,7 +68,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:1.11.0"
+      value: "litmuschaos/go-runner:1.11.1"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -82,7 +82,7 @@ spec:
       name: node-restart
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.11.0
+      app.kubernetes.io/version: 1.11.1
     secrets:
       - name: id-rsa
         mountPath: /mnt/
