@@ -40,7 +40,7 @@ spec:
           image: lachlanevenson/k8s-kubectl
           command: [sh, -c]
           args:
-            - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.11.0?file=charts/generic/experiments.yaml -n
+            - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.11.1?file=charts/generic/experiments.yaml -n
               {{workflow.parameters.adminModeNamespace}} | sleep 30"
 
       - name: node-cpu-hog
@@ -105,7 +105,7 @@ spec:
                       - name: pod-memory-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.11.0"
+                            experimentImage: "litmuschaos/go-runner:1.11.1"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
@@ -145,7 +145,7 @@ spec:
                       - name: pod-cpu-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.11.0"
+                            experimentImage: "litmuschaos/go-runner:1.11.1"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
