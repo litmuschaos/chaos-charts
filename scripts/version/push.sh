@@ -1,8 +1,7 @@
 #!/bin/sh
 setup_git() {
   git config --global user.email "litmusbotci@gmail.com"
-  git config --global user.name "Litmus[BOT]"
-  git remote set-url origin  https://${GITHUB_TOKEN}@github.com/litmuschaos/community-charts.git > /dev/null 2>&1
+  git config --global user.name "litmus[bot]"
 }
 
 commit_updated_changes() {
