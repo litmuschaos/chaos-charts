@@ -1,0 +1,39 @@
+---
+# This workflow will combine the experiment CRs for different 
+# Categories of experiments into the experiment.yaml in respective
+# Chart directory. It will only build and not push the changes.
+
+name: ChaosCharts
+on:
+  pull_request:
+    types: [ opened, synchronize, reopened ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+
+      # Install golang
+      - uses: actions/setup-go@v2
+        with:
+          go-version: '^1.13.1'
+
+      # Setup gopath
+      - name: Setting up GOPATH 
+        run: |
+          echo "GOPATH=${GITHUB_WORKSPACE}/go" >> $GITHUB_ENV
+          
+      # Checkout to the latest commit
+      # On specific directory/path
+      - uses: actions/checkout@v2
+        with:
+          ref: ${{steps.getcommit.outputs.sha}}
+          path: go/src/github.com/${{github.repository}}    
+          
+      # Combine the experiment CRs
+      - name: Combine experiment CR
+        run: |
+          export PATH=$PATH:$(go env GOPATH)/bin
+          cd ${GOPATH}/src/github.com/${{github.repository}}
+          make combineExpCR
+        shell: bash
