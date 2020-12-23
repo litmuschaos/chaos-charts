@@ -1,16 +1,15 @@
 ---
 # This workflow will combine the experiment CRs for different 
 # Categories of experiments into the experiment.yaml in respective
-# Chart directory. It will only build and not push the changes.
+# Chart directory and push the changes.
 
 name: ChaosCharts
-on:
-  pull_request:
-    types: [ opened, synchronize, reopened ]
+on: [ push ]
 
 jobs:
-  build:
+  push:
     runs-on: ubuntu-latest
+    if: github.repository == 'litmuschaos/chaos-charts'
     steps:
 
       # Install golang
@@ -37,3 +36,19 @@ jobs:
           cd ${GOPATH}/src/github.com/${{github.repository}}
           make combineExpCR
         shell: bash
+
+      # Commit the changes from the chart directory 
+      - name: Commit the changes
+        run: |
+          cd ${GOPATH}/src/github.com/${{github.repository}}
+          make push
+        shell: bash
+
+      # Push the changes
+      - name: Push changes
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }} 
+          directory: go/src/github.com/${{github.repository}}
+
