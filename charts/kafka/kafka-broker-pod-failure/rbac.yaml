@@ -17,7 +17,7 @@ metadata:
     app.kubernetes.io/part-of: litmus
 rules:
 - apiGroups: [""]
-  resources: ["pods","pods/exec","deployments","pods/log","events"]
+  resources: ["pods","pods/exec","pods/log","events"]
   verbs: ["create","list","get","patch","update","delete","deletecollection"]
 - apiGroups: ["batch"]
   resources: ["jobs"]
