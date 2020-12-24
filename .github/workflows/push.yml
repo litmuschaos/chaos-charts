@@ -27,7 +27,8 @@ jobs:
       - uses: actions/checkout@v2
         with:
           ref: ${{steps.getcommit.outputs.sha}}
-          path: go/src/github.com/${{github.repository}}    
+          path: go/src/github.com/${{github.repository}}
+          token: ${{ secrets.ADMIN_TOKEN }}
           
       # Combine the experiment CRs
       - name: Combine experiment CR
@@ -37,18 +38,10 @@ jobs:
           make combineExpCR
         shell: bash
 
-      # Commit the changes from the chart directory 
-      - name: Commit the changes
+      # Commit and push the changes from the chart directory 
+      - name: Commit and Push the changes
         run: |
           cd ${GOPATH}/src/github.com/${{github.repository}}
           make push
         shell: bash
-
-      # Push the changes
-      - name: Push changes
-        uses: ad-m/github-push-action@master
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: ${{ github.ref }} 
-          directory: go/src/github.com/${{github.repository}}
 
