@@ -17,12 +17,12 @@ spec:
       - apiGroups:
           - ""
           - "batch"
-          - "apps"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -34,6 +34,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
       - apiGroups:
           - ""
         resources: 

@@ -18,6 +18,8 @@ spec:
       - apiGroups:
           - ""
           - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
           - "batch"
           - "litmuschaos.io"
         resources:
@@ -25,6 +27,14 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"

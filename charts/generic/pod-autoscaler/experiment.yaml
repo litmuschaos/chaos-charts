@@ -23,7 +23,9 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "pods/exec"
           - "deployments"
+          - "statefulsets"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -35,6 +37,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
+          - "deletecollection"
       - apiGroups:
           - ""
         resources: 
@@ -42,6 +45,9 @@ spec:
         verbs:
           - "get"
           - "list"
+          - "create"
+          - "patch"
+          - "update"
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
