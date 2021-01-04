@@ -23,7 +23,7 @@ rules:
   resources: ["jobs"]
   verbs: ["create","list","get","delete","deletecollection"]
 - apiGroups: ["apps"]
-  resources: ["deployments"]
+  resources: ["deployments","statefulsets"]
   verbs: ["list","get","patch","update"]
 - apiGroups: ["litmuschaos.io"]
   resources: ["chaosengines","chaosexperiments","chaosresults"]
