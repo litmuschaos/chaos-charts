@@ -59,6 +59,10 @@ spec:
     - name: REGION
       value: ''
 
+    # Provide the path of aws credentials mounted from secret
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
     # provide the LIB
     # only litmus supported
     - name: LIB
@@ -249,6 +253,10 @@ spec:
     - name: REGION
       value: ''
 
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
     # provide the LIB
     # only litmus supported
     - name: LIB
@@ -262,4 +270,5 @@ spec:
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
+
 ---

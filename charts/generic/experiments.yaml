@@ -364,7 +364,7 @@ spec:
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:ci'  
+      value: 'litmuschaos/go-runner:latest'  
 
     # provide the socket file path
     # it is used in pumba lib
@@ -881,7 +881,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:ci'
+        value: 'litmuschaos/go-runner:latest'
 
       # provide the socket file path
       # it is used in pumba lib
@@ -1709,7 +1709,7 @@ spec:
 
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:ci'
+        value: 'litmuschaos/go-runner:latest'
 
       # provide the socket file path
       # it is used in pumba lib
