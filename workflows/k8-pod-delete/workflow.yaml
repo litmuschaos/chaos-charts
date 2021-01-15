@@ -61,7 +61,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.12.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
             {{workflow.parameters.appNamespace}} | sleep 30"
     
     - name: install-chaos-rbac
@@ -69,7 +69,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.12.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
             {{workflow.parameters.appNamespace}} | sleep 30"
 
     - name: run-chaos
@@ -177,7 +177,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
+          - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.12.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
             {{workflow.parameters.appNamespace}} | sleep 30"
     
     - name: revert-chaos-rbac
@@ -185,5 +185,5 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
+          - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.12.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
             {{workflow.parameters.appNamespace}} | sleep 30"
