@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  name: argowf-chaos-sock-shop-resiliency-cron-wf
+  generateName: argowf-chaos-sock-shop-resiliency-cron-wf-
   namespace: kubera
 spec:
   schedule: "0 * * * *"
@@ -32,8 +32,6 @@ spec:
             template: pod-memory-hog
           - name: pod-cpu-hog
             template: pod-cpu-hog
-          - name: load-test
-            template: load-test  
           - name: load-test
             template: load-test  
         - - name: pod-delete

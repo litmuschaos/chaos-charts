@@ -6,6 +6,9 @@ metadata:
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
   arguments:
     parameters:
       - name: adminModeNamespace
@@ -21,14 +24,14 @@ spec:
             template: install-pod-memory-hog
           - name: install-pod-cpu-hog
             template: install-pod-cpu-hog 
-        - - name: pod-memory-hog
+        - - name: load-test
+            template: load-tes
+          - name: pod-memory-hog
             template: pod-memory-hog
           - name: pod-cpu-hog
             template: pod-cpu-hog
         - - name: pod-delete
             template: pod-delete
-          - name: load-test
-            template: load-test  
         - - name: revert-chaos
             template: revert-chaos
 
@@ -326,7 +329,7 @@ spec:
                             probeTimeout: 2
                             interval: 2
                             retry: 1
-                            initialDelaySeconds: 2
+                            initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
                           env:
@@ -396,7 +399,7 @@ spec:
                             probeTimeout: 2
                             interval: 2
                             retry: 1
-                            initialDelaySeconds: 2
+                            initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
                           env:
