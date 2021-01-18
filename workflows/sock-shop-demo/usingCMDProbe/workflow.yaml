@@ -25,7 +25,7 @@ spec:
           - name: install-pod-cpu-hog
             template: install-pod-cpu-hog 
         - - name: load-test
-            template: load-tes
+            template: load-test
           - name: pod-memory-hog
             template: pod-memory-hog
           - name: pod-cpu-hog
