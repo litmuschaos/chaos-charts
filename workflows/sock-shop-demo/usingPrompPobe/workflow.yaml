@@ -493,5 +493,5 @@ spec:
         command: [sh, -c]
         args: 
           [ 
-            "kubectl delete chaosengine --all -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
