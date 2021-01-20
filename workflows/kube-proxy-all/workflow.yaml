@@ -233,5 +233,5 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args:
-          - "kubectl delete chaosengines --all -n
+          - "kubectl delete chaosengines kube-proxy-node-cpu-hog kube-proxy-pod-memory-hog-chaos kube-proxy-pod-cpu-hog-chaos kube-proxy-node-memory-hog-chaos kube-proxy-pod-delete-chaos -n
             {{workflow.parameters.adminModeNamespace}}"
