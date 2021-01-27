@@ -297,7 +297,7 @@ spec:
                 spec:
                   appinfo:
                     appns: 'sock-shop'
-                    applabel: 'name=catalogue'
+                    applabel: 'name=carts'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
                   monitoring: false
@@ -311,7 +311,7 @@ spec:
                         - name: "check-frontend-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
-                            url: "http://front-end.sock-shop.svc.cluster.local"
+                            url: "http://front-end.sock-shop.svc.cluster.local:80"
                             expectedResponseCode: "200"
                           mode: "Continuous"
                           runProperties:
@@ -366,7 +366,7 @@ spec:
                 spec:
                   appinfo:
                     appns: 'sock-shop'
-                    applabel: 'name=front-end'
+                    applabel: 'name=orders'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
                   monitoring: false
@@ -380,7 +380,7 @@ spec:
                         - name: "check-frontend-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
-                            url: "http://front-end.sock-shop.svc.cluster.local"
+                            url: "http://front-end.sock-shop.svc.cluster.local:80"
                             expectedResponseCode: "200"
                           mode: "Continuous"
                           runProperties:
@@ -450,7 +450,7 @@ spec:
                         - name: "check-frontend-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
-                            url: "http://front-end.sock-shop.svc.cluster.local"
+                            url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
                             expectedResponseCode: "200"
                           mode: "Continuous"
                           runProperties:
