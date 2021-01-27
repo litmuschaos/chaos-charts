@@ -451,7 +451,7 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-frontend-access-url"
+                        - name: "check-frontend-catalogue-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
