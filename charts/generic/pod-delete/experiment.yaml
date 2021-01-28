@@ -10,7 +10,6 @@ metadata:
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
-  version: 0.1.19
 spec:
   definition:
     scope: Namespaced

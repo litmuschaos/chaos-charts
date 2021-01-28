@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-poweroff
-  version: 0.1.0
   labels:
     name: node-poweroff
     app.kubernetes.io/part-of: litmus
