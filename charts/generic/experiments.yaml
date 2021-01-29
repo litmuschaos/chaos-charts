@@ -468,7 +468,6 @@ metadata:
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
-  version: 0.1.19
 spec:
   definition:
     scope: Namespaced
@@ -780,7 +779,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-restart
-  version: 0.1.0
   labels:
     name: node-restart
     app.kubernetes.io/part-of: litmus
@@ -1646,7 +1644,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-poweroff
-  version: 0.1.0
   labels:
     name: node-poweroff
     app.kubernetes.io/part-of: litmus

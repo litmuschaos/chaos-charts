@@ -5,6 +5,9 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-network-loss
+  app.kubernetes.io/part-of: litmus
+  app.kubernetes.io/component: chaosexperiment
+  app.kubernetes.io/version: latest  
 spec:
   definition:
     scope: Namespaced

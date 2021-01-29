@@ -5,7 +5,6 @@ description:
 kind: ChaosExperiment
 metadata:
   name: node-restart
-  version: 0.1.0
   labels:
     name: node-restart
     app.kubernetes.io/part-of: litmus
