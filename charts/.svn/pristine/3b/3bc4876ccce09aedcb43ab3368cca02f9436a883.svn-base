@@ -1,0 +1,48 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-01-13T10:28:08Z
+  name: node-drain
+  version: 0.1.12
+  annotations:
+    categories: Kubernetes
+    vendor: Mayadata
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: node-drain
+  categoryDescription: >
+    Drain the node where application pod is scheduled
+  keywords:
+    - Kubernetes
+    - Node 
+    - State
+  platforms:
+    - GKE
+    - AWS(KOPS)
+    - Packet(Kubeadm)
+    - Konvoy
+    - EKS
+    - AKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: shubham chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-drain
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-drain/
+    - name: Video
+      url: https://www.youtube.com/watch?v=LQVCZUQ4-ok
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-drain/experiment.yaml

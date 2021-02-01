@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-12-30T10:28:08Z
+  name: coredns
+  version: 0.1.4
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects coredns chaos 
+spec:
+  displayName: CoreDNS chaos
+  categoryDescription: >
+    CoreDNS is an open-source system for DNS management of containerized applications.
+    It helps to resolve services to IP address. It will install all the experiments which can be used to inject chaos into containerized applications.
+
+  experiments:
+    - coredns-pod-delete
+
+  keywords:
+    - Kubernetes
+    - Container
+    - node
+    - pod
+    - DNS
+  maintainers:
+    - name: Raj Babu Das
+      email: raj.das@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: CoreDNS Website
+      url: https://coredns.io
+    - name: Source Code
+      url: https://github.com/coredns/coredns
+    - name: CoreDNS Slack
+      url: https://slack.cncf.io/
+    - name: Documentation
+      url: https://coredns.io/manual/toc/
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/icons/coredns-pod-delete.png
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/coredns/experiments.yaml

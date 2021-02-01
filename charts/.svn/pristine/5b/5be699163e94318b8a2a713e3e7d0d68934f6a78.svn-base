@@ -1,0 +1,37 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-09-26T10:28:08Z
+  name: kube-aws
+  version: 0.1.16
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects kube-aws kubernetes chaos 
+spec:
+  displayName: Kube AWS
+  categoryDescription: >
+    kube-aws contains chaos to disrupt state of aws resources running part of kubernetes cluster
+  experiments:
+    - k8-aws-ec2-terminate
+    - ec2-terminate
+    - ebs-loss
+  keywords:
+    - AWS
+    - EC2
+    - State
+  maintainers:
+    - name: sumit
+      email: sumit_nagal@intuit.com
+  provider:
+    name: Intuit
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/ 
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/icons/kube-aws.png
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/experiments.yaml

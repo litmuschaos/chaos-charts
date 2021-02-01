@@ -1,0 +1,45 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-11-15T10:28:08Z
+  name: kafka-broker-pod-failure
+  version: 0.1.6
+  annotations:
+    categories: Kafka
+    vendor: Mayadata
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: kafka-broker-pod-failure
+  categoryDescription: |
+    This chaos experiment kills (random or specified) kafka broker pods
+  keywords:
+    - Kubernetes
+    - Pod
+    - State 
+    - Kafka
+  platforms:
+    - GKE
+    - EKS
+    - konvoy
+  maturity: alpha
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kafka/kafka-broker-pod-failure
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/kafka-broker-pod-failure/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kafka/kafka-broker-pod-failure/experiment.yaml

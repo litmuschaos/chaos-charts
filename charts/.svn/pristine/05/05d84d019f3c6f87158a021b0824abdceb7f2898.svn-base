@@ -1,0 +1,36 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-11-13T10:28:08Z
+  name: kafka 
+  version: 0.1.4
+  annotations:
+    categories: Kafka
+    chartDescription: Injects chaos on kafka components
+spec:
+  displayName: Kafka Chaos
+  categoryDescription: >
+    Kafka is used for building real-time data pipelines and streaming apps. It is horizontally scalable, fault-tolerant, fast, 
+    and runs in production in thousands of companies
+  experiments:
+    - kafka-broker-pod-failure
+  keywords:
+    - Kubernetes
+    - Kafka
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kafka Website
+      url: http://kafka.apache.org/
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus/tree/master/experiments/kafka
+    - name: Community Slack
+      url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kafka/experiments.yaml

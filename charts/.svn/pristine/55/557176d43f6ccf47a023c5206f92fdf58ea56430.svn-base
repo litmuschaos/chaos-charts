@@ -1,0 +1,35 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: control-plane-chaos
+  namespace: openebs
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'openebs'
+    applabel: 'name=maya-apiserver'
+    appkind: 'deployment'
+  chaosServiceAccount: control-plane-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-control-plane-chaos
+      spec:
+        components:
+          env:
+            - name: OPENEBS_NAMESPACE
+              value: 'openebs'
+
+            ## Period to wait before injection of chaos  
+            - name: RAMP_TIME
+              value: '10'
+
+            - name: FORCE
+              value: ''
+
+            - name: LIB
+              value: ''

@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: k8-alb-ingress-controller
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    createdAt: 2020-02-24T10:28:08Z
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: k8-alb-ingress-controller
+  categoryDescription: |
+    k8-alb-ingress-controller contains chaos to disrupt state of ingress controller. It uses chaostoolkit to inject random pod delete failures against ingress controller
+  keywords:
+    - Kubernetes
+    - State
+    - Ingress
+  platforms:
+     - Minikube
+  maturity: alpha
+  maintainers:
+    - name: Navin
+      email: navin_kumarj@intuit.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Intuit
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+  icon:
+    - url:
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-components/k8-alb-ingress-controller/experiment.yaml

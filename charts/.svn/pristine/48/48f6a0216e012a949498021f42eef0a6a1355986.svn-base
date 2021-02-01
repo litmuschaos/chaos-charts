@@ -1,0 +1,38 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: k8-aws-ec2-terminate
+  version: 0.0.1
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    createdAt: 2020-02-24T10:28:08Z
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: k8-aws-ec2-terminate
+  categoryDescription: |
+    AWS EC2 terminate contains chaos to disrupt state of aws resources running part of kuberntes cluster workload. It uses chaostoolkit to inject ec2 instance termination against a specified applications          
+  keywords:
+    - Kubernetes
+    - AWS
+    - EC2
+    - State
+  platforms:
+     - Minikube
+  maturity: alpha
+  maintainers:
+    - name: sumit
+      email: sumit_nagal@intuit.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Intuit
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+  icon:
+    - url:
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/k8-aws-ec2-terminate/experiment.yaml

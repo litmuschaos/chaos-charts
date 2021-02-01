@@ -1,0 +1,46 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-07-14T10:28:08Z
+  name: docker-service-kill
+  version: 0.1.1
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: docker-service-kill
+  categoryDescription: |
+    docker-service-kill contains killing docker service gracefully for a certain chaos duration.
+    - Causes replicas may be evicted or becomes unreachable on account on nodes turning unschedulable (Not Ready) due to docker service kill.
+    - The application node should be healthy once chaos is stopped and the services are reaccessable. 
+  keywords:
+    - Kubernetes
+    - Node
+    - Service
+    - Docker 
+  platforms:
+    - GKE    
+    - AKS
+  maturity: alpha
+  maintainers:
+    - name: Ankur Ghosh
+      email: ankur.ghosh3@wipro.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Wipro
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/generic/docker_service_kill
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/docker-service-kill/
+    - name: Video
+      url: 
+
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/docker-service-kill/experiment.yaml 

@@ -1,0 +1,69 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-09-26T10:28:08Z
+  name: generic
+  version: 0.1.16
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects generic kubernetes chaos 
+spec:
+  displayName: Generic Chaos
+  categoryDescription: >
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easier management and discovery. It will install all the experiments which can be used to inject chaos into containerized applications.
+
+  experiments:
+    - pod-delete
+    - container-kill
+    - pod-cpu-hog
+    - pod-network-loss
+    - pod-network-latency
+    - pod-network-corruption
+    - node-drain
+    - node-cpu-hog
+    - disk-loss
+    - disk-fill
+    - node-memory-hog
+    - pod-memory-hog
+    - kubelet-service-kill
+    - pod-network-duplication
+    - node-taint
+    - docker-service-kill
+    - pod-autoscaler
+    - k8-pod-delete
+    - k8-service-kill
+    - node-io-stress
+    - pod-io-stress
+    - node-restart
+    
+  keywords:
+    - Kubernetes
+    - Container
+    - Node
+    - Pod
+    - Disk
+    - IO
+    - Filesystem
+    - Network
+    - CPU
+    - Memory
+    - Service
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/kubernetes/kubernetes
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/ 
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments.yaml

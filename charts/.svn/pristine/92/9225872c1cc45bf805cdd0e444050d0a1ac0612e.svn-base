@@ -1,0 +1,41 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: openebs-control-plane-chaos
+  version: 0.1.4
+  annotations:
+    categories: OpenEBS
+    vendor: CNCF
+    support: https://slack.openebs.io/
+spec:
+  displayName: openebs-control-plane-chaos
+  categoryDescription: >
+     Kill all openebs control plane pods and check if gets scheduled again. 
+  keywords:
+    - Kubernetes
+    - OpenEBS
+  platforms:
+    - GKE
+    - EKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Raj Babu Das
+      email: raj.das@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-control-plane-chaos
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/openebs-control-plane-chaos/
+    - name: Video
+      url:
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-control-plane-chaos/experiment.yaml

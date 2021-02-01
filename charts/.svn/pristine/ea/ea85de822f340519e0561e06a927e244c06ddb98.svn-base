@@ -1,0 +1,118 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching a persistent disk from a node/instance for kafka.
+kind: ChaosExperiment
+metadata:
+  name: kafka-broker-disk-failure
+  labels:
+    name: kafka-broker-disk-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "statefulsets"
+          - "secrets"
+          - "jobs"
+          - "pods/log"
+          - "events"
+          - "pods"
+          - "pods/exec"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "delete"
+          - "get"
+          - "list"
+          - "patch"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/kafka/kafka-broker-disk-failure/kafka-broker-disk-failure-ansible-logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: KAFKA_KIND
+      value: 'statefulset'
+
+    - name: KAFKA_LIVENESS_STREAM
+      value: 'enabled'
+
+    - name: KAFKA_LIVENESS_IMAGE
+      value: 'litmuschaos/kafka-client:ci'
+
+    - name: KAFKA_CONSUMER_TIMEOUT
+      value: '30000'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    - name: PROJECT_ID
+      value: ''
+
+    - name: DISK_NAME
+      value: ''
+
+    - name: ZONE_NAME
+      value: '' 
+
+    # GKE and AWS supported
+    - name: CLOUD_PLATFORM
+      value: 'GKE'
+
+    - name: KAFKA_NAMESPACE
+      value: ''
+
+    - name: KAFKA_LABEL
+      value: ''
+
+    - name: KAFKA_BROKER
+      value: ''
+
+    - name: KAFKA_INSTANCE_NAME
+      value: ''
+
+    - name: KAFKA_REPLICATION_FACTOR
+      value: ''
+
+    - name: KAFKA_SERVICE
+      value: ''
+
+    - name: KAFKA_PORT
+      value: ''
+
+    - name: ZOOKEEPER_NAMESPACE
+      value: ''
+
+    - name: ZOOKEEPER_LABEL
+      value: ''
+
+    - name: ZOOKEEPER_SERVICE
+      value: ''
+
+    - name: ZOOKEEPER_PORT
+      value: ''
+    labels:
+      name: kafka-broker-disk-failure
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+    - name: kafka-broker-disk-failure
+      mountPath: /tmp/
+      

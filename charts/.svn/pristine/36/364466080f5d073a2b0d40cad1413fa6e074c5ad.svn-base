@@ -1,0 +1,49 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-01-13T10:28:08Z
+  name: node-taint
+  version: 0.1.2
+  annotations:
+    categories: Kubernetes
+    vendor: Mayadata
+    repository: https://github.com/litmuschaos/chaos-charts
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: node-taint
+  categoryDescription: >
+    Taint the node where application pod is scheduled
+  keywords:
+    - Kubernetes
+    - Node 
+    - State
+    - Taint
+  platforms:
+    - GKE
+    - AWS(KOPS)
+    - Packet(Kubeadm)
+    - Konvoy
+    - EKS
+    - AKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: shubham chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-taint
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-taint/
+    - name: Video
+      url:
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-taint/experiment.yaml

@@ -1,0 +1,47 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-07-01T10:28:08Z
+  name: pod-network-duplication
+  version: 0.1.2
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-network-duplication
+  categoryDescription: |
+    Pod-network-duplication contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject percentage packet duplication on the app replica pods. 
+    - Causes lossy access to application replica by injecting packet duplication using pumba.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
+  keywords:
+    - Kubernetes
+    - Network
+    - Duplication
+  platforms:
+    - GKE
+    - Minikube 
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  maturity: alpha
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-duplication
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/pod-network-duplication/
+    - name: Video
+      url: 
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-duplication/experiment.yaml 

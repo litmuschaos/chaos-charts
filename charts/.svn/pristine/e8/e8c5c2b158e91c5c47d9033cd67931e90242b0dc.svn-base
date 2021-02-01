@@ -1,0 +1,44 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-11-12T10:28:08Z
+  name: openebs-pool-pod-failure
+  version: 0.1.12
+  annotations:
+    categories: OpenEBS
+    vendor: CNCF
+    support: https://slack.openebs.io/
+spec:
+  displayName: openebs-pool-pod-failure
+  categoryDescription: >
+     Kill the pool pod and check if gets scheduled again. 
+  keywords:
+    - Kubernetes
+    - Storage Pool
+    - OpenEBS
+  platforms:
+    - GKE
+    - EKS
+    - OpenShift
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: shubham chaudhary
+      email: shubham.chaudhary@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-pod-failure
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/openebs-pool-pod-failure/
+    - name: Video
+      url:
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-pod-failure/experiment.yaml

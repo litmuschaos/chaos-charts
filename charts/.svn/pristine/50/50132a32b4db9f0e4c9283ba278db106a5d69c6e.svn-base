@@ -1,0 +1,68 @@
+packageName: generic 
+experiments:
+  - name: pod-delete
+    CSV: pod-delete.chartserviceversion.yaml
+    desc: "pod-delete"
+  - name: container-kill
+    CSV:  container-kill.chartserviceversion.yaml
+    desc: "container-kill"
+  - name: pod-network-loss
+    CSV: pod-network-loss.chartserviceversion.yaml
+    desc: "Pod-network-loss"
+  - name: pod-network-latency
+    CSV: pod-network-latency.chartserviceversion.yaml
+    desc: "pod-network-latency"
+  - name: pod-cpu-hog
+    CSV: pod-cpu-hog.chartserviceversion.yaml
+    desc: "pod-cpu-hog"
+  - name: node-cpu-hog
+    CSV: node-cpu-hog.chartserviceversion.yaml
+    desc: "node-cpu-hog"
+  - name: disk-fill
+    CSV: disk-fill.chartserviceversion.yaml
+    desc: "disk-fill"
+  - name: disk-loss
+    CSV: disk-loss.chartserviceversion.yaml
+    desc: "disk-loss"
+  - name: node-drain
+    CSV: node-drain.chartserviceversion.yaml
+    desc: "node-drain"
+  - name: pod-network-corruption
+    CSV: pod-network-corruption.chartserviceversion.yaml
+    desc: "pod-network-corruption"
+  - name: node-memory-hog
+    CSV: node-memory-hog.chartserviceversion.yaml
+    desc: "node-memory-hog"
+  - name: pod-memory-hog
+    CSV: pod-memory-hog.chartserviceversion.yaml
+    desc: "pod-memory-hog"   
+  - name: kubelet-service-kill
+    CSV: kubelet-service-kill.chartserviceversion.yaml
+    desc: "kubelet-service-kill"
+  - name: pod-network-duplication
+    CSV: pod-network-duplication.chartserviceversion.yaml
+    desc: "pod-network-duplication" 
+  - name: node-taint
+    CSV: node-taint.chartserviceversion.yaml
+    desc: "node-taint"
+  - name: docker-service-kill
+    CSV: docker-service-kill.chartserviceversion.yaml
+    desc: "docker-service-kill"
+  - name: pod-autoscaler
+    CSV: pod-autoscaler.chartserviceversion.yaml
+    desc: "pod-autoscaler"
+  - name: k8-pod-delete
+    CSV: k8-pod-delete.chartserviceversion.yaml
+    desc: "k8-pod-delete"
+  - name: k8-service-kill
+    CSV: k8-service-kill.chartserviceversion.yaml
+    desc: "k8-service-kill"
+  - name: node-io-stress
+    CSV: node-io-stress.chartserviceversion.yaml
+    desc: "node-io-stress"
+  - name: pod-io-stress
+    CSV: pod-io-stress.chartserviceversion.yaml
+    desc: "pod-io-stress"    
+  - name: node-restart
+    CSV: node-restart.chartserviceversion.yaml
+    desc: "node-restart"

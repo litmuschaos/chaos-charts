@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: k8-prometheus-operator
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    createdAt: 2020-02-24T10:28:08Z
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: k8-prometheus-operator
+  categoryDescription: |
+    k8-prometheus-operator contains chaos to disrupt state of prometheus operator. It uses chaostoolkit to inject random pod delete failures against prometheus operator.
+  keywords:
+    - Kubernetes
+    - State
+    - Prometheus
+  platforms:
+     - Minikube
+  maturity: alpha
+  maintainers:
+    - name: Anushya
+      email: anushya_dharmarajan@intuit.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Intuit
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+  icon:
+    - url:
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-components/k8-prometheus-operator/experiment.yaml

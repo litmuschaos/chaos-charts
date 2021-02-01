@@ -1,0 +1,49 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-09-12T10:28:08Z
+  name: node-io-stress
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: node-io-stress
+  categoryDescription: |
+    This experiment causes disk stress on the Kubernetes node. The experiment aims to verify the resiliency of applications that share this disk resource for ephemeral or persistent storage purposes..
+    - Disk stress on a particular node filesystem where the application deployment is available.
+    - The amount of disk stress can be either specifed as the size in percentage of the total free space on the file system or simply in Gigabytes(GB)
+  keywords:
+    - Kubernetes
+    - Disk
+    - IO
+    - Filesystem
+    - State 
+    - Node
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-io-stress
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/node-io-stress/
+    - name: Video
+      url:
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-io-stress/experiment.yaml

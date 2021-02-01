@@ -1,0 +1,44 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-10-17T10:28:08Z
+  name: openebs-target-network-delay
+  version: 0.1.9
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: openebs-target-network-delay
+  categoryDescription: >
+    Network delay to Pod belonging to a OpenEBS PVC
+  keywords:
+    - OpenEBS
+    - Kubernetes
+    - Network Delay 
+  platforms:
+    - GKE
+    - EKS
+    - OpenShift
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: giri
+      email: giridhara.prasad@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-target-network-delay
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/openebs-target-network-delay/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-target-network-delay/experiment.yaml

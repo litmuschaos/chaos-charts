@@ -1,0 +1,38 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: default
+spec:
+  auxiliaryAppInfo: ''
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-network-loss-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-pool-network-loss
+      spec:
+        components:
+          env:
+          - name: FORCE
+            value: 'true'
+
+          - name: APP_PVC
+            value: 'demo-nginx-claim'
+
+          - name: OPENEBS_NAMESPACE
+            value: 'openebs'
+
+          - name: NETWORK_PACKET_LOSS_PERCENTAGE
+            value: '100'
+
+          - name: TOTAL_CHAOS_DURATION
+            value: '120' # in seconds
+      

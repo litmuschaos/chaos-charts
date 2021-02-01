@@ -1,0 +1,50 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: nginx
+spec:
+  # It can be true/false
+  annotationCheck: 'true'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'nginx'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: container-kill-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete' 
+  experiments:
+    - name: container-kill
+      spec:
+        components:
+          env:
+            # specify the name of the container to be killed
+            - name: TARGET_CONTAINER
+              value: 'nginx'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
+
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
+
+            - name: LIB_IMAGE  
+              value: 'litmuschaos/go-runner:latest' 
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            # default to docker
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the container runtime path for containerd
+            # applicable only for containerd runtime
+            - name: CONTAINER_PATH
+              value: '/run/containerd/containerd.sock'

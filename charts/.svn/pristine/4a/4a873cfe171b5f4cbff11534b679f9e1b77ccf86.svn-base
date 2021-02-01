@@ -1,0 +1,112 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes an aws instance belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  name: k8-aws-ec2-terminate
+  labels:
+    name: k8-aws-ec2-terminate
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "pods"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs :
+          - "get"
+          - "list"
+    image: "litmuschaos/chaostoolkit:latest"
+    args:
+    - -c
+    - python /app/chaos/chaostest/aws/aws_wrapper.py ; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: CHAOSTOOLKIT_IN_POD
+      value: 'true'
+
+    - name: FILE
+      value: 'ec2-delete.json'
+
+    - name: NAME_SPACE
+      value: 'default'
+
+    - name: LABEL_NAME
+      value: 'app=nginx'
+
+    - name: APP_ENDPOINT
+      value: 'localhost'
+
+    # Period to wait before injection of chaos in sec
+    - name: PERCENTAGE
+      value: '50'
+
+    # Variable to set for custom report upload
+    - name: REPORT
+      value: 'false'
+
+    # Variable to set for report upload endpoint
+    - name: REPORT_ENDPOINT
+      value: 'none'
+
+    # Variable to set for AWS account
+    - name: AWS_ACCOUNT
+      value: '000000000000'
+
+    # Variable to set for AWS role, Make sure you have created this role and have give access
+    - name: AWS_ROLE
+      value: 'chaosec2access'
+
+    # Variable to set for AWS region
+    - name: AWS_REGION
+      value: 'us-west-2'
+
+    # Variable to set for AWS AZ
+    - name: AWS_AZ
+      value: 'us-west-2c'
+
+    # Variable to set for AWS RESOURCE
+    - name: AWS_RESOURCE
+      value: 'ec2-iks'
+
+    # Variable to set for AWS SSL
+    - name: AWS_SSL
+      value: 'false'
+
+    # Variable which indicates where the test results CRs will be persisted
+    - name: TEST_NAMESPACE
+      value: 'default'
+
+    labels:
+      name: k8-aws-ec2-terminate
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+

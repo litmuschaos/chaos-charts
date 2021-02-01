@@ -1,0 +1,62 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=busybox 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-disk-loss-sa
+  monitoring: false
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: openebs-pool-disk-loss
+      spec:
+        components:
+          env:              
+            - name: APP_PVC
+              value: 'demo-nginx-claim'
+
+            # GKE and AWS supported
+            - name: CLOUD_PLATFORM
+              value: 'GKE'
+
+            # Enter the time duration in sec after the disk is dettached
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # Period to wait before injection of chaos in sec
+            - name: RAMP_TIME
+              value: ''
+
+            # Enter the project id for gcp only
+            - name: PROJECT_ID 
+              value: 'litmus-demo-123'
+
+            # Enter the node name
+            - name: NODE_NAME
+              value: 'demo-node-123' 
+
+            # Enter the disk name
+            - name: DISK_NAME
+              value: 'demo-disk-123 '  
+            
+            # Enter the device name
+            - name: DEVICE_NAME
+              value: '/dev/sdb'
+
+            # Enter the zone name
+            - name: ZONE_NAME
+              value: 'us-central1-a' 
+              
+            - name: OPENEBS_NAMESPACE
+              value: 'openebs'

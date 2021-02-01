@@ -1,0 +1,57 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be true/false
+  annotationCheck: 'false'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: disk-loss-sa
+  monitoring: false
+  # It can be retain/delete
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: disk-loss
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # set cloud platform name
+            - name: CLOUD_PLATFORM
+              value: 'GKE'
+
+            # set app_check to check application state
+            - name: APP_CHECK
+              value: 'true'
+
+            # GCP project ID
+            - name: PROJECT_ID
+              value: 'litmus-demo-123'
+
+            # Node name of the cluster
+            - name: NODE_NAME
+              value: 'demo-node-123'
+
+            # Disk Name of the node, it must be an external disk. 
+            - name: DISK_NAME
+              value: 'demo-disk-123'
+
+            # Enter the device name which you wanted to mount only for AWS.   
+            - name: DEVICE_NAME
+              value: '/dev/sdb'
+              
+            # Name of Zone in which node is present (GCP)
+            # Use Region Name when running with AWS (ex: us-central1)
+            - name: ZONE_NAME
+              value: 'us-central1-a'

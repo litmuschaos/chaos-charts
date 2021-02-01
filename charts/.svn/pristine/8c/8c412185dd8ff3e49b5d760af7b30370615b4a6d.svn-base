@@ -1,0 +1,40 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: kubelet-service-kill-sa
+  namespace: default
+  labels:
+    name: kubelet-service-kill-sa
+    app.kubernetes.io/part-of: litmus
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: kubelet-service-kill-sa
+  labels:
+    name: kubelet-service-kill-sa
+    app.kubernetes.io/part-of: litmus
+rules:
+- apiGroups: ["","litmuschaos.io","batch","apps"]
+  resources: ["pods","jobs","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get","list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: kubelet-service-kill-sa
+  labels:
+    name: kubelet-service-kill-sa
+    app.kubernetes.io/part-of: litmus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: kubelet-service-kill-sa
+subjects:
+- kind: ServiceAccount
+  name: kubelet-service-kill-sa
+  namespace: default

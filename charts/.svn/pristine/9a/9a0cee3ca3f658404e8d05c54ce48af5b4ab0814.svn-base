@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: openebs-pool-network-delay
+  version: 0.1.4
+  annotations:
+    categories: OpenEBS
+    vendor: CNCF
+    support: https://slack.openebs.io/
+spec:
+  displayName: openebs-pool-network-delay
+  categoryDescription: >
+     Network delay to pool pod belonging to a OpenEBS PVC 
+  keywords:
+    - Kubernetes
+    - Storage Pool
+    - OpenEBS
+  platforms:
+    - GKE
+    - EKS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Raj Babu Das
+      email: raj.das@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-network-delay
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/openebs-pool-network-delay/
+    - name: Video
+      url: 
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/openebs/openebs-pool-network-delay/experiment.yaml

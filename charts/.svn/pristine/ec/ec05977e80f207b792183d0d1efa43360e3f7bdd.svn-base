@@ -1,0 +1,36 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: k8-pod-delete
+  version: 0.0.4
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    createdAt: 2020-02-24T10:28:08Z
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: k8-pod-delete
+  categoryDescription: |
+    K8 Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
+  keywords:
+    - Kubernetes
+    - State
+  platforms:
+     - Minikube
+  maturity: alpha
+  maintainers:
+    - name: sumit
+      email: sumit_nagal@intuit.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: Intuit
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+  icon:
+    - url:
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/k8-pod-delete/experiment.yaml

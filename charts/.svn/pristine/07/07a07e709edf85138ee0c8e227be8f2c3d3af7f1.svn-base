@@ -1,0 +1,47 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-01-07T10:28:08Z
+  name: pod-network-corruption
+  version: 0.1.10
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-network-corruption
+  categoryDescription: |
+    Pod-network-corruption contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject percentage packet corruption on the app replica pods. 
+    - Causes packet corruption of application replica by injecting packet corruption using pumba.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
+  keywords:
+    - Kubernetes
+    - Network
+    - Corruption
+  platforms:
+    - GKE
+    - Packet(Kubeadm) 
+    - Minikube
+    - EKS
+    - AKS
+  maturity: alpha
+  maintainers:
+    - name: LaumiH
+      email: laura-marie.henning@stud.h-da.de
+  minKubeVersion: 1.12.0
+  provider:
+    name: Laura-Marie Henning
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-corruption
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/pod-network-corruption/
+    - name: Video
+      url: https://www.youtube.com/watch?v=kSiLrIaILvs
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-corruption/experiment.yaml 

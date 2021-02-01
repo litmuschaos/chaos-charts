@@ -1,0 +1,45 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-10-28T10:28:08Z
+  name: ebs-loss
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: ebs-loss
+  categoryDescription: |
+    EBS Loss contains chaos to disrupt state of infra resources. The experiment can induce ebs volume loss against specified application. 
+    - Causes ebs volume loss from node or ec2 instance for a certain chaos duration
+    - Causes Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod
+  keywords:
+    - Kubernetes
+    - EBS
+    - Volume
+    - State 
+  platforms:
+    - AWS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: uditgaurav@mayadata.io
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ebs-loss
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/ebs-loss/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/ebs-loss/experiment.yaml
