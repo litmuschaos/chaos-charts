@@ -8,11 +8,9 @@ spec:
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
   # It can be true/false
-  annotationCheck: 'true'
+  annotationCheck: 'false'
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx 
-  auxiliaryAppInfo: ''
   monitoring: false
   appinfo: 
     appns: 'default'
@@ -28,27 +26,19 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
 
-            - name: LIB_IMAGE
-              value: 'litmuschaos/go-runner:latest'
-
             #Network interface inside target container
             - name: NETWORK_INTERFACE
               value: 'eth0'    
 
             - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
               value: '100'
-            
-            #If not provided it will take the first container of the target pod
-            - name: TARGET_CONTAINER
-              value: ''
-
+  
             # provide the name of container runtime
-            # it supports docker, containerd, crio
-            # default to docker
+            # for litmus LIB, it supports docker, containerd, crio
+            # for pumba LIB, it supports docker only
             - name: CONTAINER_RUNTIME
               value: 'docker'
 
             # provide the socket file path
-            # applicable only for containerd and crio runtime
             - name: SOCKET_PATH
-              value: '/run/containerd/containerd.sock'
+              value: '/var/run/docker.sock'

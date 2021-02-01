@@ -1,0 +1,94 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    poweroff node
+kind: ChaosExperiment
+metadata:
+  name: node-poweroff
+  labels:
+    name: node-poweroff
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "secrets"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-restart
+    command:
+    - /bin/bash
+    env:
+    - name: SSH_USER
+      value: 'root'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '360'
+
+    - name: EXPERIMENT_NAME
+      value: 'node-poweroff'
+
+    - name: REBOOT_COMMAND
+      value: '-o ServerAliveInterval=1 -o ServerAliveCountMax=1 "sudo systemctl poweroff --force --force" ; true'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # PROVIDE THE LIB HERE
+    # ONLY LITMUS SUPPORTED
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:latest"
+
+    # ENTER THE TARGET NODE NAME
+    - name: TARGET_NODE
+      value: ''
+
+    # ENTER THE TARGET NODE IP
+    - name: TARGET_NODE_IP
+      value: ''
+
+    labels:
+      name: node-poweroff
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/

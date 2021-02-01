@@ -16,9 +16,15 @@ metadata:
     name: node-io-stress-sa
     app.kubernetes.io/part-of: litmus
 rules:
-- apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","jobs","pods/log","events","chaosengines","chaosexperiments","chaosresults"]
+- apiGroups: [""]
+  resources: ["pods","pods/exec","pods/log","events"]
   verbs: ["create","list","get","patch","update","delete","deletecollection"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create","list","get","delete","deletecollection"]
+- apiGroups: ["litmuschaos.io"]
+  resources: ["chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update"]
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["get","list"]

@@ -16,12 +16,18 @@ metadata:
     name: pod-autoscaler-sa
     app.kubernetes.io/part-of: litmus
 rules:
-- apiGroups: ["","litmuschaos.io","batch","apps"]
-  resources: ["pods","deployments","jobs","events","chaosengines","pods/log","chaosexperiments","chaosresults"]
-  verbs: ["create","list","get","patch","update","delete"]
 - apiGroups: [""]
-  resources: ["nodes"]
-  verbs: ["get","list"]
+  resources: ["pods","pods/exec","pods/log","events"]
+  verbs: ["create","list","get","patch","update","delete","deletecollection"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create","list","get","delete","deletecollection"]
+- apiGroups: ["apps"]
+  resources: ["deployments","statefulsets"]
+  verbs: ["list","get","patch","update"]
+- apiGroups: ["litmuschaos.io"]
+  resources: ["chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

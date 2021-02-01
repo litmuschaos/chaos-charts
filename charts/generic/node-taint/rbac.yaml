@@ -16,9 +16,18 @@ metadata:
     name: node-taint-sa
     app.kubernetes.io/part-of: litmus
 rules:
-- apiGroups: ["","litmuschaos.io","batch","extensions"]
-  resources: ["pods","jobs","events","chaosengines","pods/log","daemonsets","pods/eviction","chaosexperiments","chaosresults"]
-  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["pods","pods/exec","pods/log","events","pods/eviction"]
+  verbs: ["create","list","get","patch","update","delete","deletecollection"]
+- apiGroups: ["batch"]
+  resources: ["jobs"]
+  verbs: ["create","list","get","delete","deletecollection"]
+- apiGroups: ["apps"]
+  resources: ["daemonsets"]
+  verbs: ["list","get","delete"]
+- apiGroups: ["litmuschaos.io"]
+  resources: ["chaosengines","chaosexperiments","chaosresults"]
+  verbs: ["create","list","get","patch","update"]
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["patch","get","list","update"]

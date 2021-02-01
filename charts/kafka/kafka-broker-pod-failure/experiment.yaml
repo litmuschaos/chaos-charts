@@ -36,7 +36,9 @@ spec:
           - "get"
           - "delete"
           - "list"
+          - "update"
           - "patch"
+          - "deletecollection"
       - apiGroups:
           - ""
         resources: 

@@ -19,7 +19,8 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '60'
 
-            # Instance ID of the target ec2 instance 
+             # Instance ID of the target ec2 instance
+             # If not provided it will select randomly from the region
             - name: EC2_INSTANCE_ID
               value: ''
               

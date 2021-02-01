@@ -5,11 +5,9 @@ metadata:
   namespace: default
 spec:
   # It can be true/false
-  annotationCheck: 'true'
+  annotationCheck: 'false'
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx 
-  auxiliaryAppInfo: ''
   appinfo:
     appns: 'default'
     applabel: 'app=nginx'
@@ -23,10 +21,6 @@ spec:
       spec:
         components:
           env:
-            # specify the name of the container to be killed
-            - name: TARGET_CONTAINER
-              value: 'nginx'
-
             # provide the chaos interval
             - name: CHAOS_INTERVAL
               value: '10'
@@ -36,13 +30,12 @@ spec:
               value: '20'
 
             # provide the name of container runtime
-            # it supports docker, containerd, crio
-            # default to docker
+            # for litmus LIB, it supports docker, containerd, crio
+            # for pumba LIB, it supports docker only
             - name: CONTAINER_RUNTIME
               value: 'docker'
 
             # provide the socket file path
-            # applicable only for containerd runtime
             - name: SOCKET_PATH
-              value: '/run/containerd/containerd.sock'
+              value: '/var/run/docker.sock'
               

@@ -18,11 +18,21 @@ spec:
       - apiGroups:
           - ""
           - "batch"
+          - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
           - "pods/exec"
           - "events"
           - "chaosengines"
@@ -68,17 +78,19 @@ spec:
 
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
-        value: 'gaiaadm/pumba'
-        
-      - name: CHAOS_KILL_COMMAND
-        value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
+        value: 'litmuschaos/go-runner:latest'
 
+      # provide the socket file path
+      # it is used in pumba lib
+      - name: SOCKET_PATH
+        value: '/var/run/docker.sock'        
+        
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
         value: 'parallel'
 
-      - name: TARGET_POD
+      - name: TARGET_PODS
         value: ''
 
     labels:

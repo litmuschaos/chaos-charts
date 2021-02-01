@@ -17,11 +17,22 @@ spec:
       - apiGroups:
           - ""
           - "batch"
+          - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
           - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
+          - "pods/exec"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -65,7 +76,8 @@ spec:
     # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-
+   
+    # lib can be litmus or pumba
     - name: LIB
       value: 'litmus'
 
@@ -73,29 +85,28 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     # provide the name of container runtime
-    # it supports docker, containerd, crio
-    # default to docker
+    # for litmus LIB, it supports docker, containerd, crio
+    # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
       value: 'docker'
 
-    # provide the target ips
+    # provide the destination ips
     # chaos injection will be triggered for these destination ips
-    - name: TARGET_IPS
+    - name: DESTINATION_IPS
       value: ''
 
-    # provide the target hosts
+    # provide the destination hosts
     # chaos injection will be triggered for these destination hosts
-    - name: TARGET_HOSTS
+    - name: DESTINATION_HOSTS
       value: ''
 
     # provide the socket file path
-    # applicable only for containerd and crio runtime
     - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
+      value: '/var/run/docker.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel

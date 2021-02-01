@@ -18,12 +18,21 @@ spec:
           - ""
           - "apps"
           - "batch"
+          - "apps.openshift.io"
+          - "argoproj.io"
           - "litmuschaos.io"
         resources:
           - "jobs"
           - "pods"
           - "pods/exec"
           - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -63,7 +72,7 @@ spec:
     - name: LIB
       value: 'litmus'
 
-    - name: TARGET_POD
+    - name: TARGET_PODS
       value: ''
 
     ## percentage of total pods to target
@@ -74,7 +83,7 @@ spec:
       value: 'litmuschaos/go-runner:latest'
 
     # Provide the container runtime path
-    # Default set to docker
+    # Default set to docker container path
     - name: CONTAINER_PATH
       value: '/var/lib/docker/containers'
 

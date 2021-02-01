@@ -36,7 +36,7 @@ spec:
               value: 'gaiaadm/pumba:0.6.5'
 
             - name: NETWORK_LATENCY
-              value: '60000'
+              value: '2000'
 
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds

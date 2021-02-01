@@ -23,6 +23,7 @@ spec:
           - "pods"
           - "events"
           - "pods/log"
+          - "pods/exec"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
@@ -54,6 +55,10 @@ spec:
 
     - name: REGION
       value: ''
+
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
 
     # provide the LIB
     # only litmus supported
