@@ -26,7 +26,6 @@ jobs:
       # On specific directory/path
       - uses: actions/checkout@v2
         with:
-          ref: ${{steps.getcommit.outputs.sha}}
           path: go/src/github.com/${{github.repository}}
           token: ${{ secrets.ADMIN_TOKEN }}
           

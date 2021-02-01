@@ -27,7 +27,6 @@ jobs:
       # On specific directory/path
       - uses: actions/checkout@v2
         with:
-          ref: ${{steps.getcommit.outputs.sha}}
           path: go/src/github.com/${{github.repository}}    
           
       # Combine the experiment CRs
