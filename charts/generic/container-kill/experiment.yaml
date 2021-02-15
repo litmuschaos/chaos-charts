@@ -71,6 +71,9 @@ spec:
     - name: CHAOS_INTERVAL
       value: '10'
 
+    - name: SIGNAL
+      value: 'SIGKILL'
+
     # provide the socket file path
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'
