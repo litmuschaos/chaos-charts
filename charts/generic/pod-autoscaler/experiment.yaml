@@ -9,7 +9,7 @@ metadata:
     name: pod-autoscaler
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.0
 spec:
   definition:
     scope: Cluster
@@ -48,7 +48,7 @@ spec:
           - "create"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -77,4 +77,4 @@ spec:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.0
