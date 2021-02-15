@@ -457,6 +457,7 @@ spec:
         - "delete"
         - "deletecollection"
     image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ./experiments -name pod-network-duplication
@@ -1083,6 +1084,7 @@ spec:
           - "delete"
           - "deletecollection"
     image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ./experiments -name pod-io-stress
@@ -1279,6 +1281,7 @@ spec:
           - "delete"
           - "deletecollection"
     image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
     args:
     - -c
     - ./experiments -name pod-memory-hog

@@ -54,12 +54,13 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '120'
 
-    ## specify the size as percent of total available memory Ex: '30'
-    ## NOTE: for selecting this option MEMORY_CONSUMPTION_MEBIBYTES should be empty
+    ## Specify the size as percent of total node capacity Ex: '30'
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_MEBIBYTES empty
     - name: MEMORY_CONSUMPTION_PERCENTAGE
       value: ''
       
-    ## specify the memory size to consume in mebibytes
+    ## Specify the amount of memory to be consumed in mebibytes
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
     - name: MEMORY_CONSUMPTION_MEBIBYTES
       value: ''   
 
