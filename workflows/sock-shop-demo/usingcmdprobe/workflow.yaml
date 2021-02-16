@@ -42,7 +42,7 @@ spec:
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient", "-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient", "-timeout=400"] 
 
     - name: install-pod-delete
       inputs:
@@ -160,7 +160,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:ci"
+                    image: "litmuschaos/go-runner:latest"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -384,7 +384,11 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
@@ -451,7 +455,11 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
@@ -518,15 +526,19 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-frontend-catalogue-access-url"
+                        - name: "check-frontend-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 5
-                            interval: 2
+                            probeTimeout: 2
+                            interval: 1
                             retry: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
@@ -594,12 +606,16 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
