@@ -38,7 +38,7 @@ spec:
             template: pod-cpu-hog
         - - name: pod-delete
             template: pod-delete
-          - name: pod-network-loss
+        - - name: pod-network-loss
             template: pod-network-loss
         - - name: revert-chaos
             template: revert-chaos
