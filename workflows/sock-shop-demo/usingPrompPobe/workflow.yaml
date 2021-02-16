@@ -1,0 +1,668 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: argowf-chaos-sock-shop-resiliency-
+  namespace: litmus
+spec:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
+  arguments:
+    parameters:
+      - name: adminModeNamespace
+        value: "litmus"
+  templates:
+    - name: argowf-chaos
+      steps:
+        - - name: install-application
+            template: install-application
+          - name: load-test
+            template: load-test  
+        - - name: install-pod-delete
+            template: install-pod-delete
+          - name: install-pod-memory-hog
+            template: install-pod-memory-hog
+          - name: install-pod-cpu-hog
+            template: install-pod-cpu-hog 
+          - name: install-pod-network-loss
+            template: install-pod-network-loss
+        - - name: pod-memory-hog
+            template: pod-memory-hog
+          - name: pod-cpu-hog
+            template: pod-cpu-hog
+        - - name: pod-delete
+            template: pod-delete
+          - name: pod-network-loss
+            template: pod-network-loss
+        - - name: revert-chaos
+            template: revert-chaos
+
+    - name: install-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=sock-shop","-typeName=resilient", "-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+
+    - name: install-pod-delete
+      inputs:
+        artifacts:
+          - name: install-pod-delete
+            path: /tmp/pod-delete.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Deletes a pod belonging to a deployment/statefulset/daemonset
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-delete
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups:
+                          - ""
+                          - "apps"
+                          - "batch"
+                          - "litmuschaos.io"
+                        resources:
+                          - "deployments"
+                          - "jobs"
+                          - "pods"
+                          - "pods/log"
+                          - "events"
+                          - "configmaps"
+                          - "chaosengines"
+                          - "chaosexperiments"
+                          - "chaosresults"
+                        verbs:
+                          - "create"
+                          - "list"
+                          - "get"
+                          - "patch"
+                          - "update"
+                          - "delete"
+                      - apiGroups:
+                          - ""
+                        resources: 
+                          - "nodes"
+                        verbs:
+                          - "get"
+                          - "list"
+                    image: "litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
+                    args:
+                    - -c
+                    - ./experiments -name pod-delete
+                    command:
+                    - /bin/bash
+                    env:
+                    - name: TOTAL_CHAOS_DURATION
+                      value: '15'
+                    # Period to wait before and after injection of chaos in sec
+                    - name: RAMP_TIME
+                      value: ''
+                    # provide the kill count
+                    - name: KILL_COUNT
+                      value: ''
+                    - name: FORCE
+                      value: 'true'
+                    - name: CHAOS_INTERVAL
+                      value: '5'
+                    - name: LIB
+                      value: 'litmus'    
+                    labels:
+                      name: pod-delete
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args:
+          [
+            "kubectl apply -f /tmp/pod-delete.yaml -n {{workflow.parameters.adminModeNamespace}} | sleep 5",
+          ]
+
+    - name: install-pod-cpu-hog
+      inputs:
+        artifacts:
+          - name: install-pod-cpu-hog
+            path: /tmp/pod-cpu-hog.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Injects cpu consumption on pods belonging to an app deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-cpu-hog
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups:
+                          - ""
+                          - "batch"
+                          - "litmuschaos.io"
+                        resources:
+                          - "jobs"
+                          - "pods"
+                          - "pods/log"
+                          - "events"
+                          - "chaosengines"
+                          - "chaosexperiments"
+                          - "chaosresults"
+                        verbs:
+                          - "create"
+                          - "list"
+                          - "get"
+                          - "patch"
+                          - "update"
+                          - "delete"
+                    image: "litmuschaos/go-runner:ci"
+                    imagePullPolicy: Always
+                    args:
+                    - -c
+                    - ./experiments -name pod-cpu-hog
+                    command:
+                    - /bin/bash
+                    env:
+                    - name: TOTAL_CHAOS_DURATION
+                      value: ''
+                    
+                    - name: CHAOS_INTERVAL
+                      value: '10'
+
+                    ## Number of CPU cores to stress
+                    - name: CPU_CORES
+                      value: '1'
+
+                    ## Percentage of total pods to target
+                    - name: PODS_AFFECTED_PERC
+                      value: ''
+
+                    ## Period to wait before and after injection of chaos in sec
+                    - name: RAMP_TIME
+                      value: ''
+
+                    - name: LIB
+                      value: 'litmus'
+
+                    - name: TARGET_POD
+                      value: ''
+                      
+                    labels:
+                      name: pod-cpu-hog
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args:
+          [
+            "kubectl apply -f /tmp/pod-cpu-hog.yaml -n {{workflow.parameters.adminModeNamespace}}",
+          ]
+
+    - name: install-pod-memory-hog
+      inputs:
+        artifacts:
+          - name: install-pod-memory-hog
+            path: /tmp/pod-memory-hog.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Injects memory consumption on pods belonging to an app deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-memory-hog
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups:
+                          - ""
+                          - "batch"
+                          - "litmuschaos.io"
+                        resources:
+                          - "jobs"
+                          - "pods"
+                          - "pods/log"
+                          - "events"
+                          - "chaosengines"
+                          - "chaosexperiments"
+                          - "chaosresults"
+                        verbs:
+                          - "create"
+                          - "list"
+                          - "get"
+                          - "patch"
+                          - "update"
+                          - "delete"
+                    image: "litmuschaos/go-runner:latest"
+                    args:
+                    - -c
+                    - ./experiments -name pod-memory-hog
+                    command:
+                    - /bin/bash
+                    env:
+                      - name: TOTAL_CHAOS_DURATION
+                        value: '30'
+
+                      - name: CHAOS_INTERVAL
+                        value: '10'
+
+                      ## enter the amount of memory in megabytes to be consumed by the application pod
+                      - name: MEMORY_CONSUMPTION
+                        value: '500'
+
+                      ## percentage of total pods to target
+                      - name: PODS_AFFECTED_PERC
+                        value: ''
+
+                      ## Period to wait before and after injection of chaos in sec
+                      - name: RAMP_TIME
+                        value: ''     
+
+                      ## env var that describes the library used to execute the chaos
+                      ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
+                      - name: LIB
+                        value: 'litmus'
+
+                      - name: TARGET_POD
+                        value: ''
+
+                    labels:
+                      name: pod-memory-hog
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args:
+          [
+            "kubectl apply -f /tmp/pod-memory-hog.yaml -n {{workflow.parameters.adminModeNamespace}}",
+          ]
+
+    - name: pod-cpu-hog
+      inputs:
+        artifacts:
+          - name: pod-cpu-hog
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: pod-cpu-hog-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=carts'
+                    appkind: 'deployment'
+                  jobCleanUpPolicy: retain
+                  monitoring: false
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  experiments:
+                    - name: pod-cpu-hog
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local:80"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
+                            probePollingInterval: 1
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
+                            comparator:
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
+                              value: "500"
+                          mode: "Edge"
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
+                            retry: 1
+                        components:
+                          experimentImage: "litmuschaos/go-runner:latest"
+                          env:
+                            - name: TARGET_CONTAINER
+                              value: ''
+
+                            - name: NODE_CPU_CORE
+                              value: '1'
+
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '' # in seconds
+
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
+    - name: pod-memory-hog
+      inputs:
+        artifacts:
+          - name: pod-memory-hog
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: pod-memory-hog-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=orders'
+                    appkind: 'deployment'
+                  jobCleanUpPolicy: retain
+                  monitoring: false
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  experiments:
+                    - name: pod-memory-hog
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local:80"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
+                            probePollingInterval: 1
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
+                            comparator:
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
+                              value: "500"
+                          mode: "Edge"
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
+                            retry: 1
+                        components:
+                          experimentImage: "litmuschaos/go-runner:latest"
+                          env:
+                            - name: TARGET_CONTAINER
+                              value: ''
+                            - name: MEMORY_CONSUMPTION
+                              value: '500'
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '60' # in seconds
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
+
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
+    - name: pod-delete
+      inputs:
+        artifacts:
+          - name: pod-delete
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: catalogue-pod-delete-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=catalogue'
+                    appkind: 'deployment'
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  auxiliaryAppInfo: ''
+                  chaosServiceAccount: litmus-admin
+                  monitoring: true
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-delete
+                      spec:
+                        probe:
+                        - name: "check-frontend-catalogue-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 5
+                            interval: 2
+                            retry: 2
+                            probePollingInterval: 1
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
+                            comparator:
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
+                              value: "500"
+                          mode: "Edge"
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
+                            retry: 1
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '10'
+                
+                            # set chaos interval (in sec) as desired
+                            - name: CHAOS_INTERVAL
+                              value: '10'
+                
+                            # pod failures without '--force' & default terminationGracePeriodSeconds
+                            - name: FORCE
+                              value: 'false'
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
+    
+    - name: install-pod-network-loss
+      inputs:
+        artifacts:
+          - name: install-pod-network-loss
+            path: /tmp/pod-network-loss.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Injects network packet loss on pods belonging to an app deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-network-loss
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups:
+                          - ""
+                          - "batch"
+                          - "litmuschaos.io"
+                        resources:
+                          - "jobs"
+                          - "pods"
+                          - "pods/log"
+                          - "events"
+                          - "chaosengines"
+                          - "chaosexperiments"
+                          - "chaosresults"
+                        verbs:
+                          - "create"
+                          - "list"
+                          - "get"
+                          - "patch"
+                          - "update"
+                          - "delete"
+                          - "deletecollection"
+                    image: "litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
+                    args:
+                    - -c
+                    - ./experiments -name pod-network-loss
+                    command:
+                    - /bin/bash
+                    
+                    env:
+                    - name: TARGET_CONTAINER
+                      value: ''
+
+                    - name: LIB_IMAGE
+                      value: 'litmuschaos/go-runner:latest' 
+
+                    - name: NETWORK_INTERFACE
+                      value: 'eth0'
+
+                    - name: TC_IMAGE
+                      value: 'gaiadocker/iproute2'
+
+                    - name: NETWORK_PACKET_LOSS_PERCENTAGE
+                      value: '100' #in PERCENTAGE
+
+                    - name: TOTAL_CHAOS_DURATION
+                      value: '60' # in seconds
+
+                    - name: RAMP_TIME
+                      value: ''
+
+                    - name: LIB
+                      value: 'litmus'
+
+                    - name: PODS_AFFECTED_PERC
+                      value: ''
+
+                    - name: TARGET_POD
+                      value: ''
+
+                    - name: CONTAINER_RUNTIME
+                      value: 'docker'
+
+                    - name: TARGET_IPS
+                      value: ''
+
+                    - name: TARGET_HOSTS
+                      value: ''
+
+                    - name: SOCKET_PATH
+                      value: '/run/containerd/containerd.sock'
+
+                    - name: SEQUENCE
+                      value: 'parallel'
+                    
+                    labels:
+                      name: pod-network-loss
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: [ "kubectl apply -f /tmp/pod-network-loss.yaml -n {{workflow.parameters.adminModeNamespace}}",]
+    
+    - name: pod-network-loss
+      inputs:
+        artifacts:
+          - name: pod-network-loss
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: pod-network-loss-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=user-db'
+                    appkind: 'statefulset'
+                  jobCleanUpPolicy: retain
+                  monitoring: true
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  auxiliaryAppInfo: ''
+                  chaosServiceAccount: litmus-admin
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-network-loss
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 1
+                            probePollingInterval: 1
+                        components:
+                          env:
+                            - name: TARGET_CONTAINER
+                              value: ''
+
+                            - name: LIB_IMAGE
+                              value: 'litmuschaos/go-runner:latest'
+
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '30' 
+                            
+                            - name: NETWORK_INTERFACE
+                              value: 'eth0'
+                            
+                            - name: NETWORK_PACKET_LOSS_PERCENTAGE
+                              value: '100'
+
+                            - name: CONTAINER_RUNTIME
+                              value: 'docker' 
+
+                            - name: SOCKET_PATH
+                              value: '/var/run/docker.sock'                
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]  
+
+    
+    - name: load-test
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=loadtest"]
+    
+    - name: revert-chaos
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: 
+          [ 
+            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
+          ]
