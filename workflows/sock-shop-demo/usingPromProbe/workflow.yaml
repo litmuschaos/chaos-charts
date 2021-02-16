@@ -1,23 +1,19 @@
 apiVersion: argoproj.io/v1alpha1
-kind: CronWorkflow
+kind: Workflow
 metadata:
-  generateName: argowf-chaos-sock-shop-resiliency-cron-wf-
+  generateName: argowf-chaos-sock-shop-resiliency-
   namespace: litmus
 spec:
-  schedule: "0 * * * *"
-  concurrencyPolicy: "Forbid"
-  startingDeadlineSeconds: 0
-  workflowSpec:
-    entrypoint: argowf-chaos
-    serviceAccountName: argo-chaos
-    securityContext:
-      runAsUser: 1000
-      runAsNonRoot: true
-    arguments:
-      parameters:
-        - name: adminModeNamespace
-          value: "litmus"
-    templates:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
+  arguments:
+    parameters:
+      - name: adminModeNamespace
+        value: "litmus"
+  templates:
     - name: argowf-chaos
       steps:
         - - name: install-application
@@ -358,7 +354,6 @@ spec:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
-    
     - name: pod-memory-hog
       inputs:
         artifacts:
@@ -459,7 +454,7 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-frontend-access-url"
+                        - name: "check-catalogue-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
@@ -502,7 +497,7 @@ spec:
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
-
+    
     - name: install-pod-network-loss
       inputs:
         artifacts:
@@ -632,7 +627,7 @@ spec:
                     - name: pod-network-loss
                       spec:
                         probe:
-                        - name: "check-frontend-access-url"
+                        - name: "check-cards-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
@@ -673,7 +668,7 @@ spec:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]  
 
-
+    
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
