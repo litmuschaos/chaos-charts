@@ -18,6 +18,8 @@ spec:
       steps:
         - - name: install-application
             template: install-application
+          - name: load-test
+            template: load-test 
         - - name: install-pod-delete
             template: install-pod-delete
           - name: install-pod-memory-hog
@@ -30,19 +32,21 @@ spec:
             template: pod-memory-hog
           - name: pod-cpu-hog
             template: pod-cpu-hog
-          - name: load-test
-            template: load-test  
         - - name: pod-delete
             template: pod-delete
         - - name: pod-network-loss
             template: pod-network-loss
         - - name: revert-chaos
             template: revert-chaos
+          - name: delete-application
+            template: delete-application
+          - name: delete-loadtest
+            template: delete-loadtest
 
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient", "-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
 
     - name: install-pod-delete
       inputs:
@@ -655,10 +659,20 @@ spec:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
     
+    - name: delete-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete"]
+
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest"]
+
+    - name: delete-loadtest
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=loadtest","-operation=delete"]
     
     - name: revert-chaos
       container:
