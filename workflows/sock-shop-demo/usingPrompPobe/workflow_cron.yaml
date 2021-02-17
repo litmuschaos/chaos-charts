@@ -322,12 +322,16 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -391,12 +395,16 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -457,16 +465,20 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-frontend-catalogue-access-url"
+                        - name: "check-catalogue-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -622,32 +634,34 @@ spec:
                     - name: pod-network-loss
                       spec:
                         probe:
-                        - name: "check-frontend-access-url"
+                        - name: "check-cards-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
-                        - name: "check-benchmark"
-                          type: "cmdProbe"
-                          cmdProbe/inputs:
-                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
-                              type: "int" # supports: string, int, float
-                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
                               value: "500"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 2
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
                             retry: 1
-                            initialDelaySeconds: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
