@@ -24,6 +24,8 @@ spec:
             template: install-pod-memory-hog
           - name: install-pod-cpu-hog
             template: install-pod-cpu-hog 
+          - name: install-pod-network-loss
+            template: install-pod-network-loss
         - - name: pod-memory-hog
             template: pod-memory-hog
           - name: pod-cpu-hog
@@ -32,6 +34,8 @@ spec:
             template: load-test  
         - - name: pod-delete
             template: pod-delete
+        - - name: pod-network-loss
+            template: pod-network-loss
         - - name: revert-chaos
             template: revert-chaos
 
@@ -482,6 +486,175 @@ spec:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
     
+    - name: install-pod-network-loss
+      inputs:
+        artifacts:
+          - name: install-pod-network-loss
+            path: /tmp/pod-network-loss.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Injects network packet loss on pods belonging to an app deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-network-loss
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups:
+                          - ""
+                          - "batch"
+                          - "apps"
+                          - "apps.openshift.io"
+                          - "argoproj.io"
+                          - "litmuschaos.io"
+                        resources:
+                          - "jobs"
+                          - "pods"
+                          - "pods/log"
+                          - "replicationcontrollers"
+                          - "deployments"
+                          - "statefulsets"
+                          - "daemonsets"
+                          - "replicasets"
+                          - "deploymentconfigs"
+                          - "rollouts"
+                          - "pods/exec"
+                          - "events"
+                          - "chaosengines"
+                          - "chaosexperiments"
+                          - "chaosresults"
+                        verbs:
+                          - "create"
+                          - "list"
+                          - "get"
+                          - "patch"
+                          - "update"
+                          - "delete"
+                          - "deletecollection"
+                    image: "litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
+                    args:
+                    - -c
+                    - ./experiments -name pod-network-loss
+                    command:
+                    - /bin/bash
+                    
+                    env:
+                    - name: TARGET_CONTAINER
+                      value: ''
+                    - name: LIB_IMAGE
+                      value: 'litmuschaos/go-runner:latest' 
+                    - name: NETWORK_INTERFACE
+                      value: 'eth0'
+                    - name: TC_IMAGE
+                      value: 'gaiadocker/iproute2'
+                    - name: NETWORK_PACKET_LOSS_PERCENTAGE
+                      value: '100' #in PERCENTAGE
+                    - name: TOTAL_CHAOS_DURATION
+                      value: '60' # in seconds
+                    - name: RAMP_TIME
+                      value: ''
+                    - name: LIB
+                      value: 'litmus'
+                    - name: PODS_AFFECTED_PERC
+                      value: ''
+                    - name: TARGET_PODS
+                      value: ''
+                    - name: CONTAINER_RUNTIME
+                      value: 'docker'
+                    - name: DESTINATION_IPS
+                      value: ''
+                    - name: DESTINATION_HOSTS
+                      value: ''
+                    - name: SOCKET_PATH
+                      value: '/var/run/docker.sock'
+                    - name: SEQUENCE
+                      value: 'parallel'
+                    labels:
+                      name: pod-network-loss
+      container:
+        image: lachlanevenson/k8s-kubectl
+        command: [sh, -c]
+        args: [ "kubectl apply -f /tmp/pod-network-loss.yaml -n {{workflow.parameters.adminModeNamespace}}",]
+    
+    - name: pod-network-loss
+      inputs:
+        artifacts:
+          - name: pod-network-loss
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: pod-network-loss-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=user-db'
+                    appkind: 'statefulset'
+                  jobCleanUpPolicy: retain
+                  monitoring: true
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  auxiliaryAppInfo: ''
+                  chaosServiceAccount: litmus-admin
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-network-loss
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
+                            expectedResponseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 1
+                            probePollingInterval: 1
+                        - name: "check-benchmark"
+                          type: "cmdProbe"
+                          cmdProbe/inputs:
+                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                            comparator:
+                              type: "int" # supports: string, int, float
+                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              value: "500"
+                            source: "inline" # it can be “inline” or any image
+                          mode: "Edge"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 2
+                            retry: 1
+                            initialDelaySeconds: 2
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '60' 
+                            
+                            - name: NETWORK_INTERFACE
+                              value: 'eth0'
+                            
+                            - name: NETWORK_PACKET_LOSS_PERCENTAGE
+                              value: '100'
+                            - name: CONTAINER_RUNTIME
+                              value: 'docker' 
+                            - name: SOCKET_PATH
+                              value: '/var/run/docker.sock'                
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+    
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
@@ -493,5 +666,5 @@ spec:
         command: [sh, -c]
         args: 
           [ 
-            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
