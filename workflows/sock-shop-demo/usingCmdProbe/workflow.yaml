@@ -604,8 +604,8 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
-                            interval: 1
+                            probeTimeout: 5
+                            interval: 2
                             retry: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
@@ -681,7 +681,7 @@ spec:
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 2
+                            retry: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"

@@ -465,7 +465,7 @@ spec:
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 2
+                            retry: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -537,7 +537,7 @@ spec:
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 2
+                            retry: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -610,7 +610,7 @@ spec:
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 2
+                            retry: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"

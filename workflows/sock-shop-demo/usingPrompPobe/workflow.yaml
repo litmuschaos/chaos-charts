@@ -601,7 +601,7 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 3
                             interval: 1
                             retry: 2
                             probePollingInterval: 1
