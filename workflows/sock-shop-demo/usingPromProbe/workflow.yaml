@@ -122,7 +122,7 @@ spec:
                     - name: FORCE
                       value: 'true'
                     - name: CHAOS_INTERVAL
-                      value: '10'
+                      value: '5'
                     - name: PODS_AFFECTED_PERC
                       value: ''  
                     - name: LIB
@@ -485,6 +485,8 @@ spec:
                               value: '1'
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
         
       container:
         image: litmuschaos/litmus-checker:latest
@@ -551,6 +553,9 @@ spec:
                               value: '500'
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
+
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"  
                             
       container:
         image: litmuschaos/litmus-checker:latest
@@ -596,7 +601,7 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 3
                             interval: 1
                             retry: 2
                             probePollingInterval: 1
