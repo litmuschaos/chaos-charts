@@ -714,7 +714,7 @@ spec:
                               value: '/var/run/docker.sock'                
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]         
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
 
     - name: delete-application
       container:
@@ -729,7 +729,7 @@ spec:
     - name: delete-loadtest
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest","-operation=delete"]
+        args: ["-namespace=loadtest","-operation=delete"]    
     
     - name: revert-chaos
       container:
@@ -737,5 +737,5 @@ spec:
         command: [sh, -c]
         args: 
           [ 
-            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine pod-memory-hog-chaos pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
