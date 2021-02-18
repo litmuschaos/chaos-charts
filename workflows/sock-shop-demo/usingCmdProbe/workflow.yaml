@@ -487,6 +487,8 @@ spec:
                               value: '1'
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"  
         
       container:
         image: litmuschaos/litmus-checker:latest
@@ -555,6 +557,8 @@ spec:
                               value: '500'
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
+                            - name: CHAOS_KILL_COMMAND
+                              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
                             
       container:
         image: litmuschaos/litmus-checker:latest
@@ -600,8 +604,8 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
-                            interval: 1
+                            probeTimeout: 5
+                            interval: 2
                             retry: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
@@ -677,7 +681,7 @@ spec:
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 2
+                            retry: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
