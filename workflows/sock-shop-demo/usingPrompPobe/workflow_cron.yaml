@@ -120,7 +120,7 @@ spec:
                     - /bin/bash
                     env:
                     - name: TOTAL_CHAOS_DURATION
-                      value: '15'
+                      value: '30'
                     # Period to wait before and after injection of chaos in sec
                     - name: RAMP_TIME
                       value: ''
@@ -205,7 +205,7 @@ spec:
                     - /bin/bash
                     env:
                     - name: TOTAL_CHAOS_DURATION
-                      value: '60'
+                      value: '30'
                     
                     - name: CHAOS_INTERVAL
                       value: '10'
@@ -297,7 +297,7 @@ spec:
                     - /bin/bash
                     env:
                       - name: TOTAL_CHAOS_DURATION
-                        value: '60'
+                        value: '30'
                       - name: CHAOS_INTERVAL
                         value: '10'
                       ## enter the amount of memory in megabytes to be consumed by the application pod
@@ -402,7 +402,7 @@ spec:
                     - name: NETWORK_PACKET_LOSS_PERCENTAGE
                       value: '100' #in PERCENTAGE
                     - name: TOTAL_CHAOS_DURATION
-                      value: '60' # in seconds
+                      value: '30' # in seconds
                     - name: RAMP_TIME
                       value: ''
                     - name: LIB
@@ -556,7 +556,7 @@ spec:
                             - name: MEMORY_CONSUMPTION
                               value: '500'
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60' # in seconds
+                              value: '30' # in seconds
                             
       container:
         image: litmuschaos/litmus-checker:latest
@@ -696,7 +696,7 @@ spec:
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60' 
+                              value: '30' 
                             
                             - name: NETWORK_INTERFACE
                               value: 'eth0'
