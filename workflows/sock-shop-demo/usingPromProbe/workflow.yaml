@@ -18,6 +18,8 @@ spec:
       steps:
         - - name: install-application
             template: install-application
+          - name: load-test
+            template: load-test 
         - - name: install-pod-delete
             template: install-pod-delete
           - name: install-pod-memory-hog
@@ -26,9 +28,7 @@ spec:
             template: install-pod-cpu-hog 
           - name: install-pod-network-loss
             template: install-pod-network-loss
-        - - name: load-test
-            template: load-test
-          - name: pod-memory-hog
+        - - name: pod-memory-hog
             template: pod-memory-hog
           - name: pod-cpu-hog
             template: pod-cpu-hog
@@ -38,11 +38,15 @@ spec:
             template: pod-network-loss
         - - name: revert-chaos
             template: revert-chaos
+          - name: delete-application
+            template: delete-application
+          - name: delete-loadtest
+            template: delete-loadtest
 
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient", "-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
 
     - name: install-pod-delete
       inputs:
@@ -65,6 +69,8 @@ spec:
                       - apiGroups:
                           - ""
                           - "apps"
+                          - "apps.openshift.io"
+                          - "argoproj.io"
                           - "batch"
                           - "litmuschaos.io"
                         resources:
@@ -72,8 +78,15 @@ spec:
                           - "jobs"
                           - "pods"
                           - "pods/log"
+                          - "replicationcontrollers"
+                          - "deployments"
+                          - "statefulsets"
+                          - "daemonsets"
+                          - "replicasets"
+                          - "deploymentconfigs"
+                          - "rollouts"
+                          - "pods/exec"
                           - "events"
-                          - "configmaps"
                           - "chaosengines"
                           - "chaosexperiments"
                           - "chaosresults"
@@ -84,6 +97,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
+                          - "deletecollection"
                       - apiGroups:
                           - ""
                         resources: 
@@ -100,19 +114,23 @@ spec:
                     - /bin/bash
                     env:
                     - name: TOTAL_CHAOS_DURATION
-                      value: '15'
+                      value: '30'
                     # Period to wait before and after injection of chaos in sec
                     - name: RAMP_TIME
                       value: ''
                     # provide the kill count
-                    - name: KILL_COUNT
-                      value: ''
                     - name: FORCE
                       value: 'true'
                     - name: CHAOS_INTERVAL
                       value: '5'
+                    - name: PODS_AFFECTED_PERC
+                      value: ''  
                     - name: LIB
-                      value: 'litmus'    
+                      value: 'litmus'
+                    - name: TARGET_PODS
+                      value: ''
+                    - name: SEQUENCE
+                      value: 'parallel'    
                     labels:
                       name: pod-delete
       container:
@@ -144,12 +162,23 @@ spec:
                       - apiGroups:
                           - ""
                           - "batch"
+                          - "apps"
+                          - "apps.openshift.io"
+                          - "argoproj.io"
                           - "litmuschaos.io"
                         resources:
                           - "jobs"
                           - "pods"
                           - "pods/log"
                           - "events"
+                          - "replicationcontrollers"
+                          - "deployments"
+                          - "statefulsets"
+                          - "daemonsets"
+                          - "replicasets"
+                          - "deploymentconfigs"
+                          - "rollouts"
+                          - "pods/exec"
                           - "chaosengines"
                           - "chaosexperiments"
                           - "chaosresults"
@@ -160,7 +189,8 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:ci"
+                          - "deletecollection"
+                    image: "litmuschaos/go-runner:latest"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -169,7 +199,7 @@ spec:
                     - /bin/bash
                     env:
                     - name: TOTAL_CHAOS_DURATION
-                      value: ''
+                      value: '30'
                     
                     - name: CHAOS_INTERVAL
                       value: '10'
@@ -184,9 +214,15 @@ spec:
                       value: ''
                     - name: LIB
                       value: 'litmus'
-                    - name: TARGET_POD
+                    ## It is used in pumba lib only
+                    - name: LIB_IMAGE
+                      value: 'litmuschaos/go-runner:latest'
+                    - name: SOCKET_PATH
+                      value: '/var/run/docker.sock'
+                    - name: TARGET_PODS
                       value: ''
-                      
+                    - name: SEQUENCE
+                      value: 'parallel'
                     labels:
                       name: pod-cpu-hog
       container:
@@ -218,11 +254,22 @@ spec:
                       - apiGroups:
                           - ""
                           - "batch"
+                          - "apps"
+                          - "apps.openshift.io"
+                          - "argoproj.io"
                           - "litmuschaos.io"
                         resources:
                           - "jobs"
                           - "pods"
                           - "pods/log"
+                          - "replicationcontrollers"
+                          - "deployments"
+                          - "statefulsets"
+                          - "daemonsets"
+                          - "replicasets"
+                          - "deploymentconfigs"
+                          - "rollouts"
+                          - "pods/exec"
                           - "events"
                           - "chaosengines"
                           - "chaosexperiments"
@@ -234,7 +281,9 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
+                          - "deletecollection"
                     image: "litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
                     args:
                     - -c
                     - ./experiments -name pod-memory-hog
@@ -258,7 +307,15 @@ spec:
                       ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
                       - name: LIB
                         value: 'litmus'
-                      - name: TARGET_POD
+                      - name: LIB_IMAGE
+                        value: 'litmuschaos/go-runner:latest'
+                      - name: SOCKET_PATH
+                        value: '/var/run/docker.sock'
+                      ## it defines the sequence of chaos execution for multiple target pods
+                      ## supported values: serial, parallel
+                      - name: SEQUENCE
+                        value: 'parallel'
+                      - name: TARGET_PODS
                         value: ''
                     labels:
                       name: pod-memory-hog
@@ -339,7 +396,7 @@ spec:
                     - name: NETWORK_PACKET_LOSS_PERCENTAGE
                       value: '100' #in PERCENTAGE
                     - name: TOTAL_CHAOS_DURATION
-                      value: '60' # in seconds
+                      value: '30' # in seconds
                     - name: RAMP_TIME
                       value: ''
                     - name: LIB
@@ -364,7 +421,7 @@ spec:
         image: lachlanevenson/k8s-kubectl
         command: [sh, -c]
         args: [ "kubectl apply -f /tmp/pod-network-loss.yaml -n {{workflow.parameters.adminModeNamespace}}",]
-    
+        
     - name: pod-cpu-hog
       inputs:
         artifacts:
@@ -395,39 +452,42 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
                             retry: 2
                             probePollingInterval: 1
-                        - name: "check-benchmark"
-                          type: "cmdProbe"
-                          cmdProbe/inputs:
-                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
-                              type: "int" # supports: string, int, float
-                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
                               value: "500"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 2
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
                             retry: 1
-                            initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
                           env:
-                            - name: TARGET_CONTAINER
-                              value: ''
-                            - name: NODE_CPU_CORE
+                            #number of cpu cores to be consumed
+                            #verify the resources the app has been launched with
+                            - name: CPU_CORES
                               value: '1'
                             - name: TOTAL_CHAOS_DURATION
-                              value: '' # in seconds
+                              value: '30' # in seconds
                             - name: CHAOS_KILL_COMMAND
                               value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
+        
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
@@ -462,39 +522,41 @@ spec:
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
                             retry: 2
                             probePollingInterval: 1
-                        - name: "check-benchmark"
-                          type: "cmdProbe"
-                          cmdProbe/inputs:
-                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
-                              type: "int" # supports: string, int, float
-                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
                               value: "500"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 2
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
                             retry: 1
-                            initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
                           env:
-                            - name: TARGET_CONTAINER
-                              value: ''
                             - name: MEMORY_CONSUMPTION
                               value: '500'
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60' # in seconds
+                              value: '30' # in seconds
+
                             - name: CHAOS_KILL_COMMAND
-                              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
+                              value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"  
+                            
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
@@ -518,7 +580,6 @@ spec:
                     appkind: 'deployment'
                   annotationCheck: 'false'
                   engineState: 'active'
-                  auxiliaryAppInfo: ''
                   chaosServiceAccount: litmus-admin
                   monitoring: true
                   jobCleanUpPolicy: 'retain'
@@ -529,36 +590,38 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-frontend-catalogue-access-url"
+                        - name: "check-catalogue-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 5
-                            interval: 2
+                            probeTimeout: 3
+                            interval: 1
                             retry: 2
                             probePollingInterval: 1
-                        - name: "check-benchmark"
-                          type: "cmdProbe"
-                          cmdProbe/inputs:
-                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
-                              type: "int" # supports: string, int, float
-                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
                               value: "500"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 2
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
                             retry: 1
-                            initialDelaySeconds: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
-                              value: '10'
+                              value: '30'
                 
                             # set chaos interval (in sec) as desired
                             - name: CHAOS_INTERVAL
@@ -601,36 +664,38 @@ spec:
                     - name: pod-network-loss
                       spec:
                         probe:
-                        - name: "check-frontend-access-url"
+                        - name: "check-cards-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
-                            expectedResponseCode: "200"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 2
                             interval: 1
-                            retry: 1
+                            retry: 2
                             probePollingInterval: 1
-                        - name: "check-benchmark"
-                          type: "cmdProbe"
-                          cmdProbe/inputs:
-                            command: "curl http://qps-test.sock-shop.svc.cluster.local"
+                        - name: "check-probe-success"
+                          type: "promProbe"
+                          promProbe/inputs:
+                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
-                              type: "int" # supports: string, int, float
-                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              criteria: ">=" #supports >=,<=,>,<,==,!= comparision
                               value: "500"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
-                          runProperties:
-                            probeTimeout: 2
-                            interval: 2
+                          runProperties:  
+                            probeTimeout: 5
+                            interval: 5
                             retry: 1
-                            initialDelaySeconds: 10
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60' 
+                              value: '30' 
                             
                             - name: NETWORK_INTERFACE
                               value: 'eth0'
@@ -643,13 +708,22 @@ spec:
                               value: '/var/run/docker.sock'                
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]  
-
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
     
+    - name: delete-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete"]
+
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest"]
+
+    - name: delete-loadtest
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=loadtest","-operation=delete"]
     
     - name: revert-chaos
       container:
@@ -657,5 +731,5 @@ spec:
         command: [sh, -c]
         args: 
           [ 
-            "kubectl delete chaosengine pod-memory-hog-chaos pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
