@@ -1,0 +1,5 @@
+packageName: azure 
+experiments:
+  - name: k8-azure-instance-terminate 
+    CSV: k8-azure-instance-terminate.chartserviceversion.yaml
+    desc: "k8-azure-instance-terminate"
