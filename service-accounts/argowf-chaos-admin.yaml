@@ -63,7 +63,7 @@ spec:
                           - name: REPORT_ENDPOINT
                             value: 'none'
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/chaosengine.yaml -n {{workflow.parameters.adminModeNamespace}} | echo "sleeping for 120s" | sleep 120 ']
 
@@ -104,12 +104,12 @@ spec:
                       imagePullPolicy: Always
                       name: nginx-bench
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/bench.yaml -n {{workflow.parameters.appNamespace}}']
 
     - name: revert-chaos
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: [' sleep 20 | kubectl delete chaosengine nginx-chaos -n {{workflow.parameters.adminModeNamespace}}']
