@@ -98,7 +98,7 @@ spec:
                       labels:
                         name: node-memory-hog
         container:
-          image: lachlanevenson/k8s-kubectl
+          image: alpine/k8s:1.18.2
           command: [sh, -c]
           args:
             [
@@ -140,7 +140,7 @@ spec:
           args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
       - name: revert-chaos
         container:
-          image: lachlanevenson/k8s-kubectl
+          image: alpine/k8s:1.18.2
           command: [sh, -c]
           args:
             [

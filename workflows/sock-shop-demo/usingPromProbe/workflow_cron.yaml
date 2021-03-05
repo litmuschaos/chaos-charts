@@ -50,7 +50,7 @@ spec:
 
     - name: install-chaos-experiments
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
@@ -360,7 +360,7 @@ spec:
     
     - name: revert-chaos
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: 
           [ 

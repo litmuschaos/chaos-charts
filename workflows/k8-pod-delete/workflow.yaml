@@ -58,7 +58,7 @@ spec:
     
     - name: install-chaos-experiments
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
@@ -66,7 +66,7 @@ spec:
     
     - name: install-chaos-rbac
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
@@ -118,7 +118,7 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/createChaosEngine.yaml -n {{workflow.parameters.appNamespace}} | echo "sleeping for 60s" | sleep 60 ']
 
@@ -168,13 +168,13 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: [' sleep 20 | kubectl delete  -f /tmp/deleteChaosEngine.yaml -n {{workflow.parameters.appNamespace}} | echo "sleeping for 60s" | sleep 60 ']
        
     - name: revert-chaos-experiments
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/experiments.yaml -n
@@ -182,7 +182,7 @@ spec:
     
     - name: revert-chaos-rbac
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.9.0?file=charts/generic/k8-pod-delete/rbac.yaml -n
