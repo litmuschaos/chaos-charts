@@ -138,7 +138,7 @@ spec:
                     labels:
                       name: pod-delete
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           [
@@ -230,7 +230,7 @@ spec:
                     labels:
                       name: pod-cpu-hog
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           [
@@ -324,7 +324,7 @@ spec:
                     labels:
                       name: pod-memory-hog
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           [
@@ -422,7 +422,7 @@ spec:
                     labels:
                       name: pod-network-loss
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: [ "kubectl apply -f /tmp/pod-network-loss.yaml -n {{workflow.parameters.adminModeNamespace}}",]
     
@@ -737,7 +737,7 @@ spec:
     
     - name: revert-chaos
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args: 
           [ 
