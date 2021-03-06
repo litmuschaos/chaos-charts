@@ -30,6 +30,8 @@ spec:
             template: pod-delete
         - - name: pod-network-loss
             template: pod-network-loss
+        - - name: disk-fill
+            template: disk-fill   
         - - name: revert-chaos
             template: revert-chaos
         #  - name: delete-application
@@ -343,6 +345,80 @@ spec:
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
+
+    - name: disk-fill
+      inputs:
+        artifacts:
+          - name: disk-fill
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: catalogue-disk-fill
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                spec:
+                  appinfo:
+                    appns: 'sock-shop'
+                    applabel: 'name=catalogue-db'
+                    appkind: 'statefulset'
+                  annotationCheck: 'false'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  monitoring: false
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: disk-fill
+                      spec:
+                        probe:
+                        - name: "check-catalogue-db-cr-status"
+                          type: "k8sProbe"
+                          k8sProbe/inputs:
+                            command:
+                              group: ""
+                              version: "v1"
+                              resource: "pods"
+                              namespace: "sock-shop"
+                              fieldSelector: "status.phase=Running"
+                              labelSelector: "name=catalogue-db"
+                          operation: "present"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 1
+                            interval: 1
+                            retry: 1
+                            probePollingInterval: 1
+                        - name: "check-benchmark"
+                          type: "cmdProbe"
+                          cmdProbe/inputs:
+                            command: "curl http://qps-test.sock-shop.svc.cluster.local:80"
+                            comparator:
+                              type: "int" # supports: string, int, float
+                              criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
+                              value: "500"
+                            source: "inline" # it can be “inline” or any image
+                          mode: "Edge"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 2
+                            retry: 1
+                            initialDelaySeconds: 1
+                        components:
+                          env:
+                            - name: FILL_PERCENTAGE
+                              value: '100'
+                
+                            - name: TARGET_CONTAINER
+                              value: ''
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '60'                            
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: delete-application
       container:
