@@ -49,7 +49,7 @@ spec:
         image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} | sleep 30"
 
     - name: pod-cpu-hog
