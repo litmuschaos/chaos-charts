@@ -378,14 +378,13 @@ spec:
                         - name: "check-catalogue-db-cr-status"
                           type: "k8sProbe"
                           k8sProbe/inputs:
-                            command:
-                              group: ""
-                              version: "v1"
-                              resource: "pods"
-                              namespace: "sock-shop"
-                              fieldSelector: "status.phase=Running"
-                              labelSelector: "name=catalogue-db"
-                          operation: "present"
+                            group: ""
+                            version: "v1"
+                            resource: "pods"
+                            namespace: "sock-shop"
+                            fieldSelector: "status.phase=Running"
+                            labelSelector: "name=catalogue-db"
+                            operation: "present"
                           mode: "Continuous"
                           runProperties:
                             probeTimeout: 1
