@@ -10,7 +10,7 @@ metadata:
     name: pod-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.2
 spec:
   definition:
     scope: Namespaced
@@ -46,7 +46,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.0"
+    image: "litmuschaos/go-runner:1.13.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -94,7 +94,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:1.13.0'
+        value: 'litmuschaos/go-runner:1.13.2'
 
       # provide the socket file path
       # it is used in pumba lib
@@ -110,4 +110,4 @@ spec:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.2
