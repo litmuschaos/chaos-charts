@@ -75,6 +75,9 @@ spec:
     - name: TARGET_PODS
       value: ''
 
+    - name: EPHEMERAL_STORAGE_MEBIBYTES
+      value: ''
+
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
