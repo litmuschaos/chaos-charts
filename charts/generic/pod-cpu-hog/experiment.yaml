@@ -55,9 +55,6 @@ spec:
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
-    
-    - name: CHAOS_INTERVAL
-      value: '10'
 
     ## Number of CPU cores to stress
     - name: CPU_CORES
