@@ -27,3 +27,7 @@ spec:
             # provide the region name of the instace
             - name: REGION
               value: ''
+
+            # enable it if the target instance is a part of self-managed nodegroup.
+            - name: MANAGED_NODEGROUP
+              value: 'disable'              
