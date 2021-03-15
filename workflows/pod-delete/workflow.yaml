@@ -70,7 +70,7 @@ spec:
                         verbs:
                           - "get"
                           - "list"
-                    image: "litmuschaos/go-runner:1.13.0"
+                    image: "litmuschaos/go-runner:1.13.2"
                     imagePullPolicy: Always
                     args:
                     - -c
