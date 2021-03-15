@@ -35,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.0"
+    image: "litmuschaos/go-runner:1.13.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -49,6 +49,10 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
+
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'      
 
     - name: EC2_INSTANCE_ID
       value: ''

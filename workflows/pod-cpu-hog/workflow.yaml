@@ -60,7 +60,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:1.13.0"
+                    image: "litmuschaos/go-runner:1.13.2"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -95,7 +95,7 @@ spec:
                     labels:
                       name: pod-cpu-hog
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           [
@@ -128,7 +128,7 @@ spec:
                     - name: pod-cpu-hog
                       spec:
                         components:
-                          experimentImage: "litmuschaos/go-runner:1.13.0"
+                          experimentImage: "litmuschaos/go-runner:1.13.2"
                           env:
                             - name: TARGET_CONTAINER
                               value: 'kube-proxy'
@@ -147,7 +147,7 @@ spec:
 
     - name: revert-chaos
       container:
-        image: lachlanevenson/k8s-kubectl
+        image: alpine/k8s:1.18.2
         command: [sh, -c]
         args:
           [

@@ -9,7 +9,7 @@ metadata:
     name: disk-fill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.2
 spec:
   definition:
     scope: Cluster
@@ -45,7 +45,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.0"
+    image: "litmuschaos/go-runner:1.13.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -75,12 +75,15 @@ spec:
     - name: TARGET_PODS
       value: ''
 
+    - name: EPHEMERAL_STORAGE_MEBIBYTES
+      value: ''
+
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.0'
+      value: 'litmuschaos/go-runner:1.13.2'
 
     # Provide the container runtime path
     # Default set to docker container path
@@ -96,4 +99,4 @@ spec:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.2
