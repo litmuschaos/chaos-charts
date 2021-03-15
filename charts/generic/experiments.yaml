@@ -1351,9 +1351,6 @@ spec:
       - name: TOTAL_CHAOS_DURATION
         value: '60'
 
-      - name: CHAOS_INTERVAL
-        value: '10'
-
       ## enter the amount of memory in megabytes to be consumed by the application pod
       - name: MEMORY_CONSUMPTION
         value: '500'
@@ -2011,9 +2008,6 @@ spec:
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '60'
-    
-    - name: CHAOS_INTERVAL
-      value: '10'
 
     ## Number of CPU cores to stress
     - name: CPU_CORES

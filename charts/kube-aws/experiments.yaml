@@ -50,6 +50,10 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'      
+
     - name: EC2_INSTANCE_ID
       value: ''
 
