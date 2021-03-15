@@ -9,7 +9,7 @@ metadata:
     name: ebs-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.2
 spec:
   definition:
     scope: Cluster
@@ -35,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.0"
+    image: "litmuschaos/go-runner:1.13.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -75,7 +75,7 @@ spec:
       name: ebs-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.2
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -92,7 +92,7 @@ metadata:
     name: ec2-terminate
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.2
 spec:
   definition:
     scope: Cluster
@@ -118,7 +118,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.0"
+    image: "litmuschaos/go-runner:1.13.2"
     imagePullPolicy: Always
     args:
     - -c
@@ -132,6 +132,10 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
+
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'      
 
     - name: EC2_INSTANCE_ID
       value: ''
@@ -152,7 +156,7 @@ spec:
       name: ec2-terminate
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.2
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
