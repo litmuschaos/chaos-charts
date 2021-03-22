@@ -56,7 +56,7 @@ spec:
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 30"
+            {{workflow.parameters.adminModeNamespace}} ; sleep 30"
         
     - name: pod-cpu-hog
       inputs:
@@ -89,6 +89,7 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
@@ -102,18 +103,17 @@ spec:
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
-                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            endpoint: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
                             query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
                               criteria: ">=" #supports >=,<=,>,<,==,!= comparision
-                              value: "500"
+                              value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 5
-                            interval: 5
-                            retry: 1
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             #number of cpu cores to be consumed
                             #verify the resources the app has been launched with
@@ -122,7 +122,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
                             - name: CHAOS_KILL_COMMAND
-                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"  
+                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
         
       container:
         image: litmuschaos/litmus-checker:latest
@@ -159,6 +159,7 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
@@ -172,18 +173,17 @@ spec:
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
-                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            endpoint: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
                             query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
                               criteria: ">=" #supports >=,<=,>,<,==,!= comparision
-                              value: "500"
+                              value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 5
-                            interval: 5
-                            retry: 1
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: MEMORY_CONSUMPTION
                               value: '500'
@@ -230,38 +230,37 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
-                            interval: 1
-                            retry: 2
+                            probeTimeout: 10
+                            interval: 12
+                            retry: 3
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
-                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            endpoint: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
                             query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
                               criteria: ">=" #supports >=,<=,>,<,==,!= comparision
-                              value: "500"
+                              value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 5
-                            interval: 5
-                            retry: 1
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'
-                
                             # set chaos interval (in sec) as desired
                             - name: CHAOS_INTERVAL
                               value: '10'
-                
                             # pod failures without '--force' & default terminationGracePeriodSeconds
                             - name: FORCE
                               value: 'false'
@@ -304,37 +303,36 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
-                            interval: 1
-                            retry: 2
+                            probeTimeout: 10
+                            interval: 12
+                            retry: 3
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
-                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            endpoint: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
                             query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
                               criteria: ">=" #supports >=,<=,>,<,==,!= comparision
-                              value: "500"
+                              value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 5
-                            interval: 5
-                            retry: 1
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' 
-                            
                             - name: NETWORK_INTERFACE
                               value: 'eth0'
-                            
                             - name: NETWORK_PACKET_LOSS_PERCENTAGE
                               value: '100'
                             - name: CONTAINER_RUNTIME
@@ -393,25 +391,24 @@ spec:
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
-                            endpoint: "http://prometheus.monitoring.svc.cluster.local:9090"
+                            endpoint: "http://prometheus-k8s.monitoring.svc.cluster.local:9090"
                             query: "sum(rate(request_duration_seconds_count{job='sock-shop/front-end',route='/',status_code='200'}[20s]))*100"
                             comparator:
                               criteria: ">=" #supports >=,<=,>,<,==,!= comparision
-                              value: "500"
+                              value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 5
-                            interval: 5
-                            retry: 1
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
                         components:
                           env:
                             - name: FILL_PERCENTAGE
                               value: '100'
-                
                             - name: TARGET_CONTAINER
                               value: ''
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60'                            
+                              value: '30'                            
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
