@@ -50,7 +50,7 @@ spec:
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
-            {{workflow.parameters.adminModeNamespace}} | sleep 30"
+            {{workflow.parameters.adminModeNamespace}} ; sleep 30"
 
     - name: pod-cpu-hog
       inputs:
@@ -83,6 +83,7 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
@@ -100,13 +101,13 @@ spec:
                             comparator:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
-                              value: "500"
+                              value: "100"
                             source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
-                            interval: 2
-                            retry: 1
+                            interval: 1
+                            retry: 2
                             initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
@@ -118,7 +119,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' # in seconds
                             - name: CHAOS_KILL_COMMAND
-                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"  
+                              value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
         
       container:
         image: litmuschaos/litmus-checker:latest
@@ -155,6 +156,7 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
@@ -172,13 +174,13 @@ spec:
                             comparator:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
-                              value: "500"
+                              value: "100"
                             source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
-                            interval: 2
-                            retry: 1
+                            interval: 1
+                            retry: 2
                             initialDelaySeconds: 10
                         components:
                           experimentImage: "litmuschaos/go-runner:latest"
@@ -228,15 +230,16 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/catalogue"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 5
-                            interval: 2
-                            retry: 2
+                            probeTimeout: 12
+                            interval: 12
+                            retry: 3
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -245,23 +248,22 @@ spec:
                             comparator:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
-                              value: "500"
+                              value: "100"
                             source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
-                            interval: 2
-                            retry: 1
+                            interval: 1
+                            retry: 2
                             initialDelaySeconds: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'
-                
                             # set chaos interval (in sec) as desired
                             - name: CHAOS_INTERVAL
                               value: '10'
-                
                             # pod failures without '--force' & default terminationGracePeriodSeconds
                             - name: FORCE
                               value: 'false'
@@ -303,15 +305,16 @@ spec:
                           httpProbe/inputs:
                             url: "http://front-end.sock-shop.svc.cluster.local:80/cards"
                             insecureSkipVerify: false
+                            responseTimeout: 100
                             method:
                               get:
                                 criteria: "=="
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
-                            interval: 1
-                            retry: 1
+                            probeTimeout: 12
+                            interval: 12
+                            retry: 3
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -320,22 +323,21 @@ spec:
                             comparator:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
-                              value: "500"
+                              value: "100"
                             source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
-                            interval: 2
-                            retry: 1
+                            interval: 1
+                            retry: 2
                             initialDelaySeconds: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' 
-                            
                             - name: NETWORK_INTERFACE
                               value: 'eth0'
-                            
                             - name: NETWORK_PACKET_LOSS_PERCENTAGE
                               value: '100'
                             - name: CONTAINER_RUNTIME
@@ -398,23 +400,23 @@ spec:
                             comparator:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
-                              value: "500"
+                              value: "100"
                             source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
-                            interval: 2
-                            retry: 1
+                            interval: 1
+                            retry: 2
                             initialDelaySeconds: 1
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: FILL_PERCENTAGE
                               value: '100'
-                
                             - name: TARGET_CONTAINER
                               value: ''
                             - name: TOTAL_CHAOS_DURATION
-                              value: '60'                            
+                              value: '30'                            
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
