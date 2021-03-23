@@ -108,6 +108,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             #number of cpu cores to be consumed
                             #verify the resources the app has been launched with
@@ -178,6 +179,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: MEMORY_CONSUMPTION
                               value: '500'
@@ -249,6 +251,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'
@@ -322,6 +325,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' 
@@ -396,6 +400,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
+                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: FILL_PERCENTAGE
                               value: '100'
