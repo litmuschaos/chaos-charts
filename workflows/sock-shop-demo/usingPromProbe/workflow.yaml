@@ -233,7 +233,7 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 10
+                            probeTimeout: 12
                             interval: 12
                             retry: 3
                             probePollingInterval: 1
@@ -307,7 +307,7 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 10
+                            probeTimeout: 12
                             interval: 12
                             retry: 3
                             probePollingInterval: 1
