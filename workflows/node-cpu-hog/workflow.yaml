@@ -101,7 +101,7 @@ spec:
                     labels:
                       name: node-cpu-hog
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           [
@@ -146,7 +146,7 @@ spec:
 
     - name: revert-chaos
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           [
