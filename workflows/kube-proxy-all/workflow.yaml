@@ -34,7 +34,7 @@ spec:
 
     - name: install-chaos-experiments
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.12.0?file=charts/generic/experiments.yaml -n
@@ -230,8 +230,8 @@ spec:
 
     - name: revert-kube-proxy-chaos
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl delete chaosengines --all -n
+          - "kubectl delete chaosengines kube-proxy-node-cpu-hog kube-proxy-pod-memory-hog-chaos kube-proxy-pod-cpu-hog-chaos kube-proxy-node-memory-hog-chaos kube-proxy-pod-delete-chaos -n
             {{workflow.parameters.adminModeNamespace}}"
