@@ -1,0 +1,8 @@
+packageName: vm-delete
+experiments:
+  - name: vm-delete
+    CSV: vm-delete.chartserviceversion.yaml
+    desc: "vm-delete"
+  - name: vm-delete
+    CSV: vm-delete.chartserviceversion.yaml
+    desc: "vm-delete"
