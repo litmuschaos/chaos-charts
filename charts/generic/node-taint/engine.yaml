@@ -22,9 +22,9 @@ spec:
     - name: node-taint
       spec:
         components:
-          nodeSelector: 
-            # provide the node labels
-            kubernetes.io/hostname: 'node02'        
+        # nodeSelector: 
+        #   # provide the node labels
+        #   kubernetes.io/hostname: 'node02'        
           env:
             # set target node name
             - name: TARGET_NODE
