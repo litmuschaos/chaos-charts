@@ -22,9 +22,9 @@ spec:
     - name: node-restart
       spec:
         components:
-          nodeSelector: 
-            # provide the node labels
-            kubernetes.io/hostname: 'node02'  
+        # nodeSelector: 
+        #   # provide the node labels
+        #   kubernetes.io/hostname: 'node02' 
           env:
              # ENTER THE TARGET NODE NAME
             - name: TARGET_NODE
