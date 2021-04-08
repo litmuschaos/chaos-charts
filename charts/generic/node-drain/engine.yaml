@@ -17,9 +17,9 @@ spec:
     - name: node-drain
       spec:
         components:
-          nodeSelector: 
-            # provide the node labels
-            kubernetes.io/hostname: 'node02'        
+        # nodeSelector: 
+        #   # provide the node labels
+        #   kubernetes.io/hostname: 'node02'        
           env:
             # enter the target node name
             - name: TARGET_NODE
