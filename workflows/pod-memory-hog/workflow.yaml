@@ -121,7 +121,6 @@ spec:
                     applabel: "k8s-app=kube-proxy"
                     appkind: daemonset
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
