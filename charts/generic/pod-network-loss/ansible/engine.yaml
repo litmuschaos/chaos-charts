@@ -13,7 +13,6 @@ spec:
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
-  monitoring: false
   appinfo: 
     appns: 'default'
     # FYI, To see app label, apply kubectl get pods --show-labels

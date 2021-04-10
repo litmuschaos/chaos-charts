@@ -7,7 +7,6 @@ spec:
   annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: ec2-terminate-sa
-  monitoring: false
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:
