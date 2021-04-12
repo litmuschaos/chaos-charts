@@ -48,7 +48,7 @@ spec:
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop"] #for resilient provide type flagName as resilient(-typeName=resilient)
 
     - name: install-chaos-experiments
       container:
@@ -416,17 +416,17 @@ spec:
     - name: delete-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete"]
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete", "-app=sock-shop"]
 
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest"]
+        args: ["-namespace=loadtest", "-app=loadtest"]
 
     - name: delete-loadtest
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest","-operation=delete"]
+        args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
     
     - name: revert-chaos
       container:
