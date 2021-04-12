@@ -70,7 +70,6 @@ spec:
                     applabel: 'name=carts'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -141,7 +140,6 @@ spec:
                     applabel: 'name=orders'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -212,7 +210,6 @@ spec:
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
-                  monitoring: true
                   jobCleanUpPolicy: 'retain'
                   components:
                     runner:
@@ -283,7 +280,6 @@ spec:
                     applabel: 'name=user-db'
                     appkind: 'statefulset'
                   jobCleanUpPolicy: retain
-                  monitoring: true
                   annotationCheck: 'false'
                   engineState: 'active'
                   auxiliaryAppInfo: ''
@@ -361,7 +357,6 @@ spec:
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
-                  monitoring: false
                   jobCleanUpPolicy: 'retain'
                   components:
                     runner:
