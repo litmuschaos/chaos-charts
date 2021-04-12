@@ -11,7 +11,6 @@ spec:
   annotationCheck: 'false'
   # It can be active/stop
   engineState: 'active'
-  monitoring: false
   appinfo: 
     appns: 'default'
     # FYI, To see app label, apply kubectl get pods --show-labels
