@@ -60,7 +60,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:1.13.2"
+                    image: "litmuschaos/go-runner:1.13.3"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -95,7 +95,7 @@ spec:
                     labels:
                       name: pod-cpu-hog
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           [
@@ -120,7 +120,6 @@ spec:
                     applabel: "k8s-app=kube-proxy"
                     appkind: daemonset
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -128,7 +127,7 @@ spec:
                     - name: pod-cpu-hog
                       spec:
                         components:
-                          experimentImage: "litmuschaos/go-runner:1.13.2"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             - name: TARGET_CONTAINER
                               value: 'kube-proxy'
@@ -147,7 +146,7 @@ spec:
 
     - name: revert-chaos
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           [

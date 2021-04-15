@@ -35,6 +35,7 @@ spec:
     - node-io-stress
     - pod-io-stress
     - node-restart
+    - pod-dns-chaos
     
   keywords:
     - Kubernetes
@@ -48,6 +49,7 @@ spec:
     - CPU
     - Memory
     - Service
+    - DNS
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

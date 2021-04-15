@@ -9,7 +9,7 @@ metadata:
     name: k8-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.3
 spec:
   definition:
     scope: Namespaced

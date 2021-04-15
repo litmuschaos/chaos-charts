@@ -71,7 +71,7 @@ spec:
                           verbs:
                             - "get"
                             - "list"
-                      image: "litmuschaos/go-runner:1.13.2"
+                      image: "litmuschaos/go-runner:1.13.3"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -94,11 +94,11 @@ spec:
                         value: 'litmus'
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: 'litmuschaos/go-runner:1.13.2' 
+                        value: 'litmuschaos/go-runner:1.13.3' 
                       labels:
                         name: node-memory-hog
         container:
-          image: alpine/k8s:1.18.2
+          image: litmuschaos/k8s:latest
           command: [sh, -c]
           args:
             [
@@ -117,12 +117,7 @@ spec:
                     name: kube-proxy-node-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
-                    appinfo:
-                      appns: kube-system
-                      applabel: "k8s-app=kube-proxy"
-                      appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -140,7 +135,7 @@ spec:
           args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
       - name: revert-chaos
         container:
-          image: alpine/k8s:1.18.2
+          image: litmuschaos/k8s:latest
           command: [sh, -c]
           args:
             [

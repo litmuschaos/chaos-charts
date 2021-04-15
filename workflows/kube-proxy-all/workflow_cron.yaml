@@ -37,7 +37,7 @@ spec:
 
       - name: install-chaos-experiments
         container:
-          image: alpine/k8s:1.18.2
+          image: litmuschaos/k8s:latest
           command: [sh, -c]
           args:
             - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/experiments.yaml -n
@@ -56,12 +56,7 @@ spec:
                     name: kube-proxy-node-cpu-hog
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
-                    appinfo:
-                      appns: kube-system
-                      applabel: "k8s-app=kube-proxy"
-                      appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -97,7 +92,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -105,7 +99,7 @@ spec:
                       - name: pod-memory-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.13.2"
+                            experimentImage: "litmuschaos/go-runner:1.13.3"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
@@ -137,7 +131,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -145,7 +138,7 @@ spec:
                       - name: pod-cpu-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.13.2"
+                            experimentImage: "litmuschaos/go-runner:1.13.3"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
@@ -172,12 +165,7 @@ spec:
                     name: kube-proxy-node-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
-                    appinfo:
-                      appns: kube-system
-                      applabel: "k8s-app=kube-proxy"
-                      appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -212,7 +200,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -233,8 +220,8 @@ spec:
 
       - name: revert-kube-proxy-chaos
         container:
-          image: alpine/k8s:1.18.2
+          image: litmuschaos/k8s:latest
           command: [sh, -c]
           args:
-            - "kubectl delete chaosengines --all -n
+            - "kubectl delete chaosengines kube-proxy-node-cpu-hog kube-proxy-pod-memory-hog-chaos kube-proxy-pod-cpu-hog-chaos kube-proxy-node-memory-hog-chaos kube-proxy-pod-delete-chaos -n
               {{workflow.parameters.adminModeNamespace}}"

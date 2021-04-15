@@ -9,7 +9,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.3
 spec:
   definition:
     scope: Cluster
@@ -41,7 +41,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -65,4 +65,4 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.3

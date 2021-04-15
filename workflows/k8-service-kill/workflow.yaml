@@ -71,7 +71,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                monitoring: false
                 annotationCheck: 'false'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
@@ -95,7 +94,7 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/createChaosEngine.yaml -n {{workflow.parameters.appCurrentNamespace}} | echo "sleeping for 60s" | sleep 60 ']
 
@@ -121,7 +120,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                monitoring: false
                 annotationCheck: 'false'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
@@ -145,6 +143,6 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args: [' sleep 20 | kubectl delete  -f /tmp/deleteChaosEngine.yaml -n {{workflow.parameters.appCurrentNamespace}} | echo "sleeping for 60s" | sleep 60 ']

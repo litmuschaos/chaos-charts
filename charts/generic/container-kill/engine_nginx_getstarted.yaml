@@ -15,7 +15,6 @@ spec:
     applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
-  monitoring: false
   # It can be delete/retain
   jobCleanUpPolicy: 'delete' 
   experiments:
@@ -36,7 +35,7 @@ spec:
               value: '20'
 
             - name: LIB_IMAGE  
-              value: 'litmuschaos/go-runner:1.13.2' 
+              value: 'litmuschaos/go-runner:1.13.3' 
 
             # provide the name of container runtime
             # it supports docker, containerd, crio

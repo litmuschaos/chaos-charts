@@ -6,21 +6,24 @@ metadata:
 spec:
   annotationCheck: 'false'
   engineState: 'active'
-  chaosServiceAccount: ec2-terminate-sa
-  monitoring: false
+  chaosServiceAccount: ec2-terminate-by-id-sa
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: ec2-terminate
+    - name: ec2-terminate-by-id
       spec:
         components:
           env: 
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
+              value: '30'
+
+            # set interval duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
 
              # Instance ID of the target ec2 instance
-             # If not provided it will select randomly from the region
+             # Multiple IDs can also be provided as comma seperated values ex: id1,id2
             - name: EC2_INSTANCE_ID
               value: ''
               

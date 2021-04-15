@@ -9,7 +9,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.2
+    app.kubernetes.io/version: 1.13.3
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.2"
+    image: "litmuschaos/go-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -64,9 +64,17 @@ spec:
     - name: FILESYSTEM_UTILIZATION_BYTES
       value: ''
 
+    ## Number of core of CPU
+    - name: CPU
+      value: '1'      
+
     ## Total number of workers default value is 4
     - name: NUMBER_OF_WORKERS
-      value: '4'    
+      value: '4'
+
+    ## Total number of vm workers
+    - name: VM_WORKERS
+      value: '1'
 
     ## enter the comma separated target nodes name
     - name: TARGET_NODES
@@ -83,7 +91,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.2' 
+      value: 'litmuschaos/go-runner:1.13.3' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -98,4 +106,4 @@ spec:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.2
+      app.kubernetes.io/version: 1.13.3

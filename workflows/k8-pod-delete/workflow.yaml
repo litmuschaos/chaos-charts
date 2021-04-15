@@ -58,7 +58,7 @@ spec:
     
     - name: install-chaos-experiments
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/k8-pod-delete/experiments.yaml -n
@@ -66,7 +66,7 @@ spec:
     
     - name: install-chaos-rbac
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/k8-pod-delete/rbac.yaml -n
@@ -94,7 +94,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                monitoring: false
                 annotationCheck: 'true'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
@@ -118,7 +117,7 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/createChaosEngine.yaml -n {{workflow.parameters.appNamespace}} | echo "sleeping for 60s" | sleep 60 ']
 
@@ -144,7 +143,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                monitoring: false
                 annotationCheck: 'true'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
@@ -168,13 +166,13 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args: [' sleep 20 | kubectl delete  -f /tmp/deleteChaosEngine.yaml -n {{workflow.parameters.appNamespace}} | echo "sleeping for 60s" | sleep 60 ']
        
     - name: revert-chaos-experiments
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/k8-pod-delete/experiments.yaml -n
@@ -182,7 +180,7 @@ spec:
     
     - name: revert-chaos-rbac
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl delete -f https://hub.litmuschaos.io/api/chaos/1.13.2?file=charts/generic/k8-pod-delete/rbac.yaml -n
