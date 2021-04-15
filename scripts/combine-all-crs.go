@@ -27,6 +27,12 @@ func main() {
 		// set path of combined CR file path
 		filePath := directory + "/experiments.yaml"
 
+		if isFileExist := IsFileExist(filePath); !isFileExist {
+			if err := TouchFile(filePath); err != nil {
+				log.Fatalf("unable to create the %v file, err: %v", filePath, err)
+			}
+		}
+
 		// initialize the empty file
 		if err := InitializeFile(filePath); err != nil {
 			log.Fatalf("unable to initialize %v file, err: %v", filePath, err)
@@ -73,6 +79,15 @@ func IsFileExist(path string) bool {
 		return false
 	}
 	return true
+}
+
+// TouchFile create an empty file
+func TouchFile(name string) error {
+	file, err := os.OpenFile(name, os.O_RDONLY|os.O_CREATE, 0644)
+	if err != nil {
+		return err
+	}
+	return file.Close()
 }
 
 // CopyData copy the file data from source file to destination file
