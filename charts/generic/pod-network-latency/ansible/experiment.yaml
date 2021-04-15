@@ -9,7 +9,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.3
 spec:
   definition:
     scope: Namespaced
@@ -73,4 +73,4 @@ spec:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.3

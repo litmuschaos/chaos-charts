@@ -10,7 +10,7 @@ metadata:
     name: openebs-target-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.0
+    app.kubernetes.io/version: 1.13.3
   name: openebs-target-pod-failure
 spec:
   definition:
@@ -99,7 +99,7 @@ spec:
       name: openebs-target-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.0
+      app.kubernetes.io/version: 1.13.3
     #configmaps:
     #- name: openebs-target-pod-failure
     #  mountPath: /mnt
