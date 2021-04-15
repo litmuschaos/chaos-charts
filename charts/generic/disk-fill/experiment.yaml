@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions: 
       - apiGroups:
           - ""
