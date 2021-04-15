@@ -1,0 +1,81 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Terminating azure VM instance
+kind: ChaosExperiment
+metadata:
+  name: azure-instance-terminate
+  labels:
+    name: azure-instance-terminate
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "pods/exec"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/go-runner:azure"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name azure-instance-terminate
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # provide the target instance name
+    - name: AZURE_INSTANCE_NAME
+      value: ''
+
+    # provide the resource group of the instance
+    - name: RESOURCE_GROUP
+      value: ''
+
+    # Provide the path of aks credentials mounted from secret  
+    - name: AZURE_AUTH_LOCATION
+      value: '/tmp/azure.auth'
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
+    labels:
+      name: azure-instance-terminate
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+
+
+---
