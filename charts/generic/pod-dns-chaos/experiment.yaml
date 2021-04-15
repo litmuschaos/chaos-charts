@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: pod-dns-chaos
+  labels:
+    name: pod-dns-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Namespaced
