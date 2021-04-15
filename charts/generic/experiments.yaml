@@ -1564,6 +1564,10 @@ spec:
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'  
 
+    ## It is used in pumba lib only    
+    - name: STRESS_IMAGE
+      value: 'alexeiled/stress-ng:latest-ubuntu'  
+
     # provide the socket file path
     # it is used in pumba lib
     - name: SOCKET_PATH
@@ -2218,6 +2222,10 @@ spec:
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
         value: 'litmuschaos/go-runner:latest'
+
+      ## It is used in pumba lib only    
+      - name: STRESS_IMAGE
+        value: 'alexeiled/stress-ng:latest-ubuntu'
 
       # provide the socket file path
       # it is used in pumba lib
