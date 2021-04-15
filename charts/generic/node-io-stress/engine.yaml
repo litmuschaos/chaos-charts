@@ -25,6 +25,14 @@ spec:
             ## specify the size as percentage of free space on the file system
             - name: FILESYSTEM_UTILIZATION_PERCENTAGE
               value: '10'
+
+            ## Number of core of CPU
+            - name: CPU
+              value: '1'
+
+            ## Total number of workers default value is 4
+            - name: NUMBER_OF_WORKERS
+              value: '4'                               
             
              ## enter the comma separated target nodes name
             - name: TARGET_NODES
