@@ -47,7 +47,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -159,7 +159,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -238,7 +238,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -343,7 +343,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -440,7 +440,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -565,7 +565,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -662,7 +662,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -757,7 +757,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -856,7 +856,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -946,7 +946,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -1043,7 +1043,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:1.13.0"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
