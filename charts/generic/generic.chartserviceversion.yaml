@@ -35,8 +35,7 @@ spec:
     - node-io-stress
     - pod-io-stress
     - node-restart
-    - pod-dns-chaos
-    
+        
   keywords:
     - Kubernetes
     - Container

@@ -66,6 +66,3 @@ experiments:
   - name: node-restart
     CSV: node-restart.chartserviceversion.yaml
     desc: "node-restart"
-  - name: pod-dns-chaos
-    CSV: pod-dns-chaos.chartserviceversion.yaml
-    desc: "pod-dns-chaos"
