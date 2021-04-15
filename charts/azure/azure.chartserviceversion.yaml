@@ -1,0 +1,38 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-02-20T10:28:08Z
+  name: azure
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects chaos on azure servies 
+spec:
+  displayName: Azure
+  categoryDescription: >
+    Azure category of chaos experiments causes the disruption of the azure serives for a certain chaos duration.
+  experiments:
+    - azure-instance-terminate
+  keywords:
+    - Azure
+    - Instance
+    - State  
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
+  provider:
+    name: Chaos Native  
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/azure/experiments/azure
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#platform-chaos 
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/azure/experiments.yaml
+
