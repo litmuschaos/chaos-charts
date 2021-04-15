@@ -716,7 +716,10 @@ spec:
     ## Specify the amount of memory to be consumed in mebibytes
     ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
     - name: MEMORY_CONSUMPTION_MEBIBYTES
-      value: ''   
+      value: ''
+
+    - name: NUMBER_OF_WORKERS
+      value: '1'
 
     # ENTER THE COMMA SEPARATED TARGET NODES NAME
     - name: TARGET_NODES
@@ -1344,9 +1347,17 @@ spec:
     - name: FILESYSTEM_UTILIZATION_BYTES
       value: ''
 
+    ## Number of core of CPU
+    - name: CPU
+      value: '1'      
+
     ## Total number of workers default value is 4
     - name: NUMBER_OF_WORKERS
-      value: '4'    
+      value: '4'
+
+    ## Total number of vm workers
+    - name: VM_WORKERS
+      value: '1'
 
     ## enter the comma separated target nodes name
     - name: TARGET_NODES
@@ -1395,7 +1406,7 @@ metadata:
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions: 
       - apiGroups:
           - ""
@@ -1563,6 +1574,10 @@ spec:
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'  
+
+    ## It is used in pumba lib only    
+    - name: STRESS_IMAGE
+      value: 'alexeiled/stress-ng:latest-ubuntu'  
 
     # provide the socket file path
     # it is used in pumba lib
@@ -2060,6 +2075,115 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    injects dns failure in target pod container
+kind: ChaosExperiment
+metadata:
+  name: pod-dns-chaos
+  labels:
+    name: pod-dns-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name pod-dns-chaos
+    command:
+    - /bin/bash
+    env:
+
+      - name: TARGET_CONTAINER
+        value: ''
+
+      # provide lib image
+      - name: LIB_IMAGE
+        value: 'litmuschaos/go-runner:latest'
+
+      - name: TOTAL_CHAOS_DURATION
+        value: '60' # in seconds
+
+      # Time period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      - name: TARGET_PODS
+        value: ''
+
+      # provide the name of container runtime, it supports docker, containerd, crio
+      - name: CONTAINER_RUNTIME
+        value: 'docker'
+
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: '/var/run/docker.sock'
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      # list of the target hostnames or kewywords eg. '["litmuschaos","chaosnative.io"]' . If empty all hostnames are targets
+      - name: TARGET_HOSTNAMES
+        value: ''
+
+      # can be either exact or substring, determines whether the dns query has to match exactly with one of the targets or can have any of the targets as substring
+      - name: MATCH_SCHEME
+        value: 'exact'
+
+      # currently only error chaos is supported
+      - name: CHAOS_TYPE
+        value: 'error'
+
+    labels:
+      experiment: pod-dns-chaos
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
@@ -2218,6 +2342,10 @@ spec:
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
         value: 'litmuschaos/go-runner:latest'
+
+      ## It is used in pumba lib only    
+      - name: STRESS_IMAGE
+        value: 'alexeiled/stress-ng:latest-ubuntu'
 
       # provide the socket file path
       # it is used in pumba lib
