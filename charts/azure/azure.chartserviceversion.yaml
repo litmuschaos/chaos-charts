@@ -18,8 +18,8 @@ spec:
     - Instance
     - State  
   maintainers:
-    - name: ksatchit
-      email: karthik.s@mayadata.io
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
   provider:
     name: Chaos Native  
   links:
