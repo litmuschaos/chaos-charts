@@ -117,10 +117,6 @@ spec:
                     name: kube-proxy-node-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
-                    appinfo:
-                      appns: kube-system
-                      applabel: "k8s-app=kube-proxy"
-                      appkind: daemonset
                     jobCleanUpPolicy: retain
                     annotationCheck: 'false'
                     engineState: 'active'
