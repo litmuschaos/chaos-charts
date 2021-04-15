@@ -99,7 +99,7 @@ spec:
                       - name: pod-memory-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.13.2"
+                            experimentImage: "litmuschaos/go-runner:1.13.3"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
@@ -138,7 +138,7 @@ spec:
                       - name: pod-cpu-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:1.13.2"
+                            experimentImage: "litmuschaos/go-runner:1.13.3"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'

@@ -113,7 +113,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:1.13.2"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             #number of cpu cores to be consumed
                             #verify the resources the app has been launched with
@@ -183,7 +183,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:1.13.2"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             - name: MEMORY_CONSUMPTION
                               value: '500'
@@ -254,7 +254,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'
@@ -327,7 +327,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' 
@@ -401,7 +401,7 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
+                          experimentImage: "litmuschaos/go-runner:1.13.3"
                           env:
                             - name: FILL_PERCENTAGE
                               value: '100'
