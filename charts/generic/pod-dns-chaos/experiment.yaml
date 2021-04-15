@@ -1,0 +1,107 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    injects dns failure in target pod container
+kind: ChaosExperiment
+metadata:
+  name: pod-dns-chaos
+  labels:
+    name: pod-dns-chaos
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name pod-dns-chaos
+    command:
+    - /bin/bash
+    env:
+
+      - name: TARGET_CONTAINER
+        value: ''
+
+      # provide lib image
+      - name: LIB_IMAGE
+        value: 'litmuschaos/go-runner:latest'
+
+      - name: TOTAL_CHAOS_DURATION
+        value: '60' # in seconds
+
+      # Time period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      - name: TARGET_PODS
+        value: ''
+
+      # provide the name of container runtime, it supports docker, containerd, crio
+      - name: CONTAINER_RUNTIME
+        value: 'docker'
+
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: '/var/run/docker.sock'
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      # list of the target hostnames or kewywords eg. '["litmuschaos","chaosnative.io"]' . If empty all hostnames are targets
+      - name: TARGET_HOSTNAMES
+        value: ''
+
+      # can be either exact or substring, determines whether the dns query has to match exactly with one of the targets or can have any of the targets as substring
+      - name: MATCH_SCHEME
+        value: 'exact'
+
+      # currently only error chaos is supported
+      - name: CHAOS_TYPE
+        value: 'error'
+
+    labels:
+      experiment: pod-dns-chaos
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+
