@@ -37,7 +37,11 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
+<<<<<<< HEAD
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/1.13.3?file=charts/generic/experiments.yaml -n
+=======
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+>>>>>>> 204814e... chore(psp): removed runAsUser from psp and update the go-runner image in workflows (#446)
             {{workflow.parameters.adminModeNamespace}} | sleep 30"
 
     - name: node-cpu-hog
