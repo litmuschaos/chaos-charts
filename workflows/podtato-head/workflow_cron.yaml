@@ -34,7 +34,7 @@ spec:
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=apply","-timeout=400", "-app=podtato-head"]
+        args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=apply","-timeout=400", "-app=podtato-head","-scope=cluster"]
 
     - name: install-chaos-experiments
       container:
