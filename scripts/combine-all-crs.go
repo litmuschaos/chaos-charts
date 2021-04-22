@@ -16,7 +16,7 @@ import (
 
 func main() {
 
-	directories, err := GetAllSubDirectories("./charts")
+	directories, err := GetAllSubDirectories("./../charts")
 	if err != nil {
 		log.Fatalf("unable to get chart categories details, err: %v", err)
 	}
