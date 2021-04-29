@@ -11,7 +11,6 @@ spec:
   annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: chaos-admin
-  monitoring: false
   jobCleanUpPolicy: 'retain'
   experiments:
     - name: k8-pod-delete

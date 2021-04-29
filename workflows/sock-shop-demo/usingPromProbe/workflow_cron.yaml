@@ -48,7 +48,7 @@ spec:
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop"] #for resilient provide type flagName as resilient(-typeName=resilient)
 
     - name: install-chaos-experiments
       container:
@@ -76,7 +76,6 @@ spec:
                     applabel: 'name=carts'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -114,7 +113,6 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             #number of cpu cores to be consumed
                             #verify the resources the app has been launched with
@@ -147,7 +145,6 @@ spec:
                     applabel: 'name=orders'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  monitoring: false
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -185,7 +182,6 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: MEMORY_CONSUMPTION
                               value: '500'
@@ -218,7 +214,6 @@ spec:
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
-                  monitoring: true
                   jobCleanUpPolicy: 'retain'
                   components:
                     runner:
@@ -257,7 +252,6 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'
@@ -289,7 +283,6 @@ spec:
                     applabel: 'name=user-db'
                     appkind: 'statefulset'
                   jobCleanUpPolicy: retain
-                  monitoring: true
                   annotationCheck: 'false'
                   engineState: 'active'
                   auxiliaryAppInfo: ''
@@ -331,7 +324,6 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30' 
@@ -367,7 +359,6 @@ spec:
                   annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
-                  monitoring: false
                   jobCleanUpPolicy: 'retain'
                   components:
                     runner:
@@ -406,7 +397,6 @@ spec:
                             interval: 1
                             retry: 2
                         components:
-                          experimentImage: "litmuschaos/go-runner:latest"
                           env:
                             - name: FILL_PERCENTAGE
                               value: '100'
@@ -421,17 +411,17 @@ spec:
     - name: delete-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete"]
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete", "-app=sock-shop"]
 
     - name: load-test
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest"]
+        args: ["-namespace=loadtest", "-app=loadtest"]
 
     - name: delete-loadtest
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest","-operation=delete"]
+        args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
     
     - name: revert-chaos
       container:

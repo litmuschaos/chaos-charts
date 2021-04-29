@@ -64,7 +64,7 @@ spec:
                             - "patch"
                             - "update"
                             - "delete"
-                      image: "litmuschaos/go-runner:ci"
+                      image: "litmuschaos/go-runner:latest"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -124,7 +124,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    monitoring: false
                     annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -132,7 +131,6 @@ spec:
                       - name: pod-cpu-hog
                         spec:
                           components:
-                            experimentImage: "litmuschaos/go-runner:ci"
                             env:
                               - name: TARGET_CONTAINER
                                 value: 'kube-proxy'
