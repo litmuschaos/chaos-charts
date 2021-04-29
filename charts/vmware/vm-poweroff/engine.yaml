@@ -10,22 +10,22 @@ spec:
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ''
-  chaosServiceAccount: vm-delete-sa
+  chaosServiceAccount: vm-poweroff-sa
   monitoring: false
   # It can be delete/retain
-  jobCleanUpPolicy: 'retain'
+  jobCleanUpPolicy: 'delete'
   experiments:
-    - name: vm-delete
+    - name: vm-poweroff
       spec:
         components:
           env:
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
+              value: '30'
 
-            # provide the kill count
+            # provide vm moid
             - name: APP_VM_MOID
-              value: ''              
+              value: ''
 
             - name: VCENTERSERVER
               valueFrom:
@@ -44,5 +44,4 @@ spec:
                 secretKeyRef:
                   name: vcenter-secret
                   key: VCENTERPASS
-
 

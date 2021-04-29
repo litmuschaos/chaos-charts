@@ -1,8 +1,8 @@
-packageName: vm-delete
+packageName: vm-poweroff
 experiments:
-  - name: vm-delete
-    CSV: vm-delete.chartserviceversion.yaml
-    desc: "vm-delete"
-  - name: vm-delete
-    CSV: vm-delete.chartserviceversion.yaml
-    desc: "vm-delete"
+  - name: vm-poweroff
+    CSV: vm-poweroff.chartserviceversion.yaml
+    desc: "vm-poweroff"
+  - name: vm-poweroff
+    CSV: vm-poweroff.chartserviceversion.yaml
+    desc: "vm-poweroff"

@@ -1,7 +1,7 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2021-04-06T10:28:08Z
+  createdAt: 2021-04-29T10:28:08Z
   name: vmware
   version: 0.1.0
   annotations:
@@ -25,7 +25,7 @@ spec:
     - name: Kubernetes Website
       url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus/tree/master/experiments/vm-delete
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vm-poweroff
     - name: Community Slack
       url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
   icon:

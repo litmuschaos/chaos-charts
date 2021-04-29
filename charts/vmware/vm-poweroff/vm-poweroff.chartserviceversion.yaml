@@ -1,8 +1,8 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2021-04-06T10:28:08Z
-  name: vm-delete
+  createdAt: 2021-04-29T10:28:08Z
+  name: vm-poweroff
   annotations:
     categories: vmware
     vendor: Wipro
@@ -28,12 +28,12 @@ spec:
     app.kubernetes.io/version: latest
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/vmware/vm-delete
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/vm-delete
+      url: https://docs.litmuschaos.io/docs/vm-poweroff
     - name: Video
       url:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/vmware/vm-delete/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/vmware/vm-poweroff/experiment.yaml

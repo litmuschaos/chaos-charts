@@ -1,0 +1,71 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    stops a vm for a certain chaos duration
+kind: ChaosExperiment
+metadata:
+  name: vm-poweroff
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "update"
+          - "patch"
+          - "delete"
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name vm-poweroff
+    command:
+    - /bin/bash
+    env:
+
+    - name: VCENTERSERVER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERSERVER
+
+    - name: VCENTERUSER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERUSER
+
+    - name: VCENTERPASS
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERPASS
+
+    # provide the vm moid
+    - name: APP_VM_MOID
+      value: ''
+          
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+
+    - name: LIB
+      value: 'litmus'
+
+    - name: RAMP_TIME
+      value: ''
+
+    labels:
+      experiment: vm-poweroff
+
