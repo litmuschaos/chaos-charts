@@ -12,7 +12,7 @@ spec:
   categoryDescription: >
     VMware contains chaos to disrupt the state of vmware resources
   experiments:
-    - vm-delete
+    - vm-poweroff
   keywords:
     - Kubernetes
     - vmware
@@ -25,7 +25,7 @@ spec:
     - name: Kubernetes Website
       url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vm-poweroff
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware
     - name: Community Slack
       url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
   icon:

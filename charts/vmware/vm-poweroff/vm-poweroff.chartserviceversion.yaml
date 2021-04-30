@@ -8,7 +8,7 @@ metadata:
     vendor: Wipro
     support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
-  displayName: vm-delete
+  displayName: vm-poweroff
   categoryDescription: |
      Stops the vmware vm for a certain chaos duration
   keywords:

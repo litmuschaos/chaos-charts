@@ -3,6 +3,3 @@ experiments:
   - name: vm-poweroff
     CSV: vm-poweroff.chartserviceversion.yaml
     desc: "vm-poweroff"
-  - name: vm-poweroff
-    CSV: vm-poweroff.chartserviceversion.yaml
-    desc: "vm-poweroff"
