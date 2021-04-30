@@ -15,7 +15,7 @@ jobs:
       # Install golang
       - uses: actions/setup-go@v2
         with:
-          go-version: '^1.13.1'
+          go-version: '1.14'
 
       # Setup gopath
       - name: Setting up GOPATH 
@@ -35,12 +35,9 @@ jobs:
           export PATH=$PATH:$(go env GOPATH)/bin
           cd ${GOPATH}/src/github.com/${{github.repository}}
           make combineExpCR
-        shell: bash
 
       # Commit and push the changes from the chart directory 
       - name: Commit and Push the changes
         run: |
           cd ${GOPATH}/src/github.com/${{github.repository}}
           make push
-        shell: bash
-
