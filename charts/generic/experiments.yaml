@@ -9,46 +9,11 @@ metadata:
     name: k8-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
     permissions:
-<<<<<<< HEAD
-    - apiGroups:
-        - ""
-        - "batch"
-        - "apps"
-        - "apps.openshift.io"
-        - "argoproj.io"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - "replicationcontrollers"
-        - "deployments"
-        - "statefulsets"
-        - "daemonsets"
-        - "replicasets"
-        - "deploymentconfigs"
-        - "rollouts"
-        - "pods/exec"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.3"
-    imagePullPolicy: Always
-=======
       - apiGroups:
           - ""
           - "apps"
@@ -80,7 +45,6 @@ spec:
       name: k8-service-kill    
       app.kubernetes.io/part-of: litmus
     image: "litmuschaos/chaostoolkit:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
@@ -99,22 +63,7 @@ spec:
     - name: LABEL_NAME
       value: ''
 
-<<<<<<< HEAD
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3'
-
-    # provide the name of container runtime
-    # for litmus LIB, it supports docker, containerd, crio
-    # for pumba LIB, it supports docker only
-    - name: CONTAINER_RUNTIME
-      value: 'docker'
-
-    # provide the destination ips
-    # chaos injection will be triggered for these destination ips
-    - name: DESTINATION_IPS
-=======
     - name: APP_ENDPOINT
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
       value: ''
 
     - name: PERCENTAGE
@@ -129,14 +78,6 @@ spec:
     - name: TEST_NAMESPACE
       value: 'default'
 
-<<<<<<< HEAD
-    labels:
-      name: pod-network-duplication
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-=======
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -150,7 +91,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -187,18 +128,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:1.13.3"
-=======
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -225,15 +155,7 @@ spec:
       value: ''
 
     - name: LIB
-<<<<<<< HEAD
-      value: 'litmus'
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
-=======
       value: 'litmus'    
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
     - name: TARGET_PODS
       value: ''
@@ -247,7 +169,7 @@ spec:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -261,7 +183,7 @@ metadata:
     name: pod-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -297,19 +219,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
-    image: "litmuschaos/go-runner:1.13.3"
-=======
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -331,79 +241,15 @@ spec:
     ## Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-<<<<<<< HEAD
-      
-    labels:
-      name: node-drain
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Kills the docker service on the application node to check the resiliency.
-kind: ChaosExperiment
-metadata:
-  name: docker-service-kill
-  labels:
-    name: docker-service-kill
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/ansible-runner:ci"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ansible-playbook ./experiments/generic/docker_service_kill/docker_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-=======
 
     ## env var that describes the library used to execute the chaos
     ## default: litmus. Supported values: litmus, pumba    
     - name: LIB
       value: 'litmus'
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'  
+      value: 'litmuschaos/go-runner:1.13.4'  
 
     ## It is used in pumba lib only    
     - name: STRESS_IMAGE
@@ -426,7 +272,7 @@ spec:
       name: pod-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -440,7 +286,7 @@ metadata:
     name: disk-fill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -476,20 +322,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
-          - "update"
-    image: "litmuschaos/go-runner:1.13.3"
-=======
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -516,91 +349,23 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide the data block size
+    # supported unit is KB
+    - name: DATA_BLOCK_SIZE
+      value: '256'
+
     - name: TARGET_PODS
       value: ''
 
-<<<<<<< HEAD
-    # set taint label & effect
-    # key=value:effect or key:effect
-    - name: TAINTS
-      value: '' 
-
-    labels:
-      name: node-taint
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Scale the application replicas and test the node autoscaling on cluster
-kind: ChaosExperiment
-metadata:
-  name: pod-autoscaler
-  labels:
-    name: pod-autoscaler
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "deployments"
-          - "statefulsets"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "create"
-          - "patch"
-          - "update"
-    image: "litmuschaos/go-runner:1.13.3"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-autoscaler
-    command:
-    - /bin/bash
-    env:
-=======
     - name: EPHEMERAL_STORAGE_MEBIBYTES
       value: ''
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.13.4'
 
     # Provide the container runtime path
     # Default set to docker container path
@@ -616,7 +381,7 @@ spec:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -630,7 +395,7 @@ metadata:
     name: pod-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -666,7 +431,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -680,7 +445,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -738,7 +503,7 @@ spec:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -752,7 +517,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -785,7 +550,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -810,6 +575,9 @@ spec:
     - name: TARGET_NODES
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -817,7 +585,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -832,7 +600,7 @@ spec:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -846,7 +614,7 @@ metadata:
     name: k8-pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -871,10 +639,6 @@ spec:
           - "patch"
           - "update"
           - "delete"
-<<<<<<< HEAD
-    image: "litmuschaos/ansible-runner:1.13.3"
-    imagePullPolicy: Always
-=======
       - apiGroups:
           - ""
         resources:
@@ -883,7 +647,6 @@ spec:
           - "get"
           - "list"
     image: "litmuschaos/chaostoolkit:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     args:
     - -c
     - python /app/chaos/chaostest/kubernetes/k8_wrapper.py; exit 0
@@ -922,14 +685,7 @@ spec:
       name: k8-pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
-      app.kubernetes.io/version: 1.13.3
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-=======
-      app.kubernetes.io/version: latest
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+      app.kubernetes.io/version: 1.13.4
 
 ---
 ---
@@ -944,7 +700,7 @@ metadata:
     name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -973,9 +729,6 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
       - apiGroups:
           - ""
         resources: 
@@ -984,8 +737,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -993,53 +745,12 @@ spec:
     command:
     - /bin/bash
     env:
-<<<<<<< HEAD
-      - name: TOTAL_CHAOS_DURATION
-        value: '120'
-
-      ## specify the size as percentage of free space on the file system
-      ## default value 90 (in percentage)
-      - name: FILESYSTEM_UTILIZATION_PERCENTAGE
-        value: '10'
-
-      ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
-      ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
-      - name: FILESYSTEM_UTILIZATION_BYTES
-        value: ''
-
-      ## Total number of workers default value is 4
-      - name: NUMBER_OF_WORKERS
-        value: '4'    
-
-      ## Percentage of total pods to target
-      - name: PODS_AFFECTED_PERC
-        value: ''    
-
-      # provide volume mount path
-      - name: VOLUME_MOUNT_PATH
-        value: ''
-
-      ## specify the comma separated target pods
-      - name: TARGET_PODS
-        value: ''    
-
-      # Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''
-
-      # Provide the LIB here
-      # Only pumba supported
-      - name: LIB
-        value: 'pumba'
-
-      # provide lib image
-      - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:1.13.3'
-=======
     
     - name: TARGET_NODE
       value: ''
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+
+    - name: NODE_LABEL
+      value: ''
 
     - name: TOTAL_CHAOS_DURATION
       value: '60'
@@ -1057,7 +768,7 @@ spec:
       name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1071,7 +782,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1097,9 +808,6 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
       - apiGroups:
           - ""
         resources: 
@@ -1107,8 +815,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1116,27 +823,7 @@ spec:
     command:
     - /bin/bash
     env:
-<<<<<<< HEAD
-    
-    - name: TARGET_CONTAINER
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
-
-    - name: NETWORK_INTERFACE
-      value: 'eth0'
-
-    - name: TC_IMAGE
-      value: 'gaiadocker/iproute2'
-
-    - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
-      value: '100' #in PERCENTAGE
-
-=======
    
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
@@ -1146,6 +833,9 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    - name: NODE_LABEL
+      value: ''
 
     # provide lib image
     - name: LIB_IMAGE
@@ -1159,7 +849,7 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1173,7 +863,7 @@ metadata:
     name: node-restart
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1207,7 +897,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1232,10 +922,13 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
+      value: "litmuschaos/go-runner:1.13.4"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
+      value: ''
+
+    - name: NODE_LABEL
       value: ''
 
     # ENTER THE TARGET NODE IP
@@ -1246,14 +939,10 @@ spec:
       name: node-restart
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
-      app.kubernetes.io/version: 1.13.3
-=======
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
     secrets:
       - name: id-rsa
         mountPath: /mnt/
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1267,7 +956,7 @@ metadata:
     name: pod-dns-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -1303,12 +992,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-    imagePullPolicy: Always
-=======
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     args:
     - -c
     - ./experiments -name pod-dns-chaos
@@ -1321,7 +1005,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
+        value: 'litmuschaos/go-runner:1.13.4'
 
       - name: TOTAL_CHAOS_DURATION
         value: '60' # in seconds
@@ -1345,15 +1029,10 @@ spec:
       - name: SOCKET_PATH
         value: '/var/run/docker.sock'
 
-<<<<<<< HEAD
-    - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:1.13.3' 
-=======
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
         value: 'parallel'
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
       # list of the target hostnames or kewywords eg. '["litmuschaos","chaosnative.io"]' . If empty all hostnames are targets
       - name: TARGET_HOSTNAMES
@@ -1371,7 +1050,7 @@ spec:
       experiment: pod-dns-chaos
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 
 ---
@@ -1386,7 +1065,7 @@ metadata:
     name: pod-autoscaler
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1422,14 +1101,10 @@ spec:
         verbs:
           - "get"
           - "list"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
           - "create"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1453,35 +1128,12 @@ spec:
     # ONLY LITMUS SUPPORTED
     - name: LIB
       value: 'litmus'
-<<<<<<< HEAD
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:1.13.3"
-
-    # ENTER THE TARGET NODE NAME
-    - name: TARGET_NODE
-      value: ''
-
-    # ENTER THE TARGET NODE IP
-    - name: TARGET_NODE_IP
-      value: ''
-
-=======
   
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     labels:
       name: pod-autoscaler
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
-      app.kubernetes.io/version: 1.13.3
-    secrets:
-      - name: id-rsa
-        mountPath: /mnt/
-=======
-      app.kubernetes.io/version: latest
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1495,7 +1147,7 @@ metadata:
     name: node-poweroff
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1529,7 +1181,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1560,14 +1212,13 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-<<<<<<< HEAD
-      value: 'litmuschaos/go-runner:1.13.3' 
-=======
-      value: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+      value: "litmuschaos/go-runner:1.13.4"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
+      value: ''
+
+    - name: NODE_LABEL
       value: ''
 
     # ENTER THE TARGET NODE IP
@@ -1578,14 +1229,10 @@ spec:
       name: node-poweroff
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
-      app.kubernetes.io/version: 1.13.3
-=======
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
     secrets:
       - name: id-rsa
         mountPath: /mnt/
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1599,7 +1246,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1625,9 +1272,6 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
       - apiGroups:
           - ""
         resources: 
@@ -1635,8 +1279,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1672,6 +1315,9 @@ spec:
 
     ## enter the comma separated target nodes name
     - name: TARGET_NODES
+      value: ''
+
+    - name: NODE_LABEL
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -1685,11 +1331,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-<<<<<<< HEAD
-      value: 'litmuschaos/go-runner:1.13.3'
-=======
-      value: 'litmuschaos/go-runner:latest' 
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -1704,7 +1346,7 @@ spec:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 ---
@@ -1719,7 +1361,7 @@ metadata:
     name: pod-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -1755,7 +1397,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1783,15 +1425,9 @@ spec:
       - name: LIB
         value: 'litmus'
 
-<<<<<<< HEAD
-    ## It is used in pumba lib only    
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3'  
-=======
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+        value: 'litmuschaos/go-runner:1.13.4'
 
       ## It is used in pumba lib only    
       - name: STRESS_IMAGE
@@ -1814,7 +1450,7 @@ spec:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 ---
@@ -1829,7 +1465,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -1858,9 +1494,6 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
       - apiGroups:
           - ""
         resources: 
@@ -1870,8 +1503,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -1883,32 +1515,14 @@ spec:
     - name: TARGET_NODE
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
-<<<<<<< HEAD
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
-
-    - name: TC_IMAGE
-      value: 'gaiadocker/iproute2'
-
-    - name: NETWORK_LATENCY
-      value: '2000' #in ms
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # Time period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # lib can be litmus or pumba
-=======
     # Provide the LIB here
     # Only litmus supported
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     - name: LIB
       value: 'litmus'
 
@@ -1925,7 +1539,7 @@ spec:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1938,7 +1552,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -1974,18 +1588,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-<<<<<<< HEAD
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-    image: "litmuschaos/go-runner:1.13.3"
-=======
-    image: "litmuschaos/go-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2034,7 +1637,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -2045,7 +1648,7 @@ spec:
       name: container-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2059,7 +1662,7 @@ metadata:
     name: pod-network-corruption
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -2095,7 +1698,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2109,7 +1712,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -2167,7 +1770,7 @@ spec:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2181,7 +1784,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -2195,98 +1798,6 @@ spec:
           - "jobs"
           - "pods"
           - "pods/log"
-<<<<<<< HEAD
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.3"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-delete
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '15'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: FORCE
-      value: 'true'
-
-    - name: CHAOS_INTERVAL
-      value: '5'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: LIB
-      value: 'litmus'    
-
-    - name: TARGET_PODS
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-delete
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    poweroff node
-kind: ChaosExperiment
-metadata:
-  name: node-poweroff
-  labels:
-    name: node-poweroff
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-=======
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
           - "events"
           - "chaosengines"
           - "chaosexperiments"
@@ -2305,11 +1816,7 @@ spec:
         verbs:
           - "get"
           - "list"
-<<<<<<< HEAD
-    image: "litmuschaos/go-runner:1.13.3"
-=======
     image: "litmuschaos/ansible-runner:ci"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     imagePullPolicy: Always
     args:
     - -c
@@ -2329,44 +1836,18 @@ spec:
 
     - name: LIB
       value: 'litmus'
-<<<<<<< HEAD
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:1.13.3"
-
-    # ENTER THE TARGET NODE NAME
-    - name: TARGET_NODE
-      value: ''
-
-    # ENTER THE TARGET NODE IP
-    - name: TARGET_NODE_IP
-      value: ''
-
-=======
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     labels:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
-      app.kubernetes.io/version: 1.13.3
-    secrets:
-      - name: id-rsa
-        mountPath: /mnt/
-=======
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
 
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-<<<<<<< HEAD
-    Deletes a pod belonging to a deployment/statefulset/daemonset
-=======
     IO stress on a app pods belonging to an app deployment
 kind: ChaosExperiment
 metadata:
@@ -2375,7 +1856,7 @@ metadata:
     name: pod-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -2411,7 +1892,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2459,7 +1940,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
+        value: 'litmuschaos/go-runner:1.13.4'
 
       # provide the socket file path
       # it is used in pumba lib
@@ -2475,14 +1956,13 @@ spec:
       name: pod-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
     Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 kind: ChaosExperiment
 metadata:
   name: disk-loss
@@ -2490,7 +1970,7 @@ metadata:
     name: disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -2564,7 +2044,7 @@ spec:
       name: disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -2581,7 +2061,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -2617,7 +2097,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2634,7 +2114,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -2642,14 +2122,8 @@ spec:
     - name: NETWORK_LATENCY
       value: '2000' #in ms
 
-<<<<<<< HEAD
-      ## It is used in pumba lib only    
-      - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:1.13.3'
-=======
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
     # Time period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -2695,7 +2169,7 @@ spec:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2709,7 +2183,7 @@ metadata:
     name: node-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -2742,7 +2216,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2771,6 +2245,9 @@ spec:
     - name: TARGET_NODES
       value: ''    
 
+    - name: NODE_LABEL
+      value: ''
+
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
@@ -2782,7 +2259,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -2797,7 +2274,7 @@ spec:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2811,7 +2288,7 @@ metadata:
     name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -2847,7 +2324,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -2885,7 +2362,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:1.13.4'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
@@ -2916,6 +2393,6 @@ spec:
       name: pod-network-duplication
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 ---

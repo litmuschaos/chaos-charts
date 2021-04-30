@@ -4,103 +4,12 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-<<<<<<< HEAD
-  name: ec2-terminate-by-tag
-  labels:
-    name: ec2-terminate-by-tag
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "pods/exec"
-          - "secrets"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-    image: "litmuschaos/go-runner:1.13.3"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name ec2-terminate-by-tag
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '30'
-
-    - name: CHAOS_INTERVAL
-      value: '30'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'
-
-    - name: REGION
-      value: ''
-
-    # Target the percentage of instance filtered from tag
-    - name: INSTANCE_AFFECTED_PERC
-      value: ''
-
-    - name: SEQUENCE
-      value: 'parallel'      
-
-    # Provide the path of aws credentials mounted from secret  
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
-    labels:
-      name: ec2-terminate-by-tag
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Detaching an ebs volume from ec2 instance.
-kind: ChaosExperiment
-metadata:
-=======
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
   name: ec2-terminate-by-id
   labels:
     name: ec2-terminate-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -126,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -149,7 +58,7 @@ spec:
       value: 'disable'      
 
     # Instance ID of the target ec2 instance
-    # Multiple IDs can also be provided as comma  values ex: id1,id2
+    # Multiple IDs can also be provided as comma separated values ex: id1,id2
     - name: EC2_INSTANCE_ID
       value: ''
 
@@ -172,7 +81,7 @@ spec:
       name: ec2-terminate-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -189,7 +98,7 @@ metadata:
     name: k8-aws-ec2-terminate
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Namespaced
@@ -288,7 +197,7 @@ spec:
       name: k8-aws-ec2-terminate
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
 
 
 ---
@@ -303,7 +212,7 @@ metadata:
     name: ebs-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -329,7 +238,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -369,7 +278,7 @@ spec:
       name: ebs-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -386,7 +295,7 @@ metadata:
     name: ec2-terminate-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -412,7 +321,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -457,7 +366,7 @@ spec:
       name: ec2-terminate-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.4
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
