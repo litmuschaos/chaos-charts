@@ -22,14 +22,14 @@ spec:
             template: install-chaos-experiments
           - name: load-test
             template: load-test 
-        - - name: pod-memory-hog
-            template: pod-memory-hog
-          - name: pod-cpu-hog
+        - - name: pod-cpu-hog
             template: pod-cpu-hog
         - - name: pod-delete
             template: pod-delete
         - - name: pod-network-loss
             template: pod-network-loss
+        - - name: pod-memory-hog
+            template: pod-memory-hog
         - - name: disk-fill
             template: disk-fill 
         - - name: revert-chaos
