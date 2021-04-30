@@ -58,7 +58,7 @@ spec:
       value: 'disable'      
 
     # Instance ID of the target ec2 instance
-    # Multiple IDs can also be provided as comma  values ex: id1,id2
+    # Multiple IDs can also be provided as comma separated values ex: id1,id2
     - name: EC2_INSTANCE_ID
       value: ''
 

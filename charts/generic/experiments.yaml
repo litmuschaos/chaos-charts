@@ -349,6 +349,11 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide the data block size
+    # supported unit is KB
+    - name: DATA_BLOCK_SIZE
+      value: '256'
+
     - name: TARGET_PODS
       value: ''
 
@@ -570,6 +575,9 @@ spec:
     - name: TARGET_NODES
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
@@ -741,6 +749,9 @@ spec:
     - name: TARGET_NODE
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     - name: TOTAL_CHAOS_DURATION
       value: '60'
 
@@ -822,6 +833,9 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    - name: NODE_LABEL
+      value: ''
 
     # provide lib image
     - name: LIB_IMAGE
@@ -912,6 +926,9 @@ spec:
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
+      value: ''
+
+    - name: NODE_LABEL
       value: ''
 
     # ENTER THE TARGET NODE IP
@@ -1201,6 +1218,9 @@ spec:
     - name: TARGET_NODE
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     # ENTER THE TARGET NODE IP
     - name: TARGET_NODE_IP
       value: ''
@@ -1295,6 +1315,9 @@ spec:
 
     ## enter the comma separated target nodes name
     - name: TARGET_NODES
+      value: ''
+
+    - name: NODE_LABEL
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -1490,6 +1513,9 @@ spec:
     env:
 
     - name: TARGET_NODE
+      value: ''
+
+    - name: NODE_LABEL
       value: ''
 
     - name: TOTAL_CHAOS_DURATION
@@ -2218,6 +2244,9 @@ spec:
     # ENTER THE COMMA SEPARATED TARGET NODES NAME
     - name: TARGET_NODES
       value: ''    
+
+    - name: NODE_LABEL
+      value: ''
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
