@@ -74,6 +74,9 @@ spec:
     - name: TARGET_NODE
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     # ENTER THE TARGET NODE IP
     - name: TARGET_NODE_IP
       value: ''

@@ -61,6 +61,9 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    - name: NODE_LABEL
+      value: ''
+
     # provide lib image
     - name: LIB_IMAGE
       value: 'ubuntu:16.04' 

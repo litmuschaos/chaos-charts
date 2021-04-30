@@ -67,6 +67,9 @@ spec:
     - name: TARGET_NODES
       value: ''
 
+    - name: NODE_LABEL
+      value: ''
+
     # PROVIDE THE LIB HERE
     # ONLY LITMUS SUPPORTED
     - name: LIB
