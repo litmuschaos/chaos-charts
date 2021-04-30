@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-04-29T10:28:08Z
+  name: vmware
+  version: 0.1.0
+  annotations:
+    categories: vmware
+    chartDescription: Injects chaos on vmware components
+spec:
+  displayName: VMware Chaos
+  categoryDescription: >
+    VMware contains chaos to disrupt the state of vmware resources
+  experiments:
+    - vm-poweroff
+  keywords:
+    - Kubernetes
+    - vmware
+  maintainers:
+    - name: Delphine Joyneer
+      email: golkonda.joyneer@wipro.com
+  provider:
+    name: Wipro
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware
+    - name: Community Slack
+      url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/vmware/experiments.yaml
