@@ -72,6 +72,11 @@ spec:
     - name: LIB
       value: 'litmus'
 
+    # provide the data block size
+    # supported unit is KB
+    - name: DATA_BLOCK_SIZE
+      value: '256'
+
     - name: TARGET_PODS
       value: ''
 
