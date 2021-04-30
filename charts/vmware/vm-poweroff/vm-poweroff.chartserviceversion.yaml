@@ -10,7 +10,11 @@ metadata:
 spec:
   displayName: vm-poweroff
   categoryDescription: |
-     Stops the vmware vm for a certain chaos duration
+    This experiment causes powerOff of a target vmware instance for a certain chaos duration.
+    - Causes powerOff of the vmware instance provided by Moid of the instance.
+    - It helps to check the performance of the application/services on the instance.
+    - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon)
+
   keywords:
     - Kubernetes
     - Vmware
