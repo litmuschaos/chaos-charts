@@ -5,6 +5,11 @@ description:
 kind: ChaosExperiment
 metadata:
   name: vm-poweroff
+  labels:
+    name: vm-poweroff
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster

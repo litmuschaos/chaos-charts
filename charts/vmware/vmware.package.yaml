@@ -1,4 +1,4 @@
-packageName: vm-poweroff
+packageName: vmware
 experiments:
   - name: vm-poweroff
     CSV: vm-poweroff.chartserviceversion.yaml
