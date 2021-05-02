@@ -64,11 +64,7 @@ spec:
                             - "patch"
                             - "update"
                             - "delete"
-<<<<<<< HEAD
                       image: "litmuschaos/go-runner:1.13.3"
-=======
-                      image: "litmuschaos/go-runner:latest"
->>>>>>> 204814e... chore(psp): removed runAsUser from psp and update the go-runner image in workflows (#446)
                       imagePullPolicy: Always
                       args:
                       - -c
