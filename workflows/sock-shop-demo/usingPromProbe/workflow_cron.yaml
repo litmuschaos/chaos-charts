@@ -26,18 +26,16 @@ spec:
             template: install-chaos-experiments
           - name: load-test
             template: load-test 
-        - - name: pod-memory-hog
-            template: pod-memory-hog
-          - name: pod-cpu-hog
+        - - name: pod-cpu-hog
             template: pod-cpu-hog
-          - name: pod-network-loss
-            template: pod-network-loss   
         - - name: pod-delete
             template: pod-delete
         - - name: pod-network-loss
             template: pod-network-loss
+        - - name: pod-memory-hog
+            template: pod-memory-hog
         - - name: disk-fill
-            template: disk-fill   
+            template: disk-fill 
         - - name: revert-chaos
             template: revert-chaos
         #  - name: delete-application
@@ -48,7 +46,7 @@ spec:
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop"] #for resilient provide type flagName as resilient(-typeName=resilient)
+        args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
 
     - name: install-chaos-experiments
       container:

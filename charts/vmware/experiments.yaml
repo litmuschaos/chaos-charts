@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Kills the kubelet service on the application node to check the resiliency.
+    stops a vm for a certain chaos duration
 kind: ChaosExperiment
 metadata:
-  name: kubelet-service-kill
+  name: vm-poweroff
   labels:
-    name: kubelet-service-kill
+    name: vm-poweroff
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: 1.13.4
@@ -20,10 +20,11 @@ spec:
           - "litmuschaos.io"
         resources:
           - "jobs"
-          - "pods"
+          - "events"
           - "pods/log"
           - "pods/exec"
-          - "events"
+          - "secrets"            
+          - "pods"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -31,49 +32,53 @@ spec:
           - "create"
           - "list"
           - "get"
-          - "patch"
           - "update"
+          - "patch"
           - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/go-runner:1.13.4"
-    imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name kubelet-service-kill
+    - ./experiments -name vm-poweroff
     command:
     - /bin/bash
     env:
-   
-    - name: TOTAL_CHAOS_DURATION
-      value: '90' # in seconds
 
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
+    - name: VCENTERSERVER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERSERVER
+
+    - name: VCENTERUSER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERUSER
+
+    - name: VCENTERPASS
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERPASS
+
+    # provide the vm moid
+    - name: APP_VM_MOID
       value: ''
+          
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
 
     - name: LIB
       value: 'litmus'
 
-    - name: NODE_LABEL
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'ubuntu:16.04' 
-            
-    # provide the target node name
-    - name: TARGET_NODE
+    - name: RAMP_TIME
       value: ''
 
     labels:
-      name: kubelet-service-kill
+      experiment: vm-poweroff
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 1.13.4
+
+---

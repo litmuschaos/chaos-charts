@@ -9,7 +9,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.4
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.3"
+    image: "litmuschaos/go-runner:1.13.4"
     imagePullPolicy: Always
     args:
     - -c
@@ -78,6 +78,9 @@ spec:
 
     ## enter the comma separated target nodes name
     - name: TARGET_NODES
+      value: ''
+
+    - name: NODE_LABEL
       value: ''    
 
     # Period to wait before and after injection of chaos in sec
@@ -91,7 +94,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.3' 
+      value: 'litmuschaos/go-runner:1.13.4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -106,4 +109,4 @@ spec:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.4
