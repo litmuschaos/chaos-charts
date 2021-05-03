@@ -10,13 +10,8 @@ metadata:
     name: openebs-target-container-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-pool-network-delay
-=======
-    app.kubernetes.io/version: latest
   name: openebs-target-container-failure
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -48,12 +43,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-<<<<<<< HEAD
-          - "delete"
     image: "litmuschaos/ansible-runner:1.13.3"
-=======
-    image: "litmuschaos/ansible-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     imagePullPolicy: Always
     args:
     - -c
@@ -117,14 +107,10 @@ spec:
       name: openebs-target-container-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
       app.kubernetes.io/version: 1.13.3
-=======
-      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -138,13 +124,8 @@ metadata:
     name: openebs-target-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-target-container-failure
-=======
-    app.kubernetes.io/version: latest
   name: openebs-target-network-loss
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -334,122 +315,6 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-<<<<<<< HEAD
-    OpenEBS Pool Disk Loss contains chaos to disrupt state of infra resources. Experiments can inject disk loss against openEBS pool.
-kind: ChaosExperiment
-metadata:
-  labels:
-    litmuschaos.io/name: openebs
-    name: openebs-pool-disk-loss
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
-  name: openebs-pool-disk-loss
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "apps"
-          - "litmuschaos.io"
-          - "batch"
-          - "extensions"
-          - "storage.k8s.io"
-          - "openebs.io"
-        resources:
-          - "pods"
-          - "jobs"
-          - "pods/log"
-          - "events"
-          - "pods/exec"
-          - "cstorpools"
-          - "configmaps"
-          - "secrets"
-          - "storageclasses"
-          - "persistentvolumes"
-          - "persistentvolumeclaims"
-          - "cstorvolumereplicas"
-          - "chaosexperiments"
-          - "chaosresults"
-          - "chaosengines"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-    image: "litmuschaos/ansible-runner:1.13.3"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ansible-playbook ./experiments/openebs/openebs-pool-disk-loss/openebs_pool_disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
-    command:
-    - /bin/bash
-    env:
-      - name: ANSIBLE_STDOUT_CALLBACK
-        value: 'default'
-
-      - name: TOTAL_CHAOS_DURATION
-        value: '60'
-
-      # Period to wait before injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''
-
-       # GKE and AWS supported
-      - name: CLOUD_PLATFORM
-        value: 'GKE'
-
-      - name: PROJECT_ID 
-        value: ''
-
-      - name: NODE_NAME
-        value: ''
-
-      - name: DISK_NAME
-        value: ''
-
-      - name: ZONE_NAME
-        value: ''
-
-      - name: DEVICE_NAME
-        value: ''
-        
-      - name: LIVENESS_APP_LABEL
-        value: ''
-
-      - name: LIVENESS_APP_NAMESPACE
-        value: ''
-
-      - name: DATA_PERSISTENCE
-        value: ''
-
-      - name: OPENEBS_NAMESPACE
-        value: 'openebs'
-        
-    labels:
-      name: openebs-pool-disk-loss
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
-
-    configmaps:
-    - name: openebs-pool-disk-loss
-      mountPath: /mnt/
-
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-
----
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-=======
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     Kill all openebs control plane pod and check if gets scheduled again
 kind: ChaosExperiment
 metadata:
@@ -539,13 +404,8 @@ metadata:
     name: openebs-pool-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-pool-container-failure
-=======
-    app.kubernetes.io/version: latest
   name: openebs-pool-pod-failure
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -580,9 +440,6 @@ spec:
           - "list"
           - "patch"
           - "update"
-<<<<<<< HEAD
-    image: "litmuschaos/ansible-runner:1.13.3"
-=======
       - apiGroups:
           - ""
         resources:
@@ -590,8 +447,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -743,13 +599,8 @@ metadata:
     name: openebs-pool-disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-pool-pod-failure
-=======
-    app.kubernetes.io/version: latest
   name: openebs-pool-disk-loss
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -785,7 +636,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -838,7 +689,7 @@ spec:
       name: openebs-pool-disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 1.13.3
 
     configmaps:
     - name: openebs-pool-disk-loss
@@ -861,7 +712,7 @@ metadata:
     name: openebs-target-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 1.13.3
   name: openebs-target-pod-failure
 spec:
   definition:
@@ -968,13 +819,8 @@ metadata:
     name: openebs-pool-container-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-pool-network-loss
-=======
-    app.kubernetes.io/version: latest
   name: openebs-pool-container-failure
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -1054,14 +900,10 @@ spec:
       name: openebs-pool-container-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
       app.kubernetes.io/version: 1.13.3
-=======
-      app.kubernetes.io/version: latest
     #configmaps:
     #- name: openebs-pool-container-failure
     #  mountPath: /mnt
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1075,13 +917,8 @@ metadata:
     name: openebs-pool-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-target-pod-failure
-=======
-    app.kubernetes.io/version: latest
   name: openebs-pool-network-loss
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -1119,18 +956,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-<<<<<<< HEAD
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
     image: "litmuschaos/ansible-runner:1.13.3"
-=======
-    image: "litmuschaos/ansible-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
     imagePullPolicy: Always
     args:
     - -c
@@ -1171,14 +997,7 @@ spec:
       name: openebs-pool-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
       app.kubernetes.io/version: 1.13.3
-    #configmaps:
-    #- name: openebs-target-pod-failure
-    #  mountPath: /mnt
-=======
-      app.kubernetes.io/version: latest
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1193,13 +1012,8 @@ metadata:
     name: openebs-pool-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-<<<<<<< HEAD
     app.kubernetes.io/version: 1.13.3
-  name: openebs-target-network-loss
-=======
-    app.kubernetes.io/version: latest
   name: openebs-pool-network-delay
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 spec:
   definition:
     scope: Cluster
@@ -1235,12 +1049,8 @@ spec:
           - "list"
           - "patch"
           - "update"
-<<<<<<< HEAD
-    image: "litmuschaos/ansible-runner:1.13.3"
-=======
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
+    image: "litmuschaos/ansible-runner:1.13.3"
     imagePullPolicy: Always
     args:
     - -c
@@ -1282,13 +1092,6 @@ spec:
       name: openebs-pool-network-delay
       app.kubernetes.io/part-of: litmus 
       app.kubernetes.io/component: experiment-job
-<<<<<<< HEAD
       app.kubernetes.io/version: 1.13.3
-    #configmaps:
-    #- name: openebs-target-network-loss
-    #  mountPath: /mnt
-=======
-      app.kubernetes.io/version: latest
->>>>>>> 2648198...  799504888: version upgraded for chaos-charts
 
 ---
