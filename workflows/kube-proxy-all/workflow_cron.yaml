@@ -57,7 +57,6 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
                     experiments:
@@ -92,7 +91,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
                     experiments:
@@ -130,7 +128,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
                     experiments:
@@ -164,7 +161,6 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                   spec:
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
                     experiments:
@@ -198,7 +194,6 @@ spec:
                       applabel: "k8s-app=kube-proxy"
                       appkind: daemonset
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
                     experiments:

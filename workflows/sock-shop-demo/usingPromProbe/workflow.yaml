@@ -70,7 +70,6 @@ spec:
                     applabel: 'name=carts'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   experiments:
@@ -139,7 +138,6 @@ spec:
                     applabel: 'name=orders'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
-                  annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   experiments:
@@ -205,7 +203,6 @@ spec:
                     appns: 'sock-shop'
                     applabel: 'name=catalogue'
                     appkind: 'deployment'
-                  annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   jobCleanUpPolicy: 'retain'
@@ -277,7 +274,6 @@ spec:
                     applabel: 'name=user-db'
                     appkind: 'statefulset'
                   jobCleanUpPolicy: retain
-                  annotationCheck: 'false'
                   engineState: 'active'
                   auxiliaryAppInfo: ''
                   chaosServiceAccount: litmus-admin
@@ -350,7 +346,6 @@ spec:
                     appns: 'sock-shop'
                     applabel: 'name=catalogue-db'
                     appkind: 'statefulset'
-                  annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   jobCleanUpPolicy: 'retain'

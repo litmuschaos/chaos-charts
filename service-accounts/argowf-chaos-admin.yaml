@@ -43,7 +43,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: retain
-                annotationCheck: 'false'
                 engineState: 'active'
                 chaosServiceAccount: litmus-admin
                 experiments:

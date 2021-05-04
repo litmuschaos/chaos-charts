@@ -8,8 +8,6 @@ spec:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  # It can be true/false
-  annotationCheck: 'false'
   # It can be active/stop
   engineState: 'active'
   chaosServiceAccount: pod-delete-sa
