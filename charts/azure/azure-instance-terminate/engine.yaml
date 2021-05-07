@@ -4,7 +4,6 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
-  annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: azure-instance-terminate-sa
   monitoring: false

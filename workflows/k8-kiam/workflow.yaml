@@ -71,7 +71,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                annotationCheck: 'false'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
                 experiments:
@@ -120,7 +119,6 @@ spec:
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
                 jobCleanUpPolicy: delete
-                annotationCheck: 'false'
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
                 experiments:

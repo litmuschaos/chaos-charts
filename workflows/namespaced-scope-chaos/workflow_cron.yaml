@@ -133,7 +133,6 @@ spec:
                       applabel: 'app=hello-world'
                       appkind: deployment
                     jobCleanUpPolicy: retain
-                    annotationCheck: 'false'
                     engineState: 'active'
                     chaosServiceAccount: litmus-namespace-admin
                     experiments:

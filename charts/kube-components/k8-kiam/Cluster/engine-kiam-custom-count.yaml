@@ -13,7 +13,6 @@ spec:
     applabel: "app=kiam"
     appkind: deployment
   jobCleanUpPolicy: retain
-  annotationCheck: 'false'
   engineState: 'active'
   chaosServiceAccount: chaos-admin
   experiments:

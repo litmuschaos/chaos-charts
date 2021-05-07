@@ -8,7 +8,6 @@ spec:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  annotationCheck: 'true'
   engineState: 'active'
   chaosServiceAccount: chaos-admin 
   jobCleanUpPolicy: 'retain'
