@@ -6,7 +6,7 @@ metadata:
   version: 0.1.16
   annotations:
     categories: Kubernetes
-    chartDescription: Injects generic kubernetes chaos 
+    chartDescription: Injects generic kubernetes chaos
 spec:
   displayName: Generic Chaos
   categoryDescription: >
@@ -35,8 +35,9 @@ spec:
     - node-io-stress
     - pod-io-stress
     - node-restart
-    - pod-dns-chaos
-    
+    - pod-dns-error
+    - pod-dns-spoof
+
   keywords:
     - Kubernetes
     - Container
@@ -62,7 +63,7 @@ spec:
     - name: Source Code
       url: https://github.com/kubernetes/kubernetes
     - name: Kubernetes Slack
-      url: https://slack.kubernetes.io/ 
+      url: https://slack.kubernetes.io/
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
   icon:
