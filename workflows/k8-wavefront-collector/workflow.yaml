@@ -4,6 +4,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
   generateName: argowf-chaos-
+  labels:
+    subject: "{{workflow.parameters.appNamespace}}_wavefront-collector"
 spec:
   entrypoint: pdbcreate
   poddisruptionbudget:
@@ -62,6 +64,8 @@ spec:
               metadata:
                 name: k8-pod-delete
                 namespace: {{workflow.parameters.appCurrentNamespace}}
+                labels:
+                  context: "{{workflow.parameters.appNamespace}}_wavefront-collector"
               spec:
                 #ex. values: ns1:name=percona,ns2:run=nginx
                 appinfo:
@@ -110,6 +114,8 @@ spec:
               metadata:
                 name: k8-pod-delete
                 namespace: {{workflow.parameters.appCurrentNamespace}}
+                labels:
+                  context: "{{workflow.parameters.appNamespace}}_wavefront-collector"
               spec:
                 #ex. values: ns1:name=percona,ns2:run=nginx
                 appinfo:

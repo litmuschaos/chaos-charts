@@ -3,6 +3,8 @@ kind: Workflow
 metadata:
   generateName: argowf-podtato-head-chaos-
   namespace: litmus
+  labels:
+    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-head"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -52,6 +54,8 @@ spec:
                 metadata:
                   name: podtato-head-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.adminModeNamespace}}_podtato-head"
                 spec:
                   appinfo:
                     appns: {{workflow.parameters.adminModeNamespace}}
