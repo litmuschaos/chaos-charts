@@ -88,7 +88,7 @@ spec:
 
       # map of the target hostnames eg. '{"abc.com":"spoofabc.com"}' . If empty no queries will be spoofed
       - name: SPOOF_MAP
-        value: '{"abc.com":"spoofabc.com"}'
+        value: ""
 
     labels:
       experiment: pod-dns-spoof
