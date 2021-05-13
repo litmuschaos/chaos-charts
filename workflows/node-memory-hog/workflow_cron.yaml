@@ -3,6 +3,8 @@ kind: CronWorkflow
 metadata:
   name: argo-chaos-node-memory-cron-wf
   namespace: litmus
+  labels:
+    subject: "{{workflow.parameters.context}}"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -17,6 +19,8 @@ spec:
       parameters:
         - name: adminModeNamespace
           value: "litmus"
+        - name: context
+          value: "node-memory-hog_infra"
     templates:
       - name: argowf-chaos
         steps:
@@ -116,6 +120,8 @@ spec:
                   metadata:
                     name: kube-proxy-node-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: "{{workflow.parameters.context}}"
                   spec:
                     jobCleanUpPolicy: retain
                     annotationCheck: 'false'

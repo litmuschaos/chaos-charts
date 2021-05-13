@@ -3,6 +3,8 @@ kind: Workflow
 metadata:
   generateName: argowf-chaos-pod-delete-
   namespace: litmus
+  labels:
+    subject: "{{workflow.parameters.appNamespace}}_kube-proxy"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -13,6 +15,8 @@ spec:
     parameters:
       - name: adminModeNamespace
         value: "litmus"
+      - name: appNamespace
+        value: "kube-system"
   templates:
     - name: argowf-chaos
       steps:
@@ -120,6 +124,8 @@ spec:
                 metadata:
                   name: kube-proxy-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_kube-proxy"
                 spec:
                   appinfo:
                     appns: kube-system

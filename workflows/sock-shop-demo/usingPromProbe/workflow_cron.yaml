@@ -3,6 +3,8 @@ kind: CronWorkflow
 metadata:
   generateName: argowf-chaos-sock-shop-resiliency-cron-wf-
   namespace: litmus
+  labels:
+    subject: "{{workflow.parameters.appNamespace}}_sock-shop"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -17,6 +19,8 @@ spec:
       parameters:
         - name: adminModeNamespace
           value: "litmus"
+        - name: appNamespace
+          value: "sock-shop"
     templates:
     - name: argowf-chaos
       steps:
@@ -68,6 +72,8 @@ spec:
                 metadata:
                   name: pod-cpu-hog-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_carts"
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -137,6 +143,8 @@ spec:
                 metadata:
                   name: pod-memory-hog-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_orders"
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -204,6 +212,8 @@ spec:
                 metadata:
                   name: catalogue-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.env.appNamespace}}_catalogue"
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -275,6 +285,8 @@ spec:
                 metadata:
                   name: pod-network-loss-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_user-db"
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -349,6 +361,8 @@ spec:
                 metadata:
                   name: catalogue-disk-fill
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_catalogue-db"
                 spec:
                   appinfo:
                     appns: 'sock-shop'
