@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    injects dns failure/error in target pod container
+    Pod DNS Error injects dns failure/error in target pod containersr
 kind: ChaosExperiment
 metadata:
   name: pod-dns-error

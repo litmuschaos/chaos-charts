@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    injects dns failure in target pod container
+    Pod DNS Spoof can spoof particular dns requests in target pod container to desired target hostnames
 kind: ChaosExperiment
 metadata:
   name: pod-dns-spoof
