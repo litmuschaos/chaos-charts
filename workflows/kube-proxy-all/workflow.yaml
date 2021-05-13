@@ -18,9 +18,9 @@ spec:
       - name: appNamespace
         value: "kube-system" 
       - name: contextCPUHog
-        value: "node-cpu-hog_chaos"
+        value: "node-cpu-hog_infra"
       - name: contextMemoryHog
-        value: "node-memory-hog_chaos"
+        value: "node-memory-hog_infra"
 
   templates:
     - name: argowf-chaos
@@ -88,7 +88,7 @@ spec:
             raw:
               data: |
                 apiVersion: litmuschaos.io/v1alpha1
-                kind: ChaosEnginse
+                kind: ChaosEngine
                 metadata:
                   name: kube-proxy-pod-memory-hog-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
