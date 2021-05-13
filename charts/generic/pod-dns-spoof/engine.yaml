@@ -21,7 +21,7 @@ spec:
           env:
             # map of the target hostnames eg. '{"abc.com":"spoofabc.com"}' . If empty no queries will be spoofed
             - name: SPOOF_MAP
-              value: ""
+              value: '{"google.com":"fakegoogle.com"}'
 
             - name: TOTAL_CHAOS_DURATION
               value: "60" # in seconds
