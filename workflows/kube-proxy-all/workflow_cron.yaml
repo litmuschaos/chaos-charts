@@ -3,6 +3,8 @@ kind: CronWorkflow
 metadata:
   name: argo-chaos-kube-proxy-cron-wf
   namespace: litmus
+  labels:
+    subject: "{{workflow.parameters.appNamespace}}_kube-proxy"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -17,6 +19,12 @@ spec:
       parameters:
         - name: adminModeNamespace
           value: "litmus"
+        - name: appNamespace
+          value: "kube-system" 
+        - name: contextCPUHog
+          value: "node-cpu-hog_infra"
+        - name: contextMemoryHog
+          value: "node-memory-hog_infra"
     templates:
       - name: argowf-chaos
         steps:
@@ -55,6 +63,8 @@ spec:
                   metadata:
                     name: kube-proxy-node-cpu-hog
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: {{workflow.parameters.contextCPUHog}}
                   spec:
                     jobCleanUpPolicy: retain
                     engineState: 'active'
@@ -85,6 +95,8 @@ spec:
                   metadata:
                     name: kube-proxy-pod-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: "{{workflow.parameters.appNamespace}}_kube-proxy"
                   spec:
                     appinfo:
                       appns: kube-system
@@ -122,6 +134,8 @@ spec:
                   metadata:
                     name: kube-proxy-pod-cpu-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: "{{workflow.parameters.appNamespace}}_kube-proxy"
                   spec:
                     appinfo:
                       appns: kube-system
@@ -159,6 +173,8 @@ spec:
                   metadata:
                     name: kube-proxy-node-memory-hog-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: {{workflow.parameters.contextMemoryHog}}
                   spec:
                     jobCleanUpPolicy: retain
                     engineState: 'active'
@@ -188,6 +204,8 @@ spec:
                   metadata:
                     name: kube-proxy-pod-delete-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: "{{workflow.parameters.appNamespace}}_kube-proxy"
                   spec:
                     appinfo:
                       appns: kube-system

@@ -3,6 +3,8 @@ kind: Workflow
 metadata:
   generateName: argowf-podtato-head-chaos-
   namespace: litmus
+  labels:
+    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-head"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -34,7 +36,7 @@ spec:
 
     - name: install-chaos-experiments
       container:
-        image: alpine/k8s:1.18.2
+        image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
@@ -52,6 +54,8 @@ spec:
                 metadata:
                   name: podtato-head-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.adminModeNamespace}}_podtato-head"
                 spec:
                   appinfo:
                     appns: {{workflow.parameters.adminModeNamespace}}
