@@ -22,9 +22,9 @@ spec:
         - name: appNamespace
           value: "kube-system" 
         - name: contextCPUHog
-          value: "nodeCpuHog_chaos"
+          value: "node-cpu-hog_infra"
         - name: contextMemoryHog
-          value: "nodeMemoryHog_chaos"
+          value: "node-memory-hog_infra"
     templates:
       - name: argowf-chaos
         steps:

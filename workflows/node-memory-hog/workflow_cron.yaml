@@ -20,7 +20,7 @@ spec:
         - name: adminModeNamespace
           value: "litmus"
         - name: context
-          value: "nodeMemoryHog_chaos"
+          value: "node-memory-hog_infra"
     templates:
       - name: argowf-chaos
         steps:
