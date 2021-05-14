@@ -1,0 +1,97 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Pod DNS Spoof can spoof particular dns requests in target pod container to desired target hostnames
+kind: ChaosExperiment
+metadata:
+  name: pod-dns-spoof
+  labels:
+    name: pod-dns-spoof
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "apps"
+          - "apps.openshift.io"
+          - "argoproj.io"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "replicationcontrollers"
+          - "deployments"
+          - "statefulsets"
+          - "daemonsets"
+          - "replicasets"
+          - "deploymentconfigs"
+          - "rollouts"
+          - "pods/exec"
+          - "events"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    args:
+      - -c
+      - ./experiments -name pod-dns-spoof
+    command:
+      - /bin/bash
+    env:
+      - name: TARGET_CONTAINER
+        value: ""
+
+      # provide lib image
+      - name: LIB_IMAGE
+        value: "litmuschaos/go-runner:latest"
+
+      - name: TOTAL_CHAOS_DURATION
+        value: "60" # in seconds
+
+      # Time period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ""
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ""
+
+      - name: TARGET_PODS
+        value: ""
+
+      # provide the name of container runtime, it supports docker, containerd, crio
+      - name: CONTAINER_RUNTIME
+        value: "docker"
+
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: "/var/run/docker.sock"
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: "parallel"
+
+      # map of the target hostnames eg. '{"abc.com":"spoofabc.com"}' . If empty no queries will be spoofed
+      - name: SPOOF_MAP
+        value: ""
+
+    labels:
+      experiment: pod-dns-spoof
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
