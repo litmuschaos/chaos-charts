@@ -15,7 +15,8 @@ spec:
     - k8-aws-ec2-terminate
     - ec2-terminate-by-id
     - ec2-terminate-by-tag
-    - ebs-loss
+    - ebs-loss-by-id
+    - ebs-loss-by-tag
   keywords:
     - AWS
     - EC2

@@ -4,13 +4,13 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
-  annotationCheck: 'false'
   engineState: 'active'
-  chaosServiceAccount: ec2-terminate-by-tag-sa
+  annotationCheck: 'false'
+  chaosServiceAccount: ebs-loss-by-id-sa
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: ec2-terminate-by-tag
+    - name: ebs-loss-by-id
       spec:
         components:
           env: 
@@ -18,19 +18,14 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '30'
 
-            # set interval duration (in sec) as desired
+            # set chaos duration (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '30'              
 
-             # Instance Tag of the target ec2 instances
-             # ex: team:devops (key:value)
-            - name: INSTANCE_TAG
+            # set target ebs volume ID  
+            - name: EBS_VOLUME_ID
               value: ''
-              
+
             # provide the region name of the instance
             - name: REGION
               value: ''
-
-            # enable it if the target instance is a part of self-managed nodegroup.
-            - name: MANAGED_NODEGROUP
-              value: 'disable'

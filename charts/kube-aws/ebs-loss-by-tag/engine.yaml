@@ -6,29 +6,26 @@ metadata:
 spec:
   annotationCheck: 'false'
   engineState: 'active'
-  chaosServiceAccount: ebs-loss-sa
+  annotationCheck: 'false'
+  chaosServiceAccount: ebs-loss-by-tag-sa
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: ebs-loss
+    - name: ebs-loss-by-tag
       spec:
         components:
           env: 
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
+              value: '30'
 
-            # Instance ID of the target ec2 instance 
-            - name: EC2_INSTANCE_ID
-              value: ''
+            - name: CHAOS_INTERVAL
+              value: '30'
 
-            # provide EBS volume id attached to the given instance
-            - name: EBS_VOL_ID
+            # provide EBS volume tag attached to the given instance
+            # it'll be in form of key:value (ex: 'team:devops')
+            - name: EBS_VOLUME_TAG
               value: ''              
-
-            # Enter the device name which you wanted to mount only for AWS.   
-            - name: DEVICE_NAME
-              value: '/dev/sdb'
               
             # provide the region name of the instance
             - name: REGION

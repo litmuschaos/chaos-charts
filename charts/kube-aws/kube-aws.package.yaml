@@ -9,7 +9,9 @@ experiments:
   - name: ec2-terminate-by-tag
     CSV: ec2-terminate-by-tag.chartserviceversion.yaml    
     desc: "ec2-terminate-by-tag"    
-  - name: ebs-loss 
-    CSV: ebs-loss.chartserviceversion.yaml
-    desc: "ebs-loss"
-
+  - name: ebs-loss-by-id
+    CSV: ebs-loss-by-id.chartserviceversion.yaml
+    desc: "ebs-loss-by-id"
+  - name: ebs-loss-by-tag 
+    CSV: ebs-loss-by-tag.chartserviceversion.yaml
+    desc: "ebs-loss-by-tag"    
