@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: ebs-loss-by-tag
   categoryDescription: |
-    EBS Loss By Tag contains chaos to disrupt state of infra resources. The experiment can induce ebs volume loss against specified application for given volume id. 
+    EBS Loss By Tag contains chaos to disrupt state of infra resources. The experiment can induce ebs volume loss against specified application for given volume tag. 
     - Causes ebs volume loss by tag from node or ec2 instance for certain chaos interval from total chaos duration.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod
   keywords:

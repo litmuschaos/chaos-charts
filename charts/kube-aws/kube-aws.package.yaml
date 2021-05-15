@@ -14,4 +14,4 @@ experiments:
     desc: "ebs-loss-by-id"
   - name: ebs-loss-by-tag 
     CSV: ebs-loss-by-tag.chartserviceversion.yaml
-    desc: "ebs-loss-tag"    
+    desc: "ebs-loss-by-tag"    
