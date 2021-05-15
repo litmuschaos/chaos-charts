@@ -2,6 +2,8 @@ apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
   name: argo-chaos-hello-world-pod-delete-cron-wf
+  labels:
+    subject: "{{workflow.parameters.adminModeNamespace}}_hello-world"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -127,6 +129,8 @@ spec:
                   metadata:
                     name: pod-delete-chaos
                     namespace: {{workflow.parameters.adminModeNamespace}}
+                    labels:
+                      context: "{{workflow.parameters.adminModeNamespace}}_hello-world"
                   spec:
                     appinfo:
                       appns: {{workflow.parameters.adminModeNamespace}}

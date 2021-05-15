@@ -8,7 +8,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.5
 spec:
   definition:
     scope: Namespaced
@@ -34,7 +34,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.13.3"
+    image: "litmuschaos/ansible-runner:1.13.5"
     imagePullPolicy: Always
     args:
     - -c
@@ -80,4 +80,4 @@ spec:
       name: container-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.5

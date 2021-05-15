@@ -1,10 +1,10 @@
-packageName: generic 
+packageName: generic
 experiments:
   - name: pod-delete
     CSV: pod-delete.chartserviceversion.yaml
     desc: "pod-delete"
   - name: container-kill
-    CSV:  container-kill.chartserviceversion.yaml
+    CSV: container-kill.chartserviceversion.yaml
     desc: "container-kill"
   - name: pod-network-loss
     CSV: pod-network-loss.chartserviceversion.yaml
@@ -35,13 +35,13 @@ experiments:
     desc: "node-memory-hog"
   - name: pod-memory-hog
     CSV: pod-memory-hog.chartserviceversion.yaml
-    desc: "pod-memory-hog"   
+    desc: "pod-memory-hog"
   - name: kubelet-service-kill
     CSV: kubelet-service-kill.chartserviceversion.yaml
     desc: "kubelet-service-kill"
   - name: pod-network-duplication
     CSV: pod-network-duplication.chartserviceversion.yaml
-    desc: "pod-network-duplication" 
+    desc: "pod-network-duplication"
   - name: node-taint
     CSV: node-taint.chartserviceversion.yaml
     desc: "node-taint"
@@ -62,7 +62,13 @@ experiments:
     desc: "node-io-stress"
   - name: pod-io-stress
     CSV: pod-io-stress.chartserviceversion.yaml
-    desc: "pod-io-stress"    
+    desc: "pod-io-stress"
   - name: node-restart
     CSV: node-restart.chartserviceversion.yaml
     desc: "node-restart"
+  - name: pod-dns-error
+    CSV: pod-dns-error.chartserviceversion.yaml
+    desc: "pod-dns-error"
+  - name: pod-dns-spoof
+    CSV: pod-dns-spoof.chartserviceversion.yaml
+    desc: "pod-dns-spoof"
