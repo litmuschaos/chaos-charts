@@ -2049,7 +2049,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.5"
     args:
       - -c
       - ./experiments -name pod-dns-spoof
@@ -2061,7 +2061,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:1.13.5"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -2433,7 +2433,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:1.13.5"
     args:
       - -c
       - ./experiments -name pod-dns-error
@@ -2445,7 +2445,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:1.13.5"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
