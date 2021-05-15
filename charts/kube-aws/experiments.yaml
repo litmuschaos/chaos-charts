@@ -9,7 +9,7 @@ metadata:
     name: ec2-terminate-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.4
+    app.kubernetes.io/version: 1.13.5
 spec:
   definition:
     scope: Cluster
@@ -35,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.4"
+    image: "litmuschaos/go-runner:1.13.5"
     imagePullPolicy: Always
     args:
     - -c
@@ -81,7 +81,7 @@ spec:
       name: ec2-terminate-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.4
+      app.kubernetes.io/version: 1.13.5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -98,7 +98,7 @@ metadata:
     name: k8-aws-ec2-terminate
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.3
+    app.kubernetes.io/version: 1.13.5
 spec:
   definition:
     scope: Namespaced
@@ -197,7 +197,7 @@ spec:
       name: k8-aws-ec2-terminate
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.3
+      app.kubernetes.io/version: 1.13.5
 
 
 ---
@@ -212,7 +212,7 @@ metadata:
     name: ebs-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.4
+    app.kubernetes.io/version: 1.13.5
 spec:
   definition:
     scope: Cluster
@@ -238,7 +238,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.4"
+    image: "litmuschaos/go-runner:1.13.5"
     imagePullPolicy: Always
     args:
     - -c
@@ -278,7 +278,7 @@ spec:
       name: ebs-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.4
+      app.kubernetes.io/version: 1.13.5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -295,7 +295,7 @@ metadata:
     name: ec2-terminate-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.4
+    app.kubernetes.io/version: 1.13.5
 spec:
   definition:
     scope: Cluster
@@ -321,7 +321,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:1.13.4"
+    image: "litmuschaos/go-runner:1.13.5"
     imagePullPolicy: Always
     args:
     - -c
@@ -366,7 +366,7 @@ spec:
       name: ec2-terminate-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.4
+      app.kubernetes.io/version: 1.13.5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

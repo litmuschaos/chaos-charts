@@ -35,13 +35,9 @@ spec:
     - node-io-stress
     - pod-io-stress
     - node-restart
-<<<<<<< HEAD
-        
-=======
     - pod-dns-error
     - pod-dns-spoof
 
->>>>>>> cb425d8... Added DNS Spoof chaos (#455)
   keywords:
     - Kubernetes
     - Container

@@ -66,12 +66,9 @@ experiments:
   - name: node-restart
     CSV: node-restart.chartserviceversion.yaml
     desc: "node-restart"
-<<<<<<< HEAD
-=======
   - name: pod-dns-error
     CSV: pod-dns-error.chartserviceversion.yaml
     desc: "pod-dns-error"
   - name: pod-dns-spoof
     CSV: pod-dns-spoof.chartserviceversion.yaml
     desc: "pod-dns-spoof"
->>>>>>> cb425d8... Added DNS Spoof chaos (#455)
