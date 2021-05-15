@@ -4,9 +4,9 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss
+  name: ebs-loss-by-id
   labels:
-    name: ebs-loss
+    name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -39,25 +39,28 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss
+    - ./experiments -name ebs-loss-by-id
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
-      value: '60'
+      value: '30'
+
+    - name: CHAOS_INTERVAL
+      value: '30'
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: EC2_INSTANCE_ID
-      value: ''
-
-    - name: EBS_VOL_ID
+    - name: EBS_VOLUME_ID
       value: ''
 
     - name: REGION
       value: ''
+
+    - name: SEQUENCE
+      value: 'parallel'      
 
     # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
@@ -68,11 +71,8 @@ spec:
     - name: LIB
       value: 'litmus'  
           
-    - name: DEVICE_NAME
-      value: '' 
-          
     labels:
-      name: ebs-loss
+      name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
