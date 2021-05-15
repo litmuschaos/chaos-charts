@@ -4,9 +4,9 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ec2-terminate-by-tag
+  name: ebs-loss-by-id
   labels:
-    name: ec2-terminate-by-tag
+    name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -39,7 +39,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ec2-terminate-by-tag
+    - ./experiments -name ebs-loss-by-id
     command:
     - /bin/bash
     env:
@@ -53,24 +53,16 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    - name: INSTANCE_TAG
+    - name: EBS_VOLUME_ID
       value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'
 
     - name: REGION
-      value: ''
-
-    # Target the percentage of instance filtered from tag
-    - name: INSTANCE_AFFECTED_PERC
       value: ''
 
     - name: SEQUENCE
       value: 'parallel'      
 
-    # Provide the path of aws credentials mounted from secret  
+    # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: '/tmp/cloud_config.yml'
 
@@ -80,7 +72,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ec2-terminate-by-tag
+      name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
