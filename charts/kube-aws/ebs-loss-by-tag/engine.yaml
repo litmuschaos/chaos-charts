@@ -6,20 +6,24 @@ metadata:
 spec:
   engineState: 'active'
   annotationCheck: 'false'
-  chaosServiceAccount: ebs-loss-sa
+  chaosServiceAccount: ebs-loss-by-tag-sa
   # It can be retain/delete
   jobCleanUpPolicy: 'delete'
   experiments:
-    - name: ebs-loss
+    - name: ebs-loss-by-tag
       spec:
         components:
           env: 
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '60'
+              value: '30'
 
-            # provide EBS volume id attached to the given instance
-            - name: EBS_VOLUME_ID
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # provide EBS volume tag attached to the given instance
+            # it'll be in form of key:value (ex: 'team:devops')
+            - name: EBS_VOLUME_TAG
               value: ''              
               
             # provide the region name of the instance

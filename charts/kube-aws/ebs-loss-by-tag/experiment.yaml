@@ -4,9 +4,9 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss
+  name: ebs-loss-by-tag
   labels:
-    name: ebs-loss
+    name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -39,7 +39,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss
+    - ./experiments -name ebs-loss-by-tag
     command:
     - /bin/bash
     env:
@@ -52,7 +52,7 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    - name: EBS_VOLUME_ID
+    - name: EBS_VOLUME_TAG
       value: ''
 
     - name: REGION
@@ -74,7 +74,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ebs-loss
+      name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest

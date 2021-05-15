@@ -22,7 +22,7 @@ spec:
             - name: CHAOS_INTERVAL
               value: '30'              
 
-            # Instance ID of the target ec2 instance 
+            # set target ebs volume ID  
             - name: EBS_VOLUME_ID
               value: ''
 
