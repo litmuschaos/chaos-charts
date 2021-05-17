@@ -9,7 +9,6 @@ spec:
     appkind: "deployment"
   # It can be active/stop
   engineState: "active"
-  annotationCheck: 'false'
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ""
   chaosServiceAccount: pod-dns-spoof-sa

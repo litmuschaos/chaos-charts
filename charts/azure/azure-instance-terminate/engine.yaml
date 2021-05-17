@@ -6,6 +6,9 @@ metadata:
 spec:
   engineState: 'active'
   chaosServiceAccount: azure-instance-terminate-sa
+  monitoring: false
+  # It can be retain/delete
+  jobCleanUpPolicy: 'delete'
   experiments:
     - name: azure-instance-terminate
       spec:

@@ -5,7 +5,6 @@ metadata:
   namespace: default
 spec:
   engineState: 'active'
-  annotationCheck: 'false'
   chaosServiceAccount: ebs-loss-by-tag-sa
   experiments:
     - name: ebs-loss-by-tag
