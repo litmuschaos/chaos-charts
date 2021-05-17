@@ -12,7 +12,6 @@ spec:
     #applabel: "app=nginx"
     applabel: "app=kiam"
     appkind: deployment
-  jobCleanUpPolicy: retain
   engineState: 'active'
   chaosServiceAccount: chaos-admin
   experiments:

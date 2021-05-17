@@ -10,7 +10,6 @@ spec:
     appkind: deployment
   engineState: 'active'
   chaosServiceAccount: chaos-admin
-  jobCleanUpPolicy: 'retain'
   experiments:
     - name: k8-pod-delete
       spec:

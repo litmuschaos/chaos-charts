@@ -11,8 +11,6 @@ spec:
     applabel: 'name=maya-apiserver'
     appkind: 'deployment'
   chaosServiceAccount: control-plane-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: openebs-control-plane-chaos
       spec:
