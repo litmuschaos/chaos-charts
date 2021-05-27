@@ -26,6 +26,12 @@ spec:
     - CPU
     - Network
     - Disk
+  platforms:
+    - GKE
+    - Minikube 
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
   maintainers:
     - name: oumkale
       email: oumkale@chaosnative.com
