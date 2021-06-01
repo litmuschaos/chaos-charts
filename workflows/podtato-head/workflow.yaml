@@ -4,7 +4,7 @@ metadata:
   generateName: argowf-podtato-head-chaos-
   namespace: litmus
   labels:
-    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-head"
+    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-main"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -52,16 +52,15 @@ spec:
                 apiVersion: litmuschaos.io/v1alpha1
                 kind: ChaosEngine
                 metadata:
-                  name: podtato-head-pod-delete-chaos
+                  name: podtato-main-pod-delete-chaos
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
-                    context: "{{workflow.parameters.adminModeNamespace}}_podtato-head"
+                    context: "{{workflow.parameters.adminModeNamespace}}_podtato-main"
                 spec:
                   appinfo:
                     appns: {{workflow.parameters.adminModeNamespace}}
-                    applabel: 'app=podtato-head'
+                    applabel: 'name=podtato-main'
                     appkind: 'deployment'
-                  annotationCheck: 'false'
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
                   jobCleanUpPolicy: 'retain'
@@ -72,10 +71,10 @@ spec:
                     - name: pod-delete
                       spec:
                         probe:
-                        - name: "check-podtato-head-access-url"
+                        - name: "check-podtato-main-access-url"
                           type: "httpProbe"
                           httpProbe/inputs:
-                            url: "http://podtato.{{workflow.parameters.adminModeNamespace}}.svc.cluster.local:9000"
+                            url: "http://podtato-main.{{workflow.parameters.adminModeNamespace}}.svc.cluster.local:9000"
                             insecureSkipVerify: false
                             method:
                               get:
@@ -111,5 +110,5 @@ spec:
         command: [sh, -c]
         args: 
           [ 
-            "kubectl delete chaosengine podtato-head-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine podtato-main-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
