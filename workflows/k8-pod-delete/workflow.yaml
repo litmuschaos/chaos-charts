@@ -97,8 +97,7 @@ spec:
                   #applabel: "app=nginx"
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
-                jobCleanUpPolicy: delete
-                annotationCheck: 'true'
+                jobCleanUpPolicy: retain
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
                 experiments:
@@ -148,8 +147,7 @@ spec:
                   #applabel: "app=nginx"
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
-                jobCleanUpPolicy: delete
-                annotationCheck: 'true'
+                jobCleanUpPolicy: retain
                 engineState: 'active'
                 chaosServiceAccount: {{workflow.parameters.chaosServiceAccount}}
                 experiments:

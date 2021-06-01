@@ -15,8 +15,6 @@ spec:
     applabel: 'app=cp-kafka'
     appkind: 'statefulset'
   chaosServiceAccount: kafka-broker-pod-failure-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete' 
   experiments:
     - name: kafka-broker-pod-failure
       spec:
