@@ -11,8 +11,6 @@ spec:
   # It can be active/stop
   engineState: 'active'
   chaosServiceAccount: pod-delete-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: pod-delete
       spec:

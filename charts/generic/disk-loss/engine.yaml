@@ -13,8 +13,6 @@ spec:
     applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: disk-loss-sa
-  # It can be retain/delete
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: disk-loss
       spec:

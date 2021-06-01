@@ -11,8 +11,6 @@ spec:
     applabel: 'app=nginx'
     appkind: 'deployment'
   chaosServiceAccount: container-kill-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete' 
   experiments:
     - name: container-kill
       spec:

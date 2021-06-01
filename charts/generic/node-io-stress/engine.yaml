@@ -9,8 +9,6 @@ spec:
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   chaosServiceAccount: node-io-stress-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: node-io-stress
       spec:

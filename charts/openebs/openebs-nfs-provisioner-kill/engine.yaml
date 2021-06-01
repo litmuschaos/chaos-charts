@@ -11,8 +11,6 @@ spec:
     applabel: 'app=minio'
     appkind: 'deployment'
   chaosServiceAccount: nfs-chaos-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: openebs-nfs-provisioner-kill
       spec:

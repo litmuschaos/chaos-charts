@@ -42,7 +42,6 @@ spec:
                   appns: {{workflow.parameters.appNamespace}}
                   applabel: "app={{workflow.parameters.appLabel}}"
                   appkind: deployment
-                jobCleanUpPolicy: retain
                 engineState: 'active'
                 chaosServiceAccount: litmus-admin
                 experiments:

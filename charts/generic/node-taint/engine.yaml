@@ -9,8 +9,6 @@ spec:
   #ex. values: ns1:name=percona,ns2:run=nginx 
   auxiliaryAppInfo: ''
   chaosServiceAccount: node-taint-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: node-taint
       spec:
