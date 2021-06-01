@@ -28,7 +28,7 @@ spec:
             template: revert-chaos
           - name: delete-application
             template: delete-application
-        
+
     - name: install-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
