@@ -2,11 +2,11 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2021-05-24T10:28:08Z
-  name: sock-shop-promProbe
+  name: sock-shop-cmdProbe
   version: 0.1.0
   annotations:
     categories: sock-shop
-    chartDescription: Injects chaos on sock-shop application using prom probe.
+    chartDescription: Injects chaos on sock-shop application using cmd probe.
 spec:
   displayName: Sock-Shop-Chaos
   categoryDescription: >
@@ -43,5 +43,5 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
   icon:
-    - url:
-      mediatype: ""
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/workflows/icons/sock-shop-cmdProbe.png
+      mediatype: image/png
