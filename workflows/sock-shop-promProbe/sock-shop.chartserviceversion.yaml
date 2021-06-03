@@ -6,7 +6,7 @@ metadata:
   version: 0.1.0
   annotations:
     categories: sock-shop
-    chartDescription: Injects chaos on sock-shop application
+    chartDescription: Injects chaos on sock-shop application using prom probe.
 spec:
   displayName: Sock-Shop Chaos
   categoryDescription: >
@@ -28,7 +28,7 @@ spec:
     - Disk
   platforms:
     - GKE
-    - Minikube 
+    - Minikube
     - Packet(Kubeadm)
     - EKS
     - AKS
@@ -45,4 +45,3 @@ spec:
   icon:
     - url:
       mediatype: ""
-      
