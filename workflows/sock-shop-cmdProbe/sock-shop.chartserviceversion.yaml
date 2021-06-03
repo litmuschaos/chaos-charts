@@ -2,13 +2,13 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2021-05-24T10:28:08Z
-  name: sock-shop
+  name: sock-shop-cmdProbe
   version: 0.1.0
   annotations:
     categories: sock-shop
     chartDescription: Injects chaos on sock-shop application using cmd probe.
 spec:
-  displayName: Sock-Shop Chaos
+  displayName: Sock-Shop-Chaos
   categoryDescription: >
     It install sock-shop application, generate loads, inject chaos on sock-shop,
     uninstall the application and revert the chaos
