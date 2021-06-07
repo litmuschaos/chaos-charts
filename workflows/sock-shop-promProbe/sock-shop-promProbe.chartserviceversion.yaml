@@ -2,13 +2,13 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2021-05-24T10:28:08Z
-  name: sock-shop
+  name: sock-shop-promProbe
   version: 0.1.0
   annotations:
     categories: sock-shop
-    chartDescription: Injects chaos on sock-shop application
+    chartDescription: Injects chaos on sock-shop application using prom probe.
 spec:
-  displayName: Sock-Shop Chaos
+  displayName: Sock-Shop-Chaos
   categoryDescription: >
     It install sock-shop application, generate loads, inject chaos on sock-shop,
     uninstall the application and revert the chaos
@@ -28,7 +28,7 @@ spec:
     - Disk
   platforms:
     - GKE
-    - Minikube 
+    - Minikube
     - Packet(Kubeadm)
     - EKS
     - AKS
@@ -43,6 +43,5 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
   icon:
-    - url:
-      mediatype: ""
-      
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/workflows/icons/sock-shop-promProbe.png
+      mediatype: image/png
