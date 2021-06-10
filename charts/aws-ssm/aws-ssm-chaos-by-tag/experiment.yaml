@@ -1,0 +1,127 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Execute AWS SSM Chaos on given ec2 instance Tag
+kind: ChaosExperiment
+metadata:
+  name: aws-ssm-chaos-by-tag
+  labels:
+    name: aws-ssm-chaos-by-tag
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "pods/exec"
+          - "secrets"
+          - "configmaps"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/go-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name aws-ssm-chaos-by-tag
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    - name: CHAOS_INTERVAL
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+      # provide tag of the target ec2 instances
+      # ex: team:devops (key:value)
+    - name: EC2_INSTANCE_TAG
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    # it defines the sequence of chaos execution for multiple target instances
+    # supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'      
+
+    # percentage of total instance to target
+    - name: INSTANCE_AFFECTED_PERC
+      value: ''      
+
+    # Provide the name of ssm doc 
+    # if not using the default stress docs  
+    - name: DOCUMENT_NAME
+      value: ''
+
+    # Provide the type of ssm doc 
+    # if not using the default stress docs  
+    - name: DOCUMENT_TYPE
+      value: ''
+
+    # Provide the format of ssm doc
+    # if not using the default stress docs  
+    - name: DOCUMENT_FORMAT
+      value: ''
+
+    # Provide the path of ssm doc 
+    # if not using the default stress docs  
+    - name: DOCUMENT_PATH
+      value: ''
+
+    # if you want to install dependencies to run default ssm docs
+    - name: INSTALL_DEPENDENCIES
+      value: 'True'        
+
+    # provide the number of workers for memory stress
+    - name: NUMBER_OF_WORKERS
+      value: '1'
+
+    # provide the percentage of available memory to stress
+    - name: MEMORY_PERCENTAGE
+      value: '80'
+
+    # provide the CPU chores to comsumed
+    # 0 will consume all the available cpu cores
+    - name: CPU_CORE
+      value: '0'
+                
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
+    labels:
+      name: aws-ssm-chaos-by-tag
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/

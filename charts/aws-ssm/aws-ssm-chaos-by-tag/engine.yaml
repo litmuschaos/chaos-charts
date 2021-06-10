@@ -1,0 +1,29 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: aws-ssm-chaos-by-tag-sa
+  experiments:
+    - name: aws-ssm-chaos-by-tag
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # set chaos duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '60'              
+
+             # provide tag of the target ec2 instances
+             # ex: team:devops (key:value)
+            - name: EC2_INSTANCE_TAG
+              value: ''
+
+            # provide the region name of the target instances
+            - name: REGION
+              value: ''
