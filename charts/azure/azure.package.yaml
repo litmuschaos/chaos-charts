@@ -1,5 +1,5 @@
 packageName: azure 
 experiments:
-  - name: azure-instance-terminate 
-    CSV: azure-instance-terminate.chartserviceversion.yaml
-    desc: "azure-instance-terminate"
+  - name: azure-instance-stop 
+    CSV: azure-instance-stop.chartserviceversion.yaml
+    desc: "azure-instance-stop"

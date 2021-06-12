@@ -5,12 +5,9 @@ metadata:
   namespace: default
 spec:
   engineState: 'active'
-  chaosServiceAccount: azure-instance-terminate-sa
-  monitoring: false
-  # It can be retain/delete
-  jobCleanUpPolicy: 'delete'
+  chaosServiceAccount: azure-instance-stop-sa
   experiments:
-    - name: azure-instance-terminate
+    - name: azure-instance-stop
       spec:
         components:
           env: 

@@ -4,9 +4,9 @@ description:
     Terminating azure VM instance
 kind: ChaosExperiment
 metadata:
-  name: azure-instance-terminate
+  name: azure-instance-stop
   labels:
-    name: azure-instance-terminate
+    name: azure-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -39,7 +39,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name azure-instance-terminate
+    - ./experiments -name azure-instance-stop
     command:
     - /bin/bash
     env:
@@ -69,7 +69,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: azure-instance-terminate
+      name: azure-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
