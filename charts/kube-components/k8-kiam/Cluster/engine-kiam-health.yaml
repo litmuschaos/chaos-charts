@@ -12,11 +12,7 @@ spec:
     #applabel: "app=nginx"
     applabel: "app=kiam"
     appkind: deployment
-<<<<<<< HEAD
   jobCleanUpPolicy: retain
-  annotationCheck: 'false'
-=======
->>>>>>> 7524892... chore(jobCleanUpPolicy): added retain as default jobCleanUpPolicy (#463)
   engineState: 'active'
   chaosServiceAccount: chaos-admin
   experiments:

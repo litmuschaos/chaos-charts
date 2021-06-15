@@ -4,13 +4,8 @@ metadata:
   name: nginx-network-chaos
   namespace: default
 spec: 
-<<<<<<< HEAD
   # It can be delete/retain
   jobCleanUpPolicy: 'delete'
-  # It can be true/false
-  annotationCheck: 'true'
-=======
->>>>>>> 7524892... chore(jobCleanUpPolicy): added retain as default jobCleanUpPolicy (#463)
   # It can be active/stop
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx 
