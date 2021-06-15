@@ -50,7 +50,7 @@ func main() {
 
 				CRName, err := GetCRName(subdirectory + "/experiment.yaml")
 				if err != nil || CRName == "" {
-					log.Fatalf("unable to extract the CR name, err: %v", err)
+					log.Fatalf("unable to extract the CR name for %v file, err: %v", subdirectory+"/experiment.yaml", err)
 				}
 
 				if !Contains(CRName, CRNames) {
