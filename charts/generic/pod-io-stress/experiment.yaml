@@ -88,16 +88,15 @@ spec:
         value: ''
 
       # Provide the LIB here
-      # Only pumba supported
+      # support litmus and pumba
       - name: LIB
-        value: 'pumba'
+        value: 'litmus'
 
       # provide lib image
       - name: LIB_IMAGE
         value: 'litmuschaos/go-runner:1.13.7'
 
       # provide the socket file path
-      # it is used in pumba lib
       - name: SOCKET_PATH
         value: '/var/run/docker.sock'         
 

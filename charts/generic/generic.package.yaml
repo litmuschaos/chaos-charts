@@ -72,3 +72,9 @@ experiments:
   - name: pod-dns-spoof
     CSV: pod-dns-spoof.chartserviceversion.yaml
     desc: "pod-dns-spoof"
+  - name: pod-cpu-hog-exec
+    CSV: pod-cpu-hog-exec.chartserviceversion.yaml
+    desc: "pod-cpu-hog-exec"
+  - name: pod-memory-hog-exec
+    CSV: pod-memory-hog-exec.chartserviceversion.yaml
+    desc: "pod-memory-hog-exec"
