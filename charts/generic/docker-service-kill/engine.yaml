@@ -4,6 +4,8 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'
   # It can be active/stop
   engineState: 'active'
   auxiliaryAppInfo: ''

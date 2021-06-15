@@ -9,6 +9,8 @@ spec:
     appkind: "deployment"
   # It can be active/stop
   engineState: "active"
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'  
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ""
   chaosServiceAccount: pod-dns-error-sa

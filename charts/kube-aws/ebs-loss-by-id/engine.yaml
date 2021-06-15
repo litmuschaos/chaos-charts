@@ -4,6 +4,8 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'   
   engineState: 'active'
   chaosServiceAccount: ebs-loss-by-id-sa
   experiments:
