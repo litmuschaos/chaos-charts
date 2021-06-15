@@ -4,12 +4,10 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
-  annotationCheck: 'false'
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'   
   engineState: 'active'
-  annotationCheck: 'false'
   chaosServiceAccount: ebs-loss-by-tag-sa
-  # It can be retain/delete
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: ebs-loss-by-tag
       spec:

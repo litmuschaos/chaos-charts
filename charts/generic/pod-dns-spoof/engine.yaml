@@ -9,12 +9,11 @@ spec:
     appkind: "deployment"
   # It can be active/stop
   engineState: "active"
-  annotationCheck: 'false'
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'  
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ""
   chaosServiceAccount: pod-dns-spoof-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: "delete"
   experiments:
     - name: pod-dns-spoof
       spec:

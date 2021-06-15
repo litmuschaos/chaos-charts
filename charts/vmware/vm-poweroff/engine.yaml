@@ -4,15 +4,13 @@ metadata:
   name: nginx-chaos
   namespace: default
 spec:
-  # It can be true/false
-  annotationCheck: 'false'
+  # It can be delete/retain
+  jobCleanUpPolicy: 'retain'   
   # It can be active/stop
   engineState: 'active'
   #ex. values: ns1:name=percona,ns2:run=nginx
   auxiliaryAppInfo: ''
   chaosServiceAccount: vm-poweroff-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: vm-poweroff
       spec:
@@ -25,22 +23,3 @@ spec:
             # provide vm moid
             - name: APP_VM_MOID
               value: ''
-
-            - name: VCENTERSERVER
-              valueFrom:
-                secretKeyRef:
-                  name: vcenter-secret
-                  key: VCENTERSERVER
-
-            - name: VCENTERUSER
-              valueFrom:
-                secretKeyRef:
-                  name: vcenter-secret
-                  key: VCENTERUSER
-
-            - name: VCENTERPASS
-              valueFrom:
-                secretKeyRef:
-                  name: vcenter-secret
-                  key: VCENTERPASS
-

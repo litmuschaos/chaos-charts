@@ -9,7 +9,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.5
+    app.kubernetes.io/version: 1.13.6
 spec:
   definition:
     scope: Cluster
@@ -41,17 +41,15 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:1.13.5"
+    image: "litmuschaos/go-runner:1.13.6"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/docker_service_kill/docker_service_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments -name docker-service-kill
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
-
+    
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
@@ -61,9 +59,21 @@ spec:
 
     - name: LIB
       value: 'litmus'
+
+    - name: NODE_LABEL
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'ubuntu:16.04' 
+            
+    # provide the target node name
+    - name: TARGET_NODE
+      value: ''
+
     labels:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.5
+      app.kubernetes.io/version: 1.13.6
 

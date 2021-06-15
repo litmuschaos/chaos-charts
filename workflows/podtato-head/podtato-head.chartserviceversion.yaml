@@ -1,0 +1,40 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-05-24T10:28:08Z
+  name: podtato-head
+  version: 0.1.0
+  annotations:
+    categories: podtato-head
+    chartDescription: Injects chaos on podtato-head application
+spec:
+  displayName: Podtato-head Chaos
+  categoryDescription: >
+    It install podtato-head application, inject chaos on podtato-head, uninstall the application 
+    and revert the chaos
+  experiments:
+    - pod-delete
+  keywords:
+    - Kubernetes
+    - Podtato-head
+    - Pod
+  platforms:
+    - GKE
+    - Minikube 
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  maintainers:
+    - name: oumkale
+      email: oumkale@chaosnative.com
+  provider:
+    name: ChaosNative
+  links:
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
+  icon:
+    - url:
+      mediatype: ""
+      
