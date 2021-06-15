@@ -46,7 +46,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
@@ -88,16 +88,19 @@ spec:
         value: ''
 
       # Provide the LIB here
-      # Only pumba supported
+      # support litmus and pumba
       - name: LIB
-        value: 'pumba'
+        value: 'litmus'
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
+        value: 'litmuschaos/go-runner:ci'
+
+      ## provide the cluster runtime
+      - name: CONTAINER_RUNTIME
+        value: 'docker'   
 
       # provide the socket file path
-      # it is used in pumba lib
       - name: SOCKET_PATH
         value: '/var/run/docker.sock'         
 
