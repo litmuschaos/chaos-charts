@@ -25,6 +25,7 @@ spec:
           - "pods/log"
           - "pods/exec"
           - "secrets"
+          - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -35,7 +36,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
@@ -48,6 +49,7 @@ spec:
 
     - name: CHAOS_INTERVAL
       value: '60'
+      
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -65,6 +67,10 @@ spec:
     # supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
+
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'      
 
     # Provide the name of ssm doc 
     # if not using the default stress docs  
@@ -98,9 +104,9 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '80'
 
-    # provide the CPU chore to comsume
-    # giving 0 will consume all the available cpu cores
-    - name: CPU
+    # provide the CPU chores to be comsumed
+    # 0 will consume all the available cpu cores
+    - name: CPU_CORE
       value: '0'
                 
     # provide the LIB
@@ -113,6 +119,10 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -141,6 +151,7 @@ spec:
           - "pods/log"
           - "pods/exec"
           - "secrets"
+          - "configmaps"
           - "chaosengines"
           - "chaosexperiments"
           - "chaosresults"
@@ -151,7 +162,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
@@ -181,6 +192,10 @@ spec:
     # supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
+
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'      
 
     # percentage of total instance to target
     - name: INSTANCE_AFFECTED_PERC
@@ -218,9 +233,9 @@ spec:
     - name: MEMORY_PERCENTAGE
       value: '80'
 
-    # provide the CPU chore to comsume
-    # giving 0 will consume all the available cpu cores
-    - name: CPU
+    # provide the CPU chores to comsumed
+    # 0 will consume all the available cpu cores
+    - name: CPU_CORE
       value: '0'
                 
     # provide the LIB
@@ -236,3 +251,5 @@ spec:
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
+
+---
