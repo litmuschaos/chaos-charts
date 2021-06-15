@@ -169,7 +169,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:1.13.6"
     imagePullPolicy: Always
     args:
     - -c
