@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.6"
+    image: "litmuschaos/go-runner:1.13.7"
     imagePullPolicy: Always
     args:
     - -c
@@ -94,7 +94,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.6' 
+      value: 'litmuschaos/go-runner:1.13.7' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC

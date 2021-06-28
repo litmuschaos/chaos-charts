@@ -45,7 +45,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:1.13.6"
+    image: "litmuschaos/go-runner:1.13.7"
     imagePullPolicy: Always
     args:
     - -c
@@ -83,7 +83,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:1.13.6'
+      value: 'litmuschaos/go-runner:1.13.7'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
