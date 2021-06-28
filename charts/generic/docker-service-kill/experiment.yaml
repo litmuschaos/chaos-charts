@@ -9,7 +9,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.6
+    app.kubernetes.io/version: 1.13.7
 spec:
   definition:
     scope: Cluster
@@ -75,5 +75,5 @@ spec:
       name: docker-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.6
+      app.kubernetes.io/version: 1.13.7
 
