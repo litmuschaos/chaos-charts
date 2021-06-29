@@ -1,6 +1,95 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
+    Detaching an ebs volume from ec2 instance.
+kind: ChaosExperiment
+metadata:
+  name: ec2-terminate-by-id
+  labels:
+    name: ec2-terminate-by-id
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.13.7
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "pods/exec"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/go-runner:1.13.7"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name ec2-terminate-by-id
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'      
+
+    # Instance ID of the target ec2 instance
+    # Multiple IDs can also be provided as comma separated values ex: id1,id2
+    - name: EC2_INSTANCE_ID
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    - name: SEQUENCE
+      value: 'parallel'
+
+    # Provide the path of aws credentials mounted from secret  
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
+    labels:
+      name: ec2-terminate-by-id
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.13.7
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
     Deletes an aws instance belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
@@ -123,7 +212,7 @@ metadata:
     name: ec2-terminate-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.6
+    app.kubernetes.io/version: 1.13.7
 spec:
   definition:
     scope: Cluster
@@ -197,7 +286,90 @@ spec:
       name: ec2-terminate-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.6
+      app.kubernetes.io/version: 1.13.7
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching an ebs volume from ec2 instance.
+kind: ChaosExperiment
+metadata:
+  name: ebs-loss-by-id
+  labels:
+    name: ebs-loss-by-id
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 1.13.7
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "batch"
+          - "litmuschaos.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/log"
+          - "pods/exec"
+          - "secrets"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/go-runner:1.13.7"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name ebs-loss-by-id
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: EBS_VOLUME_ID
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    - name: SEQUENCE
+      value: 'parallel'      
+
+    # Provide the path of aws credentials mounted from secret
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
+    labels:
+      name: ebs-loss-by-id
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 1.13.7
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -214,7 +386,7 @@ metadata:
     name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.6
+    app.kubernetes.io/version: 1.13.7
 spec:
   definition:
     scope: Cluster
@@ -282,179 +454,7 @@ spec:
       name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.6
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Detaching an ebs volume from ec2 instance.
-kind: ChaosExperiment
-metadata:
-  name: ebs-loss-by-id
-  labels:
-    name: ebs-loss-by-id
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.6
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "pods/exec"
-          - "secrets"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-    image: "litmuschaos/go-runner:1.13.7"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name ebs-loss-by-id
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '30'
-
-    - name: CHAOS_INTERVAL
-      value: '30'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: EBS_VOLUME_ID
-      value: ''
-
-    - name: REGION
-      value: ''
-
-    - name: SEQUENCE
-      value: 'parallel'      
-
-    # Provide the path of aws credentials mounted from secret
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
-    labels:
-      name: ebs-loss-by-id
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.6
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Detaching an ebs volume from ec2 instance.
-kind: ChaosExperiment
-metadata:
-  name: ec2-terminate-by-id
-  labels:
-    name: ec2-terminate-by-id
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.6
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "pods/exec"
-          - "secrets"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-    image: "litmuschaos/go-runner:1.13.7"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name ec2-terminate-by-id
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '30'
-
-    - name: CHAOS_INTERVAL
-      value: '30'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'      
-
-    # Instance ID of the target ec2 instance
-    # Multiple IDs can also be provided as comma separated values ex: id1,id2
-    - name: EC2_INSTANCE_ID
-      value: ''
-
-    - name: REGION
-      value: ''
-
-    - name: SEQUENCE
-      value: 'parallel'
-
-    # Provide the path of aws credentials mounted from secret  
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
-    labels:
-      name: ec2-terminate-by-id
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.6
+      app.kubernetes.io/version: 1.13.7
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
