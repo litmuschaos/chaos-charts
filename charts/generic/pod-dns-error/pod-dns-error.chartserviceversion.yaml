@@ -23,7 +23,7 @@ spec:
       email: gdsoumya@chaosnative.com
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 1.13.6
+    app.kubernetes.io/version: 1.13.7
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-dns-error
