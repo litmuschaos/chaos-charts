@@ -17,21 +17,17 @@ spec:
     - name: openebs-pool-disk-loss
       spec:
         components:
-          env:              
+          env:  
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'    
+
             - name: APP_PVC
               value: 'demo-nginx-claim'
 
             # GKE and AWS supported
             - name: CLOUD_PLATFORM
               value: 'GKE'
-
-            # Enter the time duration in sec after the disk is dettached
-            - name: TOTAL_CHAOS_DURATION
-              value: '60'
-
-            # Period to wait before injection of chaos in sec
-            - name: RAMP_TIME
-              value: ''
 
             # Enter the project id for gcp only
             - name: PROJECT_ID 
@@ -53,5 +49,3 @@ spec:
             - name: ZONE_NAME
               value: 'us-central1-a' 
               
-            - name: OPENEBS_NAMESPACE
-              value: 'openebs'
