@@ -1,0 +1,39 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: azure-disk-loss-sa
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: azure-disk-loss
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+            
+            # provide the resouce group of the instance
+            - name: RESOURCE_GROUP
+              value: ''
+            
+            # provide the target instance name
+            - name: AZURE_INSTANCE_NAME
+              value: ''
+            
+            # provide the virtual disk names (comma seperated if multiple)
+            - name: VIRTUAL_DISK_NAME
+              value: ''
+            
+            # provide the sequence type for the run. Options: serial/parallel
+            - name: SEQUENCE
+              value: 'parallel'
+              

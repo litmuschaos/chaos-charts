@@ -1,0 +1,91 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Detaching the disk attached to azure vm instance
+kind: ChaosExperiment
+metadata:
+  name: azure-disk-loss
+  labels:
+    name: azure-disk-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups: 
+          - "" 
+          - "batch" 
+          - "apps" 
+          - "litmuschaos.io"
+        resources: 
+          - "jobs" 
+          - "pods" 
+          - "pods/log" 
+          - "events" 
+          - "deployments" 
+          - "replicasets" 
+          - "pods/exec" 
+          - "chaosengines" 
+          - "chaosexperiments" 
+          - "chaosresults"
+        verbs: 
+          - "create" 
+          - "list" 
+          - "get" 
+          - "patch" 
+          - "update" 
+          - "delete" 
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name azure-disk-loss
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '30' 
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+    
+    # provide the resouce group of the instance
+    - name: RESOURCE_GROUP
+      value: ''
+    
+    # provide the target instance name
+    - name: AZURE_INSTANCE_NAME
+      value: ''
+    
+    # provide the virtual disk names (comma seperated if multiple)
+    - name: VIRTUAL_DISK_NAME
+      value: ''
+    
+    # provide the sequence type for the run. Options: serial/parallel
+    - name: SEQUENCE
+      value: 'parallel'
+    
+    # provide the path to aks credentials mounted from secret
+    - name: AZURE_AUTH_LOCATION
+      value: '/tmp/azure.auth'
+
+    labels:
+      name: azure-disk-loss
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/
