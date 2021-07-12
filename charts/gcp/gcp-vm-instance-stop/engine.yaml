@@ -22,17 +22,17 @@ spec:
             # Instance name of the target vm instance(s)
             # Multiple instance names can be provided as comma separated values ex: instance1,instance2
             - name: VM_INSTANCE_NAMES
-              value: 'test-instance,test-instance-1'
+              value: ''
             
             # GCP project ID to which the vm instances belong
             - name: GCP_PROJECT_ID
-              value: 'litmus-gcp-instance-delete'
+              value: ''
 
             # Instance zone(s) of the target vm instance(s)
             # If more than one instance is targetted, provide zone for each in the order of their 
             # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
             - name: INSTANCE_ZONES
-              value: 'us-central1-a,us-central1-b'
+              value: ''
 
             # enable it if the target instance is a part of self-managed auto scaling group.
             - name: AUTO_SCALING_GROUP

@@ -36,7 +36,7 @@ spec:
           - "update" 
           - "delete" 
           - "deletecollection"
-    image: "neelanjan00/go-runner:gcp-vm-disk-loss"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
