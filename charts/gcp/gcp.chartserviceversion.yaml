@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: gcp chaos
   categoryDescription: >
-    causes loss of a non-boot storage disk from a node or VM instance for a specified duration of time 
+    gcp contains chaos to disrupt state of gcp resources running part of the gcp services
   experiments:
   - vm-disk-loss
   keywords: 

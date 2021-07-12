@@ -16,7 +16,6 @@ spec:
     permissions:
       - apiGroups: 
           - "" 
-          - "batch" 
           - "litmuschaos.io"
         resources: 
           - "jobs" 
