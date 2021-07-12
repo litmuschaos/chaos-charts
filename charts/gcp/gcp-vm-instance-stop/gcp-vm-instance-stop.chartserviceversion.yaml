@@ -13,7 +13,6 @@ spec:
     - "vm-instances" 
     - "kubernetes" 
     - "gcp" 
-    - "exec"
   platforms: 
     - "GKE"
   maturity: alpha

@@ -49,7 +49,7 @@ spec:
       value: '30' 
 
     - name: CHAOS_INTERVAL
-      value: '10'
+      value: '30'
 
     # parallel or serial; determines how the VM instances are terminated, all at once or one at a time  
     - name: SEQUENCE
