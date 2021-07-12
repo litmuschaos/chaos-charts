@@ -30,7 +30,7 @@ spec:
               value: ''
             
             # provide the virtual disk names (comma seperated if multiple)
-            - name: VIRTUAL_DISK_NAME
+            - name: VIRTUAL_DISK_NAMES
               value: ''
             
             # provide the sequence type for the run. Options: serial/parallel
