@@ -20,6 +20,8 @@ spec:
             - name: MEMORY_CONSUMPTION
               value: '500'
 
+            - name: NUMBER_OF_WORKERS
+              value: '1'              
+
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
-            

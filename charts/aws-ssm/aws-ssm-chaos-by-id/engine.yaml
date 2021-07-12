@@ -1,0 +1,29 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: aws-ssm-chaos-by-id-sa
+  experiments:
+    - name: aws-ssm-chaos-by-id
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # set chaos duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '60'              
+
+            # Instance ID of the target ec2 instance
+            # Multiple IDs can also be provided as comma separated values ex: id1,id2  
+            - name: EC2_INSTANCE_ID
+              value: ''
+
+            # provide the region name of the target instances
+            - name: REGION
+              value: ''
