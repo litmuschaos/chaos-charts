@@ -4,10 +4,10 @@ metadata:
   name: gcp-vm-chaos
 spec:
   engineState: 'active'
-  chaosServiceAccount: vm-instance-stop-sa
+  chaosServiceAccount: gcp-vm-instance-stop-sa
   jobCleanUpPolicy: 'retain'
   experiments:
-    - name: vm-instance-stop
+    - name: gcp-vm-instance-stop
       spec:
         components:
           env:
