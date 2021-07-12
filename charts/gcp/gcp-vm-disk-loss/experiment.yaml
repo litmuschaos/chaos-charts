@@ -64,24 +64,24 @@ spec:
 
     # set the GCP project id
     - name: GCP_PROJECT_ID
-      value: 'litmus-gcp-instance-delete'
+      value: ''
 
     # set the disk volume name(s) as comma seperated values 
     # eg. volume1,volume2,...
     - name: DISK_VOLUME_NAMES
-      value: 'test-disk,test-disk-1'
+      value: ''
               
     # set the disk zone(s) as comma seperated values in the corresponding 
     # order of DISK_VOLUME_NAME  
     # eg. zone1,zone2,...
     - name: DISK_ZONES
-      value: 'us-central1-a,us-central1-b'
+      value: ''
             
     # set the device name(s) as comma seperated values in the corresponding 
     # order of DISK_VOLUME_NAME 
     # eg. device1,device2,...
     - name: DEVICE_NAMES
-      value: 'test-disk,test-disk-1'
+      value: ''
       
     labels:
       name: gcp-vm-disk-loss
