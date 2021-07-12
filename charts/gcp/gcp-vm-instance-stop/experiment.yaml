@@ -16,6 +16,7 @@ spec:
     permissions:
       - apiGroups: 
           - "" 
+          - "batch"
           - "litmuschaos.io"
         resources: 
           - "jobs" 
@@ -27,6 +28,7 @@ spec:
           - "chaosengines" 
           - "chaosexperiments" 
           - "chaosresults"
+          - "nodes"
         verbs: 
           - "create" 
           - "list" 

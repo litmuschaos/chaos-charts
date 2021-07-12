@@ -17,7 +17,7 @@ spec:
 
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
-              value: '10'
+              value: '30'
             
             # Instance name of the target vm instance(s)
             # Multiple instance names can be provided as comma separated values ex: instance1,instance2

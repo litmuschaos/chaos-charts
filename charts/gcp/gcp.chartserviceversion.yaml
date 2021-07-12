@@ -10,12 +10,11 @@ spec:
   categoryDescription: >
     gcp contains chaos to disrupt state of gcp resources running part of the gcp services
   experiments:
-  - vm-disk-loss
+  - gcp-vm-instance-stop
   keywords: 
     - "pods" 
     - "kubernetes" 
     - "gcp" 
-    - "exec"
   maintainers: 
     - name: neelanjan00 
       email: neelanjan@chaosnative.com
