@@ -20,28 +20,27 @@ spec:
       spec:
         components:
           env:
-            # specify the name of the container to be killed
-            - name: TARGET_CONTAINER
-              value: 'nginx'
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
 
             # provide the chaos interval
             - name: CHAOS_INTERVAL
               value: '10'
 
-            # provide the total chaos duration
-            - name: TOTAL_CHAOS_DURATION
-              value: '20'
-
-            - name: LIB_IMAGE  
-              value: 'litmuschaos/go-runner:latest' 
-
             # provide the name of container runtime
-            # it supports docker, containerd, crio
-            # default to docker
+            # for litmus LIB, it supports docker, containerd, crio
+            # for pumba LIB, it supports docker only
             - name: CONTAINER_RUNTIME
               value: 'docker'
 
-            # provide the container runtime path for containerd
-            # applicable only for containerd runtime
-            - name: CONTAINER_PATH
-              value: '/run/containerd/containerd.sock'
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'
+
+            - name: PODS_AFFECTED_PERC
+              value: ''
+
+            - name: TARGET_CONTAINER
+              value: ''
+              

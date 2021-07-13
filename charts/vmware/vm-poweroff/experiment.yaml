@@ -68,7 +68,6 @@ spec:
     - name: TOTAL_CHAOS_DURATION
       value: '30'
 
-
     - name: LIB
       value: 'litmus'
 
