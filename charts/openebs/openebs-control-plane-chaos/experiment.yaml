@@ -70,7 +70,7 @@ spec:
     ## env var that describes the library used to execute the chaos
     ## default: litmus. Supported values: litmus, powerfulseal
     - name: LIB
-      value: ''
+      value: 'litmus'
 
     labels:
       name: openebs-control-plane-chaos

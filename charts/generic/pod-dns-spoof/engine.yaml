@@ -19,12 +19,12 @@ spec:
       spec:
         components:
           env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60" # in seconds
+
             # map of the target hostnames eg. '{"abc.com":"spoofabc.com"}' . If empty no queries will be spoofed
             - name: SPOOF_MAP
               value: '{"google.com":"fakegoogle.com"}'
-
-            - name: TOTAL_CHAOS_DURATION
-              value: "60" # in seconds
 
             # provide the name of container runtime, it supports docker, containerd, crio
             - name: CONTAINER_RUNTIME
@@ -33,3 +33,7 @@ spec:
             # provide the socket file path
             - name: SOCKET_PATH
               value: "/var/run/docker.sock"
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ""

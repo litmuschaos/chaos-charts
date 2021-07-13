@@ -86,7 +86,6 @@ spec:
       value: 'docker'        
 
     # provide the socket file path
-    # it is used in pumba lib
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'      
 
