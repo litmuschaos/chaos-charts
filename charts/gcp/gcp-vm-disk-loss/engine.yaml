@@ -7,8 +7,6 @@ spec:
   # It can be active/stop
   engineState: 'active'
   chaosServiceAccount: gcp-vm-disk-loss-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'retain'
   experiments:
     - name: gcp-vm-disk-loss
       spec:
