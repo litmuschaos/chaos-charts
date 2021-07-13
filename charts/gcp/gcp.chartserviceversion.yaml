@@ -15,6 +15,7 @@ spec:
   keywords: 
     - "pods" 
     - "kubernetes" 
+	- "disk"
     - "gcp" 
   maintainers: 
     - name: neelanjan00 
