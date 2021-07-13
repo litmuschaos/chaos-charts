@@ -5,7 +5,6 @@ metadata:
 spec:
   engineState: 'active'
   chaosServiceAccount: gcp-vm-instance-stop-sa
-  jobCleanUpPolicy: 'retain'
   experiments:
     - name: gcp-vm-instance-stop
       spec:
