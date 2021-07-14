@@ -15,6 +15,10 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '30'
 
+            # set chaos intreval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'            
+
             # provide the target instance name
             - name: AZURE_INSTANCE_NAME
               value: ''

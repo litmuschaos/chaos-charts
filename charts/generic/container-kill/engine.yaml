@@ -16,13 +16,13 @@ spec:
       spec:
         components:
           env:
-            # provide the chaos interval
-            - name: CHAOS_INTERVAL
-              value: '10'
-
             # provide the total chaos duration
             - name: TOTAL_CHAOS_DURATION
               value: '20'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
 
             # provide the name of container runtime
             # for litmus LIB, it supports docker, containerd, crio
@@ -33,4 +33,10 @@ spec:
             # provide the socket file path
             - name: SOCKET_PATH
               value: '/var/run/docker.sock'
+
+            - name: PODS_AFFECTED_PERC
+              value: ''
+
+            - name: TARGET_CONTAINER
+              value: ''
               

@@ -45,7 +45,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
@@ -58,7 +58,7 @@ spec:
 
     ## Number of CPU cores to stress
     - name: CPU_CORES
-      value: '1'
+      value: '1' 
 
     ## Percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -75,14 +75,17 @@ spec:
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'  
+      value: 'litmuschaos/go-runner:ci'  
 
     ## It is used in pumba lib only    
     - name: STRESS_IMAGE
-      value: 'alexeiled/stress-ng:latest-ubuntu'  
+      value: 'alexeiled/stress-ng:latest-ubuntu'
+
+    ## provide the cluster runtime
+    - name: CONTAINER_RUNTIME
+      value: 'docker'        
 
     # provide the socket file path
-    # it is used in pumba lib
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'      
 

@@ -35,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:azure"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
@@ -45,6 +45,9 @@ spec:
     env:
 
     - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    - name: CHAOS_INTERVAL
       value: '30'
 
     # Period to wait before and after injection of chaos in sec
@@ -62,6 +65,9 @@ spec:
     # Provide the path of aks credentials mounted from secret  
     - name: AZURE_AUTH_LOCATION
       value: '/tmp/azure.auth'
+
+    - name: SEQUENCE
+      value: 'parallel'       
 
     # provide the LIB
     # only litmus supported
