@@ -1,9 +1,9 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  createdAt: 2019-01-07T10:28:08Z
+  createdAt: 2021-06-16T10:28:08Z
   name: pod-cpu-hog
-  version: 0.1.8
+  version: 0.1.0
   annotations:
     categories: Kubernetes
     vendor: CNCF
@@ -11,8 +11,9 @@ metadata:
 spec:
   displayName: pod-cpu-hog
   categoryDescription: |
-    Pod-CPU-Hog contains chaos to consume CPU resouces of specified containers in Kubernetes pods.  
-    - Causes high CPU resource consumption utilizing one or more cores by triggering md5sum commands
+    Pod-CPU-Hog contains chaos to consume CPU resouces of specified containers in Kubernetes pods.    
+    - Causes CPU resource consumption on specified application containers using cgroups and litmus nsutil which consume CPU resources of the given target containers.
+    - It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load
     - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
   keywords:
     - Kubernetes
@@ -27,10 +28,12 @@ spec:
   maturity: alpha
   maintainers:
     - name: ksatchit
-      email: karthik.s@mayadata.io
+      email: karthik@chaosnative.com
+    - name: Udit Gaurav
+      email: udit@chaosnative.com
   minKubeVersion: 1.12.0
   provider:
-    name: Mayadata
+    name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
     app.kubernetes.io/version: latest

@@ -1,0 +1,8 @@
+packageName: aws-ssm
+experiments:  
+  - name: aws-ssm-chaos-by-id
+    CSV: aws-ssm-chaos-by-id.chartserviceversion.yaml
+    desc: "aws-ssm-chaos-by-id"
+  - name: aws-ssm-chaos-by-tag 
+    CSV: aws-ssm-chaos-by-tag.chartserviceversion.yaml
+    desc: "aws-ssm-chaos-by-tag"

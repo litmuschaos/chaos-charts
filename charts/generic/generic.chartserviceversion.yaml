@@ -37,6 +37,8 @@ spec:
     - node-restart
     - pod-dns-error
     - pod-dns-spoof
+    - pod-cpu-hog-exec
+    - pod-memory-hog-exec
 
   keywords:
     - Kubernetes

@@ -16,13 +16,13 @@ spec:
       spec:
         components:
           env:
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
+
             - name: NFS_PROVISIONER_NAMESPACE
               value: 'app-nfs-ns'
   
-            ## Period to wait before injection of chaos  
-            - name: RAMP_TIME
-              value: '10'
-
             - name: NFS_PROVISIONER_LABEL
               value: 'app=nfs'
 

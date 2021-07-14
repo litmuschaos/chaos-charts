@@ -63,6 +63,9 @@ spec:
     - name: AZURE_AUTH_LOCATION
       value: '/tmp/azure.auth'
 
+    - name: SEQUENCE
+      value: 'parallel'       
+
     # provide the LIB
     # only litmus supported
     - name: LIB

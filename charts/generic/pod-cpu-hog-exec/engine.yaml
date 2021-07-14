@@ -6,28 +6,25 @@ metadata:
 spec:
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx 
-  auxiliaryAppInfo: ''
   appinfo:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  chaosServiceAccount: pod-cpu-hog-sa
+  chaosServiceAccount: pod-cpu-hog-exec-sa
   experiments:
-    - name: pod-cpu-hog
+    - name: pod-cpu-hog-exec
       spec:
         components:
           env:
-            # Provide name of target container
-            # where chaos has to be injected
-            - name: TARGET_CONTAINER
-              value: 'nginx'
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
 
             #number of cpu cores to be consumed
             #verify the resources the app has been launched with
             - name: CPU_CORES
               value: '1'
 
-            - name: TOTAL_CHAOS_DURATION
-              value: '60' # in seconds
-            
+             ## Percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''    
+                      
