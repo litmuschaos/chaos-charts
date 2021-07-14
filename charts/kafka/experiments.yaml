@@ -194,10 +194,6 @@ spec:
     - name: CHAOS_INTERVAL
       value: '5'
 
-    # provide the kill count
-    - name: KILL_COUNT
-      value: ''
-
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE

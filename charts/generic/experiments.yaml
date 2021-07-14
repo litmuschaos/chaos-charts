@@ -461,7 +461,7 @@ spec:
     env:
    
     - name: TOTAL_CHAOS_DURATION
-      value: '90' # in seconds
+      value: '60' # in seconds
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -545,10 +545,7 @@ spec:
       value: 'root'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '360'
-
-    - name: EXPERIMENT_NAME
-      value: 'node-poweroff'
+      value: '60'
 
     - name: REBOOT_COMMAND
       value: '-o ServerAliveInterval=1 -o ServerAliveCountMax=1 "sudo systemctl poweroff --force --force" ; true'
@@ -1426,7 +1423,6 @@ spec:
       value: 'docker'        
 
     # provide the socket file path
-    # it is used in pumba lib
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'      
 
@@ -2562,8 +2558,11 @@ spec:
       - name: STRESS_IMAGE
         value: 'alexeiled/stress-ng:latest-ubuntu'
 
+      ## provide the cluster runtime
+      - name: CONTAINER_RUNTIME
+        value: 'docker'   
+
       # provide the socket file path
-      # it is used in pumba lib
       - name: SOCKET_PATH
         value: '/var/run/docker.sock'        
         
