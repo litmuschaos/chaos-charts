@@ -12,7 +12,7 @@ spec:
   categoryDescription: >
     Azure category of chaos experiments causes the disruption of the azure serives for a certain chaos duration.
   experiments:
-    - azure-instance-terminate
+    - azure-instance-stop
   keywords:
     - Azure
     - Instance
