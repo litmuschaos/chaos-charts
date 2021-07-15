@@ -50,7 +50,7 @@ spec:
     imagePullPolicy: Always
     args:
       - -c
-      - python3 -u experiment
+      - python3 -u experiments
     command:
       - /bin/bash
     env:
