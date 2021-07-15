@@ -1,16 +1,16 @@
 apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
-  name: gcp-vm-instance-stop 
+  name: gcp-vm-disk-loss 
   version: 0.1.0
   annotations:
     categories: gcp
 spec:
-  displayName: gcp-vm-instance-stop 
+  displayName: gcp-vm-disk-loss 
   categoryDescription: >
-    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them 
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
   keywords: 
-    - "vm-instances" 
+    - "persistent-disks" 
     - "kubernetes" 
     - "gcp" 
   platforms: 
@@ -31,4 +31,4 @@ spec:
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-instance-stop/experiment.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-disk-loss/experiment.yaml

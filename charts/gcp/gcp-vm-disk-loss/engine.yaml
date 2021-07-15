@@ -1,0 +1,42 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: gcp-disk-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: gcp-vm-disk-loss-sa
+  experiments:
+    - name: gcp-vm-disk-loss
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # set the GCP project id
+            - name: GCP_PROJECT_ID
+              value: ''
+
+            # set the disk volume name(s) as comma seperated values 
+            # eg. volume1,volume2,...
+            - name: DISK_VOLUME_NAMES
+              value: ''
+              
+            # set the disk zone(s) as comma seperated values in the corresponding 
+            # order of DISK_VOLUME_NAME  
+            # eg. zone1,zone2,...
+            - name: DISK_ZONES
+              value: ''
+            
+            # set the device name(s) as comma seperated values in the corresponding 
+            # order of DISK_VOLUME_NAME 
+            # eg. device1,device2,...
+            - name: DEVICE_NAMES
+              value: ''
