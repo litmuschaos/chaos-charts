@@ -35,5 +35,5 @@ spec:
     - name: Documentation
       url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/workflows/icons/bank-of-anthos.svg
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/workflows/icons/bank-of-anthos.png
       mediatype: image/png
