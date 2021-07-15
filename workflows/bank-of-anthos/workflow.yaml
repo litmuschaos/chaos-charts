@@ -1,0 +1,118 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: argowf-chaos-bank-of-anthos-resiliency-
+  namespace: litmus
+  labels:
+    subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
+spec:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
+  arguments:
+    parameters:
+      - name: adminModeNamespace
+        value: "litmus"
+      - name: appNamespace
+        value: "bank"
+  templates:
+    - name: argowf-chaos
+      steps:
+        - - name: install-application
+            template: install-application
+        - - name: install-chaos-experiments
+            template: install-chaos-experiments
+        - - name: pod-network-loss
+            template: pod-network-loss
+        - - name: revert-chaos
+            template: revert-chaos
+          - name: delete-application
+            template: delete-application
+
+    - name: install-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=bank","-typeName=resilient","-operation=apply","-timeout=400", "-app=bank-of-anthos","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
+
+    - name: install-chaos-experiments
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args:
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+            {{workflow.parameters.adminModeNamespace}} ; sleep 30"      
+    
+    - name: pod-network-loss
+      inputs:
+        artifacts:
+          - name: pod-network-loss
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: pod-network-loss-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
+                spec:
+                  appinfo:
+                    appns: 'bank'
+                    applabel: 'name in (balancereader,transactionhistory)'
+                    appkind: 'deployment'
+                  jobCleanUpPolicy: retain
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-network-loss
+                      spec:
+                        probe:
+                        - name: "check-frontend-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://frontend.bank.svc.cluster.local:80"
+                            responseTimeout: 100
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 2
+                            interval: 1
+                            retry: 2
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '90' 
+                            - name: NETWORK_INTERFACE
+                              value: 'eth0'
+                            - name: NETWORK_PACKET_LOSS_PERCENTAGE
+                              value: '100'
+                            - name: CONTAINER_RUNTIME
+                              value: 'docker' 
+                            - name: SOCKET_PATH
+                              value: '/var/run/docker.sock'                
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
+
+    - name: delete-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace=bank","-typeName=resilient","-operation=delete", "-app=bank-of-anthos"]  
+    
+    - name: revert-chaos
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args: 
+          [ 
+            "kubectl delete chaosengine pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
+          ]

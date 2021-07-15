@@ -63,7 +63,7 @@ spec:
 
     # period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
-      value: ''
+      value: '0'
 
     # enable or disable; shall be enabled if the target instance is a part of an auto scaling group.
     - name: AUTO_SCALING_GROUP
@@ -92,3 +92,5 @@ spec:
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
+
+---

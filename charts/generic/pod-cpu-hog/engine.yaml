@@ -17,8 +17,20 @@ spec:
       spec:
         components:
           env:
-            - name: CPU_CORES
-              value: '1'         
-
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
+
+            - name: CPU_CORES
+              value: '1'    
+
+            ## Percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''   
+
+            ## provide the cluster runtime
+            - name: CONTAINER_RUNTIME
+              value: 'docker'        
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'    

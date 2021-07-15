@@ -30,6 +30,10 @@ spec:
             - name: NUMBER_OF_WORKERS
               value: '4'                               
             
-             ## enter the comma separated target nodes name
+             ## percentage of total nodes to target
+            - name: NODES_AFFECTED_PERC
+              value: ''
+
+            # provide the comma separated target node names
             - name: TARGET_NODES
               value: ''

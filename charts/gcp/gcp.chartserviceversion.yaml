@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: gcp chaos
   categoryDescription: >
-    gcp contains chaos to disrupt state of gcp resources running part of the gcp services
+    GCP contains chaos to disrupt state of gcp resources running part of the gcp services
   experiments:
   - gcp-vm-instance-stop
   - gcp-vm-disk-loss
@@ -16,7 +16,7 @@ spec:
     - "pods" 
     - "kubernetes" 
     - "disk"
-    - "gcp" 
+    - "gcp"
   maintainers: 
     - name: neelanjan00 
       email: neelanjan@chaosnative.com

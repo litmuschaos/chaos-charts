@@ -4,9 +4,9 @@ description:
     Terminating azure VM instance
 kind: ChaosExperiment
 metadata:
-  name: azure-instance-terminate
+  name: azure-instance-stop
   labels:
-    name: azure-instance-terminate
+    name: azure-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -35,16 +35,19 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:azure"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name azure-instance-terminate
+    - ./experiments -name azure-instance-stop
     command:
     - /bin/bash
     env:
 
     - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    - name: CHAOS_INTERVAL
       value: '30'
 
     # Period to wait before and after injection of chaos in sec
@@ -63,13 +66,16 @@ spec:
     - name: AZURE_AUTH_LOCATION
       value: '/tmp/azure.auth'
 
+    - name: SEQUENCE
+      value: 'parallel'       
+
     # provide the LIB
     # only litmus supported
     - name: LIB
       value: 'litmus'  
           
     labels:
-      name: azure-instance-terminate
+      name: azure-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest

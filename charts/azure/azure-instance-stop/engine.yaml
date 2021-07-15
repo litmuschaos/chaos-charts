@@ -5,18 +5,19 @@ metadata:
   namespace: default
 spec:
   engineState: 'active'
-  chaosServiceAccount: azure-instance-terminate-sa
-  monitoring: false
-  # It can be retain/delete
-  jobCleanUpPolicy: 'delete'
+  chaosServiceAccount: azure-instance-stop-sa
   experiments:
-    - name: azure-instance-terminate
+    - name: azure-instance-stop
       spec:
         components:
           env: 
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
               value: '30'
+
+            # set chaos intreval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'            
 
             # provide the target instance name
             - name: AZURE_INSTANCE_NAME
