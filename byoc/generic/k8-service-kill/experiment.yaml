@@ -44,7 +44,7 @@ spec:
     labels:
       name: k8-service-kill    
       app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:1.13.8"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/kubernetes/k8_wrapper.py; exit 0

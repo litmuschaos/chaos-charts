@@ -41,7 +41,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:1.13.8"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/aws/aws_wrapper.py ; exit 0
