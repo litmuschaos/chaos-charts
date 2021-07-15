@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2021-06-11T10:28:08Z
-  name: aws ssm
+  name: aws-ssm
   version: 0.1.0
   annotations:
     categories: Kubernetes
