@@ -344,4 +344,5 @@ spec:
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
+
 ---
