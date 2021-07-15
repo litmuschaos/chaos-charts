@@ -14,7 +14,7 @@ spec:
     - "kubernetes" 
     - "gcp" 
   platforms: 
-    - "GKE"
+    - "GCP"
   maturity: alpha
   maintainers: 
     - name: neelanjan00 
