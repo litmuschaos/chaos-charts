@@ -1,0 +1,36 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-06-11T10:28:08Z
+  name: aws-ssm
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects aws ssm chaos 
+spec:
+  displayName: AWS SSM
+  categoryDescription: >
+    aws ssm contains chaos to disrupt state of aws resources by litmus aws ssm docs
+  experiments:
+    - aws-ssm-chaos-by-id
+    - aws-ssm-chaos-by-tag
+  keywords:
+    - AWS
+    - SSM
+    - EC2
+  maintainers:
+    - name: ksatchit
+      email: karthik@chaosnative.com
+  provider:
+    name: ChaosNative
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/aws-ssm
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/ 
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/aws-ssm/icons/aws-ssm.png
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/aws-ssm/experiments.yaml

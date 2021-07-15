@@ -51,12 +51,9 @@ experiments:
   - name: pod-autoscaler
     CSV: pod-autoscaler.chartserviceversion.yaml
     desc: "pod-autoscaler"
-  - name: k8-pod-delete
-    CSV: k8-pod-delete.chartserviceversion.yaml
-    desc: "k8-pod-delete"
-  - name: k8-service-kill
-    CSV: k8-service-kill.chartserviceversion.yaml
-    desc: "k8-service-kill"
+  - name: byoc-pod-delete
+    CSV: byoc-pod-delete.chartserviceversion.yaml
+    desc: "byoc-pod-delete"
   - name: node-io-stress
     CSV: node-io-stress.chartserviceversion.yaml
     desc: "node-io-stress"
@@ -72,3 +69,9 @@ experiments:
   - name: pod-dns-spoof
     CSV: pod-dns-spoof.chartserviceversion.yaml
     desc: "pod-dns-spoof"
+  - name: pod-cpu-hog-exec
+    CSV: pod-cpu-hog-exec.chartserviceversion.yaml
+    desc: "pod-cpu-hog-exec"
+  - name: pod-memory-hog-exec
+    CSV: pod-memory-hog-exec.chartserviceversion.yaml
+    desc: "pod-memory-hog-exec"

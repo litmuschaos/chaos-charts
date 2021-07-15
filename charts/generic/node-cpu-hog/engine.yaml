@@ -23,6 +23,10 @@ spec:
             - name: NODE_CPU_CORE
               value: ''
             
-            # ENTER THE COMMA SEPARATED TARGET NODES NAME
+            ## percentage of total nodes to target
+            - name: NODES_AFFECTED_PERC
+              value: ''
+
+            # provide the comma separated target node names
             - name: TARGET_NODES
               value: ''

@@ -1,0 +1,39 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: bank-of-anthos
+  version: 0.1.0
+  annotations:
+    categories: bank-of-anthos
+    chartDescription: Injects chaos on bank-of-anthos application using http probe.
+spec:
+  displayName: bank-of-anthos-Chaos
+  categoryDescription: >
+    It install bank-of-anthos application, generate loads, inject chaos on bank-of-anthos,
+    uninstall the application and revert the chaos
+  experiments:
+    - pod-network-loss
+  keywords:
+    - Kubernetes
+    - bank-of-anthos
+    - Pod
+    - Network
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  maintainers:
+    - name: oumkale
+      email: oumkale@chaosnative.com
+  provider:
+    name: ChaosNative
+  links:
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/workflows/icons/bank-of-anthos.png
+      mediatype: image/png

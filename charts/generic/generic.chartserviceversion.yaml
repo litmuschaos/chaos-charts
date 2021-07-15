@@ -30,13 +30,14 @@ spec:
     - node-taint
     - docker-service-kill
     - pod-autoscaler
-    - k8-pod-delete
-    - k8-service-kill
+    - byoc-pod-delete
     - node-io-stress
     - pod-io-stress
     - node-restart
     - pod-dns-error
     - pod-dns-spoof
+    - pod-cpu-hog-exec
+    - pod-memory-hog-exec
 
   keywords:
     - Kubernetes

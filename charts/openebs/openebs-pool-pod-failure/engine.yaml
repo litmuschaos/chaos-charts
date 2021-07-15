@@ -20,8 +20,8 @@ spec:
       spec:
         components:
           env:
-            - name: FORCE
-              value: 'true'
+            - name: CHAOS_ITERATIONS
+              value: '2'
 
             - name: APP_PVC
               value: 'demo-nginx-claim' 

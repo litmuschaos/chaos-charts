@@ -9,7 +9,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.7
+    app.kubernetes.io/version: 1.13.8
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:1.13.7"
+    image: "litmuschaos/go-runner:1.13.8"
     imagePullPolicy: Always
     args:
     - -c
@@ -52,7 +52,7 @@ spec:
     env:
    
     - name: TOTAL_CHAOS_DURATION
-      value: '90' # in seconds
+      value: '60' # in seconds
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -76,4 +76,4 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.7
+      app.kubernetes.io/version: 1.13.8

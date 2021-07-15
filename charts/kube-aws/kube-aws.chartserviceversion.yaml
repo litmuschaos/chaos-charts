@@ -12,7 +12,6 @@ spec:
   categoryDescription: >
     kube-aws contains chaos to disrupt state of aws resources running part of kubernetes cluster
   experiments:
-    - k8-aws-ec2-terminate
     - ec2-terminate-by-id
     - ec2-terminate-by-tag
     - ebs-loss-by-id
@@ -22,8 +21,8 @@ spec:
     - EC2
     - State
   maintainers:
-    - name: sumit
-      email: sumit_nagal@intuit.com
+    - name: ksatchit
+      email: karthik.s@mayadata.io
   provider:
     name: Intuit
   links:
