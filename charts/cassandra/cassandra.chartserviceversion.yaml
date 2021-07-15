@@ -27,8 +27,6 @@ spec:
   provider:
     name: Mayadata
   links:
-    - name: Kubernetes Website
-      url: https://kubernetes.io
     - name: Cassandra Website
       url: http://cassandra.apache.org/
     - name: Source Code
