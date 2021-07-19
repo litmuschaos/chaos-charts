@@ -3,3 +3,7 @@ experiments:
   - name: azure-instance-terminate 
     CSV: azure-instance-terminate.chartserviceversion.yaml
     desc: "azure-instance-terminate"
+    
+  - name: azure-disk-loss
+    CSV: azure-disk-loss.chartserviceversion.yaml
+    desc: "azure-disk-loss"

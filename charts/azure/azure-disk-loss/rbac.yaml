@@ -17,31 +17,9 @@ metadata:
     name: azure-disk-loss-sa
     app.kubernetes.io/part-of: litmus
 rules:
-  - apiGroups: 
-      - "" 
-      - "batch" 
-      - "apps" 
-      - "litmuschaos.io"
-    resources: 
-      - "jobs" 
-      - "pods" 
-      - "pods/log" 
-      - "events" 
-      - "deployments" 
-      - "replicasets" 
-      - "pods/exec" 
-      - "chaosengines" 
-      - "chaosexperiments" 
-      - "chaosresults"
-      - "secrets"
-    verbs: 
-      - "create" 
-      - "list" 
-      - "get" 
-      - "patch" 
-      - "update" 
-      - "delete" 
-      - "deletecollection"
+  - apiGroups: ["", "batch", "litmuschaos.io"]
+    resources: ["jobs", "pods", "pods/log", "events", "pods/exec", "chaosengines", "chaosexperiments", "chaosresults", "secrets"]
+    verbs: ["create", "list", "get", "patch", "update", "delete"] 
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
