@@ -1,0 +1,94 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them
+kind: ChaosExperiment
+metadata:
+  name: gcp-vm-instance-stop
+  labels:
+    name: gcp-vm-instance-stop
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups: 
+          - "" 
+          - "batch"
+          - "litmuschaos.io"
+        resources: 
+          - "jobs" 
+          - "pods" 
+          - "pods/log" 
+          - "events" 
+          - "secrets" 
+          - "pods/exec" 
+          - "chaosengines" 
+          - "chaosexperiments" 
+          - "chaosresults"
+          - "nodes"
+        verbs: 
+          - "create" 
+          - "list" 
+          - "get" 
+          - "patch" 
+          - "update" 
+          - "delete" 
+          - "deletecollection"
+    image: "litmuschaos/go-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name gcp-vm-instance-stop
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '30' 
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    # parallel or serial; determines how the VM instances are terminated, all at once or one at a time  
+    - name: SEQUENCE
+      value: 'parallel'
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # enable or disable; shall be enabled if the target instance is a part of an auto scaling group.
+    - name: AUTO_SCALING_GROUP
+      value: 'disable'
+    
+    # Instance name of the target vm instance(s)
+    # Multiple instance names can be provided as comma separated values ex: instance1,instance2
+    - name: VM_INSTANCE_NAMES
+      value: ''
+    
+    # GCP project ID to which the vm instances belong
+    - name: GCP_PROJECT_ID
+      value: ''
+
+    # Instance zone(s) of the target vm instance(s)
+    # If more than one instance is targetted, provide zone for each in the order of their 
+    # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
+    - name: INSTANCE_ZONES
+      value: ''
+      
+    labels:
+      name: gcp-vm-instance-stop
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest 
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/

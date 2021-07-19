@@ -1,0 +1,8 @@
+packageName: gcp
+experiments:
+  - name: gcp-vm-instance-stop
+    CSV: gcp-vm-instance-stop.chartserviceversion.yaml
+    desc: "gcp-vm-instance-stop"
+  - name: gcp-vm-disk-loss
+    CSV: gcp-vm-disk-loss.chartserviceversion.yaml
+    desc: "gcp-vm-disk-loss"

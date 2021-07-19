@@ -1,0 +1,93 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+kind: ChaosExperiment
+metadata:
+  name: gcp-vm-disk-loss
+  labels:
+    name: gcp-vm-disk-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups: 
+          - "" 
+          - "batch" 
+          - "litmuschaos.io"
+        resources: 
+          - "jobs" 
+          - "pods" 
+          - "pods/log" 
+          - "events" 
+          - "secrets" 
+          - "pods/exec" 
+          - "chaosengines" 
+          - "chaosexperiments" 
+          - "chaosresults"
+        verbs: 
+          - "create" 
+          - "list" 
+          - "get" 
+          - "patch" 
+          - "update" 
+          - "delete" 
+          - "deletecollection"
+    image: "litmuschaos/go-runner:ci"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name gcp-vm-disk-loss
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '30' 
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    - name: LIB
+      value: 'litmus'
+    
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # parallel or serial; determines how chaos is injected
+    - name: SEQUENCE
+      value: 'parallel'
+
+    # set the GCP project id
+    - name: GCP_PROJECT_ID
+      value: ''
+
+    # set the disk volume name(s) as comma seperated values 
+    # eg. volume1,volume2,...
+    - name: DISK_VOLUME_NAMES
+      value: ''
+              
+    # set the disk zone(s) as comma seperated values in the corresponding 
+    # order of DISK_VOLUME_NAME  
+    # eg. zone1,zone2,...
+    - name: DISK_ZONES
+      value: ''
+            
+    # set the device name(s) as comma seperated values in the corresponding 
+    # order of DISK_VOLUME_NAME 
+    # eg. device1,device2,...
+    - name: DEVICE_NAMES
+      value: ''
+      
+    labels:
+      name: gcp-vm-disk-loss
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest 
+    secrets:
+    - name: cloud-secret
+      mountPath: /tmp/

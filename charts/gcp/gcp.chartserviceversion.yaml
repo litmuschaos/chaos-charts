@@ -1,0 +1,36 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp 
+  version: 0.1.0
+  annotations:
+    categories: gcp
+spec:
+  displayName: gcp chaos
+  categoryDescription: >
+    GCP contains chaos to disrupt state of gcp resources running part of the gcp services
+  experiments:
+  - gcp-vm-instance-stop
+  - gcp-vm-disk-loss
+  keywords: 
+    - "pods" 
+    - "kubernetes" 
+    - "disk"
+    - "gcp"
+  maintainers: 
+    - name: neelanjan00 
+      email: neelanjan@chaosnative.com
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  links: 
+    - name: GCP Website
+      url: https://cloud.google.com/
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+    - name: Community Slack
+      url: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/experiments.yaml

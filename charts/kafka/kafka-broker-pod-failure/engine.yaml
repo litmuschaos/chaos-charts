@@ -18,6 +18,10 @@ spec:
       spec:
         components:  
           env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
             # choose based on available kafka broker replicas           
             - name: KAFKA_REPLICATION_FACTOR
               value: '3'
@@ -60,10 +64,6 @@ spec:
             - name: ZOOKEEPER_PORT
               value: '2181'
 
-            # set chaos duration (in sec) as desired
-            - name: TOTAL_CHAOS_DURATION
-              value: '60'
-              
             # set chaos interval (in sec) as desired
             - name: CHAOS_INTERVAL
               value: '20'

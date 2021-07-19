@@ -18,6 +18,10 @@ spec:
       spec:
         components:
           env:
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
+
             - name: APP_PVC
               value: 'demo-nginx-claim'   
                

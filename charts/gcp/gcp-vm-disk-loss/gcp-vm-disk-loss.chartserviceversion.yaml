@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp-vm-disk-loss 
+  version: 0.1.0
+  annotations:
+    categories: gcp
+spec:
+  displayName: gcp-vm-disk-loss 
+  categoryDescription: >
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+  keywords: 
+    - "persistent-disks" 
+    - "kubernetes" 
+    - "gcp" 
+  platforms: 
+    - "GCP"
+  maturity: alpha
+  maintainers: 
+    - name: neelanjan00 
+      email: neelanjan@chaosnative.com 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-disk-loss/experiment.yaml

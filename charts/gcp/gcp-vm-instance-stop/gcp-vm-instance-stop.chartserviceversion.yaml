@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp-vm-instance-stop 
+  version: 0.1.0
+  annotations:
+    categories: gcp
+spec:
+  displayName: gcp-vm-instance-stop 
+  categoryDescription: >
+    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them 
+  keywords: 
+    - "vm-instances" 
+    - "kubernetes" 
+    - "gcp" 
+  platforms: 
+    - "GCP"
+  maturity: alpha
+  maintainers: 
+    - name: neelanjan00 
+      email: neelanjan@chaosnative.com 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-instance-stop/experiment.yaml
