@@ -1,0 +1,40 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: azure-disk-loss 
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: Chaos Native
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: azure-disk-loss 
+  categoryDescription: >
+    
+  keywords: 
+    - Kubernetes
+    - Azure
+    - Termination
+  platforms: 
+    - Azure
+  maturity: alpha
+  maintainers: 
+    - name: avaakash 
+      email: akash@chaosnative.com 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Source Code
+      url: 
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/azure-disk-loss/
+    - name: Video
+      url:  
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/azure/azure-disk-loss/experiment.yaml

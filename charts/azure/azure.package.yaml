@@ -3,3 +3,8 @@ experiments:
   - name: azure-instance-stop 
     CSV: azure-instance-stop.chartserviceversion.yaml
     desc: "azure-instance-stop"
+    
+  - name: azure-disk-loss
+    CSV: azure-disk-loss.chartserviceversion.yaml
+    desc: "azure-disk-loss"
+  
