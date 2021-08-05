@@ -25,10 +25,12 @@ spec:
             - name: RESOURCE_GROUP
               value: ''
             
-            # provide the target instance name
-            - name: AZURE_INSTANCE_NAME
+            # accepts enable/disable, default is disable
+            - name: SCALE_SET
               value: ''
             
             # provide the virtual disk names (comma seperated if multiple)
             - name: VIRTUAL_DISK_NAMES
               value: ''
+            
+            
