@@ -1,0 +1,5 @@
+packageName: azure 
+experiments:
+  - name: azure-instance-stop 
+    CSV: azure-instance-stop.chartserviceversion.yaml
+    desc: "azure-instance-stop"

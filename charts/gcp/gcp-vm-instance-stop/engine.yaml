@@ -1,0 +1,38 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: gcp-vm-chaos
+spec:
+  engineState: 'active'
+  chaosServiceAccount: gcp-vm-instance-stop-sa
+  experiments:
+    - name: gcp-vm-instance-stop
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+            
+            # Instance name of the target vm instance(s)
+            # Multiple instance names can be provided as comma separated values ex: instance1,instance2
+            - name: VM_INSTANCE_NAMES
+              value: ''
+            
+            # GCP project ID to which the vm instances belong
+            - name: GCP_PROJECT_ID
+              value: ''
+
+            # Instance zone(s) of the target vm instance(s)
+            # If more than one instance is targetted, provide zone for each in the order of their 
+            # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
+            - name: INSTANCE_ZONES
+              value: ''
+
+            # enable it if the target instance is a part of self-managed auto scaling group.
+            - name: AUTO_SCALING_GROUP
+              value: 'disable'

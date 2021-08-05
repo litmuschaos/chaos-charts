@@ -1,15 +1,15 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Detaching a persistent disk from a node/instance. Supports only for AWS and GCP
+    Terminating azure VM instance
 kind: ChaosExperiment
 metadata:
-  name: disk-loss
+  name: azure-instance-stop
   labels:
-    name: disk-loss
+    name: azure-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.8
+    app.kubernetes.io/version: 2.0.0-RC1
 spec:
   definition:
     scope: Cluster
@@ -23,6 +23,7 @@ spec:
           - "pods"
           - "events"
           - "pods/log"
+          - "pods/exec"
           - "secrets"
           - "chaosengines"
           - "chaosexperiments"
@@ -34,56 +35,51 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:1.13.8"
+    image: "litmuschaos/go-runner:2.0.0-RC1"
     imagePullPolicy: Always
     args:
     - -c
-    - ansible-playbook ./experiments/generic/disk_loss/disk_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    - ./experiments -name azure-instance-stop
     command:
     - /bin/bash
     env:
-    - name: ANSIBLE_STDOUT_CALLBACK
-      value: 'default'
 
     - name: TOTAL_CHAOS_DURATION
-      value: '15'
+      value: '30'
+
+    - name: CHAOS_INTERVAL
+      value: '30'
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: APP_CHECK
-      value: 'true' 
-        
-    # GKE and AWS supported
-    - name: CLOUD_PLATFORM
-      value: 'GKE'
-
-    - name: PROJECT_ID 
+    # provide the target instance name
+    - name: AZURE_INSTANCE_NAME
       value: ''
 
-    - name: NODE_NAME
-      value: '' 
+    # provide the resource group of the instance
+    - name: RESOURCE_GROUP
+      value: ''
 
-    - name: DISK_NAME
-      value: ''  
+    # Provide the path of aks credentials mounted from secret  
+    - name: AZURE_AUTH_LOCATION
+      value: '/tmp/azure.auth'
+
+    - name: SEQUENCE
+      value: 'parallel'       
 
     # provide the LIB
     # only litmus supported
     - name: LIB
       value: 'litmus'  
           
-    - name: ZONE_NAME
-      value: '' 
-
-    - name: DEVICE_NAME
-      value: '' 
-          
     labels:
-      name: disk-loss
+      name: azure-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.8
+      app.kubernetes.io/version: 2.0.0-RC1
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
+
