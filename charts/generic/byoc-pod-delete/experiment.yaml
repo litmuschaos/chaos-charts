@@ -4,12 +4,12 @@ description:
     Deletes a pod belonging to a deployment/statefulset/daemonset
 kind: ChaosExperiment
 metadata:
-  name: k8-pod-delete
+  name: byoc-pod-delete
   labels:
-    name: k8-pod-delete
+    name: byoc-pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 1.13.8
 spec:
   definition:
     scope: Namespaced
@@ -77,7 +77,7 @@ spec:
 
 
     labels:
-      name: k8-pod-delete
+      name: byoc-pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 1.13.8
