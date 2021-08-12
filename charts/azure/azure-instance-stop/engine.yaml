@@ -19,11 +19,15 @@ spec:
             - name: CHAOS_INTERVAL
               value: '30'            
 
-            # provide the target instance name
+            # provide the target instance name(s) (comma separated if multiple)
             - name: AZURE_INSTANCE_NAME
               value: ''
 
             # provide the resource group of the instance
             - name: RESOURCE_GROUP
+              value: ''
+            
+            # accepts enable/disable, default is disable
+            - name: SCALE_SET
               value: ''
 
