@@ -82,7 +82,7 @@ spec:
       value: '15'
 
     # SET THE CASSANDRA_LIVENESS_CHECK
-    # IT CAN BE `enabled` OR `disabled`
+    # IT CAN BE `enable` OR `disable`
     - name: CASSANDRA_LIVENESS_CHECK
       value: ''
 
