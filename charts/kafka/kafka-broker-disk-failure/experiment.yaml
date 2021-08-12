@@ -54,7 +54,7 @@ spec:
       value: 'enabled'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:latest'
+      value: 'litmuschaos/kafka-client:ci'
 
     - name: KAFKA_CONSUMER_TIMEOUT
       value: '30000'
