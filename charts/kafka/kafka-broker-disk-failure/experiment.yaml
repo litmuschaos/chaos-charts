@@ -51,7 +51,7 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enable'
+      value: 'enabled'
 
     - name: KAFKA_LIVENESS_IMAGE
       value: 'litmuschaos/kafka-client:latest'
