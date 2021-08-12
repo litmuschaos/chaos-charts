@@ -180,10 +180,10 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enable'
+      value: 'enabled'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:latest'
+      value: 'litmuschaos/kafka-client:ci'
 
     - name: KAFKA_CONSUMER_TIMEOUT
       value: '30000'
