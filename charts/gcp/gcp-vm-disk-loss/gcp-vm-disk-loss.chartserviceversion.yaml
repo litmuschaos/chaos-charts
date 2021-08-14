@@ -24,7 +24,7 @@ spec:
     name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
   links: 
     - name: Documentation 
       url: https://docs.litmuschaos.io/docs/getstarted/ 

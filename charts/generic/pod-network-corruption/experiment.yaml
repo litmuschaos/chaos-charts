@@ -9,7 +9,7 @@ metadata:
     name: pod-network-corruption
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Namespaced
@@ -45,7 +45,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.0.0-RC1"
+    image: "litmuschaos/go-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -59,7 +59,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.0.0-RC1' 
+      value: 'litmuschaos/go-runner:2.0.0' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -117,4 +117,4 @@ spec:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 2.0.0
