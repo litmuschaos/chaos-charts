@@ -9,7 +9,7 @@ metadata:
     name: azure-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Cluster
@@ -35,7 +35,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:2.0.0-RC1"
+    image: "litmuschaos/go-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -54,12 +54,16 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the target instance name
+    # provide the target instance name(s) (comma separated if multiple)
     - name: AZURE_INSTANCE_NAME
       value: ''
 
     # provide the resource group of the instance
     - name: RESOURCE_GROUP
+      value: ''
+    
+    # accepts enable/disable, default is disable
+    - name: SCALE_SET
       value: ''
 
     # Provide the path of aks credentials mounted from secret  
@@ -78,7 +82,7 @@ spec:
       name: azure-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 2.0.0
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

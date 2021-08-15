@@ -9,7 +9,7 @@ metadata:
     name: kafka-broker-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Cluster
@@ -46,7 +46,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.0.0-RC1"
+    image: "litmuschaos/go-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -59,10 +59,10 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enabled'
+      value: 'enable'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:ci'
+      value: 'litmuschaos/kafka-client:latest'
 
     # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT
@@ -124,4 +124,4 @@ spec:
       name: kafka-broker-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 2.0.0

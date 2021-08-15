@@ -9,7 +9,7 @@ metadata:
     name: kafka-broker-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Cluster
@@ -46,7 +46,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.0.0-RC1"
+    image: "litmuschaos/go-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -59,10 +59,10 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enabled'
+      value: 'enable'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:ci'
+      value: 'litmuschaos/kafka-client:latest'
 
     # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT
@@ -124,7 +124,7 @@ spec:
       name: kafka-broker-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 2.0.0
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -138,7 +138,7 @@ metadata:
     name: kafka-broker-disk-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 1.13.8
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Cluster
@@ -165,7 +165,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:1.13.8"
+    image: "litmuschaos/ansible-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -180,10 +180,10 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enabled'
+      value: 'enable'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:ci'
+      value: 'litmuschaos/kafka-client:latest'
 
     - name: KAFKA_CONSUMER_TIMEOUT
       value: '30000'
@@ -240,7 +240,7 @@ spec:
       name: kafka-broker-disk-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 1.13.8
+      app.kubernetes.io/version: 2.0.0
     secrets:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/

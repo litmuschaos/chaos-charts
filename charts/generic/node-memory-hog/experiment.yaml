@@ -9,7 +9,7 @@ metadata:
     name: node-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0-RC1
+    app.kubernetes.io/version: 2.0.0
 spec:
   definition:
     scope: Cluster
@@ -42,7 +42,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.0.0-RC1"
+    image: "litmuschaos/go-runner:2.0.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -85,7 +85,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.0.0-RC1' 
+      value: 'litmuschaos/go-runner:2.0.0' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -100,4 +100,4 @@ spec:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0-RC1
+      app.kubernetes.io/version: 2.0.0
