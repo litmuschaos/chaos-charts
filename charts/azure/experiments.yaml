@@ -54,12 +54,16 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # provide the target instance name
+    # provide the target instance name(s) (comma separated if multiple)
     - name: AZURE_INSTANCE_NAME
       value: ''
 
     # provide the resource group of the instance
     - name: RESOURCE_GROUP
+      value: ''
+    
+    # accepts enable/disable, default is disable
+    - name: SCALE_SET
       value: ''
 
     # Provide the path of aks credentials mounted from secret  
