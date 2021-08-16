@@ -41,7 +41,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-cpu-hog
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/node-cpu-hog/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-cpu-hog/
     - name: Video
       url: https://www.youtube.com/watch?v=jpJttftsZqA
   icon: 

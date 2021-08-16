@@ -38,7 +38,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-cpu-hog-exec
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/pod-cpu-hog-exec/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-cpu-hog-exec/
     - name: Video
       url: https://www.youtube.com/watch?v=MBGSPmZKb2I
   icon:

@@ -32,7 +32,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-restart
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/node-restart
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-restart
   icon: 
     - url: 
       mediatype: ""

@@ -27,7 +27,7 @@ spec:
     app.kubernetes.io/version: 2.0.0
   links: 
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-instance-stop/ 
   icon:
     - url: 
       mediatype: ""

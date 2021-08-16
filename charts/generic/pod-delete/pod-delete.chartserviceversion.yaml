@@ -42,7 +42,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-delete
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/pod-delete/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-delete/
     - name: Video
       url: https://www.youtube.com/watch?v=X3JvY_58V9A
   icon:

@@ -36,7 +36,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/docker-service-kill
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/docker-service-kill/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/docker-service-kill/
     - name: Video
       url: 
 

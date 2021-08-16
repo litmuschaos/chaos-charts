@@ -34,7 +34,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/vm-poweroff
+      url: https://litmuschaos.github.io/litmus/experiments/categories/vmware/vm-poweroff/
     - name: Video
       url:
   icon:
