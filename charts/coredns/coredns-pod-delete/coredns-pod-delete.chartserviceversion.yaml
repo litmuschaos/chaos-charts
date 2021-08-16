@@ -35,7 +35,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/coredns/pod_delete
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/coredns-pod-delete/
+      url: https://v1-docs.litmuschaos.io/docs/coredns-pod-delete/
     - name: Video
       url: https://www.youtube.com/watch?v=pwo5idKW7q8
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuchaos/chaos-charts/master/charts/coredns/coredns-pod-delete/experiment.yaml

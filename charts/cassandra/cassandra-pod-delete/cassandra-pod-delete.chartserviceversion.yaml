@@ -35,9 +35,9 @@ spec:
     app.kubernetes.io/version: 2.0.0
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/cassandra/pod-delete
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/cassandra/pod-delete
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/cassandra-pod-delete/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/cassandra/cassandra-pod-delete/
     - name: Video
       url: 
   icon:

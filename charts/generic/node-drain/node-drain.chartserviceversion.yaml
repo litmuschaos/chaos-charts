@@ -39,7 +39,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-drain
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/node-drain/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-drain/
     - name: Video
       url: https://www.youtube.com/watch?v=LQVCZUQ4-ok
   icon:

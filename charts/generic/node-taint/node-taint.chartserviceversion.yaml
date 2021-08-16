@@ -40,7 +40,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-taint
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/node-taint/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-taint/
     - name: Video
       url:
   icon:
