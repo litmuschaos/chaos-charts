@@ -37,7 +37,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-io-stress
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/pod-io-stress/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-io-stress/
     - name: Video
       url:
   icon:

@@ -40,7 +40,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-io-stress
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/node-io-stress/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-io-stress/
     - name: Video
       url:
   icon:

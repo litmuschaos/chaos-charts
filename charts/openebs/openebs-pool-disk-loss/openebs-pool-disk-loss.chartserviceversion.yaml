@@ -35,7 +35,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-disk-loss
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-pool-disk-loss/
+      url: https://v1-docs.litmuschaos.io/docs/openebs-pool-disk-loss/
     - name: Video
       url:
   icon:
