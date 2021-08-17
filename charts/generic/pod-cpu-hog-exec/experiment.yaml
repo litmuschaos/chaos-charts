@@ -72,6 +72,10 @@ spec:
     ## default: litmus. Supported values: litmus    
     - name: LIB
       value: 'litmus'
+    
+    # The command to kill the chaos process
+    - name: CHAOS_KILL_COMMAND
+      value: "kill $(find /proc -name exe -lname '*/md5sum' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}')"
 
     - name: TARGET_PODS
       value: ''

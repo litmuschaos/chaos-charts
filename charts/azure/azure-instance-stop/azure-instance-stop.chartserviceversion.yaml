@@ -34,7 +34,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/azure/experiments/azure/instance-terminate/experiment
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/azure-instance-stop/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/azure/azure-instance-stop/
     - name: Video
       url:
   icon:

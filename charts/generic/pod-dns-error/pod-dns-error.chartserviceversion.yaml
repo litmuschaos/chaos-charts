@@ -28,7 +28,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-dns-error
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/getstarted/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/getstarted/
     - name: Video
       url:
   icon:
