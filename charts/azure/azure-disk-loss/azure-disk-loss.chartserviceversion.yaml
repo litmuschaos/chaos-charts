@@ -29,9 +29,9 @@ spec:
     app.kubernetes.io/version: latest
   links: 
     - name: Source Code
-      url: 
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/azure/disk-loss/experiment
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/azure-disk-loss/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/azure/azure-disk-loss/
     - name: Video
       url:  
   icon:

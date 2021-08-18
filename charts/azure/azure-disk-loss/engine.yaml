@@ -7,7 +7,7 @@ spec:
   engineState: 'active'
   chaosServiceAccount: azure-disk-loss-sa
   # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
+  jobCleanUpPolicy: 'retain'
   experiments:
     - name: azure-disk-loss
       spec:
@@ -32,5 +32,3 @@ spec:
             # provide the virtual disk names (comma seperated if multiple)
             - name: VIRTUAL_DISK_NAMES
               value: ''
-            
-            
