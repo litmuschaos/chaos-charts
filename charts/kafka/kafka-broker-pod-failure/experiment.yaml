@@ -59,10 +59,10 @@ spec:
       value: 'statefulset'
 
     - name: KAFKA_LIVENESS_STREAM
-      value: 'enabled'
+      value: 'enable'
 
     - name: KAFKA_LIVENESS_IMAGE
-      value: 'litmuschaos/kafka-client:ci'
+      value: 'litmuschaos/kafka-client:latest'
 
     # Recommended timeout for EKS platform: 60000 ms
     - name: KAFKA_CONSUMER_TIMEOUT

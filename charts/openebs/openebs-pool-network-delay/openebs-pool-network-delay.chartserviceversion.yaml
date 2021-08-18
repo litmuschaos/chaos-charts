@@ -33,7 +33,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-network-delay
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/openebs-pool-network-delay/
+      url: https://v1-docs.litmuschaos.io/docs/openebs-pool-network-delay/
     - name: Video
       url: 
   icon:

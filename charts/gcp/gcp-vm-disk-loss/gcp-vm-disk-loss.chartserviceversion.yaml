@@ -27,7 +27,7 @@ spec:
     app.kubernetes.io/version: latest
   links: 
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-disk-loss/
   icon:
     - url: 
       mediatype: ""

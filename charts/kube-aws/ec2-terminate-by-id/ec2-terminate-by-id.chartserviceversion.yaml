@@ -34,7 +34,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ec2-terminate-by-id
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/ec2-terminate-by-id/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/aws/ec2-terminate-by-id/
     - name: Video
       url:
   icon:

@@ -31,7 +31,7 @@ spec:
     - name: Kubernetes Slack
       url: https://slack.kubernetes.io/
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/chaoshub/#platform-chaos 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents/#cloud-infrastructure
   icon:
     - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
       mediatype: image/png

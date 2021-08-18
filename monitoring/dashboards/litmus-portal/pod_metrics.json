@@ -2,8 +2,8 @@
   "dashboardID": "generic_pod_metrics",
   "name": "Pod metrics",
   "information": "This dashboard visualizes Pod level CPU and memory usage metrics interleaved with chaos events.",
-  "chaosEventQueryTemplate": "litmuschaos_awaited_experiments{job=\"chaos-exporter\", chaos_injection_time!=\"\"}",
-  "chaosVerdictQueryTemplate": "litmuschaos_experiment_verdict{job=\"chaos-exporter\", chaosresult_verdict!=\"Awaited\"}",
+  "chaosEventQueryTemplate": "litmuschaos_awaited_experiments{job=\"chaos-exporter\", chaos_injection_time!=\"\", instance=\"chaos-exporter-service\"}",
+  "chaosVerdictQueryTemplate": "litmuschaos_experiment_verdict{job=\"chaos-exporter\", chaosresult_verdict!=\"Awaited\", instance=\"chaos-exporter-service\"}",
   "panelGroupMap": [
     {
       "groupName": "CPU Usage Metrics",

@@ -39,7 +39,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-autoscaler
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/pod-autoscaler/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-autoscaler/
     - name: Video
       url: 
   icon: 

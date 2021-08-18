@@ -36,7 +36,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/aws-ssm/aws-ssm-chaos-by-tag
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/aws-ssm-chaos-by-tag/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/aws-ssm/aws-ssm-chaos-by-tag/
     - name: Video
       url:
   icon:

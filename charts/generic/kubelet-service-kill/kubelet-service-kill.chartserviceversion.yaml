@@ -40,7 +40,7 @@ spec:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/kubelet-service-kill
     - name: Documentation
-      url: https://docs.litmuschaos.io/docs/kubelet-service-kill/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/kubelet-service-kill/
     - name: Video
       url: 
   icon:
