@@ -6,8 +6,6 @@ spec:
   # It can be active/stop
   engineState: 'active'
   chaosServiceAccount: azure-disk-loss-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'retain'
   experiments:
     - name: azure-disk-loss
       spec:
@@ -21,7 +19,7 @@ spec:
             - name: CHAOS_INTERVAL
               value: '30'
             
-            # provide the resouce group of the instance
+            # provide the resource group of the instance
             - name: RESOURCE_GROUP
               value: ''
             
@@ -29,6 +27,6 @@ spec:
             - name: SCALE_SET
               value: ''
             
-            # provide the virtual disk names (comma seperated if multiple)
+            # provide the virtual disk names (comma separated if multiple)
             - name: VIRTUAL_DISK_NAMES
               value: ''
