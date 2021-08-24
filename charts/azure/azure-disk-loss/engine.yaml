@@ -1,0 +1,32 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: azure-disk-loss-sa
+  experiments:
+    - name: azure-disk-loss
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+            
+            # provide the resource group of the instance
+            - name: RESOURCE_GROUP
+              value: ''
+            
+            # accepts enable/disable, default is disable
+            - name: SCALE_SET
+              value: ''
+            
+            # provide the virtual disk names (comma separated if multiple)
+            - name: VIRTUAL_DISK_NAMES
+              value: ''
