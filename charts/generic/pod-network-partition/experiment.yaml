@@ -1,0 +1,91 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects 100% network packet loss on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-network-partition
+  labels:
+    name: pod-network-partition
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+    - apiGroups:
+        - ""
+        - "batch"
+        - "networking.k8s.io"
+        - "litmuschaos.io"
+      resources:
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - networkpolicies
+        - "pods/exec"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+        - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-network-partition
+    command:
+    - /bin/bash
+    env:
+    
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # ime period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # it should be litmus
+    - name: LIB
+      value: 'litmus'
+
+    # provide the destination ips
+    # chaos injection will be triggered for these destination ips
+    - name: DESTINATION_IPS
+      value: ''
+
+    # provide the destination hosts
+    # chaos injection will be triggered for these destination hosts
+    - name: DESTINATION_HOSTS
+      value: ''
+
+    # provide network policy type
+    # support ingress, egress, all values
+    - name: POLICY_TYPES
+      value: 'all'
+
+    # provide labels of the destination pods
+    - name: POD_SELECTOR
+      value: ''
+
+    # provide labels the destination namespaces
+    - name: NAMESPACE_SELECTOR
+      value: ''
+
+    # provide comma separated ports
+    - name: PORTS
+      value: ''
+
+    labels:
+      name: pod-network-partition
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
