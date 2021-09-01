@@ -14,6 +14,7 @@ spec:
      Kill the cstor target/Jiva controller pod and check if gets created again
   keywords:
     - Kubernetes
+    - K8S
     - Storage Controller
     - OpenEBS
   platforms:

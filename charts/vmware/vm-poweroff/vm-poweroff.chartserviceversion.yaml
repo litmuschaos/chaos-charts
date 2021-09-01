@@ -16,7 +16,6 @@ spec:
     - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon)
 
   keywords:
-    - Kubernetes
     - Vmware
     - VM
   platforms:

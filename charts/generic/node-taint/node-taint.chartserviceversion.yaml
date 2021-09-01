@@ -15,8 +15,8 @@ spec:
     Taint the node where application pod is scheduled
   keywords:
     - Kubernetes
+    - K8S
     - Node 
-    - State
     - Taint
   platforms:
     - GKE

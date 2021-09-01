@@ -17,7 +17,8 @@ spec:
   keywords:
     - Azure
     - Instance
-    - State  
+    - AKS
+    - Scaleset
   maintainers:
     - name: Udit Gaurav
       email: udit.gaurav@mayadata.io

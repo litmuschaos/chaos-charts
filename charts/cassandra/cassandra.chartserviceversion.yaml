@@ -17,9 +17,9 @@ spec:
     - cassandra-pod-delete
   keywords:
     - Kubernetes
+    - K8S
     - Pod
     - Cassandra
-    - Statefulset
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
