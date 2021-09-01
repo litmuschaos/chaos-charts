@@ -16,6 +16,7 @@ spec:
     - Tests of successful resolution of app services during chaos injection
   keywords:
     - Kubernetes
+    - K8S
     - CoreDNS
     - DNS
     - Pod

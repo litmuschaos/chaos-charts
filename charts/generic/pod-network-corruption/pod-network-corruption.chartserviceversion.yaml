@@ -16,6 +16,7 @@ spec:
     - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
   keywords:
     - Kubernetes
+    - K8S
     - Network
     - Pod
     - Corruption

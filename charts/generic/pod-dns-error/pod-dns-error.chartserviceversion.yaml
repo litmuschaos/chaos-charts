@@ -11,6 +11,7 @@ spec:
     Pod DNS Error injects dns failure/error in target pod containers
   keywords:
     - "Pod"
+    - K8S
     - "Kubernetes"
     - "DNS"
   maturity: alpha

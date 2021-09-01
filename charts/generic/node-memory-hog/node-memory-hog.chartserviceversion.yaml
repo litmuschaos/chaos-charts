@@ -16,6 +16,7 @@ spec:
     - After the test, the recovery should be manual for the application pod and node in case they are not in an appropriate state. 
   keywords:
     - Kubernetes
+    - K8S
     - Memory
     - Node
   platforms:

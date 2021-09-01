@@ -28,6 +28,7 @@ spec:
     - openebs-nfs-provisioner-kill
   keywords:
     - Kubernetes
+    - K8S
     - OpenEBS
     - CAS
     - Storage

@@ -16,6 +16,7 @@ spec:
     - The amount of disk stress can be either specifed as the size in percentage of the total free space on the file system or simply in Gigabytes(GB)
   keywords:
     - Kubernetes
+    - K8S
     - Disk
     - IO
     - Filesystem

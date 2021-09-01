@@ -13,6 +13,7 @@ spec:
      Network delay to pool pod belonging to a OpenEBS PVC 
   keywords:
     - Kubernetes
+    - K8S
     - Storage Pool
     - OpenEBS
     - Network

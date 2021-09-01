@@ -15,6 +15,7 @@ spec:
     This chaos experiment kills (random or specified) kafka broker pods
   keywords:
     - Kubernetes
+    - K8S
     - Pod
     - Kafka
   platforms:

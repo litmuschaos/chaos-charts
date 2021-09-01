@@ -11,6 +11,7 @@ spec:
     Pod DNS Spoof can spoof particular dns requests in target pod container to desired target hostnames
   keywords:
     - "Pod"
+    - K8S
     - "Kubernetes"
     - "DNS"
   maturity: alpha

@@ -17,6 +17,7 @@ spec:
     - cassandra-pod-delete
   keywords:
     - Kubernetes
+    - K8S
     - Pod
     - Cassandra
   maintainers:

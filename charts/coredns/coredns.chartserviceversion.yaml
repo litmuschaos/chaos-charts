@@ -16,6 +16,7 @@ spec:
     - coredns-pod-delete
   keywords:
     - Kubernetes
+    - K8S
     - Pod
     - CoreDNS
     - DNS

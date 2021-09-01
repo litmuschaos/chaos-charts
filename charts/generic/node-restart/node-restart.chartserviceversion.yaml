@@ -14,6 +14,7 @@ spec:
     Node restart contains chaos to restart the node via SSH.
   keywords:
     - Kubernetes
+    - K8S
     - Restart
     - Node
   platforms:
