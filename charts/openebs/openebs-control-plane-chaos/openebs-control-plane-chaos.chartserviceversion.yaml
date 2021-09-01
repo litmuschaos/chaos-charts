@@ -13,6 +13,7 @@ spec:
      Kill all openebs control plane pods and check if gets scheduled again. 
   keywords:
     - Kubernetes
+    - K8S
     - OpenEBS
   platforms:
     - GKE

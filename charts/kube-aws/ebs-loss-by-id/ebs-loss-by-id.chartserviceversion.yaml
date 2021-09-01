@@ -15,11 +15,9 @@ spec:
     - Causes ebs volume loss from node or ec2 instance for a certain chaos interval from total chaos duration.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod
   keywords:
-    - Kubernetes
     - EBS
     - Volume
-    - ID
-    - State 
+    - AWS
   platforms:
     - AWS
   maturity: alpha

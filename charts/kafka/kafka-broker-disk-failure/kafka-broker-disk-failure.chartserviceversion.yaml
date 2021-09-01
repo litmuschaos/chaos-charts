@@ -13,6 +13,7 @@ spec:
      Detaching a persistent disk from a node/instance for kafka
   keywords:
     - Kubernetes
+    - K8S
     - Disk
     - Kafka
   platforms:

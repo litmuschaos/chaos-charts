@@ -17,6 +17,7 @@ spec:
     
   keywords:
     - Kubernetes
+    - K8S
     - Kubelet
     - Node
     - Service

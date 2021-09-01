@@ -13,8 +13,10 @@ spec:
   categoryDescription: |
     Byoc Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
   keywords:
+    - BYOC
+    - K8S
     - Kubernetes
-    - State
+    - Pod
   platforms:
      - Minikube
   maturity: alpha

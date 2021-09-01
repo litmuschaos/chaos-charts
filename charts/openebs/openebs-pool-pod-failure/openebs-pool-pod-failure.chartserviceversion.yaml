@@ -14,6 +14,7 @@ spec:
      Kill the pool pod and check if gets scheduled again. 
   keywords:
     - Kubernetes
+    - K8S
     - Storage Pool
     - OpenEBS
   platforms:
