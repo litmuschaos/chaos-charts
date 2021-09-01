@@ -17,7 +17,6 @@ spec:
   keywords:
     - Kubernetes
     - Memory
-    - State 
     - Node
   platforms:
     - GKE

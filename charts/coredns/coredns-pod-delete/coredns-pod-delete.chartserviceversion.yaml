@@ -17,7 +17,8 @@ spec:
   keywords:
     - Kubernetes
     - CoreDNS
-    - Pod delete 
+    - DNS
+    - Pod
   platforms:
     - GKE
     - Minikube

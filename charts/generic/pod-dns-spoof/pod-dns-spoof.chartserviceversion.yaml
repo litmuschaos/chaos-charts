@@ -10,10 +10,9 @@ spec:
   categoryDescription: >
     Pod DNS Spoof can spoof particular dns requests in target pod container to desired target hostnames
   keywords:
-    - "pods"
-    - "kubernetes"
-    - "generic"
-    - "dns"
+    - "Pod"
+    - "Kubernetes"
+    - "DNS"
   maturity: alpha
   minKubeVersion: 1.12.0
   provider:

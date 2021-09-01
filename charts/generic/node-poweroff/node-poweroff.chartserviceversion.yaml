@@ -15,11 +15,10 @@ spec:
   keywords:
     - Kubernetes
     - Poweroff
-    - State
     - Node
-    - SSH
   platforms:
     - KVM/LibVirt based K8s
+    - EKS
   maturity: alpha
   chaosType: infra
   maintainers:

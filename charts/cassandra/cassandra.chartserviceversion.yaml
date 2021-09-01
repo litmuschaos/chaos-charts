@@ -19,7 +19,6 @@ spec:
     - Kubernetes
     - Pod
     - Cassandra
-    - Statefulset
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

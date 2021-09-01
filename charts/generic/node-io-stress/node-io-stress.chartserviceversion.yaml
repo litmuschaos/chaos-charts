@@ -19,7 +19,6 @@ spec:
     - Disk
     - IO
     - Filesystem
-    - State 
     - Node
   platforms:
     - GKE

@@ -18,6 +18,8 @@ spec:
   keywords:
     - Kubernetes
     - CPU
+    - Pod
+    - Stress
   platforms:
     - GKE
     - Packet(Kubeadm)

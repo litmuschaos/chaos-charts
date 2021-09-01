@@ -17,6 +17,7 @@ spec:
   keywords:
     - Kubernetes
     - Network
+    - Pod
     - Duplication
   platforms:
     - GKE

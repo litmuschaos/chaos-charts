@@ -16,6 +16,7 @@ spec:
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
   keywords:
     - Kubernetes
+    - Pod
     - Container 
   platforms:
     - GKE

@@ -16,7 +16,6 @@ spec:
   keywords:
     - Kubernetes
     - Node 
-    - State
     - Taint
   platforms:
     - GKE

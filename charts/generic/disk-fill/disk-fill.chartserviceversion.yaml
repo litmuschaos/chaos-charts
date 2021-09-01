@@ -17,8 +17,8 @@ spec:
     - Tests the Ephemeral Storage Limits, to ensure those parameters are sufficient.
   keywords:
     - Kubernetes
+    - Pod
     - Disk
-    - State 
   platforms:
     - GKE
     - EKS

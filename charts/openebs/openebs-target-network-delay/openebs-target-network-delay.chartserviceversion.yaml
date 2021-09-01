@@ -15,7 +15,7 @@ spec:
   keywords:
     - OpenEBS
     - Kubernetes
-    - Network Delay 
+    - Network
   platforms:
     - GKE
     - EKS

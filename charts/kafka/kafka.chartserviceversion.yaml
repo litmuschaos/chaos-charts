@@ -17,6 +17,8 @@ spec:
   keywords:
     - Kubernetes
     - Kafka
+    - Disk 
+    - Pod
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

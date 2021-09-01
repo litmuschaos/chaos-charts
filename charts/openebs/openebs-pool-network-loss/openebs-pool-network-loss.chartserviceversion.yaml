@@ -15,6 +15,7 @@ spec:
     - Kubernetes
     - Storage Pool
     - OpenEBS
+    - Network
   platforms:
     - GKE
     - EKS

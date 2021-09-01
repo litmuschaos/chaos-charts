@@ -16,9 +16,7 @@ spec:
   keywords:
     - Kubernetes
     - Scale
-    - State
-    - Node
-    - Replicas
+    - Pod
   platforms:
     - GKE
     - EKS

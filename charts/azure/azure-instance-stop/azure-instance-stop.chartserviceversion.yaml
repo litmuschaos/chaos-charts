@@ -15,9 +15,8 @@ spec:
     - Causes termination of an azure instance before bringing it back to running state after the specified chaos duration.
     - It helps to check the performance of the application on the instance. 
   keywords:
-    - Kubernetes
     - Azure
-    - Termination
+    - Scaleset
     - AKS
   platforms:
     - Azure

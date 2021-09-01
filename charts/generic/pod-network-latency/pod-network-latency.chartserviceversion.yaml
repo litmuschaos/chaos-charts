@@ -17,6 +17,8 @@ spec:
   keywords:
     - Kubernetes
     - Network
+    - Pod 
+    - Latency
   platforms:
     - GKE
     - Minikube 

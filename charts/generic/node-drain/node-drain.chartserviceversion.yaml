@@ -16,7 +16,7 @@ spec:
   keywords:
     - Kubernetes
     - Node 
-    - State
+    - Drain
   platforms:
     - GKE
     - AWS(KOPS)

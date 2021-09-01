@@ -38,7 +38,6 @@ spec:
     - pod-dns-spoof
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
-
   keywords:
     - Kubernetes
     - Container
@@ -50,8 +49,10 @@ spec:
     - Network
     - CPU
     - Memory
+    - Stress
     - Service
     - DNS
+    - Scale
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

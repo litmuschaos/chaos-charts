@@ -16,7 +16,6 @@ spec:
   keywords:
     - Kubernetes
     - Pod
-    - State 
     - Kafka
   platforms:
     - GKE

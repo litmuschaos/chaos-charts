@@ -13,9 +13,7 @@ spec:
     This experiment causes the detachment of the disk from the VM for a certain chaos duration
     - Causes detachment of the disk from the VM and then reattachment of the disk to the VM
     - It helps to check the performance of the application on the instance. 
-    
   keywords: 
-    - Kubernetes
     - Azure
     - Disk
     - AKS

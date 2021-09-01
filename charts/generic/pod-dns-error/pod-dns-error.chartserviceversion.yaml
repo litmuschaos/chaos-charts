@@ -10,10 +10,9 @@ spec:
   categoryDescription: >
     Pod DNS Error injects dns failure/error in target pod containers
   keywords:
-    - "pods"
-    - "kubernetes"
-    - "generic"
-    - "dns"
+    - "Pod"
+    - "Kubernetes"
+    - "DNS"
   maturity: alpha
   minKubeVersion: 1.12.0
   provider:

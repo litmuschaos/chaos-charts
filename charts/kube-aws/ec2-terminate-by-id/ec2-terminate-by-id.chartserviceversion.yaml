@@ -15,9 +15,8 @@ spec:
     - Causes termination of an EC2 instance provided by instance ID before bringing it back to running state after the specified chaos duration.
     - It helps to check the performance of the application on the ec2 instance. 
   keywords:
-    - Kubernetes
+    - EC2
     - AWS
-    - Termination
   platforms:
     - AWS
   maturity: alpha

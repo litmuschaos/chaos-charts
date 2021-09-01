@@ -27,9 +27,13 @@ spec:
     - openebs-pool-disk-loss
     - openebs-nfs-provisioner-kill
   keywords:
+    - Kubernetes
     - OpenEBS
     - CAS
     - Storage
+    - Network 
+    - Pod
+    - Pool  
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

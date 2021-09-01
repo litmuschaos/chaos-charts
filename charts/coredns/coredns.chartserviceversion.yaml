@@ -12,15 +12,12 @@ spec:
   categoryDescription: >
     CoreDNS is an open-source system for DNS management of containerized applications.
     It helps to resolve services to IP address. It will install all the experiments which can be used to inject chaos into containerized applications.
-
   experiments:
     - coredns-pod-delete
-
   keywords:
     - Kubernetes
-    - Container
-    - node
-    - pod
+    - Pod
+    - CoreDNS
     - DNS
   maintainers:
     - name: Raj Babu Das

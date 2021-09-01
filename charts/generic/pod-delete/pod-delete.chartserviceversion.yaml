@@ -17,7 +17,7 @@ spec:
  
   keywords:
     - Kubernetes
-    - State 
+    - Pod
   platforms:
     - GKE
     - Konvoy

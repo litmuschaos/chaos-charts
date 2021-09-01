@@ -17,6 +17,8 @@ spec:
   keywords:
     - Kubernetes
     - Network
+    - Pod
+    - Loss
   platforms:
     - GKE
     - Minikube 
