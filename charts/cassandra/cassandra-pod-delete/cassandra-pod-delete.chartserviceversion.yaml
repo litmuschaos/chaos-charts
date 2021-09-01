@@ -15,6 +15,7 @@ spec:
     It tests statefulset sanity (replica availability & uninterrupted service) and recovery workflows of the cassandra pod
   keywords:
     - Kubernetes
+    - K8S
     - Cassandra
     - Pod
   platforms:

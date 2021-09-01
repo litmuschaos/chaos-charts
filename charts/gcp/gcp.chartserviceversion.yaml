@@ -13,10 +13,9 @@ spec:
   - gcp-vm-instance-stop
   - gcp-vm-disk-loss
   keywords: 
-    - "pods" 
-    - "kubernetes" 
-    - "disk"
-    - "gcp"
+    - "VM"
+    - "Disk"
+    - "GCP"
   maintainers: 
     - name: neelanjan00 
       email: neelanjan@chaosnative.com

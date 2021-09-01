@@ -14,8 +14,9 @@ spec:
     Network loss to the target pod belonging to an OpenEBS PVC
   keywords:
     - Kubernetes
+    - K8S
     - OpenEBS 
-    - Network Loss
+    - Network
   platforms:
     - GKE
     - EKS

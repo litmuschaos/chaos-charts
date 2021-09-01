@@ -19,7 +19,7 @@ spec:
   keywords:
     - AWS
     - EC2
-    - State
+    - EBS
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
