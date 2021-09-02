@@ -37,6 +37,7 @@ spec:
     - pod-dns-spoof
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
+    - pod-network-partition
   keywords:
     - Kubernetes
     - K8S
