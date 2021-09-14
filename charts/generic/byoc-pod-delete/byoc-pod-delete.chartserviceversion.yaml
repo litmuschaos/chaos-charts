@@ -13,8 +13,10 @@ spec:
   categoryDescription: |
     Byoc Pod delete contains chaos to disrupt state of kubernetes resources. It uses chaostoolkit to inject random pod delete failures against specified applications
   keywords:
+    - BYOC
+    - K8S
     - Kubernetes
-    - State
+    - Pod
   platforms:
      - Minikube
   maturity: alpha
@@ -26,7 +28,7 @@ spec:
     name: Intuit
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-python/tree/master/byoc/chaostest

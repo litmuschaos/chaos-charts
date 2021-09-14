@@ -16,8 +16,10 @@ spec:
     - Tests of successful resolution of app services during chaos injection
   keywords:
     - Kubernetes
+    - K8S
     - CoreDNS
-    - Pod delete 
+    - DNS
+    - Pod
   platforms:
     - GKE
     - Minikube
@@ -30,7 +32,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/coredns/pod_delete

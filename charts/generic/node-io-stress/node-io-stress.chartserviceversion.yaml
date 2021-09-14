@@ -16,10 +16,10 @@ spec:
     - The amount of disk stress can be either specifed as the size in percentage of the total free space on the file system or simply in Gigabytes(GB)
   keywords:
     - Kubernetes
+    - K8S
     - Disk
     - IO
     - Filesystem
-    - State 
     - Node
   platforms:
     - GKE
@@ -35,7 +35,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-io-stress

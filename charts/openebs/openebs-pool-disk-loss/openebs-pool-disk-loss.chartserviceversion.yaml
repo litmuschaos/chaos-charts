@@ -16,6 +16,7 @@ spec:
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
   keywords:
     - Kubernetes
+    - K8S
     - Storage Pool
     - OpenEBS
   platforms:
@@ -30,7 +31,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-disk-loss

@@ -16,7 +16,10 @@ spec:
     - kafka-broker-pod-failure
   keywords:
     - Kubernetes
+    - K8S
     - Kafka
+    - Disk 
+    - Pod
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

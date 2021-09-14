@@ -13,10 +13,12 @@ spec:
     Azure category of chaos experiments causes the disruption of the azure serives for a certain chaos duration.
   experiments:
     - azure-instance-stop
+    - azure-disk-loss
   keywords:
     - Azure
     - Instance
-    - State  
+    - AKS
+    - Scaleset
   maintainers:
     - name: Udit Gaurav
       email: udit.gaurav@mayadata.io

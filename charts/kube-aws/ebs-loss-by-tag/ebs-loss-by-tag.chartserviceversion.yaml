@@ -15,11 +15,9 @@ spec:
     - Causes ebs volume loss by tag from node or ec2 instance for certain chaos interval from total chaos duration.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod
   keywords:
-    - Kubernetes
     - EBS
     - Volume
-    - Tag
-    - State 
+    - AWS 
   platforms:
     - AWS
   maturity: alpha
@@ -31,7 +29,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ebs-loss-by-tag

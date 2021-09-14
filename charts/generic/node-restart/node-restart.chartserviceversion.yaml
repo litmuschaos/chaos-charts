@@ -14,14 +14,12 @@ spec:
     Node restart contains chaos to restart the node via SSH.
   keywords:
     - Kubernetes
+    - K8S
     - Restart
-    - State
     - Node
-    - SSH
   platforms:
-    - GKE
+    - KVM/LibVirt based K8s
     - EKS
-    - AKS
   maturity: alpha
   chaosType: infra
   maintainers:

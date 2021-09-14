@@ -5,8 +5,8 @@ metadata:
   name: azure-instance-stop
   version: 0.1.0
   annotations:
-    categories: Kubernetes
-    vendor: Chaos Native
+    categories: Azure
+    vendor: ChaosNative
     support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
   displayName: azure-instance-stop
@@ -15,9 +15,9 @@ spec:
     - Causes termination of an azure instance before bringing it back to running state after the specified chaos duration.
     - It helps to check the performance of the application on the instance. 
   keywords:
-    - Kubernetes
     - Azure
-    - Termination
+    - Scaleset
+    - AKS
   platforms:
     - Azure
   maturity: alpha
@@ -29,14 +29,14 @@ spec:
     name: Chaos Native
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-go/tree/azure/experiments/azure/instance-terminate/experiment
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/azure/instance-stop/experiment
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/azure/azure-instance-stop/
-    - name: Video
-      url:
+    # - name: Video
+    #   url:
   icon:
     - url: 
       mediatype: ""

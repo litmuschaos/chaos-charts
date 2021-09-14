@@ -15,10 +15,9 @@ spec:
     This experiment can be used for other scenarios as well, such as for checking the Node auto-scaling feature. For example, check if the pods are successfully rescheduled within a specified period in cases where the existing nodes are already running at the specified limits.
   keywords:
     - Kubernetes
+    - K8S
     - Scale
-    - State
-    - Node
-    - Replicas
+    - Pod
   platforms:
     - GKE
     - EKS
@@ -34,7 +33,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-autoscaler

@@ -16,7 +16,9 @@ spec:
     - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
   keywords:
     - Kubernetes
+    - K8S
     - Network
+    - Pod
     - Corruption
   platforms:
     - GKE
@@ -33,7 +35,7 @@ spec:
     name: Laura-Marie Henning
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-corruption

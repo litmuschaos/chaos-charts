@@ -16,6 +16,7 @@ spec:
     - The application node should be healthy once chaos is stopped and the services are reaccessable. 
   keywords:
     - Kubernetes
+    - K8S
     - Node
     - Service
     - Docker 
@@ -31,7 +32,7 @@ spec:
     name: Wipro
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/docker-service-kill

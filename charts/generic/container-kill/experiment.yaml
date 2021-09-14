@@ -8,7 +8,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
 spec:
   definition:
     scope: Namespaced
@@ -44,7 +44,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.0.0"
+    image: "litmuschaos/go-runner:2.1.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -93,7 +93,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:2.0.0' 
+      value: 'litmuschaos/go-runner:2.1.0' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -104,4 +104,4 @@ spec:
       name: container-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0
+      app.kubernetes.io/version: 2.1.0

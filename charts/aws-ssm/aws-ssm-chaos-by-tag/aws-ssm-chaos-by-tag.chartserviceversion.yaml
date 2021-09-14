@@ -15,11 +15,9 @@ spec:
     - Causes chaos on AWS ec2 instances with given instance tag using SSM docs for total chaos duration with the specified chaos interval.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the target application pod(if provided).
   keywords:
-    - Kubernetes
     - SSM
     - AWS
-    - Document
-    - Run Command
+    - EC2
   platforms:
     - AWS
   maturity: alpha
@@ -31,7 +29,7 @@ spec:
     name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/aws-ssm/aws-ssm-chaos-by-tag

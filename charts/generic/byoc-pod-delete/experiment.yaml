@@ -9,7 +9,7 @@ metadata:
     name: byoc-pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
 spec:
   definition:
     scope: Namespaced
@@ -41,7 +41,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/py-runner:2.0.0"
+    image: "litmuschaos/py-runner:2.1.0"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/kubernetes/k8_wrapper.py; exit 0
@@ -80,4 +80,4 @@ spec:
       name: byoc-pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0
+      app.kubernetes.io/version: 2.1.0
