@@ -9,7 +9,7 @@ metadata:
     name: vm-poweroff
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.0.0
+    app.kubernetes.io/version: 2.1.0
 spec:
   definition:
     scope: Cluster
@@ -35,7 +35,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/go-runner:2.0.0"
+    image: "litmuschaos/go-runner:2.1.0"
     args:
     - -c
     - ./experiments -name vm-poweroff
@@ -78,4 +78,4 @@ spec:
       experiment: vm-poweroff
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.0.0
+      app.kubernetes.io/version: 2.1.0
