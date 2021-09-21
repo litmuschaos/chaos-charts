@@ -1,0 +1,39 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: allow-host-path
+  annotations:
+    policies.kyverno.io/category: Pod Security Standards
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      HostPath volumes let Pods use host directories and volumes in containers.
+      Using host resources can be used to access shared data or escalate privileges
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: host-path
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              app.kubernetes.io/component: experiment-job
+      validate:
+        message: >-
+          Use of HostPath volumes is allowed. It can be set at spec.volumes[*].hostPath.
+        anyPattern:
+        - spec:
+            =(volumes):
+            # substitutes this path with an appropriate socket path
+            # ex: '/var/run/docker.sock', '/run/containerd/containerd.sock', '/run/crio/crio.sock'
+              - =(hostPath):
+                path: "/var/run/docker.sock"
+        - spec:
+            =(volumes):
+             # substitutes this path with an appropriate container path
+             # ex: '/var/lib/docker/containers', '/var/lib/containerd/io.containerd.runtime.v1.linux/k8s.io', '/var/lib/containers/storage/overlay/'
+              - =(hostPath):
+                path: "/var/lib/docker/containers"

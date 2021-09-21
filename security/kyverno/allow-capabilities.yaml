@@ -1,0 +1,31 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: allow-add-capabilities
+  annotations:
+    policies.kyverno.io/category: Pod Security Standards
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Provides a list of capabilities that are allowed to be added to a container.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: capabilities
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              app.kubernetes.io/component: experiment-job
+      validate:
+        message: >-
+          The provided capabilities are not allowed at securityContext.capabilities.add.      
+        pattern:
+          spec:
+            containers:
+              - =(securityContext):
+                  =(capabilities):
+                    =(add): "NET_ADMIN | SYS_ADMIN"

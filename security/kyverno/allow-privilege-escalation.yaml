@@ -1,0 +1,30 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: allow-privileged-escalation
+  annotations:
+    policies.kyverno.io/category: Pod Security Standards
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      Privilege escalation, such as via set-user-ID or set-group-ID file mode, should be allowed.
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: priviledged-escalation
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              app.kubernetes.io/component: experiment-job
+      validate:
+        message: >-
+          Privilege escalation is allowed. It can be defined at spec.containers[*].securityContext.allowPrivilegeEscalation
+        pattern:
+          spec:
+            containers:
+              - =(securityContext):
+                  =(allowPrivilegeEscalation): "true | false"
