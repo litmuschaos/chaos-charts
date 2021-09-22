@@ -19,12 +19,13 @@ spec:
             - Pod
           selector:
             matchLabels:
-              app.kubernetes.io/component: experiment-job
+              # applicable for experiments which usage container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true"
       validate:
         message: >-
-          Privilege escalation is allowed. It can be defined at spec.containers[*].securityContext.allowPrivilegeEscalation
+          allowPrivilegeEscalation should be set to true. It can be defined at spec.containers[*].securityContext.allowPrivilegeEscalation
         pattern:
           spec:
             containers:
               - =(securityContext):
-                  =(allowPrivilegeEscalation): "true | false"
+                  =(allowPrivilegeEscalation): "true"

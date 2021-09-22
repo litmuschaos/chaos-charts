@@ -13,27 +13,42 @@ spec:
   validationFailureAction: audit
   background: true
   rules:
-    - name: host-path
+    - name: check socket host-path
       match:
         resources:
           kinds:
             - Pod
           selector:
             matchLabels:
-              app.kubernetes.io/component: experiment-job
+              # applicable for experiments which usage container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true" 
       validate:
         message: >-
-          Use of HostPath volumes is allowed. It can be set at spec.volumes[*].hostPath.
-        anyPattern:
-        - spec:
+          Hostpath is restricted to use only specific path. It can be set at spec.volumes[*].hostPath.
+        pattern:
+          spec:
             =(volumes):
             # substitutes this path with an appropriate socket path
             # ex: '/var/run/docker.sock', '/run/containerd/containerd.sock', '/run/crio/crio.sock'
               - =(hostPath):
                 path: "/var/run/docker.sock"
-        - spec:
+    - name: check container host-path
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              # applicable for experiments which needs container path
+              app.kubernetes.io/host-path-usage: "true" 
+      validate:
+        message: >-
+          Hostpath is restricted to use only specific path. It can be set at spec.volumes[*].hostPath.
+        pattern:
+          spec:
             =(volumes):
              # substitutes this path with an appropriate container path
              # ex: '/var/lib/docker/containers', '/var/lib/containerd/io.containerd.runtime.v1.linux/k8s.io', '/var/lib/containers/storage/overlay/'
               - =(hostPath):
                 path: "/var/lib/docker/containers"
+    

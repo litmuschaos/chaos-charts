@@ -19,12 +19,13 @@ spec:
             - Pod
           selector:
             matchLabels:
-              app.kubernetes.io/component: experiment-job
+              # applicable for experiments which usage container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true"
       validate:
         message: >-
-           Privileged mode is allowed. The fields spec.containers[*].securityContext.privileged can be set to be true or false.
+          It should be run in privileged mode. It can be defined at spec.containers[*].securityContext.privileged.
         pattern:
           spec:
             containers:
               - =(securityContext):
-                  =(privileged): "true | false"
+                  =(privileged): "true"

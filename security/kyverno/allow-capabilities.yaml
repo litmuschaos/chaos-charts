@@ -19,13 +19,15 @@ spec:
             - Pod
           selector:
             matchLabels:
-              app.kubernetes.io/component: experiment-job
+              # applicable for experiments which uses container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true"
       validate:
         message: >-
-          The provided capabilities are not allowed at securityContext.capabilities.add.      
+          The provided capabilities are not allowed at securityContext.capabilities.add     
         pattern:
           spec:
             containers:
               - =(securityContext):
                   =(capabilities):
+                    # allow only NET_ADMIN and SYS_ADMIN capabilities
                     =(add): "NET_ADMIN | SYS_ADMIN"

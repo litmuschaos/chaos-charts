@@ -2,7 +2,6 @@ resources:
   - allow-capabilities.yaml
   - allow-host-paths.yaml
   - allow-privilege-escalation.yaml
-  - restrict-volumes.yaml
   - allow-host-namespaces.yaml
   - allow-privileged-containers.yaml
   - allow-selinux.yaml

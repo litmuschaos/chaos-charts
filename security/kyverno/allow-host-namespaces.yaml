@@ -21,14 +21,14 @@ spec:
             - Pod
           selector:
             matchLabels:
-              app.kubernetes.io/component: experiment-job
+              # applicable for experiments which usage container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true" 
       validate:
         message: >-
-          Sharing the host namespaces is allowed. The fields spec.hostNetwork should be false,
-          spec.hostIPC should be false, and spec.hostPID can be set to true or false.          
+          The spec.hostNetwork should be false, spec.hostIPC should be false, and spec.hostPID should be true.          
         pattern:
           spec:
-            =(hostPID): "true | false"
+            =(hostPID): "true"
             = (hostIPC): "false"
             =(hostNetwork): "false"
             
