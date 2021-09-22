@@ -17,7 +17,7 @@ spec:
     - "GCP"
   maturity: alpha
   maintainers: 
-    - name: neelanjan00 
+    - name: Neelanjan Manna 
       email: neelanjan@chaosnative.com 
   minKubeVersion: 1.12.0 
   provider: 
