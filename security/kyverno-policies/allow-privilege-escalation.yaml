@@ -1,33 +1,31 @@
 apiVersion: kyverno.io/v1
 kind: Policy
 metadata:
-  name: allow-add-capabilities
+  name: allow-privileged-escalation
   annotations:
     policies.kyverno.io/category: Pod Security Standards
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
-      Provides a list of capabilities that are allowed to be added to a container.
+      Privilege escalation, such as via set-user-ID or set-group-ID file mode, should be allowed.
 spec:
   validationFailureAction: audit
   background: true
   rules:
-    - name: capabilities
+    - name: priviledged-escalation
       match:
         resources:
           kinds:
             - Pod
           selector:
             matchLabels:
-              # applicable for experiments which uses container runtime apis
+              # applicable for experiments which usage container runtime apis
               app.kubernetes.io/runtime-api-usage: "true"
       validate:
         message: >-
-          The provided capabilities are not allowed at securityContext.capabilities.add     
+          allowPrivilegeEscalation should be set to true. It can be defined at spec.containers[*].securityContext.allowPrivilegeEscalation
         pattern:
           spec:
             containers:
               - =(securityContext):
-                  =(capabilities):
-                    # allow only NET_ADMIN and SYS_ADMIN capabilities
-                    =(add): "NET_ADMIN | SYS_ADMIN"
+                  =(allowPrivilegeEscalation): true

@@ -1,18 +1,18 @@
 apiVersion: kyverno.io/v1
 kind: Policy
 metadata:
-  name: allow-privileged-escalation
+  name: allow-privileged-containers
   annotations:
     policies.kyverno.io/category: Pod Security Standards
     policies.kyverno.io/severity: medium
     policies.kyverno.io/subject: Pod
     policies.kyverno.io/description: >-
-      Privilege escalation, such as via set-user-ID or set-group-ID file mode, should be allowed.
+      Privileged policies only allow the litmus containers to use privileged mode.
 spec:
   validationFailureAction: audit
   background: true
   rules:
-    - name: priviledged-escalation
+    - name: priviledged-containers
       match:
         resources:
           kinds:
@@ -23,9 +23,9 @@ spec:
               app.kubernetes.io/runtime-api-usage: "true"
       validate:
         message: >-
-          allowPrivilegeEscalation should be set to true. It can be defined at spec.containers[*].securityContext.allowPrivilegeEscalation
+          It should be run in privileged mode. It can be defined at spec.containers[*].securityContext.privileged.
         pattern:
           spec:
             containers:
               - =(securityContext):
-                  =(allowPrivilegeEscalation): "true"
+                  =(privileged): true

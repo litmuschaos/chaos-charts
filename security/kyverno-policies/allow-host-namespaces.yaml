@@ -29,6 +29,6 @@ spec:
         pattern:
           spec:
             =(hostPID): "true"
-            = (hostIPC): "false"
+            =(hostIPC): "false"
             =(hostNetwork): "false"
             

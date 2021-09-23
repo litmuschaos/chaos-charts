@@ -4,8 +4,7 @@ resources:
   - allow-privilege-escalation.yaml
   - allow-host-namespaces.yaml
   - allow-privileged-containers.yaml
-  - allow-selinux.yaml
-  - require-user-groups.yaml
+  - allow-user-groups.yaml
 patches:
   - patch: |-
       - op: replace

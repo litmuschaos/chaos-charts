@@ -12,10 +12,9 @@ spec:
   validationFailureAction: audit
   background: true
   rules:
-    - name: user-groups
+    - name: allow users
       match:
         resources:
-          name: check-runasuser
           kinds:
             - Pod
           selector:
@@ -27,14 +26,13 @@ spec:
         pattern:
           spec:
             =(securityContext):
-                =(runAsUser): 'RunAsAny'
+              =(runAsUser): '>=0'
             containers:
-              - =(securityContext):
-                  =(runAsUser): 'RunAsAny'
+            - =(securityContext):
+                =(runAsUser): ">=0"
     - name: allow supplementary groups 
       match:
         resources:
-          name: check-supplementalGroups
           kinds:
             - Pod
           selector:
@@ -47,11 +45,10 @@ spec:
           spec:
              =(securityContext):
                =(supplementalGroups):
-               - 'RunAsAny'
-    - name: allow groups ids
+               - ">=0"
+    - name: allow gs groups
       match:
         resources:
-          name: check-fsGroup
           kinds:
             - Pod
           selector:
@@ -63,4 +60,4 @@ spec:
         pattern:
            spec:
              =(securityContext):
-               =(fsGroup): 'RunAsAny'
+               =(fsGroup): ">=0"
