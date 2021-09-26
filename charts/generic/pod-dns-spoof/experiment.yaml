@@ -94,4 +94,5 @@ spec:
       experiment: pod-dns-spoof
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/runtime-api-usage: "true" 
       app.kubernetes.io/version: latest
