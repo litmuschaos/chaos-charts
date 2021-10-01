@@ -5,15 +5,15 @@ metadata:
   name: vm-poweroff
   annotations:
     categories: vmware
-    vendor: Wipro
+    vendor: Wipro, ChaosNative
     support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
 spec:
   displayName: vm-poweroff
   categoryDescription: |
-    This experiment causes powerOff of a target vmware instance for a certain chaos duration.
-    - Causes powerOff of the vmware instance provided by Moid of the instance.
+    This experiment causes power-off of target VMWare VM(s) for a certain chaos duration:
+    - Causes power-off of the VMWare VM(s) provided by the Moid(s) of the instance.
     - It helps to check the performance of the application/services on the instance.
-    - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon)
+    - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon).
 
   keywords:
     - Vmware
@@ -22,13 +22,13 @@ spec:
     - vmware
   maturity: alpha
   maintainers:
-    - name: Delphine Joyneer
-      email: golkonda.joyneer@wipro.com
+    - name: Delphine Joyneer, Neelanjan Manna
+      email: golkonda.joyneer@wipro.com, neelanjan@chaosnative.com
   provider:
-    name: Wipro
+    name: Wipro, ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.1.0
+    app.kubernetes.io/version: 2.1.1
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff

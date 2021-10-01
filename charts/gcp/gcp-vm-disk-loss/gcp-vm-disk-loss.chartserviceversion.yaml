@@ -16,14 +16,14 @@ spec:
     - "GCP"
   maturity: alpha
   maintainers: 
-    - name: neelanjan00 
+    - name: Neelanjan Manna 
       email: neelanjan@chaosnative.com 
   minKubeVersion: 1.12.0 
   provider: 
     name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: 2.1.0
+    app.kubernetes.io/version: 2.1.1
   links: 
     - name: Documentation 
       url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-disk-loss/

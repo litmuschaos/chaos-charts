@@ -6,21 +6,21 @@ metadata:
   version: 0.1.0
   annotations:
     categories: vmware
-    chartDescription: Injects chaos on vmware components
+    chartDescription: Injects chaos on VMWare components
 spec:
-  displayName: VMware Chaos
+  displayName: VMWare Chaos
   categoryDescription: >
-    VMware contains chaos to disrupt the state of vmware resources
+    Contains chaos to disrupt the state of VMWare resources
   experiments:
     - vm-poweroff
   keywords:
     - vmware
     - VM
   maintainers:
-    - name: Delphine Joyneer
-      email: golkonda.joyneer@wipro.com
+    - name: Delphine Joyneer, Neelanjan Manna
+      email: golkonda.joyneer@wipro.com, neelanjan@chaosnative.com
   provider:
-    name: Wipro
+    name: Wipro, ChaosNative
   links:
     - name: Kubernetes Website
       url: https://kubernetes.io

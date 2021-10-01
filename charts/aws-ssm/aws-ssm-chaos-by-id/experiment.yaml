@@ -9,7 +9,7 @@ metadata:
     name: aws-ssm-chaos-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.1.0
+    app.kubernetes.io/version: 2.1.1
 spec:
   definition:
     scope: Cluster
@@ -36,7 +36,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -117,7 +117,7 @@ spec:
       name: aws-ssm-chaos-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.1.0
+      app.kubernetes.io/version: 2.1.1
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

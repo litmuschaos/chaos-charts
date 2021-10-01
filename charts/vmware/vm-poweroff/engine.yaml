@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: nginx-chaos
+  name: vmware-vm-chaos
   namespace: default
 spec:
   # It can be delete/retain
@@ -20,6 +20,10 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '30'
 
-            # provide vm moid
-            - name: APP_VM_MOID
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # provide VM MOIDs as comma separated values 
+            - name: APP_VM_MOIDS
               value: ''
