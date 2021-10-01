@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    stops a vm for a certain chaos duration
+    Stops one or more VMs for a certain chaos duration.
 kind: ChaosExperiment
 metadata:
   name: vm-poweroff
@@ -61,11 +61,16 @@ spec:
           name: vcenter-secret
           key: VCENTERPASS
 
-    # provide the vm moid
-    - name: APP_VM_MOID
+    # provide the VM MOIDs as comma separated values
+    - name: APP_VM_MOIDS
       value: ''
           
+    # set chaos duration (in sec) as desired
     - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    # set chaos interval (in sec) as desired
+    - name: CHAOS_INTERVAL
       value: '30'
 
     - name: LIB
@@ -73,6 +78,10 @@ spec:
 
     - name: RAMP_TIME
       value: ''
+
+    # parallel or sequence; the mode of chaos sequence, defaults to parallel
+    - name: SEQUENCE
+      value: 'parallel'
 
     labels:
       experiment: vm-poweroff
