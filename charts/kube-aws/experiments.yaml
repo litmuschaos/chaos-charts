@@ -4,9 +4,9 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss-by-id
+  name: ebs-loss-by-tag
   labels:
-    name: ebs-loss-by-id
+    name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -39,7 +39,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss-by-id
+    - ./experiments -name ebs-loss-by-tag
     command:
     - /bin/bash
     env:
@@ -49,18 +49,20 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
-    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: EBS_VOLUME_ID
+    - name: EBS_VOLUME_TAG
       value: ''
 
     - name: REGION
       value: ''
 
     - name: SEQUENCE
-      value: 'parallel'      
+      value: 'parallel' 
+
+    - name: VOLUME_AFFECTED_PERC
+      value: ''             
 
     # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
@@ -72,7 +74,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ebs-loss-by-id
+      name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
@@ -267,9 +269,9 @@ description:
     Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss-by-tag
+  name: ebs-loss-by-id
   labels:
-    name: ebs-loss-by-tag
+    name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -302,7 +304,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss-by-tag
+    - ./experiments -name ebs-loss-by-id
     command:
     - /bin/bash
     env:
@@ -312,20 +314,18 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: EBS_VOLUME_TAG
+    - name: EBS_VOLUME_ID
       value: ''
 
     - name: REGION
       value: ''
 
     - name: SEQUENCE
-      value: 'parallel' 
-
-    - name: VOLUME_AFFECTED_PERC
-      value: ''             
+      value: 'parallel'      
 
     # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
@@ -337,7 +337,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ebs-loss-by-tag
+      name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
