@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    stops a vm for a certain chaos duration
+    Stops one or more VMs for a certain chaos duration.
 kind: ChaosExperiment
 metadata:
   name: vm-poweroff
