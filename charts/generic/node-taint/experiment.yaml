@@ -10,7 +10,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.1.0
+    app.kubernetes.io/version: 2.1.1
 spec:
   definition:
     scope: Cluster
@@ -84,4 +84,4 @@ spec:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.1.0
+      app.kubernetes.io/version: 2.1.1

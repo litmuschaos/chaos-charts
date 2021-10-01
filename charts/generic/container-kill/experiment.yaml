@@ -8,7 +8,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.1.0
+    app.kubernetes.io/version: 2.1.1
 spec:
   definition:
     scope: Namespaced
