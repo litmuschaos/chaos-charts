@@ -117,4 +117,5 @@ spec:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.1.0
+      app.kubernetes.io/runtime-api-usage: "true" 
+      app.kubernetes.io/version: latest
