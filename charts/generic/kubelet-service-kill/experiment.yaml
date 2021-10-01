@@ -76,4 +76,5 @@ spec:
       name: kubelet-service-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/service-kill: "true"
       app.kubernetes.io/version: latest
