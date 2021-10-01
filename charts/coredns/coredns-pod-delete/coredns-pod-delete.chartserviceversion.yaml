@@ -16,8 +16,10 @@ spec:
     - Tests of successful resolution of app services during chaos injection
   keywords:
     - Kubernetes
+    - K8S
     - CoreDNS
-    - Pod delete 
+    - DNS
+    - Pod
   platforms:
     - GKE
     - Minikube

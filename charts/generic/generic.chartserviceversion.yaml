@@ -38,9 +38,10 @@ spec:
     - pod-dns-spoof
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
-
+    - pod-network-partition
   keywords:
     - Kubernetes
+    - K8S
     - Container
     - Node
     - Pod
@@ -50,8 +51,10 @@ spec:
     - Network
     - CPU
     - Memory
+    - Stress
     - Service
     - DNS
+    - Scale
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

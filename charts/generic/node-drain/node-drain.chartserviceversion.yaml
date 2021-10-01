@@ -15,8 +15,9 @@ spec:
     Drain the node where application pod is scheduled
   keywords:
     - Kubernetes
+    - K8S
     - Node 
-    - State
+    - Drain
   platforms:
     - GKE
     - AWS(KOPS)

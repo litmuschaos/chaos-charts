@@ -14,12 +14,12 @@ spec:
     Node poweroff contains chaos experiment to poweroff a node via SSH.
   keywords:
     - Kubernetes
+    - K8S
     - Poweroff
-    - State
     - Node
-    - SSH
   platforms:
     - KVM/LibVirt based K8s
+    - EKS
   maturity: alpha
   chaosType: infra
   maintainers:

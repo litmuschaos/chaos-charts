@@ -14,8 +14,8 @@ spec:
   experiments:
     - vm-poweroff
   keywords:
-    - Kubernetes
     - vmware
+    - VM
   maintainers:
     - name: Delphine Joyneer, Neelanjan Manna
       email: golkonda.joyneer@wipro.com, neelanjan@chaosnative.com

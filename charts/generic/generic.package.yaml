@@ -75,3 +75,6 @@ experiments:
   - name: pod-memory-hog-exec
     CSV: pod-memory-hog-exec.chartserviceversion.yaml
     desc: "pod-memory-hog-exec"
+  - name: pod-network-partition
+    CSV: pod-network-partition.chartserviceversion.yaml
+    desc: "pod-network-partition"
