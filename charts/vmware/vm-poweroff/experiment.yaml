@@ -35,7 +35,7 @@ spec:
           - "update"
           - "patch"
           - "delete"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     args:
     - -c
     - ./experiments -name vm-poweroff

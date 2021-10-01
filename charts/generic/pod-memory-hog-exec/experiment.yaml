@@ -46,7 +46,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c

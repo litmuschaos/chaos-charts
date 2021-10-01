@@ -44,7 +44,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -93,7 +93,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel

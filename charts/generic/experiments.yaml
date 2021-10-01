@@ -43,7 +43,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -68,7 +68,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:2.1.0"
+      value: "litmuschaos/go-runner:2.1.1"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -135,7 +135,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -170,7 +170,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -233,7 +233,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -261,7 +261,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:2.1.0"
+      value: "litmuschaos/go-runner:2.1.1"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -331,7 +331,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -369,7 +369,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0'
+      value: 'litmuschaos/go-runner:2.1.1'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
@@ -451,7 +451,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -548,7 +548,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -630,7 +630,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -716,7 +716,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -764,7 +764,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:2.1.0'
+        value: 'litmuschaos/go-runner:2.1.1'
 
       # provide the socket file path
       - name: SOCKET_PATH
@@ -826,7 +826,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -878,7 +878,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -944,7 +944,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1035,7 +1035,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1078,7 +1078,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0'
+      value: 'litmuschaos/go-runner:2.1.1'
 
     # Provide the container runtime path
     # Default set to docker container path
@@ -1144,7 +1144,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     args:
       - -c
       - ./experiments -name pod-dns-error
@@ -1156,7 +1156,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:2.1.0"
+        value: "litmuschaos/go-runner:2.1.1"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -1247,7 +1247,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1261,7 +1261,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1369,7 +1369,7 @@ spec:
           - "update"
           - "get"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1383,7 +1383,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1490,7 +1490,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1584,7 +1584,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     args:
       - -c
       - ./experiments -name pod-dns-spoof
@@ -1596,7 +1596,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:2.1.0"
+        value: "litmuschaos/go-runner:2.1.1"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -1680,7 +1680,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1723,7 +1723,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -1780,7 +1780,7 @@ spec:
         - "update"
         - "delete"
         - "deletecollection"
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1881,7 +1881,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -1911,7 +1911,7 @@ spec:
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0'  
+      value: 'litmuschaos/go-runner:2.1.1'  
 
     ## It is used in pumba lib only    
     - name: STRESS_IMAGE
@@ -1990,7 +1990,7 @@ spec:
           - "create"
           - "patch"
           - "update"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -2156,7 +2156,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -2238,7 +2238,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -2272,7 +2272,7 @@ spec:
 
       ## It is used in pumba lib only    
       - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:2.1.0'
+        value: 'litmuschaos/go-runner:2.1.1'
 
       ## It is used in pumba lib only    
       - name: STRESS_IMAGE
@@ -2347,7 +2347,7 @@ spec:
           - "patch"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -2396,7 +2396,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -2457,7 +2457,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
@@ -2474,7 +2474,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:2.1.0' 
+      value: 'litmuschaos/go-runner:2.1.1' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -2576,7 +2576,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/go-runner:2.1.0"
+    image: "litmuschaos/go-runner:2.1.1"
     imagePullPolicy: Always
     args:
     - -c
