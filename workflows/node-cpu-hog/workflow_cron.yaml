@@ -76,7 +76,7 @@ spec:
                           verbs:
                             - "get"
                             - "list"
-                      image: "litmuschaos/go-runner:2.0.0"
+                      image: "litmuschaos/go-runner:2.1.1"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -104,7 +104,7 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: 'litmuschaos/go-runner:2.0.0' 
+                        value: 'litmuschaos/go-runner:2.1.1' 
                     
                       labels:
                         name: node-cpu-hog
