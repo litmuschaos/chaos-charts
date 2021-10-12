@@ -110,7 +110,6 @@ spec:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
                               value: "100"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
@@ -182,7 +181,6 @@ spec:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
                               value: "100"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
@@ -255,7 +253,6 @@ spec:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
                               value: "100"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
@@ -329,7 +326,6 @@ spec:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
                               value: "100"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
@@ -405,7 +401,6 @@ spec:
                               type: "int" # supports: string, int, float
                               criteria: ">=" #supports >=,<=,>,<,==,!= for int and contains,equal,notEqual,matches,notMatches for string values
                               value: "100"
-                            source: "inline" # it can be “inline” or any image
                           mode: "Edge"
                           runProperties:
                             probeTimeout: 2
