@@ -1,0 +1,14 @@
+resources:
+  - allow-capabilities-for-litmus-experiments-which-uses-runtime-api.yaml
+  - allow-host-namespaces-for-litmus-experiments-which-uses-runtime-api.yaml
+  - allow-privileged-containers-for-litmus-experiments-which-uses-runtime-api.yaml
+  - allow-privilege-escalation-for-litmus-experiments-which-uses-runtime-api.yaml
+  - allow-host-paths-for-litmus-experiments-which-uses-hostPaths.yaml
+  - allow-user-groups-for-litmus-experiments.yaml
+patches:
+  - patch: |-
+      - op: replace
+        path: /spec/validationFailureAction
+        value: enforce
+    target:
+      kind: Policy

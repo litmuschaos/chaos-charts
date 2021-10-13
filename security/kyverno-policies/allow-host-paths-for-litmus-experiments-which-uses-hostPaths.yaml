@@ -1,0 +1,71 @@
+apiVersion: kyverno.io/v1
+kind: Policy
+metadata:
+  name: allow-host-path
+  annotations:
+    policies.kyverno.io/category: Pod Security Standards
+    policies.kyverno.io/severity: medium
+    policies.kyverno.io/subject: Pod
+    policies.kyverno.io/description: >-
+      HostPath volumes let Pods use host directories and volumes in containers.
+      Using host resources can be used to access shared data or escalate privileges
+spec:
+  validationFailureAction: audit
+  background: true
+  rules:
+    - name: check socket host-path
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              # applicable for experiments which usage container runtime apis
+              app.kubernetes.io/runtime-api-usage: "true" 
+      validate:
+        message: >-
+          Hostpath is restricted to use only specific path. It can be set at spec.volumes[*].hostPath.
+        pattern:
+          spec:
+            =(volumes):
+            # substitutes this path with an appropriate socket path
+            # ex: '/var/run/docker.sock', '/run/containerd/containerd.sock', '/run/crio/crio.sock'
+            - =(hostPath):
+                path: "/var/run/docker.sock"     
+    - name: check container host-path
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              # applicable for experiments which needs container path
+              app.kubernetes.io/host-path-usage: "true" 
+      validate:
+        message: >-
+          Hostpath is restricted to use only specific path. It can be set at spec.volumes[*].hostPath.
+        pattern:
+          spec:
+            =(volumes):
+             # substitutes this path with an appropriate container path
+             # ex: '/var/lib/docker/containers', '/var/lib/containerd/io.containerd.runtime.v1.linux/k8s.io', '/var/lib/containers/storage/overlay/'
+            - =(hostPath):
+                path: "/var/lib/docker/containers"
+    - name: check service-kill host-path
+      match:
+        resources:
+          kinds:
+            - Pod
+          selector:
+            matchLabels:
+              # applicable for service-kill experiments
+              app.kubernetes.io/service-kill: "true" 
+      validate:
+        message: >-
+          Hostpath is restricted to use only specific path. It can be set at spec.volumes[*].hostPath.
+        pattern:
+          spec:
+            =(volumes):
+            - =(hostPath):
+                path: "/ | /var/run"
+    
