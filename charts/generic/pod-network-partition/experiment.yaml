@@ -14,29 +14,38 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "networking.k8s.io"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - networkpolicies
-        - "pods/exec"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # performs CRUD operations on the network policies
+      - apiGroups: ["networking.k8s.io"]
+        resources: ["networkpolicies"]
+        verbs: ["create","delete","list","get"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
