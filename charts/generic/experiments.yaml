@@ -15,37 +15,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
@@ -133,35 +146,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-          - "secrets"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps","secrets"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -227,38 +243,42 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-          - "apps"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "pods/exec"
-          - "daemonsets"
-          - "pods/eviction"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec","pods/eviction"]
+        verbs: ["get","list","create"]
+      # ignore daemonsets while draining the node
+      - apiGroups: ["apps"]
+        resources: ["daemonsets"]
+        verbs: ["list","get","delete"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list","patch"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -309,34 +329,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -407,37 +431,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
@@ -518,37 +555,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -641,34 +691,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -754,37 +808,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "apps"
-          - "batch"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "update"
-          - "patch"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -865,34 +932,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -948,37 +1019,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
@@ -1042,40 +1126,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "deployments"
-          - "statefulsets"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "create"
-          - "patch"
-          - "update"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # performs CRUD operations on the deployments and statefulsets
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets"]
+        verbs: ["list","get","patch","update"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1124,38 +1206,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "deployments"
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1301,37 +1395,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     args:
       - -c
@@ -1405,35 +1512,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-          - "secrets"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps","secrets"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1501,37 +1611,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     args:
       - -c
@@ -1601,34 +1724,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1706,37 +1833,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "delete"
-          - "list"
-          - "patch"
-          - "update"
-          - "get"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -1829,37 +1969,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
@@ -1923,37 +2076,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "pods/exec"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
@@ -2030,37 +2196,50 @@ spec:
   definition:
     scope: Namespaced
     permissions: 
-      - apiGroups:
-          - ""
-          - "apps"
-          - "batch"
-          - "apps.openshift.io"
-          - "argoproj.io"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/exec"
-          - "pods/log"
-          - "replicationcontrollers"
-          - "deployments"
-          - "statefulsets"
-          - "daemonsets"
-          - "replicasets"
-          - "deploymentconfigs"
-          - "rollouts"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -2140,33 +2319,38 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "pods/log"
-          - "events"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-      - apiGroups:
-          - ""
-        resources:
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -2223,39 +2407,42 @@ spec:
   definition:
     scope: Cluster
     permissions:
-      - apiGroups:
-          - ""
-          - "batch"
-          - "apps"
-          - "litmuschaos.io"
-        resources:
-          - "jobs"
-          - "pods"
-          - "events"
-          - "pods/log"
-          - "pods/exec"
-          - "daemonsets"
-          - "pods/eviction"
-          - "chaosengines"
-          - "chaosexperiments"
-          - "chaosresults"
-        verbs:
-          - "create"
-          - "list"
-          - "get"
-          - "patch"
-          - "update"
-          - "delete"
-          - "deletecollection"
-      - apiGroups:
-          - ""
-        resources: 
-          - "nodes"
-        verbs:
-          - "get"
-          - "list"
-          - "patch"
-          - "update"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec","pods/eviction"]
+        verbs: ["get","list","create"]
+      # ignore daemonsets while draining the node
+      - apiGroups: ["apps"]
+        resources: ["daemonsets"]
+        verbs: ["list","get","delete"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list","patch","update"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -2311,37 +2498,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "apps"
-        - "apps.openshift.io"
-        - "argoproj.io"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - "replicationcontrollers"
-        - "deployments"
-        - "statefulsets"
-        - "daemonsets"
-        - "replicasets"
-        - "deploymentconfigs"
-        - "rollouts"
-        - "pods/exec"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -2431,37 +2631,50 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "apps"
-        - "apps.openshift.io"
-        - "argoproj.io"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - "replicationcontrollers"
-        - "deployments"
-        - "statefulsets"
-        - "daemonsets"
-        - "replicasets"
-        - "deploymentconfigs"
-        - "rollouts"
-        - "pods/exec"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
@@ -2554,29 +2767,38 @@ spec:
   definition:
     scope: Namespaced
     permissions:
-    - apiGroups:
-        - ""
-        - "batch"
-        - "networking.k8s.io"
-        - "litmuschaos.io"
-      resources:
-        - "jobs"
-        - "pods"
-        - "pods/log"
-        - networkpolicies
-        - "pods/exec"
-        - "events"
-        - "chaosengines"
-        - "chaosexperiments"
-        - "chaosresults"
-      verbs:
-        - "get"
-        - "list"
-        - "patch"
-        - "create"
-        - "update"
-        - "delete"
-        - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # performs CRUD operations on the network policies
+      - apiGroups: ["networking.k8s.io"]
+        resources: ["networkpolicies"]
+        verbs: ["create","delete","list","get"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
