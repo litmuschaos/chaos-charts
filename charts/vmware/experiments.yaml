@@ -42,7 +42,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:2.3.0"
     args:
     - -c
     - ./experiments -name vm-poweroff

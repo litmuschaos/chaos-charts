@@ -36,7 +36,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:2.3.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -166,7 +166,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:2.3.0"
     imagePullPolicy: Always
     args:
     - -c

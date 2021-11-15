@@ -46,7 +46,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:2.3.0"
     imagePullPolicy: Always
     args:
       - -c

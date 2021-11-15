@@ -41,7 +41,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:2.3.0"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/kubernetes/k8_wrapper.py; exit 0
