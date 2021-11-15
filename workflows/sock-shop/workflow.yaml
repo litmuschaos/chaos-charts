@@ -124,7 +124,7 @@ spec:
                               value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
         
       container:
-        image: litmuschaos/litmus-checker:2.3.0
+        image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-memory-hog
@@ -193,7 +193,7 @@ spec:
                               value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
                             
       container:
-        image: litmuschaos/litmus-checker:2.3.0
+        image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-delete
@@ -266,7 +266,7 @@ spec:
                             - name: FORCE
                               value: 'false'
       container:
-        image: litmuschaos/litmus-checker:2.3.0
+        image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
     
     - name: pod-network-loss
@@ -341,7 +341,7 @@ spec:
                             - name: SOCKET_PATH
                               value: '/var/run/docker.sock'                
       container:
-        image: litmuschaos/litmus-checker:2.3.0
+        image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
 
     - name: disk-fill
@@ -412,7 +412,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'                            
       container:
-        image: litmuschaos/litmus-checker:2.3.0
+        image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: delete-application
