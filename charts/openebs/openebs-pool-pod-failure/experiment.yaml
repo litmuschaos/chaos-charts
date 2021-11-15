@@ -10,7 +10,7 @@ metadata:
     name: openebs-pool-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.3.0
   name: openebs-pool-pod-failure
 spec:
   definition:
@@ -90,7 +90,7 @@ spec:
       name: openebs-pool-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 2.3.0
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt
