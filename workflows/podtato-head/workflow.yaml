@@ -39,7 +39,7 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/2.3.0?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
 
     - name: pod-delete
@@ -96,7 +96,7 @@ spec:
                             - name: FORCE
                               value: 'false'
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.3.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
 
     - name: delete-application

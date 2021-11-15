@@ -72,7 +72,7 @@ spec:
                         verbs:
                           - "get"
                           - "list"
-                    image: "litmuschaos/go-runner:latest"
+                    image: "litmuschaos/go-runner:2.3.0"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -100,7 +100,7 @@ spec:
 
                     # provide lib image
                     - name: LIB_IMAGE
-                      value: 'litmuschaos/go-runner:latest' 
+                      value: 'litmuschaos/go-runner:2.3.0' 
                   
                     labels:
                       name: node-cpu-hog
@@ -141,7 +141,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.3.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-chaos

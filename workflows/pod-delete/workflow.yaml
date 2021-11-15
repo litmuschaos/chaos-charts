@@ -74,7 +74,7 @@ spec:
                         verbs:
                           - "get"
                           - "list"
-                    image: "litmuschaos/go-runner:latest"
+                    image: "litmuschaos/go-runner:2.3.0"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -146,7 +146,7 @@ spec:
                             - name: FORCE
                               value: "false"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.3.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-chaos
