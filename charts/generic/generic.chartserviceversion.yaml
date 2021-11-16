@@ -21,7 +21,6 @@ spec:
     - pod-network-corruption
     - node-drain
     - node-cpu-hog
-    - disk-loss
     - disk-fill
     - node-memory-hog
     - pod-memory-hog
