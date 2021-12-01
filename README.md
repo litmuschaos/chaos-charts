@@ -158,8 +158,8 @@ While Chaos Experiments under the Generic category offer the ability to induce c
     <tr>
     <tr>
         <td> Cassandra Experiments </td>
-        <td> Inject faults in kafka application </td>
-        <td> <a href="https://github.com/litmuschaos/chaos-charts/tree/master/charts/kafka"> cassandra experiments </a></td>
+        <td> Inject faults in cassandra application </td>
+        <td> <a href="https://github.com/litmuschaos/chaos-charts/tree/master/charts/cassandra"> cassandra experiments </a></td>
     <tr>
 </table>
 
