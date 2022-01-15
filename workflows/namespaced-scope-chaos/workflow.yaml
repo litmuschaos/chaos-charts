@@ -102,7 +102,7 @@ spec:
                     labels:
                       name: pod-delete
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         resources:
           limits:
             memory: 128Mi
@@ -154,7 +154,7 @@ spec:
                             - name: FORCE
                               value: "false"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         resources:
           limits:
             memory: 128Mi
@@ -165,7 +165,7 @@ spec:
 
     - name: revert-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         resources:
           limits:
             memory: 128Mi

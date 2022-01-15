@@ -100,7 +100,7 @@ spec:
                     labels:
                       name: pod-memory-hog
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         command: [sh, -c]
         args:
           [
@@ -146,12 +146,12 @@ spec:
                             - name: CHAOS_KILL_COMMAND
                               value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         command: [sh, -c]
         args:
           [

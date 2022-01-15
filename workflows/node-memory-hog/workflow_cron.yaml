@@ -102,7 +102,7 @@ spec:
                       labels:
                         name: node-memory-hog
         container:
-          image: litmuschaos/k8s:latest
+          image: litmuschaos/k8s:2.5.0
           command: [sh, -c]
           args:
             [
@@ -136,11 +136,11 @@ spec:
                               - name: TOTAL_CHAOS_DURATION
                                 value: '60' # in seconds
         container:
-          image: litmuschaos/litmus-checker:latest
+          image: litmuschaos/litmus-checker:2.5.0
           args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
       - name: revert-chaos
         container:
-          image: litmuschaos/k8s:latest
+          image: litmuschaos/k8s:2.5.0
           command: [sh, -c]
           args:
             [
