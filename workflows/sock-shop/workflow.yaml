@@ -45,12 +45,12 @@ spec:
 
     - name: install-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.5.0
         args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
 
     - name: install-chaos-experiments
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         command: [sh, -c]
         args:
           - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
@@ -124,7 +124,7 @@ spec:
                               value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
         
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-memory-hog
@@ -193,7 +193,7 @@ spec:
                               value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
                             
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-delete
@@ -266,7 +266,7 @@ spec:
                             - name: FORCE
                               value: 'false'
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
     
     - name: pod-network-loss
@@ -341,7 +341,7 @@ spec:
                             - name: SOCKET_PATH
                               value: '/var/run/docker.sock'                
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
 
     - name: disk-fill
@@ -412,27 +412,27 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '30'                            
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.5.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: delete-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.5.0
         args: ["-namespace=sock-shop","-typeName=resilient","-operation=delete", "-app=sock-shop"]
 
     - name: load-test
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.5.0
         args: ["-namespace=loadtest", "-app=loadtest"]
 
     - name: delete-loadtest
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.5.0
         args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]    
     
     - name: revert-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.5.0
         command: [sh, -c]
         args: 
           [ 
