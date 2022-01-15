@@ -90,6 +90,9 @@ spec:
     - name: RAMP_TIME
       value: ''
 
+    - name: JITTER
+      value: '0'
+
     # lib can be litmus or pumba
     - name: LIB
       value: 'litmus'
