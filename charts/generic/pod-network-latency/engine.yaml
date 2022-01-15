@@ -23,6 +23,9 @@ spec:
             - name: NETWORK_LATENCY
               value: '2000'
 
+            - name: JITTER
+              value: '0'            
+
             # provide the name of container runtime
             # for litmus LIB, it supports docker, containerd, crio
             # for pumba LIB, it supports docker only
