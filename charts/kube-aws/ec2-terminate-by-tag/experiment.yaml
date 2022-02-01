@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Detaching an ebs volume from ec2 instance.
+    Stopping an EC2 instance identified by tag.
 kind: ChaosExperiment
 metadata:
   name: ec2-terminate-by-tag
