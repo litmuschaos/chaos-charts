@@ -1,0 +1,40 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: chaos-appinstance
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: ''
+    applabel: ''
+    appkind: ''
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: random-kill-app-instance
+      spec:
+        components:
+          env:
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
+             
+            - name: APP_NAME
+              value: ''
+              
+            - name: ORG_NAME
+              value: ''
+              
+            - name: SPACE_NAME
+              value: ''
+
+
+
+
+
+            

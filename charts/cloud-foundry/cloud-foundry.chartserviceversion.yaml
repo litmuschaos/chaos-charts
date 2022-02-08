@@ -1,0 +1,39 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2019-09-26T10:28:08Z
+  name: cloud-foundry
+  version: 0.1.16
+  annotations:
+    categories: Cloud-Foundry
+    chartDescription: Injects generic Cloud-Foundry chaos
+spec:
+  displayName: Generic Chaos
+  categoryDescription: >
+    ToDO
+  experiments:
+    - kill-app-instance
+    - app-stats
+    - random-kill-app-instance
+    - stop-all-apps
+    - stop-apps
+    - unbind-apps
+  keywords:
+    - Cloud-Foudry
+  maintainers:
+    - name: rziolkowski
+      email: remi.ziolkowski-ext@pole-emploi.fr
+    - name: cel-habriri
+      email: chakir.el-habriri@pole-emploi.fr
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents/#generic
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/experiments.yaml
