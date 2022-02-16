@@ -67,6 +67,11 @@ spec:
     - name: NODE_CPU_CORE
       value: ''
 
+    ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS. 
+    ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
+    - name: CPU_LOAD
+      value: '100'
+
     # ENTER THE COMMA SEPARATED TARGET NODES NAME
     - name: TARGET_NODES
       value: ''
