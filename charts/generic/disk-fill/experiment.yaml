@@ -96,6 +96,10 @@ spec:
     - name: EPHEMERAL_STORAGE_MEBIBYTES
       value: ''
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''

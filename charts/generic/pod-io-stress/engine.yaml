@@ -24,6 +24,10 @@ spec:
             - name: FILESYSTEM_UTILIZATION_PERCENTAGE
               value: '10'
 
+            ## Percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''
+
              ## provide the cluster runtime
             - name: CONTAINER_RUNTIME
               value: 'docker'   

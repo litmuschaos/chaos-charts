@@ -94,6 +94,10 @@ spec:
 
       ## specify the comma separated target pods
       - name: TARGET_PODS
+        value: ''
+
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
         value: ''    
 
       # Period to wait before and after injection of chaos in sec

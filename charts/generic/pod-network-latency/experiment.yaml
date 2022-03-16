@@ -124,6 +124,10 @@ spec:
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE

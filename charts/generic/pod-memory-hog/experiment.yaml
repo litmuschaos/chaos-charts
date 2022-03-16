@@ -115,6 +115,10 @@ spec:
       - name: TARGET_PODS
         value: ''
 
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
+        value: ''
+
     labels:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
