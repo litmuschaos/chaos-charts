@@ -920,6 +920,10 @@ spec:
     - name: TARGET_PODS
       value: ''
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
@@ -1145,6 +1149,10 @@ spec:
 
       ## specify the comma separated target pods
       - name: TARGET_PODS
+        value: ''
+
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
         value: ''    
 
       # Period to wait before and after injection of chaos in sec
@@ -1386,6 +1394,10 @@ spec:
       value: ''
 
     - name: EPHEMERAL_STORAGE_MEBIBYTES
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
       value: ''
 
     ## percentage of total pods to target
@@ -1907,6 +1919,10 @@ spec:
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE
@@ -2021,6 +2037,10 @@ spec:
       value: ''
 
     - name: TARGET_PODS
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
       value: ''
 
     # provide the name of container runtime
@@ -2168,6 +2188,10 @@ spec:
     - name: TARGET_PODS
       value: ''
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE
@@ -2272,7 +2296,11 @@ spec:
       value: 'litmus'   
 
     - name: TARGET_PODS
-      value: ''   
+      value: ''  
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: '' 
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
@@ -2491,6 +2519,10 @@ spec:
       value: 'litmus'    
 
     - name: TARGET_PODS
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
       value: ''
 
     ## it defines the sequence of chaos execution for multiple target pods
@@ -2735,6 +2767,10 @@ spec:
       - name: TARGET_PODS
         value: ''
 
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
+        value: ''
+
     labels:
       name: pod-memory-hog
       app.kubernetes.io/part-of: litmus
@@ -2848,6 +2884,10 @@ spec:
     
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
       value: ''
 
     - name: LIB_IMAGE  
