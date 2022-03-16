@@ -42,10 +42,10 @@ spec:
 
     - name: install-chaos-experiments
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/2.7.0?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} | sleep 30"
 
     - name: node-cpu-hog
@@ -77,7 +77,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine-node-cpu-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-memory-hog
@@ -116,7 +116,7 @@ spec:
                             - name: CHAOS_KILL_COMMAND
                               value: "kill $(find /proc -name exe -lname '*/dd' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' |  head -n 1)"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine-pod-memory-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-cpu-hog
@@ -155,7 +155,7 @@ spec:
                             - name: CHAOS_KILL_COMMAND
                               value: "kill $(find /proc -name exe -lname '*/md5sum' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' |  head -n 1)"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine-pod-cpu-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: node-memory-hog
@@ -186,7 +186,7 @@ spec:
                             - name: TOTAL_CHAOS_DURATION
                               value: '60' # in seconds
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine-node-memory-hog.yaml","-saveName=/tmp/engine-name"]
 
     - name: pod-delete
@@ -223,12 +223,12 @@ spec:
                             - name: FORCE
                               value: "false"
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine-pod-delete.yaml","-saveName=/tmp/engine-name"]
 
     - name: revert-kube-proxy-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args:
           - "kubectl delete chaosengines kube-proxy-node-cpu-hog kube-proxy-pod-memory-hog-chaos kube-proxy-pod-cpu-hog-chaos kube-proxy-node-memory-hog-chaos kube-proxy-pod-delete-chaos -n

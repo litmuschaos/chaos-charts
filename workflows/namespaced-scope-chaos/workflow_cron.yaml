@@ -75,7 +75,7 @@ spec:
                           verbs:
                             - "get"
                             - "list"
-                      image: "litmuschaos/go-runner:latest"
+                      image: "litmuschaos/go-runner:2.7.0"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -106,7 +106,7 @@ spec:
                       labels:
                         name: pod-delete
         container:
-          image: litmuschaos/k8s:latest
+          image: litmuschaos/k8s:2.7.0
           resources:
             limits:
               memory: 128Mi
@@ -158,7 +158,7 @@ spec:
                               - name: FORCE
                                 value: "false"
         container:
-          image: litmuschaos/litmus-checker:latest
+          image: litmuschaos/litmus-checker:2.7.0
           resources:
             limits:
               memory: 128Mi
@@ -169,7 +169,7 @@ spec:
 
       - name: revert-chaos
         container:
-          image: litmuschaos/k8s:latest
+          image: litmuschaos/k8s:2.7.0
           resources:
             limits:
               memory: 128Mi

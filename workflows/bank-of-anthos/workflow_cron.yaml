@@ -37,15 +37,15 @@ spec:
 
     - name: install-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.7.0
         args: ["-namespace=bank","-typeName=resilient","-operation=apply","-timeout=400", "-app=bank-of-anthos","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
 
     - name: install-chaos-experiments
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/2.7.0?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"      
     
     - name: pod-network-loss
@@ -104,17 +104,17 @@ spec:
                             - name: SOCKET_PATH
                               value: '/var/run/docker.sock'                
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.7.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
 
     - name: delete-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.7.0
         args: ["-namespace=bank","-typeName=resilient","-operation=delete", "-app=bank-of-anthos"]  
     
     - name: revert-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args: 
           [ 

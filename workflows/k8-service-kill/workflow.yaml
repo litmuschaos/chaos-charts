@@ -97,7 +97,7 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/createChaosEngine.yaml -n {{workflow.parameters.appCurrentNamespace}} | echo "sleeping for 60s" | sleep 60 ']
 
@@ -147,6 +147,6 @@ spec:
                           - name: TEST_NAMESPACE
                             value: {{workflow.parameters.appCurrentNamespace}}
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.7.0
         command: [sh, -c]
         args: [' sleep 20 | kubectl delete  -f /tmp/deleteChaosEngine.yaml -n {{workflow.parameters.appCurrentNamespace}} | echo "sleeping for 60s" | sleep 60 ']
