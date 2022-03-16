@@ -89,7 +89,11 @@ spec:
       value: 'litmus'   
 
     - name: TARGET_PODS
-      value: ''   
+      value: ''  
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: '' 
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC

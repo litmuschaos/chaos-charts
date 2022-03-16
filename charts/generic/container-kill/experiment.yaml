@@ -105,6 +105,10 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     - name: LIB_IMAGE  
       value: 'litmuschaos/go-runner:latest' 
 

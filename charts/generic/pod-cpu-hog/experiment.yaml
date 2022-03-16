@@ -110,6 +110,10 @@ spec:
     - name: TARGET_PODS
       value: ''
 
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
     - name: SEQUENCE
