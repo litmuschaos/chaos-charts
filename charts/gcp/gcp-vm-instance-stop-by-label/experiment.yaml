@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "neelanjan00/go-runner:gcp-vm-instance-stop-by-label"
     imagePullPolicy: Always
     args:
     - -c
