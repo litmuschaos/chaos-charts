@@ -10,8 +10,8 @@ metadata:
 spec:
   displayName: Podtato-head Chaos
   categoryDescription: >
-    It install podtato-head application, inject chaos on podtato-head, uninstall the application 
-    and revert the chaos
+    It installs the podtato-head application, injects pod-kill chaos on podtato-head, uninstalls the application 
+    and removes the chaos custom resources
   experiments:
     - pod-delete
   keywords:
@@ -30,6 +30,8 @@ spec:
   provider:
     name: ChaosNative
   links:
+    - name: Podtato-Head
+      url: https://github.com/podtato-head/podtato-head
     - name: Kubernetes Slack
       url: https://slack.kubernetes.io/
     - name: Documentation
