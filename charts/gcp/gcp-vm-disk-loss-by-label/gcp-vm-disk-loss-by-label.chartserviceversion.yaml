@@ -1,0 +1,34 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp-vm-disk-loss-by-label 
+  version: 0.1.0
+  annotations:
+    categories: gcp
+spec:
+  displayName: gcp-vm-disk-loss-by-label 
+  categoryDescription: >
+    gcp vm disk loss by label experiment detaches the target persistent disk volumes by label for a fixed duration of time 
+  keywords: 
+    - "disk" 
+    - "non-kubernetes" 
+    - "gcp"
+  platforms: 
+    - "Minikube"
+  maturity: alpha
+  maintainers: 
+    - name: Neelanjan Manna 
+      email: neelanjan.manna@harness.io 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: Harness
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-disk-loss-by-label/experiment.yaml

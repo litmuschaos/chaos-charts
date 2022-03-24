@@ -36,3 +36,7 @@ spec:
             # enable it if the target instance is a part of self-managed auto scaling group.
             - name: AUTO_SCALING_GROUP
               value: 'disable'
+
+            # parallel or serial; determines how chaos is injected
+            - name: SEQUENCE
+              value: 'parallel'
