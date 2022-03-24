@@ -74,8 +74,8 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # enable or disable; shall be enabled if the target instance is a part of an auto scaling group.
-    - name: AUTO_SCALING_GROUP
+    # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
+    - name: MANAGED_INSTANCE_GROUP
       value: 'disable'
     
     # Instance name of the target vm instance(s)

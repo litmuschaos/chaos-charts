@@ -33,8 +33,8 @@ spec:
             - name: INSTANCE_ZONES
               value: ''
 
-            # enable it if the target instance is a part of self-managed auto scaling group.
-            - name: AUTO_SCALING_GROUP
+            # enable it if the target instance is a part of a managed instance group.
+            - name: MANAGED_INSTANCE_GROUP
               value: 'disable'
 
             # parallel or serial; determines how chaos is injected
