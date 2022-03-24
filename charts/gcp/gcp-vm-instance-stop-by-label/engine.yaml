@@ -31,9 +31,8 @@ spec:
             - name: INSTANCE_LABEL
               value: ''
 
-            # Instance zone(s) of the target vm instance(s)
-            # If more than one instance is targetted, provide zone for each in the order of their 
-            # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
+            # Zone in which the target vm instance(s) filtered by the label exist
+            # all the instances should lie in a single zone
             - name: INSTANCE_ZONES
               value: ''
 
