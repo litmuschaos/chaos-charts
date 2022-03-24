@@ -25,18 +25,18 @@ spec:
 
             # GCP project ID to which the vm instances belong
             - name: GCP_PROJECT_ID
-              value: 'litmus-e2e'
+              value: ''
 
             # Label of the target vm instance(s)  
             - name: INSTANCE_LABEL
-              value: 'instance_type : f1-micro'
+              value: ''
 
             # Instance zone(s) of the target vm instance(s)
             # If more than one instance is targetted, provide zone for each in the order of their 
             # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
             - name: INSTANCE_ZONES
-              value: 'us-central1-a'
+              value: ''
 
             # enable it if the target instance is a part of self-managed auto scaling group.
             - name: AUTO_SCALING_GROUP
-              value: 'enable'
+              value: 'disable'
