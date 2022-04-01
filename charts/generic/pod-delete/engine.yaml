@@ -28,6 +28,18 @@ spec:
             - name: FORCE
               value: 'false'
 
-             ## percentage of total pods to target
+            ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC
+              value: ''
+
+            ## it defines the sequence of chaos execution for multiple target pods
+            ## supported values: serial, parallel
+            - name: SEQUENCE
+              value: 'parallel'
+
+            - name: TARGET_PODS
+              value: ''
+
+            # To select pods on specific node(s)
+            - name: NODE_LABEL
               value: ''
