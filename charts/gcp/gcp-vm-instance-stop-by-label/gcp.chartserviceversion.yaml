@@ -17,10 +17,10 @@ spec:
     - "vm"
   maintainers: 
     - name: Neelanjan Manna 
-      email: neelanjan@chaosnative.com
+      email: neelanjan.manna@harness.io
   minKubeVersion: 1.12.0 
   provider: 
-    name: ChaosNative
+    name: Harness
   links: 
     - name: Documentation 
       url: https://docs.litmuschaos.io/docs/getstarted/ 
