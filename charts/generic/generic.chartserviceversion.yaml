@@ -29,7 +29,6 @@ spec:
     - node-taint
     - docker-service-kill
     - pod-autoscaler
-    - byoc-pod-delete
     - node-io-stress
     - pod-io-stress
     - node-restart
