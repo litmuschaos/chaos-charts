@@ -1,0 +1,31 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: os 
+  version: 0.1.0
+  annotations:
+    categories: os
+spec:
+  displayName: os chaos
+  categoryDescription: >
+    process-kill experiment kills the target processes in a target physical node having some Linux based OS. 
+  experiments:
+  - process-kill
+  keywords: 
+    - "pods" 
+    - "kubernetes" 
+    - "guest-os" 
+    - "exec"
+  maintainers: 
+    - name: Neelanjan Manna 
+      email: neelanjan@chaosnative.com
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  links: 
+    - name: Documentation 
+      url: https://docs.litmuschaos.io/docs/getstarted/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/guest-os/experiments.yaml
