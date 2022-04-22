@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+    process-kill experiment kills the target processes in a target physical node having some Linux based guest OS.
 kind: ChaosExperiment
 metadata:
-  name: gcp-vm-disk-loss
+  name: process-kill
   labels:
-    name: gcp-vm-disk-loss
+    name: process-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -30,10 +30,6 @@ spec:
       - apiGroups: [""]
         resources: ["pods/log"]
         verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
       # for configuring and monitor the experiment job by the chaos-runner pod
       - apiGroups: ["batch"]
         resources: ["jobs"]
@@ -42,11 +38,12 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+
+    image: "litmuschaos/go-runner:m-agent"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name gcp-vm-disk-loss
+    - ./experiments -name process-kill
     command:
     - /bin/bash
     env:
@@ -58,42 +55,28 @@ spec:
       value: '30'
 
     - name: LIB
-      value: 'litmus'
-    
-    # Period to wait before and after injection of chaos in sec
+      value: ''
+
     - name: RAMP_TIME
       value: ''
 
-    # parallel or serial; determines how chaos is injected
-    - name: SEQUENCE
-      value: 'parallel'
-
-    # set the GCP project id
-    - name: GCP_PROJECT_ID
+    - name: PROCESS_IDS
       value: ''
 
-    # set the disk volume name(s) as comma seperated values 
-    # eg. volume1,volume2,...
-    - name: DISK_VOLUME_NAMES
-      value: ''
-              
-    # set the disk zone(s) as comma seperated values in the corresponding 
-    # order of DISK_VOLUME_NAME  
-    # eg. zone1,zone2,...
-    - name: DISK_ZONES
-      value: ''
-            
-    # set the device name(s) as comma seperated values in the corresponding 
-    # order of DISK_VOLUME_NAME 
-    # eg. device1,device2,...
-    - name: DEVICE_NAMES
-      value: ''
+    - name: AGENT_ENDPOINT
+      valueFrom:
+        secretKeyRef:
+          name: agent-secret
+          key: AGENT_ENDPOINT
+
+    - name: AUTH_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: agent-secret
+          key: AUTH_TOKEN
       
     labels:
-      name: gcp-vm-disk-loss
+      name: process-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest 
-    secrets:
-    - name: cloud-secret
-      mountPath: /tmp/

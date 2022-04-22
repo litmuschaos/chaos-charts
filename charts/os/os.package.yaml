@@ -1,0 +1,5 @@
+packageName: os
+experiments:
+  - name: process-kill
+    CSV: process-kill.chartserviceversion.yaml
+    desc: "process-kill"
