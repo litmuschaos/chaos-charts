@@ -23,7 +23,7 @@ spec:
     name: Harness
   links: 
     - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-instance-stop-by-label/ 
   icon:
     - url: 
       mediatype: ""
