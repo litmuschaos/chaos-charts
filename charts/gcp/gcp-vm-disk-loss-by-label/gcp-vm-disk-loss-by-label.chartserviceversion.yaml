@@ -10,9 +10,8 @@ spec:
   categoryDescription: >
     gcp vm disk loss by label experiment detaches the target persistent disk volumes by label for a fixed duration of time 
   keywords: 
-    - "disk" 
-    - "non-kubernetes" 
-    - "gcp"
+    - "Disk"  
+    - "GCP"
   platforms: 
     - "Minikube"
   maturity: alpha

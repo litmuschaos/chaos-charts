@@ -12,9 +12,8 @@ spec:
   experiments:
   - gcp-vm-instance-stop-by-label
   keywords: 
-    - "gcp" 
-    - "non-kubernetes" 
-    - "vm"
+    - "GCP" 
+    - "VM"
   maintainers: 
     - name: Neelanjan Manna 
       email: neelanjan.manna@harness.io
