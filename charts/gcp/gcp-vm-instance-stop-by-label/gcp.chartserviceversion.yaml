@@ -1,0 +1,29 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp 
+  version: 0.1.0
+  annotations:
+    categories: gcp
+spec:
+  displayName: gcp chaos
+  categoryDescription: >
+    gcp-vm-instance stop by label experiment causes gcp vm instances specified by a label to be stopped for a given time duration 
+  experiments:
+  - gcp-vm-instance-stop-by-label
+  keywords: 
+    - "GCP" 
+    - "VM"
+  maintainers: 
+    - name: Neelanjan Manna 
+      email: neelanjan.manna@harness.io
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: Harness
+  links: 
+    - name: Documentation 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-instance-stop-by-label/ 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/gcp/gcp-vm-instance-stop-by-label/experiment.yaml
