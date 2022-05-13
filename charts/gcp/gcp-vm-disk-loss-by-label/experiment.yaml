@@ -1,15 +1,15 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them
+    gcp vm disk loss by label experiment detaches the target persistent disk volumes by label for a fixed duration of time
 kind: ChaosExperiment
 metadata:
-  name: gcp-vm-instance-stop
+  name: gcp-vm-disk-loss-by-label
   labels:
-    name: gcp-vm-instance-stop
+    name: gcp-vm-disk-loss-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: 2.9.0
+    app.kubernetes.io/version: latest
 spec:
   definition:
     scope: Cluster
@@ -38,62 +38,46 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:2.9.0"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name gcp-vm-instance-stop
+    - ./experiments -name gcp-vm-disk-loss-by-label
     command:
     - /bin/bash
     env:
 
+    # set chaos duration (in sec) as desired
     - name: TOTAL_CHAOS_DURATION
-      value: '30' 
-
-    - name: CHAOS_INTERVAL
       value: '30'
 
-    # parallel or serial; determines how the VM instances are terminated, all at once or one at a time  
-    - name: SEQUENCE
-      value: 'parallel'
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'
-
-    # period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
-    - name: MANAGED_INSTANCE_GROUP
-      value: 'disable'
-    
-    # Instance name of the target vm instance(s)
-    # Multiple instance names can be provided as comma separated values ex: instance1,instance2
-    - name: VM_INSTANCE_NAMES
-      value: ''
-    
-    # GCP project ID to which the vm instances belong
+    # set chaos interval (in sec) as desired
+    - name: CHAOS_INTERVAL
+      value: '30'
+      
+    # set the GCP project id
     - name: GCP_PROJECT_ID
       value: ''
 
-    # Instance zone(s) of the target vm instance(s)
-    # If more than one instance is targetted, provide zone for each in the order of their 
-    # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
-    - name: INSTANCE_ZONES
+    # set the zone in which all the disks are created
+    # all the disks must exist in the same zone 
+    - name: DISK_ZONES
+      value: ''
+    
+    # set the label of the target disk volumes
+    - name: DISK_VOLUME_LABEL
+      value: ''
+    
+    # set the percentage value of the disks with the given label 
+    # which should be targeted as part of the chaos injection
+    - name: DISK_AFFECTED_PERC
       value: ''
       
     labels:
-      name: gcp-vm-instance-stop
+      name: gcp-vm-disk-loss-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 2.9.0 
+      app.kubernetes.io/version: latest 
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
