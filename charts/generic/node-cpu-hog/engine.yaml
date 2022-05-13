@@ -18,8 +18,15 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '60'
             
+            ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
+            ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
             - name: NODE_CPU_CORE
-              value: ''
+              value: '1'
+
+            ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS. 
+            ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
+            - name: CPU_LOAD
+              value: '0'
             
             ## percentage of total nodes to target
             - name: NODES_AFFECTED_PERC
