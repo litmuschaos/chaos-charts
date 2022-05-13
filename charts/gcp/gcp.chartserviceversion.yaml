@@ -12,16 +12,19 @@ spec:
   experiments:
   - gcp-vm-instance-stop
   - gcp-vm-disk-loss
+  - gcp-vm-instance-stop-by-label
+  - gcp-vm-disk-loss-by-label
   keywords: 
     - "VM"
     - "Disk"
     - "GCP"
+    - "Infra"
   maintainers: 
     - name: Neelanjan Manna 
-      email: neelanjan@chaosnative.com
+      email: neelanjan.manna@harness.io
   minKubeVersion: 1.12.0 
   provider: 
-    name: ChaosNative
+    name: Harness
   links: 
     - name: GCP Website
       url: https://cloud.google.com/
