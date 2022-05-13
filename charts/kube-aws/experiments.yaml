@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stopping an EC2 instance identified by tag.
+    Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: ec2-terminate-by-tag
+  name: ebs-loss-by-tag
   labels:
-    name: ec2-terminate-by-tag
+    name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -42,15 +42,11 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ec2-terminate-by-tag
+    - ./experiments -name ebs-loss-by-tag
     command:
     - /bin/bash
     env:
@@ -60,28 +56,22 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
-    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: INSTANCE_TAG
+    - name: EBS_VOLUME_TAG
       value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'
 
     - name: REGION
       value: ''
 
-    # Target the percentage of instance filtered from tag
-    - name: INSTANCE_AFFECTED_PERC
-      value: ''
-
     - name: SEQUENCE
-      value: 'parallel'      
+      value: 'parallel' 
 
-    # Provide the path of aws credentials mounted from secret  
+    - name: VOLUME_AFFECTED_PERC
+      value: ''             
+
+    # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: '/tmp/cloud_config.yml'
 
@@ -91,7 +81,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ec2-terminate-by-tag
+      name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
@@ -293,12 +283,12 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Detaching an ebs volume from ec2 instance.
+    Stopping an EC2 instance identified by tag.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss-by-tag
+  name: ec2-terminate-by-tag
   labels:
-    name: ebs-loss-by-tag
+    name: ec2-terminate-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -334,11 +324,15 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss-by-tag
+    - ./experiments -name ec2-terminate-by-tag
     command:
     - /bin/bash
     env:
@@ -348,22 +342,28 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
 
-    - name: EBS_VOLUME_TAG
+    - name: INSTANCE_TAG
       value: ''
+
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'
 
     - name: REGION
       value: ''
 
+    # Target the percentage of instance filtered from tag
+    - name: INSTANCE_AFFECTED_PERC
+      value: ''
+
     - name: SEQUENCE
-      value: 'parallel' 
+      value: 'parallel'      
 
-    - name: VOLUME_AFFECTED_PERC
-      value: ''             
-
-    # Provide the path of aws credentials mounted from secret
+    # Provide the path of aws credentials mounted from secret  
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: '/tmp/cloud_config.yml'
 
@@ -373,7 +373,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ebs-loss-by-tag
+      name: ec2-terminate-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
