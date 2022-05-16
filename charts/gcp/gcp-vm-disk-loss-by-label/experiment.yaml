@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    gcp vm disk loss by label experiment detaches the target persistent disk volumes by label for a fixed duration of time
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance filtered by a label for a specified duration before attaching them back
 kind: ChaosExperiment
 metadata:
   name: gcp-vm-disk-loss-by-label

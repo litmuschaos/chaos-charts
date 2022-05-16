@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration before attaching them back
 kind: ChaosExperiment
 metadata:
   name: gcp-vm-disk-loss
