@@ -78,6 +78,11 @@ spec:
     # enable it if the target instance is a part of a managed instance group
     - name: MANAGED_INSTANCE_GROUP
       value: 'disable'
+
+    # set the percentage value of the instances with the given label 
+    # which should be targeted as part of the chaos injection
+    - name: INSTANCE_AFFECTED_PERC
+      value: ''
       
     labels:
       name: gcp-vm-instance-stop-by-label
