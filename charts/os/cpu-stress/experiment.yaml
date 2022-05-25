@@ -1,0 +1,74 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    cpu-stress experiment stresses the CPU of a virtual or physical machine for a given period of time
+kind: ChaosExperiment
+metadata:
+  name: cpu-stress
+  labels:
+    name: cpu-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["secrets","configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute commands inside target container
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:m-agent"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name cpu-stress
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '30' 
+
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    - name: LIB
+      value: ''
+
+    - name: RAMP_TIME
+      value: ''
+
+    # number of CPU cores to be stressed for each target
+    - name: CPU
+      value: '1'
+
+    # load percentage for the specified number of CPU cores
+    - name: LOAD_PERCENTAGE
+      value: '50'
+      
+    labels:
+      name: cpu-stress
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest 

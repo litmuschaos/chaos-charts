@@ -3,3 +3,6 @@ experiments:
   - name: process-kill
     CSV: process-kill.chartserviceversion.yaml
     desc: "process-kill"
+  - name: cpu-stress
+    CSV: cpu-stress.chartserviceversion.yaml
+    desc: "cpu-stress"

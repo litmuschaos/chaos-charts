@@ -8,20 +8,19 @@ metadata:
 spec:
   displayName: os chaos
   categoryDescription: >
-    process-kill experiment kills the target processes in a target physical node having some Linux based OS. 
+    cpu-stress experiment stresses the CPU of a virtual or physical machine for a given period of time 
   experiments:
-  - process-kill
+  - cpu-stress
   keywords: 
-    - "pods" 
-    - "kubernetes" 
-    - "guest-os" 
-    - "exec"
+    - "non-kubernetes" 
+    - "os" 
+    - "m-agent"
   maintainers: 
     - name: Neelanjan Manna 
-      email: neelanjan@chaosnative.com
+      email: neelanjan.manna@harness.io
   minKubeVersion: 1.12.0 
   provider: 
-    name: ChaosNative
+    name: Harness
   links: 
     - name: Documentation 
       url: https://docs.litmuschaos.io/docs/getstarted/ 

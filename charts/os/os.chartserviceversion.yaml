@@ -8,24 +8,27 @@ metadata:
 spec:
   displayName: os chaos
   categoryDescription: >
-    process-kill experiment kills the target processes in a target physical node having some Linux based OS. 
+    OS chaos experiments cater to machine-scoped resource fault injection and chaos orchestration  
   experiments:
   - process-kill
+  - cpu-stress
   keywords: 
-    - "pods" 
-    - "kubernetes" 
-    - "guest-os" 
-    - "exec"
+    - "machine" 
+    - "m-agent" 
+    - "OS" 
+    - "Linux"
   maintainers: 
     - name: Neelanjan Manna 
-      email: neelanjan@chaosnative.com
+      email: neelanjan.manna@harness.io
   minKubeVersion: 1.12.0 
   provider: 
-    name: ChaosNative
+    name: Harness
   links: 
     - name: Documentation 
       url: https://docs.litmuschaos.io/docs/getstarted/ 
+    - name: m-agent
+      url: https://github.com/litmuschaos/m-agent/
   icon:
     - url: 
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/guest-os/experiments.yaml
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/m-agent/charts/os/experiments.yaml
