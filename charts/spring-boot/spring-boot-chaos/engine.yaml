@@ -12,7 +12,7 @@ spec:
   engineState: 'active'
   chaosServiceAccount: spring-boot-chaos-sa
   experiments:
-    - name: spring-boot-delete
+    - name: spring-boot-chaos
       spec:
         components:
           env:
@@ -27,80 +27,3 @@ spec:
             ## default: litmus. Supported values: litmus
             - name: LIB
               value: 'litmus'
-
-            # Chaos Monkey Spring Boot configuration
-            # Level determines at which frequency the assault happens on the application. For a value N, the assaults happens every N requests
-            - name: CM_LEVEL
-              value: '1'
-
-            # Whether the level should be used as a deterministic value (attack every x requests) or a chance (on average, 1 in x requests will be attacked)
-            - name: CM_DETERMINISTIC
-              value: 'true'
-
-
-            # Comma separated list of watched Java services. Ex: com.example.application.controller.HelloController.sayHelle
-            - name: CM_WATCHED_CUSTOM_SERVICES
-              value: ''
-
-            # Comma separated list of watchers. Possible values: controller, restController, service, repository, component, restTemplate, webClient, actuatorHealth
-            - name: CM_WATCHERS
-              value: 'restController'
-
-            # AppKiller assault active
-            - name: CM_KILL_APPLICATIONS_ACTIVE
-              value: 'false'
-            # Memory cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey AppKiller assault on a schedule
-            - name: CM_KILL_APPLICATION_CRON
-              value: 'OFF'
-
-            # Latency assault active
-            - name: CM_LATENCY_ACTIVE
-              value: 'false'
-            # Minimum latency (ms)
-            - name: CM_LATENCY_RANGE_START
-              value: '500'
-            # Maxiumu latency (ms)
-            - name: CM_LATENCY_RANGE_END
-              value: '500'
-
-            # Exception assault active
-            - name: CM_EXCEPTIONS_ACTIVE
-              value: 'false'
-            # Type of raised exception
-            - name: CM_EXCEPTIONS_TYPE
-              value: 'java.lang.IllegalArgumentException'
-            # Argument of raised exception
-            - name: CM_EXCEPTIONS_ARGUMENTS
-              value: 'java.lang.String:custom illegal argument exception'
-
-            # Memory assault active
-            - name: CM_MEMORY_ACTIVE
-              value: 'false'
-            # Duration to assault memory when requested fill amount is reached in ms.
-            - name: CM_MEMORY_MS_HOLD_FILLED_MEM
-              value: '90000'
-            # Time in ms between increases of memory usage.
-            - name: CM_MEMORY_MS_NEXT_INCREASE
-              value: '10000'
-            # Fraction of one individual memory increase iteration. 1.0 equals 100 %.
-            - name: CM_MEMORY_FILL_INC_FRACTION
-              value: '1.0'
-            # Final fraction of used memory by assault. 0.95 equals 95 %.
-            - name: CM_MEMORY_FILL_TARGET_FRACTION
-              value: '0.95'
-            # Memory cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey memory assault on a schedule
-            - name: CM_MEMORY_CRON
-              value: 'OFF'
-
-            # CPU assault active
-            - name: CM_CPU_ACTIVE
-              value: 'false'
-            # Duration to assault cpu when requested load is reached in ms.
-            - name: CM_CPU_MS_HOLD_LOAD
-              value: '90000'
-            # Final fraction of used cpu by assault. 0.95 equals 95 %.
-            - name: CM_CPU_LOAD_TARGET_FRACTION
-              value: '0.9'
-            # CPU cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey cpu assault on a schedule
-            - name: CM_CPU_CRON
-              value: 'OFF'
