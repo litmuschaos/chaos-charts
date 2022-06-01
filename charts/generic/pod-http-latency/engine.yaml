@@ -22,10 +22,6 @@ spec:
             
             - name: LATENCY
               value: '2000' #in ms
-            
-            # hostname or IP of the target service
-            - name: TARGET_HOST
-              value: "0.0.0.0"
 
             # port of the target service
             - name: TARGET_PORT
@@ -33,7 +29,7 @@ spec:
 
             # port on which the proxy will listen
             - name: LISTEN_PORT
-              value: "2002"
+              value: "20000"
 
             # provide the name of container runtime
             # for litmus LIB, it supports docker, containerd, crio
