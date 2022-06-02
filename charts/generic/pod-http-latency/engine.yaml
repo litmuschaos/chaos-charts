@@ -27,10 +27,6 @@ spec:
             - name: TARGET_PORT
               value: "80"
 
-            # port on which the proxy will listen
-            - name: LISTEN_PORT
-              value: "20000"
-
             # provide the name of container runtime
             # for litmus LIB, it supports docker, containerd, crio
             # for pumba LIB, it supports docker only
