@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: gcp-vm-disk-loss 
   categoryDescription: >
-    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration before attaching them back
   keywords: 
     - "Disk" 
     - "GCP" 
