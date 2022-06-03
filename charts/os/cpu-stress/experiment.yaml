@@ -12,7 +12,7 @@ metadata:
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -66,6 +66,18 @@ spec:
     # load percentage for the specified number of CPU cores
     - name: LOAD_PERCENTAGE
       value: '50'
+
+    - name: AGENT_ENDPOINT
+      valueFrom:
+        secretKeyRef:
+          name: agent-secret
+          key: AGENT_ENDPOINT
+
+    - name: AUTH_TOKEN
+      valueFrom:
+        secretKeyRef:
+          name: agent-secret
+          key: AUTH_TOKEN
       
     labels:
       name: cpu-stress
