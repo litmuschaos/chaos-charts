@@ -8,7 +8,7 @@ metadata:
 spec:
   displayName: gcp-vm-instance-stop 
   categoryDescription: >
-    Stops GCP VM instances and GKE nodes for a specified duration of time and later restarts them 
+    Stops GCP VM instances and GKE nodes for a specified duration and later restarts them 
   keywords: 
     - "VM" 
     - "GCP" 
