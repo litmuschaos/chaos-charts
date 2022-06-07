@@ -2,7 +2,7 @@ apiVersion: litmuchaos.io/v1alpha1
 kind: ChartServiceVersion
 metadata:
   createdAt: 2022-03-31T15:50:08Z
-  name: spring-boot-chaos
+  name: spring-boot
   version: 0.1.0
   annotations:
     categories: SpringBoot
