@@ -100,8 +100,9 @@ spec:
       - name: CM_KILL_APPLICATIONS_ACTIVE
         value: 'false'
       # Memory cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey AppKiller assault on a schedule
+      # Warning: if disabled, leave empty (do not use "OFF" value like in chaos monkey for spring documentation)
       - name: CM_KILL_APPLICATION_CRON
-        value: 'OFF'
+        value: ''
 
       # Latency assault active
       - name: CM_LATENCY_ACTIVE
@@ -139,8 +140,9 @@ spec:
       - name: CM_MEMORY_FILL_TARGET_FRACTION
         value: '0.95'
       # Memory cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey memory assault on a schedule
+      # Warning: if disabled, leave empty (do not use "OFF" value like in chaos monkey for spring documentation)
       - name: CM_MEMORY_CRON
-        value: 'OFF'
+        value: ''
 
       # CPU assault active
       - name: CM_CPU_ACTIVE
@@ -152,8 +154,9 @@ spec:
       - name: CM_CPU_LOAD_TARGET_FRACTION
         value: '0.9'
       # CPU cron. Cron expression like */1 * * * * ? can be set to enable chaos monkey cpu assault on a schedule
+      # Warning: if disabled, leave empty (do not use "OFF" value like in chaos monkey for spring documentation)
       - name: CM_CPU_CRON
-        value: 'OFF'
+        value: ''
 
     labels:
       name: spring-boot-chaos
