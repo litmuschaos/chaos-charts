@@ -84,6 +84,10 @@ spec:
     # port on which the proxy will listen
     - name: LISTEN_PORT
       value: "20000"
+    
+    # network interface on which the proxy will listen
+    - name: NETWORK_INTERFACE
+      value: "eth0"
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
@@ -96,7 +100,7 @@ spec:
     - name: LIB
       value: 'litmus'
 
-    ## percentage of total pods to target
+    # percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
 
