@@ -29,11 +29,7 @@ spec:
       # Track and get the runner, experiment, and helper pods log 
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
+        verbs: ["get","list","watch"]
       # for configuring and monitor the experiment job by the chaos-runner pod
       - apiGroups: ["batch"]
         resources: ["jobs"]
@@ -74,8 +70,8 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # enable or disable; shall be enabled if the target instance is a part of an auto scaling group.
-    - name: AUTO_SCALING_GROUP
+    # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
+    - name: MANAGED_INSTANCE_GROUP
       value: 'disable'
     
     # Instance name of the target vm instance(s)

@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration of time 
+    gcp-vm-instance stop by label experiment causes gcp vm instances specified by a label to be stopped for a given time duration
 kind: ChaosExperiment
 metadata:
-  name: gcp-vm-disk-loss
+  name: gcp-vm-instance-stop-by-label
   labels:
-    name: gcp-vm-disk-loss
+    name: gcp-vm-instance-stop-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -38,52 +38,53 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name gcp-vm-disk-loss
+    - ./experiments -name gcp-vm-instance-stop-by-label
     command:
     - /bin/bash
     env:
 
+    # set chaos duration (in sec) as desired
     - name: TOTAL_CHAOS_DURATION
-      value: '30' 
-
-    - name: CHAOS_INTERVAL
       value: '30'
 
-    - name: LIB
-      value: 'litmus'
+    # set chaos interval (in sec) as desired
+    - name: CHAOS_INTERVAL
+      value: '30'
     
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # parallel or serial; determines how chaos is injected
     - name: SEQUENCE
       value: 'parallel'
-
-    # set the GCP project id
+    
+    # GCP project ID to which the vm instances belong
     - name: GCP_PROJECT_ID
       value: ''
-
-    # set the disk volume name(s) as comma seperated values 
-    # eg. volume1,volume2,...
-    - name: DISK_VOLUME_NAMES
+    
+    # Label of the target vm instance(s)  
+    - name: INSTANCE_LABEL
       value: ''
-              
-    # set the disk zone(s) as comma seperated values in the corresponding 
-    # order of DISK_VOLUME_NAME  
-    # eg. zone1,zone2,...
-    - name: DISK_ZONES
+    
+    # Zone in which the target vm instance(s) filtered by the label exist
+    # all the instances should lie in a single zone
+    - name: INSTANCE_ZONES
       value: ''
+    
+    # enable it if the target instance is a part of a managed instance group
+    - name: MANAGED_INSTANCE_GROUP
+      value: 'disable'
       
     labels:
-      name: gcp-vm-disk-loss
+      name: gcp-vm-instance-stop-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest 
+
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
