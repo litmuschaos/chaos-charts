@@ -11,4 +11,7 @@ experiments:
     desc: "ebs-loss-by-id"
   - name: ebs-loss-by-tag 
     CSV: ebs-loss-by-tag.chartserviceversion.yaml
-    desc: "ebs-loss-by-tag"    
+    desc: "ebs-loss-by-tag"
+  - name: aws-az-chaos
+    CSV: aws-az-chaos.chartserviceversion.yaml
+    desc: "aws-az-chaos"

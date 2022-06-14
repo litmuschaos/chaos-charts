@@ -2813,7 +2813,6 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-      
     labels:
       name: node-drain
       app.kubernetes.io/part-of: litmus
