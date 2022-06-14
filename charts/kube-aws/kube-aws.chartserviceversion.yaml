@@ -16,20 +16,24 @@ spec:
     - ec2-terminate-by-tag
     - ebs-loss-by-id
     - ebs-loss-by-tag
+    - aws-az-chaos
   keywords:
     - AWS
     - EC2
     - EBS
+    - AZ
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
-  provider:
-    name: Intuit
+    - name: oumkale
+      email: imkaleoum@gmail.com
   links:
     - name: Kubernetes Website
       url: https://kubernetes.io
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-python/tree/master/chaos-test
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-python/tree/master/experiments/aws_az
     - name: Kubernetes Slack
       url: https://slack.kubernetes.io/ 
   icon:
