@@ -1,11 +1,10 @@
 apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
-  name: cpu-stress--chaos
+  name: cpu-stress-chaos
 spec:
   engineState: 'active'
   chaosServiceAccount: cpu-stress-sa
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: cpu-stress
       spec:
