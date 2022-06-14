@@ -37,6 +37,7 @@ spec:
     - pod-cpu-hog-exec
     - pod-memory-hog-exec
     - pod-network-partition
+    - pod-http-latency
   keywords:
     - Kubernetes
     - K8S
@@ -53,6 +54,7 @@ spec:
     - Service
     - DNS
     - Scale
+    - Http
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io
