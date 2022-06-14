@@ -78,11 +78,11 @@ spec:
       value: '2000' #in ms
 
     # port of the target service
-    - name: TARGET_PORT
+    - name: TARGET_SERVICE_PORT
       value: "80"
 
     # port on which the proxy will listen
-    - name: LISTEN_PORT
+    - name: PROXY_PORT
       value: "20000"
     
     # network interface on which the proxy will listen
