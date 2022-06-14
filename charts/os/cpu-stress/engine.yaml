@@ -1,0 +1,28 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: cpu-stress-chaos
+spec:
+  engineState: 'active'
+  chaosServiceAccount: cpu-stress-sa
+  experiments:
+    - name: cpu-stress
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # number of CPU cores to be stressed for each target
+            - name: CPU
+              value: '1'
+
+            # load percentage for the specified number of CPU cores
+            - name: LOAD_PERCENTAGE
+              value: '50'
+              

@@ -1,18 +1,18 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    process-kill experiment kills the target processes in a target physical node having some Linux based OS.
+    cpu-stress experiment stresses the CPU of a virtual or physical machine for a given period of time
 kind: ChaosExperiment
 metadata:
-  name: process-kill
+  name: cpu-stress
   labels:
-    name: process-kill
+    name: cpu-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -30,7 +30,7 @@ spec:
       - apiGroups: [""]
         resources: ["pods/log"]
         verbs: ["get","list","watch"]  
-      # for configuring and monitor the experiment job by the chaos-runner pod
+      # for creating and managing to execute commands inside target container
       - apiGroups: ["batch"]
         resources: ["jobs"]
         verbs: ["create","list","get","delete","deletecollection"]
@@ -38,12 +38,11 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-
     image: "litmuschaos/go-runner:2.10.0-Beta1"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name process-kill
+    - ./experiments -name cpu-stress
     command:
     - /bin/bash
     env:
@@ -55,14 +54,19 @@ spec:
       value: '30'
 
     - name: LIB
-      value: ''
+      value: 'litmus'
 
     - name: RAMP_TIME
       value: ''
 
-    - name: PROCESS_IDS
-      value: ''
-    
+    # number of CPU cores to be stressed for each target
+    - name: CPU
+      value: '1'
+
+    # load percentage for the specified number of CPU cores
+    - name: LOAD_PERCENTAGE
+      value: '50'
+
     - name: AGENT_ENDPOINT
       valueFrom:
         secretKeyRef:
@@ -76,7 +80,7 @@ spec:
           key: AUTH_TOKEN
       
     labels:
-      name: process-kill
+      name: cpu-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest 
