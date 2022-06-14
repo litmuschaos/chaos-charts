@@ -1,0 +1,27 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: aws-az-chaos
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: aws-az-chaos-sa
+  experiments:
+    - name: aws-az-chaos
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+            - name: CHAOS_INTERVAL
+              value: '30'
+            #LOAD_BALANCER_NAME name of the load balancer
+            - name: LOAD_BALANCER_NAME
+              value: ""
+            #LOAD_BALANCER_ZONES can be multiple, provide it by comma separated
+            - name: LOAD_BALANCER_ZONES
+              value: ""
+            - name: LOAD_BALANCERNAME_ARN
+              value: "na"
+            - name: AWS_SHARED_CREDENTIALS_FILE
+              value: "/tmp/cloud_config.yml"
