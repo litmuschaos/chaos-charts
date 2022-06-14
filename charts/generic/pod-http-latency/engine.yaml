@@ -28,8 +28,7 @@ spec:
               value: "80"
 
             # provide the name of container runtime
-            # for litmus LIB, it supports docker, containerd, crio
-            # for pumba LIB, it supports docker only
+            # it supports docker, containerd, crio
             - name: CONTAINER_RUNTIME
               value: 'docker'
 
