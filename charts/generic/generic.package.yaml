@@ -48,9 +48,6 @@ experiments:
   - name: pod-autoscaler
     CSV: pod-autoscaler.chartserviceversion.yaml
     desc: "pod-autoscaler"
-  - name: byoc-pod-delete
-    CSV: byoc-pod-delete.chartserviceversion.yaml
-    desc: "byoc-pod-delete"
   - name: node-io-stress
     CSV: node-io-stress.chartserviceversion.yaml
     desc: "node-io-stress"
