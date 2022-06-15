@@ -31,15 +31,15 @@ spec:
 
     - name: install-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.10.0
         args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=apply","-timeout=400", "-app=podtato-head","-scope=namespace"]
 
     - name: install-chaos-experiments
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.10.0
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/2.10.0?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
 
     - name: pod-delete
@@ -96,17 +96,17 @@ spec:
                             - name: FORCE
                               value: 'false'
       container:
-        image: litmuschaos/litmus-checker:latest
+        image: litmuschaos/litmus-checker:2.10.0
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
 
     - name: delete-application
       container:
-        image: litmuschaos/litmus-app-deployer:latest
+        image: litmuschaos/litmus-app-deployer:2.10.0
         args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=delete","-app=podtato-head"]
     
     - name: revert-chaos
       container:
-        image: litmuschaos/k8s:latest
+        image: litmuschaos/k8s:2.10.0
         command: [sh, -c]
         args: 
           [ 
