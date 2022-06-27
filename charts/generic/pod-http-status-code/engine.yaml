@@ -1,0 +1,54 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+spec:
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: pod-http-status-code-sa
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete'
+  experiments:
+    - name: pod-http-status-code
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '10'
+            
+            # modified status code for the http response
+            - name: STATUS_CODE
+              value: '500'
+            #  whether to modify the body as per the status code provided
+            - name: "MODIFY_RESPONSE_BODY"
+              value: "true"
+            
+            # port of the target service
+            - name: TARGET_SERVICE_PORT
+              value: "80"
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''
+
+              

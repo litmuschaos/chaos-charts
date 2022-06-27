@@ -138,7 +138,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1224,6 +1223,127 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
+
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    it injects http status code chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by user and reverts after specified duration
+kind: ChaosExperiment
+metadata:
+  name: pod-http-status-code
+  labels:
+    name: pod-http-status-code
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups: 
+          - "" 
+          - "batch" 
+          - "apps" 
+          - "litmuschaos.io"
+        resources: 
+          - "jobs" 
+          - "pods" 
+          - "pods/log" 
+          - "events" 
+          - "deployments" 
+          - "replicasets" 
+          - "pods/exec" 
+          - "chaosengines" 
+          - "chaosexperiments" 
+          - "chaosresults"
+        verbs: 
+          - "create" 
+          - "list" 
+          - "get" 
+          - "patch" 
+          - "update" 
+          - "delete" 
+          - "deletecollection"
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-http-status-code
+    command:
+    - /bin/bash
+    env:
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    # modified status code for the http response
+    - name: STATUS_CODE
+      value: '500'
+
+    #  whether to modify the body as per the status code provided
+    - name: "MODIFY_RESPONSE_BODY"
+      value: "true"
+
+    # port of the target service
+    - name: TARGET_SERVICE_PORT
+      value: "80"
+
+    # port on which the proxy will listen
+    - name: PROXY_PORT
+      value: "20000"
+    
+    # network interface on which the proxy will listen
+    - name: NETWORK_INTERFACE
+      value: "eth0"
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Time period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # lib can be litmus or pumba
+    - name: LIB
+      value: 'litmus'
+
+    # percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_PODS
+      value: ''
+
+    # provide the name of container runtime
+    # for litmus LIB, it supports docker, containerd, crio
+    # for pumba LIB, it supports docker only
+    - name: CONTAINER_RUNTIME
+      value: 'docker'
+
+    # provide the socket file path
+    - name: SOCKET_PATH
+      value: '/var/run/docker.sock'
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: pod-http-status-code
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest 
+
+---
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1309,7 +1429,6 @@ spec:
       app.kubernetes.io/service-kill: "true"
       app.kubernetes.io/version: latest
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -1698,7 +1817,6 @@ spec:
       - name: id-rsa
         mountPath: /mnt/
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -2645,7 +2763,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -2869,7 +2986,6 @@ spec:
       - name: id-rsa
         mountPath: /mnt/
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:

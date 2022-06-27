@@ -38,6 +38,7 @@ spec:
     - pod-memory-hog-exec
     - pod-network-partition
     - pod-http-latency
+    - pod-http-status-code
   keywords:
     - Kubernetes
     - K8S
