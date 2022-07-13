@@ -1,0 +1,94 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network delay to target pod belonging to a deployment/statefulset/daemonset
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-target-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-target-network-delay
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "extensions"
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+          - "storage.k8s.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "services"
+          - "events"
+          - "pods/exec"
+          - "pods/log"
+          - "configmaps"
+          - "secrets"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-network-delay/openebs_target_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.6.5
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: NETWORK_DELAY
+      value: '60000' # in milliseconds
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+            
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''   
+
+    labels:
+      name: openebs-target-network-delay
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    #configmaps:
+    #- name: openebs-target-network-delay
+    #  mountPath: /mnt

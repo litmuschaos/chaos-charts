@@ -1,0 +1,38 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: pool-pod-failure-sa
+  namespace: default
+  labels:
+    name: pool-pod-failure-sa
+---
+# Source: openebs/templates/clusterrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: pool-pod-failure-sa
+  labels:
+    name: pool-pod-failure-sa
+rules:
+- apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io","openebs.io"]
+  resources: ["pods","jobs","deployments","pods/log","events","configmaps","secrets","replicasets","persistentvolumeclaims","storageclasses","cstorvolumereplicas","chaosexperiments","chaosresults","chaosengines"]
+  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get","list"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: pool-pod-failure-sa
+  labels:
+    name: pool-pod-failure-sa
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: pool-pod-failure-sa
+subjects:
+- kind: ServiceAccount
+  name: pool-pod-failure-sa
+  namespace: default

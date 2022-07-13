@@ -1,0 +1,37 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-dns-spoof
+  version: 0.1.0
+  annotations:
+    categories: generic
+spec:
+  displayName: pod-dns-spoof
+  categoryDescription: >
+    Pod DNS Spoof can spoof particular dns requests in target pod container to desired target hostnames
+  keywords:
+    - "Pod"
+    - K8S
+    - "Kubernetes"
+    - "DNS"
+  maturity: alpha
+  minKubeVersion: 1.12.0
+  provider:
+    name: ChaosNative
+  maintainers:
+    - name: gdsoumya
+      email: gdsoumya@chaosnative.com
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-dns-spoof
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/getstarted/
+    - name: Video
+      url:
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-dns-spoof/experiment.yaml

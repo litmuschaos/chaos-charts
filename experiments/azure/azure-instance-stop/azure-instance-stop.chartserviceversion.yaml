@@ -1,0 +1,44 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-02-20T10:28:08Z
+  name: azure-instance-stop
+  version: 0.1.0
+  annotations:
+    categories: Azure
+    vendor: ChaosNative
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: azure-instance-stop
+  categoryDescription: |
+    This experiment causes the power off of an azure instance for a certain chaos duration.
+    - Causes termination of an azure instance before bringing it back to running state after the specified chaos duration.
+    - It helps to check the performance of the application on the instance. 
+  keywords:
+    - Azure
+    - Scaleset
+    - AKS
+  platforms:
+    - Azure
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: udit@chaosnative.com
+  provider:
+    name: Chaos Native
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/azure/instance-stop/experiment
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/azure/azure-instance-stop/
+    # - name: Video
+    #   url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/azure/azure-instance-stop/experiment.yaml
+

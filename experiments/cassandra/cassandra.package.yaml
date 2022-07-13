@@ -1,0 +1,5 @@
+packageName: cassandra
+experiments:
+  - name: cassandra-pod-delete
+    CSV: cassandra-pod-delete.chartserviceversion.yaml
+    desc: "cassandra-pod-delete"

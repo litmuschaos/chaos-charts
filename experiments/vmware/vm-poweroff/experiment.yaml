@@ -1,0 +1,97 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Stops one or more VMs for a certain chaos duration.
+kind: ChaosExperiment
+metadata:
+  name: vm-poweroff
+  labels:
+    name: vm-poweroff
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["secrets","configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:latest"
+    args:
+    - -c
+    - ./experiments -name vm-poweroff
+    command:
+    - /bin/bash
+    env:
+
+    - name: VCENTERSERVER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERSERVER
+
+    - name: VCENTERUSER
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERUSER
+
+    - name: VCENTERPASS
+      valueFrom:
+        secretKeyRef:
+          name: vcenter-secret
+          key: VCENTERPASS
+
+    # provide the VM MOIDs as comma separated values
+    - name: APP_VM_MOIDS
+      value: ''
+          
+    # set chaos duration (in sec) as desired
+    - name: TOTAL_CHAOS_DURATION
+      value: '30'
+
+    # set chaos interval (in sec) as desired
+    - name: CHAOS_INTERVAL
+      value: '30'
+
+    - name: LIB
+      value: 'litmus'
+
+    - name: RAMP_TIME
+      value: ''
+
+    # parallel or sequence; the mode of chaos sequence, defaults to parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      experiment: vm-poweroff
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
