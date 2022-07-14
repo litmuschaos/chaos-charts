@@ -3,17 +3,13 @@ kind: ChaosEngine
 metadata:
   name: nginx-chaos
 spec:
+  # It can be active/stop
+  engineState: 'active'
   appinfo:
     appns: 'default'
     applabel: 'app=nginx'
     appkind: 'deployment'
-  # It can be active/stop
-  engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx
-  auxiliaryAppInfo: ''
   chaosServiceAccount: pod-http-status-code-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'delete'
   experiments:
     - name: pod-http-status-code
       spec:
@@ -28,8 +24,12 @@ spec:
               value: '10'
             
             # modified status code for the http response
+            # if no value is provided, a random status code from the supported code list will selected
+            # if an invalid status code is provided, the experiment will fail
+            # supported status code list: [200, 201, 202, 204, 300, 301, 302, 304, 307, 400, 401, 403, 404, 500, 501, 502, 503, 504
             - name: STATUS_CODE
-              value: '500'
+              value: ''
+
             #  whether to modify the body as per the status code provided
             - name: "MODIFY_RESPONSE_BODY"
               value: "true"
