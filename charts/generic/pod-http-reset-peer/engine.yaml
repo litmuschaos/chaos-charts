@@ -2,18 +2,16 @@ apiVersion: litmuschaos.io/v1alpha1
 kind: ChaosEngine
 metadata:
   name: nginx-chaos
+  namespace: default
 spec:
-  appinfo:
-    appns: 'default'
-    applabel: 'app=nginx'
-    appkind: 'deployment'
   # It can be active/stop
   engineState: 'active'
-  #ex. values: ns1:name=percona,ns2:run=nginx
-  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    # FYI, To see app label, apply kubectl get pods --show-labels
+    applabel: 'app=nginx'
+    appkind: 'deployment'
   chaosServiceAccount: pod-http-reset-peer-sa
-  # It can be delete/retain
-  jobCleanUpPolicy: 'retain'
   experiments:
     - name: pod-http-reset-peer
       spec:
@@ -30,11 +28,6 @@ spec:
             # port of the target service
             - name: TARGET_SERVICE_PORT
               value: "80"
-
-            # provide the name of container runtime
-            # it supports docker, containerd, crio
-            - name: CONTAINER_RUNTIME
-              value: 'docker'
 
             - name: TARGET_PODS
               value: ''
