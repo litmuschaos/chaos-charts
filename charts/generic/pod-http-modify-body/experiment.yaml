@@ -55,6 +55,7 @@ spec:
       value: 'litmuschaos/go-runner:latest' 
     
     # provide the body string to overwrite the response body
+    # if no value is provided, response will be an empty body.
     - name: RESPONSE_BODY
       value: ''
 

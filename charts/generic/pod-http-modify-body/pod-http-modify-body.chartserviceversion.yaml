@@ -29,8 +29,10 @@ spec:
     app.kubernetes.io/component: chartserviceversion
     app.kubernetes.io/version: latest
   links: 
-    - name: Documentation 
-      url: https://docs.litmuschaos.io/docs/getstarted/ 
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-http-modify-body
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-http-modify-body/
   icon:
     - url: 
       mediatype: ""
