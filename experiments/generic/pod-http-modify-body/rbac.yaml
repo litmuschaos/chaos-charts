@@ -1,19 +1,19 @@
 apiVersion: v1
 kind: ServiceAccount
 metadata:
-  name: pod-http-status-code-sa
+  name: pod-http-modify-body-sa
   namespace: default
   labels:
-    name: pod-http-status-code-sa
+    name: pod-http-modify-body-sa
     app.kubernetes.io/part-of: litmus
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: pod-http-status-code-sa
+  name: pod-http-modify-body-sa
   namespace: default
   labels:
-    name: pod-http-status-code-sa
+    name: pod-http-modify-body-sa
     app.kubernetes.io/part-of: litmus
 rules:
   # Create and monitor the experiment & helper pods
@@ -64,16 +64,16 @@ rules:
 apiVersion: rbac.authorization.k8s.io/v1
 kind: RoleBinding
 metadata:
-  name: pod-http-status-code-sa
+  name: pod-http-modify-body-sa
   namespace: default
   labels:
-    name: pod-http-status-code-sa
+    name: pod-http-modify-body-sa
     app.kubernetes.io/part-of: litmus
 roleRef:
   apiGroup: rbac.authorization.k8s.io
   kind: Role
-  name: pod-http-status-code-sa
+  name: pod-http-modify-body-sa
 subjects:
 - kind: ServiceAccount
-  name: pod-http-status-code-sa
+  name: pod-http-modify-body-sa
   namespace: default

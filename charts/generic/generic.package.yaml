@@ -78,3 +78,12 @@ experiments:
   - name: pod-http-status-code
     CSV: pod-http-status-code.chartserviceversion.yaml
     desc: "pod-http-status-code"
+  - name: pod-http-modify-header
+    CSV: pod-http-modify-header.chartserviceversion.yaml
+    desc: "pod-http-modify-header"
+  - name: pod-http-modify-body
+    CSV: pod-http-modify-body.chartserviceversion.yaml
+    desc: "pod-http-modify-body"
+  - name: pod-http-reset-peer
+    CSV: pod-http-reset-peer.chartserviceversion.yaml
+    desc: "pod-http-reset-peer"

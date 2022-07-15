@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by the user and reverts after a specified duration
+    It injects the chaos inside the pod which modifies the header of the request/response from the provided application server to the headers provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
-  name: pod-http-status-code
+  name: pod-http-modify-header
   labels:
-    name: pod-http-status-code
+    name: pod-http-modify-header
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -62,11 +62,11 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-status-code
+    - ./experiments -name pod-http-modify-header
     command:
     - /bin/bash
     env:
-
+    
     - name: TARGET_CONTAINER
       value: ''
 
@@ -74,16 +74,14 @@ spec:
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
 
-    # modified status code for the http response
-    # if no value is provided, a random status code from the supported code list will selected
-    # if an invalid status code is provided, the experiment will fail
-    # supported status code list: [200, 201, 202, 204, 300, 301, 302, 304, 307, 400, 401, 403, 404, 500, 501, 502, 503, 504]
-    - name: STATUS_CODE
-      value: ''
+    # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
+    # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
+    - name: HEADERS_MAP
+      value: '{}'
 
-    #  whether to modify the body as per the status code provided
-    - name: "MODIFY_RESPONSE_BODY"
-      value: "true"
+    # whether to modify response headers or request headers. Accepted values: request, response
+    - name: HEADER_MODE
+      value: 'response'
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -133,9 +131,10 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
-      name: pod-http-status-code
+      name: pod-http-modify-header
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/runtime-api-usage: "true" 
+      app.kubernetes.io/version: latest

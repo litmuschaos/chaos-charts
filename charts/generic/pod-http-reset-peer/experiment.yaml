@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by the user and reverts after a specified duration
+    it injects chaos into the pod which stops outgoing http requests by resetting the TCP connection and then reverts back to the original state after a specified duration
 kind: ChaosExperiment
 metadata:
-  name: pod-http-status-code
+  name: pod-http-reset-peer
   labels:
-    name: pod-http-status-code
+    name: pod-http-reset-peer
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -62,7 +62,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-status-code
+    - ./experiments -name pod-http-reset-peer
     command:
     - /bin/bash
     env:
@@ -73,17 +73,10 @@ spec:
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
-
-    # modified status code for the http response
-    # if no value is provided, a random status code from the supported code list will selected
-    # if an invalid status code is provided, the experiment will fail
-    # supported status code list: [200, 201, 202, 204, 300, 301, 302, 304, 307, 400, 401, 403, 404, 500, 501, 502, 503, 504]
-    - name: STATUS_CODE
-      value: ''
-
-    #  whether to modify the body as per the status code provided
-    - name: "MODIFY_RESPONSE_BODY"
-      value: "true"
+    
+    # reset timeout specifies after how much duration to reset the connection
+    - name: RESET_TIMEOUT
+      value: '0' #in ms
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -135,7 +128,7 @@ spec:
       value: 'parallel'
       
     labels:
-      name: pod-http-status-code
+      name: pod-http-reset-peer
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest 

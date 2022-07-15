@@ -11,23 +11,27 @@ spec:
     # FYI, To see app label, apply kubectl get pods --show-labels
     applabel: 'app=nginx'
     appkind: 'deployment'
-  chaosServiceAccount: pod-http-latency-sa
+  chaosServiceAccount: pod-http-modify-header-sa
   experiments:
-    - name: pod-http-latency
+    - name: pod-http-modify-header
       spec:
         components:
           env:
-            # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
               value: '60' # in seconds
             
-            # set latency value for the chaos
-            - name: LATENCY
-              value: '2000' #in ms
-
             # port of the target service
             - name: TARGET_SERVICE_PORT
               value: "80"
+            
+            # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
+            # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
+            - name: HEADERS_MAP
+              value: '{}'
+
+            # whether to modify response headers or request headers. Accepted values: request, response
+            - name: HEADER_MODE
+              value: 'response'
 
             # provide the name of container runtime
             # it supports docker, containerd, crio
