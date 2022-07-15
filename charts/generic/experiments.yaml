@@ -1336,7 +1336,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -2036,7 +2035,6 @@ spec:
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/service-kill: "true"
       app.kubernetes.io/version: latest
-
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -3044,7 +3042,6 @@ spec:
       - name: id-rsa
         mountPath: /mnt/
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:

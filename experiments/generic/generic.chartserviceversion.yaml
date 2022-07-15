@@ -69,6 +69,8 @@ spec:
       description: ""
     - name: pod-http-modify-header
       description: ""
+    - name: pod-http-status-code
+      description: ""
   keywords:
     - Kubernetes
     - K8S
