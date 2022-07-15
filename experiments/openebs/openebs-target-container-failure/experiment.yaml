@@ -1,0 +1,113 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the cstor target/Jiva controller container and check if gets created again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-target-container-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-target-container-failure
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+          - "storage.k8s.io"
+        resources:
+          - "jobs"
+          - "pods"
+          - "events"
+          - "pods/exec"
+          - "pods/log"
+          - "configmaps"
+          - "secrets"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "delete"
+          - "get"
+          - "list"
+          - "patch"
+          - "update"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-container-failure/openebs_target_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # For pumba image use : gaiaadm/pumba:0.6.5
+    # For containerd image use : gprasath/crictl:ci
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5'
+
+    # Specify the container runtime used , to pick the relevant chaos util  
+    - name: CONTAINER_RUNTIME
+      value: 'docker' 
+
+    # TARGET_CONTAINER values: cstor-volume-mgmt , cstor-istgt
+    # For cstor-volume-istgt container kill use : cstor-istgt
+    # For volume-mgmt-kill container use : cstor-volume-mgmt
+            
+    - name: TARGET_CONTAINER
+      value: 'cstor-volume-mgmt'
+
+    - name: FORCE
+      value: 'true'
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: DEPLOY_TYPE
+      value: 'deployment'
+
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
+    - name: SOAK_TIME
+      value: '60'
+      
+    labels:
+      name: openebs-target-container-failure
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    #configmaps:
+    #- name: openebs-target-container-failure
+    #  mountPath: /mnt

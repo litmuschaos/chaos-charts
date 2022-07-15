@@ -1,0 +1,33 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: azure-instance-stop-sa
+  experiments:
+    - name: azure-instance-stop
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos intreval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'            
+
+            # provide the target instance name(s) (comma separated if multiple)
+            - name: AZURE_INSTANCE_NAME
+              value: ''
+
+            # provide the resource group of the instance
+            - name: RESOURCE_GROUP
+              value: ''
+            
+            # accepts enable/disable, default is disable
+            - name: SCALE_SET
+              value: ''
+

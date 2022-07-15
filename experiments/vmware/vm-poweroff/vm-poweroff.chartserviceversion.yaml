@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-04-29T10:28:08Z
+  name: vm-poweroff
+  annotations:
+    categories: vmware
+    vendor: Wipro, ChaosNative
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: vm-poweroff
+  categoryDescription: |
+    This experiment causes power-off of target VMWare VM(s) for a certain chaos duration:
+    - Causes power-off of the VMWare VM(s) provided by the Moid(s) of the instance.
+    - It helps to check the performance of the application/services on the instance.
+    - Currently, the experiment is supported for vsphere version 6.X (Support for 7.X will be added soon).
+
+  keywords:
+    - Vmware
+    - VM
+  platforms:
+    - vmware
+  maturity: alpha
+  maintainers:
+    - name: Delphine Joyneer, Neelanjan Manna
+      email: golkonda.joyneer@wipro.com, neelanjan@chaosnative.com
+  provider:
+    name: Wipro, ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/vmware/vm-poweroff/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/vmware/vm-poweroff/experiment.yaml

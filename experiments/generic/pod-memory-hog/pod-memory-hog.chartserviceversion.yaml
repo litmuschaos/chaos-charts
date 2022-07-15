@@ -1,0 +1,51 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-06-16T10:28:08Z
+  name: pod-memory-hog
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-memory-hog
+  categoryDescription: |
+    Pod-Memory-Hog contains chaos to consume memory resouces of specified containers in Kubernetes pods.    
+    - Causes memory resource consumption on specified application containers using cgroups and litmus nsutil that consume memory resources of the given target containers.
+    - It Can test the application's resilience to potential slowness/unavailability of some replicas due to high memory load
+    - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
+  keywords:
+    - Kubernetes
+    - K8S
+    - Memory
+    - Pod 
+    - Stress
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - OpenShift(OKD)
+  maturity: alpha
+  maintainers:
+    - name: Udit Gaurav
+      email: udit@chaosnative.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-memory-hog
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-memory-hog/
+    - name: Video
+      url: https://www.youtube.com/watch?v=HuAXg8W5Tzo 
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-memory-hog/experiment.yaml 

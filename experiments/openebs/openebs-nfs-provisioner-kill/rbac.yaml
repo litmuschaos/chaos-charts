@@ -1,0 +1,37 @@
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  name: nfs-chaos-sa
+  namespace: default
+  labels:
+    name: nfs-chaos-sa
+    app.kubernetes.io/part-of: litmus
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: nfs-chaos-sa
+  labels:
+    name: nfs-chaos-sa
+    app.kubernetes.io/part-of: litmus
+rules:
+- apiGroups: ["","apps","litmuschaos.io","batch","extensions","storage.k8s.io"]
+  resources: ["pods","pods/exec","pods/log", "deployments","events","jobs","configmaps","services","persistentvolumeclaims","storageclasses","persistentvolumes","chaosexperiments","chaosresults","chaosengines"]
+  verbs: ["create","list","get","patch","update","delete"]
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: nfs-chaos-sa
+  labels:
+    name: nfs-chaos-sa
+    app.kubernetes.io/part-of: litmus
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: nfs-chaos-sa
+subjects:
+- kind: ServiceAccount
+  name: nfs-chaos-sa
+  namespace: default

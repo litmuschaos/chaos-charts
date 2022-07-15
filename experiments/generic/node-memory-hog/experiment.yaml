@@ -1,0 +1,107 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a memory hog on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-memory-hog
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120'
+
+    ## Specify the size as percent of total node capacity Ex: '30'
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_MEBIBYTES empty
+    - name: MEMORY_CONSUMPTION_PERCENTAGE
+      value: ''
+      
+    ## Specify the amount of memory to be consumed in mebibytes
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
+    - name: MEMORY_CONSUMPTION_MEBIBYTES
+      value: ''
+
+    - name: NUMBER_OF_WORKERS
+      value: '1'
+
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
+      value: ''    
+
+    - name: NODE_LABEL
+      value: ''
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:latest' 
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+      
+    labels:
+      name: node-memory-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

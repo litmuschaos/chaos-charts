@@ -1,0 +1,30 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-17T10:28:08Z
+  name: mysql
+  version: 0.0.2
+  annotations:
+    categories: mysql
+    chartDescription: Injects chaos on mysql components
+spec:
+  displayName: MySQL Chaos
+  categoryDescription: >
+    MySQL is an open-source relational database management system.
+  experiments:
+  keywords:
+    - Kubernetes
+    - MySQL
+  maintainers:
+    - name: atulabhi
+      email: atul.abhishek@openebs.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: mysql Website
+      url: https://www.mysql.com/
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/mysql/experiments.yaml
