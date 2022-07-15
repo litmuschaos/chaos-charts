@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Injects http request latency on pods belonging to an app deployment
+    it injects http reset into the pod which stops outgoing http requests by resetting the TCP connection and then reverts back to the original state after the specified duration
 kind: ChaosExperiment
 metadata:
-  name: pod-http-latency
+  name: pod-http-reset-peer
   labels:
-    name: pod-http-latency
+    name: pod-http-reset-peer
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -62,21 +62,21 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-latency
+    - ./experiments -name pod-http-reset-peer
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
-
-    # set latency value for the chaos
-    - name: LATENCY
-      value: '2000' #in ms
+    
+    # reset timeout specifies after how much duration to reset the connection
+    - name: RESET_TIMEOUT
+      value: '0' #in ms
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -126,10 +126,9 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-
+      
     labels:
-      name: pod-http-latency
+      name: pod-http-reset-peer
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: latest 
