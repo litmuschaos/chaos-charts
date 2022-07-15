@@ -30,9 +30,9 @@ spec:
     app.kubernetes.io/version: latest
   links: 
     - name: Source Code
-      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-partition
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-http-reset-peer
     - name: Documentation
-      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-http-reset-peer/
   icon:
     - base64data: ""
       mediatype: ""
