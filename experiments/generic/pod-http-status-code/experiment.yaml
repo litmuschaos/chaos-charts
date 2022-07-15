@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by the user and reverts after a specified duration
+    It injects chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
   name: pod-http-status-code
