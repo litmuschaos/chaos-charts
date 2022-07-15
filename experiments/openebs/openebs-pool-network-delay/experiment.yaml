@@ -10,7 +10,7 @@ metadata:
     name: openebs-pool-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.11.0
   name: openebs-pool-network-delay
 spec:
   definition:
@@ -48,7 +48,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:2.11.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -90,4 +90,4 @@ spec:
       name: openebs-pool-network-delay
       app.kubernetes.io/part-of: litmus 
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 2.11.0

@@ -9,7 +9,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.11.0
 spec:
   definition:
     scope: Namespaced
@@ -46,7 +46,7 @@ spec:
           - "update"
           - "delete"
           - "deletecollection"
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:2.11.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -87,4 +87,4 @@ spec:
       name: pod-delete
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 2.11.0

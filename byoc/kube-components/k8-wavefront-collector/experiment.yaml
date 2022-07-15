@@ -22,7 +22,7 @@ spec:
     labels:
       name: k8-pod-delete    
       app.kubernetes.io/part-of: litmus
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:2.11.0"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/kubernetes/k8_wrapper.py ; exit 0

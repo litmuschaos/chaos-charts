@@ -9,7 +9,7 @@ metadata:
     name: openebs-pool-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.11.0
   name: openebs-pool-network-loss
 spec:
   definition:
@@ -48,7 +48,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:2.11.0"
     imagePullPolicy: Always
     args:
     - -c
@@ -89,4 +89,4 @@ spec:
       name: openebs-pool-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 2.11.0
