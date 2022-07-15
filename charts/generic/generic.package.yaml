@@ -75,6 +75,9 @@ experiments:
   - name: pod-http-latency
     CSV: pod-http-latency.chartserviceversion.yaml
     desc: "pod-http-latency"
+  - name: pod-http-modify-body
+    CSV: pod-http-modify-body.chartserviceversion.yaml
+    desc: "pod-http-modify-body"
   - name: pod-http-reset-peer
     CSV: pod-http-reset-peer.chartserviceversion.yaml
     desc: "pod-http-reset-peer"

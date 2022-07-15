@@ -38,6 +38,7 @@ spec:
     - pod-memory-hog-exec
     - pod-network-partition
     - pod-http-latency
+    - pod-http-modify-body
     - pod-http-reset-peer
   keywords:
     - Kubernetes

@@ -1,0 +1,39 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-http-modify-body 
+  version: 0.1.0
+  annotations:
+    categories: generic
+spec:
+  displayName: pod-http-modify-body 
+  categoryDescription: >
+    it injects http modify body chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by user and reverts after specified duration 
+  keywords: 
+    - "pods" 
+    - "kubernetes" 
+    - "generic" 
+    - "exec" 
+    - "http" 
+    - "response body"
+  platforms: 
+    - "Minikube"
+  maturity: alpha
+  maintainers: 
+    - name: Akash Shrivastava 
+      email: akash.shrivastava@harness.io 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: Harness
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-http-modify-body
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-http-modify-body/
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-http-modify-body/experiment.yaml

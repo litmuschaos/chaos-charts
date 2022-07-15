@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects chaos into the pod which stops outgoing http requests by resetting the TCP connection and then reverts back to the original state after a specified duration
+    It injects the chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
-  name: pod-http-reset-peer
+  name: pod-http-modify-body
   labels:
-    name: pod-http-reset-peer
+    name: pod-http-modify-body
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -62,7 +62,7 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-reset-peer
+    - ./experiments -name pod-http-modify-body
     command:
     - /bin/bash
     env:
@@ -74,9 +74,10 @@ spec:
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
     
-    # reset timeout specifies after how much duration to reset the connection
-    - name: RESET_TIMEOUT
-      value: '0' #in ms
+    # provide the body string to overwrite the response body
+    # if no value is provided, response will be an empty body.
+    - name: RESPONSE_BODY
+      value: ''
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -128,7 +129,7 @@ spec:
       value: 'parallel'
       
     labels:
-      name: pod-http-reset-peer
+      name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest 
