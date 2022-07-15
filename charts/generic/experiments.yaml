@@ -2036,10 +2036,6 @@ spec:
       app.kubernetes.io/service-kill: "true"
       app.kubernetes.io/version: latest
 
-<<<<<<< HEAD
-=======
-
->>>>>>> dfe3053b8b0b4d6dacad259b62b675720fcdb2f0
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
