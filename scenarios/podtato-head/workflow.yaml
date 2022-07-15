@@ -1,0 +1,114 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  generateName: argowf-podtato-head-chaos-
+  namespace: litmus
+  labels:
+    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-main"
+spec:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
+  arguments:
+    parameters:
+      - name: adminModeNamespace
+        value: "litmus"
+  templates:
+    - name: argowf-chaos
+      steps:
+        - - name: install-application
+            template: install-application
+        - - name: install-chaos-experiments
+            template: install-chaos-experiments
+        - - name: pod-delete
+            template: pod-delete
+        - - name: revert-chaos
+            template: revert-chaos
+          - name: delete-application
+            template: delete-application
+
+    - name: install-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=apply","-timeout=400", "-app=podtato-head","-scope=namespace"]
+
+    - name: install-chaos-experiments
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args:
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+            {{workflow.parameters.adminModeNamespace}} ; sleep 30"
+
+    - name: pod-delete
+      inputs:
+        artifacts:
+          - name: pod-delete
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: podtato-main-pod-delete-chaos
+                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  labels:
+                    context: "{{workflow.parameters.adminModeNamespace}}_podtato-main"
+                spec:
+                  appinfo:
+                    appns: {{workflow.parameters.adminModeNamespace}}
+                    applabel: 'name=podtato-main'
+                    appkind: 'deployment'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-delete
+                      spec:
+                        probe:
+                        - name: "check-podtato-main-access-url"
+                          type: "httpProbe"
+                          httpProbe/inputs:
+                            url: "http://podtato-main.{{workflow.parameters.adminModeNamespace}}.svc.cluster.local:9000"
+                            insecureSkipVerify: false
+                            method:
+                              get:
+                                criteria: "=="
+                                responseCode: "200"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 1
+                            interval: 1
+                            retry: 1
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '30'
+                            # set chaos interval (in sec) as desired
+                            - name: CHAOS_INTERVAL
+                              value: '10'
+                            # pod failures without '--force' & default terminationGracePeriodSeconds
+                            - name: FORCE
+                              value: 'false'
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
+
+    - name: delete-application
+      container:
+        image: litmuschaos/litmus-app-deployer:latest
+        args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=delete","-app=podtato-head"]
+    
+    - name: revert-chaos
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args: 
+          [ 
+            "kubectl delete chaosengine podtato-main-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
+          ]

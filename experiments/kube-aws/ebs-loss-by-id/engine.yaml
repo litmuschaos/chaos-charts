@@ -1,0 +1,28 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: ebs-loss-by-id-sa
+  experiments:
+    - name: ebs-loss-by-id
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'              
+
+            # set target ebs volume ID  
+            - name: EBS_VOLUME_ID
+              value: ''
+
+            # provide the region name of the instance
+            - name: REGION
+              value: ''

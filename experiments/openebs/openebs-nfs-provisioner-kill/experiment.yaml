@@ -1,0 +1,100 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the OpenEBS NFS provisioner container and check if pods consuming the NFS PVs continue to be available and volumes are writable (RWM mode)
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-nfs-provisioner-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-nfs-provisioner-kill
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "litmuschaos.io"
+          - "batch"
+          - "extensions"
+          - "storage.k8s.io"
+        resources:
+          - "pods"
+          - "pods/exec"
+          - "pods/log"
+          - "deployments"
+          - "events"
+          - "jobs"
+          - "configmaps"
+          - "services"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "chaosengines"
+        verbs:
+          - "create"
+          - "list"
+          - "get"
+          - "patch"
+          - "update"
+          - "delete"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+      
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-nfs-provisioner-kill/openebs_nfs_provisioner_kill_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    # NFS default container
+    - name: TARGET_CONTAINER
+      value: 'nfs-provisioner'
+
+    # Period to wait before injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # It supports pumba and containerd 
+    - name: LIB
+      value: 'pumba'
+
+    # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
+    # For pumba image use: gaiaadm/pumba:0.6.5
+    # For containerd image use: gprasath/crictl:ci
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
+    labels:
+      name: openebs-nfs-provisioner-kill
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    configmaps:
+      - name: openebs-nfs-provisioner-kill
+        mountPath: /mnt/

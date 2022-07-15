@@ -1,0 +1,105 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the cstor target/Jiva controller pod and check if gets created again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-target-pod-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-target-pod-failure
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "extensions"
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+          - "storage.k8s.io"
+        resources:
+          - "deployments"
+          - "jobs"
+          - "events"
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "services"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
+        verbs:
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+      - apiGroups:
+          - ""
+        resources:
+          - "nodes"
+        verbs:
+          - "get"
+          - "list"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-target-pod-failure/openebs_target_pod_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+      
+    - name: APP_PVC
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+     # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
+    - name: CHAOS_INTERVAL
+      value: '15'
+
+    - name: DEPLOY_TYPE
+      value: 'deployment'
+
+    labels:
+      name: openebs-target-pod-failure
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    #configmaps:
+    #- name: openebs-target-pod-failure
+    #  mountPath: /mnt

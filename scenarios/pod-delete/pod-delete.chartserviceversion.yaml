@@ -1,0 +1,39 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-05-24T10:28:08Z
+  name: pod-delete
+  version: 0.1.0
+  annotations:
+    categories: pod-delete
+    chartDescription: Deletes a k8s pod
+spec:
+  displayName: Pod Delete
+  categoryDescription: >
+    Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
+  experiments:
+    - name: pod-delete
+      description: "This experiment injects random pod delete failures against specified application."
+  keywords:
+    - Kubernetes
+    - Podtato-head
+    - Pod
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  maintainers:
+    - name: oumkale
+      email: oumkale@chaosnative.com
+  provider:
+    name: ChaosNative
+  links:
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://docs.litmuschaos.io/docs/chaoshub/#generic-chaos
+  icon:
+    - url:
+      mediatype: ""

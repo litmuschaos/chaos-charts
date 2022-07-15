@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-06-10T10:28:08Z
+  name: aws-ssm-chaos-by-id
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: aws-ssm-chaos-by-id
+  categoryDescription: |
+    AWS SSM Chaos By ID contains chaos to disrupt the state of infra resources. The experiment can induce chaos on AWS resources using Amazon SSM Run Command This is carried out by using SSM Docs that defines the actions performed by Systems Manager on your managed instances (having SSM agent installed) which let us perform chaos experiments on resources. 
+    - Causes chaos on AWS ec2 instances with given instance ID(s) using SSM docs for total chaos duration with the specified chaos interval.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the target application pod(if provided).
+  keywords:
+    - SSM
+    - AWS
+    - EC2
+  platforms:
+    - AWS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: udit@chaosnative.com
+  provider:
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/aws-ssm/aws-ssm-chaos-by-id
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/aws-ssm/aws-ssm-chaos-by-id/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/aws-ssm/aws-ssm-chaos-by-id/experiment.yaml

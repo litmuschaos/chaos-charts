@@ -1,0 +1,33 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: ec2-terminate-by-id-sa
+  experiments:
+    - name: ec2-terminate-by-id
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set interval duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+             # Instance ID of the target ec2 instance
+             # Multiple IDs can also be provided as comma separated values ex: id1,id2
+            - name: EC2_INSTANCE_ID
+              value: ''
+              
+            # provide the region name of the instance
+            - name: REGION
+              value: ''
+
+            # enable it if the target instance is a part of self-managed nodegroup.
+            - name: MANAGED_NODEGROUP
+              value: 'disable'              

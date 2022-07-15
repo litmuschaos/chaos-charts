@@ -1,0 +1,50 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-28T10:28:08Z
+  name: node-memory-hog
+  version: 0.1.5
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: node-memory-hog
+  categoryDescription: |
+    Kubernetes Node memory hog contains chaos to disrupt the state of Kubernetes resources. Experiments can inject a memory spike on a node where the application pod is scheduled.
+    - Memory hog on a particular node where the application deployment is available.
+    - After the test, the recovery should be manual for the application pod and node in case they are not in an appropriate state. 
+  keywords:
+    - Kubernetes
+    - K8S
+    - Memory
+    - Node
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-memory-hog
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-memory-hog/
+    - name: Video
+      url: https://www.youtube.com/watch?v=ECxlWgQ8F5w
+  icon:
+    - url: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-memory-hog/experiment.yaml

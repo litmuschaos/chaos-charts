@@ -1,0 +1,30 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-17T10:28:08Z
+  name: mongodb
+  version: 0.0.2
+  annotations:
+    categories: mongodb
+    chartDescription: Injects chaos on mongodb components
+spec:
+  displayName: MongoDB Chaos
+  categoryDescription: >
+    MongoDB is a general purpose, document-based, distributed database built for modern application developers and for the cloud era.
+  experiments:
+  keywords:
+    - Kubernetes
+    - MongoDB
+  maintainers:
+    - name: Sanjay1611
+      email: sanjay.nathani@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: MongoDB Website
+      url: https://www.mongodb.com/
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/mongodb/experiments.yaml

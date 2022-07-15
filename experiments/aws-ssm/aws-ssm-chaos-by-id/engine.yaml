@@ -1,0 +1,62 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: aws-ssm-chaos-by-id-sa
+  experiments:
+    - name: aws-ssm-chaos-by-id
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+            # set chaos duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '60'              
+
+            # Instance ID of the target ec2 instance
+            # Multiple IDs can also be provided as comma separated values ex: id1,id2  
+            - name: EC2_INSTANCE_ID
+              value: ''
+
+            # provide the region name of the target instances
+            - name: REGION
+              value: ''
+
+             # provide the percentage of available memory to stress
+            - name: MEMORY_PERCENTAGE
+              value: '80'
+
+            # provide the CPU chores to be comsumed
+            # 0 will consume all the available cpu cores
+            - name: CPU_CORE
+              value: '0'
+
+            # Provide the name of ssm doc 
+            # if not using the default stress docs  
+            - name: DOCUMENT_NAME
+              value: ''
+
+            # Provide the type of ssm doc 
+            # if not using the default stress docs  
+            - name: DOCUMENT_TYPE
+              value: ''
+
+            # Provide the format of ssm doc
+            # if not using the default stress docs  
+            - name: DOCUMENT_FORMAT
+              value: ''
+
+            # Provide the path of ssm doc 
+            # if not using the default stress docs  
+            - name: DOCUMENT_PATH
+              value: ''
+
+             # if you want to install dependencies to run default ssm docs
+            - name: INSTALL_DEPENDENCIES
+              value: 'True'        

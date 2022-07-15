@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-08-25T10:28:08Z
+  name: pod-network-partition
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-network-partition
+  categoryDescription: |
+    pod-network-partition contains chaos to disrupt network connectivity to kubernetes pods. Experiments can inject complete egress/ingress network loss based on label and namespace selectors.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
+  keywords:
+    - Kubernetes
+    - K8S
+    - Pod
+    - Network
+    - Partition
+  platforms:
+    - Minikube 
+    - Packet(Kubeadm)
+  maturity: alpha
+  maintainers:
+    - name: ispeakc0de
+      email: shubham@chaosnative.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-partition
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-partition/
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-partition/experiment.yaml 

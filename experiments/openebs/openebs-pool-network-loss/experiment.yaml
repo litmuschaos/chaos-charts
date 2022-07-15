@@ -1,0 +1,92 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network loss to pool pod belonging to a OpenEBS PVC
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-pool-network-loss
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-pool-network-loss
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "litmuschaos.io"
+          - "batch"
+          - "extensions"
+          - "storage.k8s.io"
+          - "openebs.io"
+        resources:
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "events"
+          - "jobs"
+          - "configmaps"
+          - "services"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumeclaims"
+          - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "cstorpools"
+          - "cstorvolumereplicas"
+          - "replicasets"
+        verbs:
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-pool-network-loss/openebs_pool_network_loss_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.6.5
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: NETWORK_PACKET_LOSS_PERCENTAGE
+      value: '100' # in percentage
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120' # in seconds
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    labels:
+      name: openebs-pool-network-loss
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

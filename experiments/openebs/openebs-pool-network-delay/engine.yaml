@@ -1,0 +1,25 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-network-delay-sa
+  experiments:
+    - name: openebs-pool-network-delay
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+
+            - name: APP_PVC
+              value: 'demo-nginx-claim' 
+
+            # in milliseconds
+            - name: NETWORK_DELAY
+              value: '60000'

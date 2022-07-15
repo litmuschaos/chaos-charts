@@ -1,0 +1,46 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: nginx
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'nginx'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: container-kill-sa
+  # It can be delete/retain
+  jobCleanUpPolicy: 'delete' 
+  experiments:
+    - name: container-kill
+      spec:
+        components:
+          env:
+            # provide the total chaos duration
+            - name: TOTAL_CHAOS_DURATION
+              value: '20'
+
+            # provide the chaos interval
+            - name: CHAOS_INTERVAL
+              value: '10'
+
+            # provide the name of container runtime
+            # for litmus LIB, it supports docker, containerd, crio
+            # for pumba LIB, it supports docker only
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'
+
+            - name: PODS_AFFECTED_PERC
+              value: ''
+
+            - name: TARGET_CONTAINER
+              value: ''
+              
