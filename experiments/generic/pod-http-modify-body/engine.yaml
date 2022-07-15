@@ -1,0 +1,42 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-http-modify-body-sa
+  experiments:
+    - name: pod-http-modify-body
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+            
+            # provide the body string to overwrite the response body
+            - name: RESPONSE_BODY
+              value: ''
+
+            # port of the target service
+            - name: TARGET_SERVICE_PORT
+              value: "80"
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            - name: CONTAINER_RUNTIME
+              value: 'docker'
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''
+              
