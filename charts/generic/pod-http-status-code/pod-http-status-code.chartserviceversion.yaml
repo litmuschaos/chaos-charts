@@ -35,6 +35,6 @@ spec:
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-http-status-code/
   icon:
-    - url: 
+    - base64data: ""
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-http-status-code/experiment.yaml
