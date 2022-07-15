@@ -74,6 +74,7 @@ spec:
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
 
+    # set latency value for the chaos
     - name: LATENCY
       value: '2000' #in ms
 

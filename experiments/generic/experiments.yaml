@@ -138,7 +138,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -1227,118 +1226,87 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects http modify body chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by user and reverts after specified duration
+    Drain the node where application pod is scheduled
 kind: ChaosExperiment
 metadata:
-  name: pod-http-modify-body
+  name: node-drain
   labels:
-    name: pod-http-modify-body
+    name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
-      - apiGroups: 
-          - "" 
-          - "batch" 
-          - "apps" 
-          - "litmuschaos.io"
-        resources: 
-          - "jobs" 
-          - "pods" 
-          - "pods/log" 
-          - "events" 
-          - "deployments" 
-          - "replicasets" 
-          - "pods/exec" 
-          - "chaosengines" 
-          - "chaosexperiments" 
-          - "chaosresults"
-        verbs: 
-          - "create" 
-          - "list" 
-          - "get" 
-          - "patch" 
-          - "update" 
-          - "delete" 
-          - "deletecollection"
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec","pods/eviction"]
+        verbs: ["get","list","create"]
+      # ignore daemonsets while draining the node
+      - apiGroups: ["apps"]
+        resources: ["daemonsets"]
+        verbs: ["list","get","delete"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list","patch"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-modify-body
+    - ./experiments -name node-drain
     command:
     - /bin/bash
     env:
-
-    - name: TARGET_CONTAINER
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
     
-    # provide the body string to overwrite the response body
-    # if no value is provided, response will be an empty body.
-    - name: RESPONSE_BODY
+    - name: TARGET_NODE
       value: ''
 
-    # port of the target service
-    - name: TARGET_SERVICE_PORT
-      value: "80"
-
-    # port on which the proxy will listen
-    - name: PROXY_PORT
-      value: "20000"
-    
-    # network interface on which the proxy will listen
-    - name: NETWORK_INTERFACE
-      value: "eth0"
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # Time period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # lib can be litmus or pumba
-    - name: LIB
-      value: 'litmus'
-
-    # percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: TARGET_PODS
-      value: ''
-
-    # provide the name of container runtime
-    # for litmus LIB, it supports docker, containerd, crio
-    # for pumba LIB, it supports docker only
-    - name: CONTAINER_RUNTIME
-      value: 'docker'
-
-    # provide the socket file path
-    - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
-
-    # To select pods on specific node(s)
     - name: NODE_LABEL
       value: ''
 
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Provide the LIB here
+    # Only litmus supported
+    - name: LIB
+      value: 'litmus'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
       
     labels:
-      name: pod-http-modify-body
+      name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: latest
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1426,7 +1394,6 @@ spec:
       app.kubernetes.io/service-kill: "true"
       app.kubernetes.io/version: latest
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -1815,7 +1782,6 @@ spec:
       - name: id-rsa
         mountPath: /mnt/
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:
@@ -2762,7 +2728,6 @@ spec:
       app.kubernetes.io/version: latest
 
 ---
----
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
@@ -2986,7 +2951,6 @@ spec:
       - name: id-rsa
         mountPath: /mnt/
 
----
 ---
 apiVersion: litmuschaos.io/v1alpha1
 description:

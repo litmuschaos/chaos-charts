@@ -65,6 +65,8 @@ spec:
       description: ""
     - name: pod-http-modify-body
       description: ""
+    - name: pod-http-reset-peer
+      description: ""
   keywords:
     - Kubernetes
     - K8S
