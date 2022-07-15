@@ -1,0 +1,32 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-03-17T10:28:08Z
+  name: longhorn
+  version: 0.0.2
+  annotations:
+    categories: longhorn
+    chartDescription: Injects chaos on longhorn components
+spec:
+  displayName: Longhorn Chaos
+  categoryDescription: >
+    Longhorn is a distributed block storage system for Kubernetes
+  experiments:
+  keywords:
+    - Kubernetes
+    - Longhorn
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@mayadata.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Mayadata
+  links:
+    - name: Longhorn
+      url: https://rancher.com/project-longhorn-now-available-kubernetes/
+    - name: Documentation
+      url: https://docs.rancher.cn/longhorn/#current-status
+  icon:
+    - url: 
+      mediatype: 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/longhorn/experiments.yaml

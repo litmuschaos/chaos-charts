@@ -1,0 +1,33 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: node-restart-sa
+  experiments:
+    - name: node-restart
+      spec:
+        components:
+        # nodeSelector: 
+        #   # provide the node labels
+        #   kubernetes.io/hostname: 'node02' 
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+
+             # ENTER THE TARGET NODE NAME
+            - name: TARGET_NODE
+              value: ''
+
+            # ENTER THE TARGET NODE IP
+            - name: TARGET_NODE_IP
+              value: ''
+
+             # ENTER THE USER TO BE USED FOR SSH AUTH
+            - name: SSH_USER
+              value: 'root'

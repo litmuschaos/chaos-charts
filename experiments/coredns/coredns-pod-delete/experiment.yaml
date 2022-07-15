@@ -1,0 +1,72 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes coredns pod in kube-system namespace
+kind: ChaosExperiment
+metadata:
+  name: coredns-pod-delete
+  labels:
+    name: coredns-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    permissions:
+    - apiGroups:
+        - ""
+        - "batch"
+        - "litmuschaos.io"
+      resources:
+        - "services"
+        - "jobs"
+        - "pods"
+        - "pods/log"
+        - "events"
+        - "chaosengines"
+        - "chaosexperiments"
+        - "chaosresults"
+      verbs:
+        - "get"
+        - "list"
+        - "patch"
+        - "create"
+        - "update"
+        - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/coredns/pod_delete/pod_delete_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    # provide the kill count
+    - name: KILL_COUNT
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: CHAOS_INTERVAL
+      value: '5'
+
+    #supported libs are litmus and powerfulseal
+    - name: LIB
+      value: 'litmus'
+
+    - name: LIB_IMAGE
+      value: 'litmuschaos/pod-delete-helper:latest'
+
+    labels:
+      name: coredns-pod-delete
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

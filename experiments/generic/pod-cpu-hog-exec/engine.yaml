@@ -1,0 +1,30 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-cpu-hog-exec-sa
+  experiments:
+    - name: pod-cpu-hog-exec
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+
+            #number of cpu cores to be consumed
+            #verify the resources the app has been launched with
+            - name: CPU_CORES
+              value: '1'
+
+             ## Percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''    
+                      

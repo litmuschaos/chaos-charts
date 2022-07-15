@@ -1,0 +1,35 @@
+packageName: openebs
+experiments:
+  - name: openebs-pool-pod-failure
+    CSV: openebs-pool-pod-failure.chartserviceversion.yaml
+    desc: "openebs-pool-pod-failure"
+  - name: openebs-pool-container-failure
+    CSV: openebs-pool-container-failure.chartserviceversion.yaml
+    desc: "openebs-pool-container-failure"
+  - name: openebs-target-pod-failure
+    CSV: openebs-target-pod-failure.chartserviceversion.yaml
+    desc: "openebs-target-pod-failure"
+  - name: openebs-target-container-failure
+    CSV: openebs-target-container-failure.chartserviceversion.yaml 
+    desc: "openebs-target-container-failure"
+  - name: openebs-target-network-delay
+    CSV: openebs-target-network-delay.chartserviceversion.yaml 
+    desc: "openebs-target-network-delay"
+  - name: openebs-target-network-loss
+    CSV: openebs-target-network-loss.chartserviceversion.yaml 
+    desc: "openebs-target-network-loss"
+  - name: openebs-control-plane-chaos
+    CSV: openebs-control-plane-chaos.chartserviceversion.yaml 
+    desc: "openebs-control-plane-chaos"
+  - name: openebs-pool-network-delay
+    CSV: openebs-pool-network-delay.chartserviceversion.yaml 
+    desc: "openebs-pool-network-delay"
+  - name: openebs-pool-network-loss
+    CSV: openebs-pool-network-loss.chartserviceversion.yaml 
+    desc: "openebs-pool-network-loss"
+  - name: openebs-pool-disk-loss
+    CSV: openebs-pool-disk-loss.chartserviceversion.yaml 
+    desc: "openebs-pool-disk-loss"
+  - name: openebs-nfs-provisioner-kill
+    CSV: openebs-nfs-provisioner-kill.chartserviceversion.yaml 
+    desc: "openebs-nfs-provisioner-kill"

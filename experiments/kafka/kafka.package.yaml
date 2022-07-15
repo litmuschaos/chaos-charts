@@ -1,0 +1,8 @@
+packageName: kafka 
+experiments:
+  - name: kafka-broker-pod-failure
+    CSV: kafka-broker-pod-failure.chartserviceversion.yaml
+    desc: "kafka-broker-pod-failure"
+  - name: kafka-broker-disk-failure
+    CSV: kafka-broker-disk-failure.chartserviceversion.yaml
+    desc: "kafka-broker-disk-failure"

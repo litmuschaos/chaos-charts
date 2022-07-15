@@ -1,0 +1,20 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: control-plane-chaos
+  namespace: openebs
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'openebs'
+    applabel: 'name=maya-apiserver'
+    appkind: 'deployment'
+  chaosServiceAccount: control-plane-sa
+  experiments:
+    - name: openebs-control-plane-chaos
+      spec:
+        components:
+          env:
+            - name: FORCE
+              value: ''

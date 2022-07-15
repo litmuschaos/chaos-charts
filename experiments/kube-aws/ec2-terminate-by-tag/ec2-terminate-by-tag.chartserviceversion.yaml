@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-04-15T10:28:08Z
+  name: ec2-terminate-by-tag
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: Mayadata
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: ec2-terminate-by-tag
+  categoryDescription: |
+    This experiment causes termination of an EC2 instance for a certain chaos duration.
+    - Causes termination of an EC2 instance using instance tags before bringing it back to running state after the specified chaos duration.
+    - It helps to check the performance of the application on the ec2 instance. 
+  keywords:
+    - EC2
+    - AWS
+  platforms:
+    - AWS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: uditgaurav@mayadata.io
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ec2-terminate-by-tag
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/aws/ec2-terminate-by-tag/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/ec2-terminate-by-tag/experiment.yaml
