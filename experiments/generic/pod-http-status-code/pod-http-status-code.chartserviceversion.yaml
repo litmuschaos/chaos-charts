@@ -8,7 +8,9 @@ metadata:
 spec:
   displayName: pod-http-status-code 
   categoryDescription: >
-    it injects http status code chaos inside the pod which modifies the status code of the response from the provided application server to desired status code provided by user and reverts after specified duration 
+    pod-http-status-code contains chaos to disrupt http requests of kubernetes pods. This experiment can modify the status code of the response on the service targetted. 
+    - Causes modification of status code of the HTTP request.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served despite chaos.
   keywords: 
     - "pods" 
     - "kubernetes" 
