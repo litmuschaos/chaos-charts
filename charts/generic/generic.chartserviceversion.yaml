@@ -39,6 +39,8 @@ spec:
     - pod-network-partition
     - pod-http-latency
     - pod-http-modify-header
+    - pod-http-modify-body
+    - pod-http-reset-peer
   keywords:
     - Kubernetes
     - K8S

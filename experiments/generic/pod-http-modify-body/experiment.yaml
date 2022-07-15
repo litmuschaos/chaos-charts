@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    It injects the chaos inside the pod which modifies the header of the request/response from the provided application server to the headers provided by the user and reverts after a specified duration
+    It injects the chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
-  name: pod-http-modify-header
+  name: pod-http-modify-body
   labels:
-    name: pod-http-modify-header
+    name: pod-http-modify-body
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -62,26 +62,22 @@ spec:
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name pod-http-modify-header
+    - ./experiments -name pod-http-modify-body
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest' 
-
-    # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
-    # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
-    - name: HEADERS_MAP
-      value: '{}'
-
-    # whether to modify response headers or request headers. Accepted values: request, response
-    - name: HEADER_MODE
-      value: 'response'
+    
+    # provide the body string to overwrite the response body
+    # if no value is provided, response will be an empty body.
+    - name: RESPONSE_BODY
+      value: ''
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -131,10 +127,9 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-
+      
     labels:
-      name: pod-http-modify-header
+      name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: latest 

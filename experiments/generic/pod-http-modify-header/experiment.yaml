@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Injects http modify header chaos on pods belonging to an app deployment
+    It injects the chaos inside the pod which modifies the header of the request/response from the provided application server to the headers provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
   name: pod-http-modify-header
