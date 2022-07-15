@@ -56,7 +56,6 @@ spec:
     - DNS
     - Scale
     - Http
-    - TCP
   maintainers:
     - name: ksatchit
       email: karthik.s@mayadata.io

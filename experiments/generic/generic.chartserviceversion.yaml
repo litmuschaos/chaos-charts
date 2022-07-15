@@ -63,6 +63,8 @@ spec:
       description: ""
     - name: pod-http-latency
       description: ""
+    - name: pod-http-reset-peer
+      description: ""
   keywords:
     - Kubernetes
     - K8S
