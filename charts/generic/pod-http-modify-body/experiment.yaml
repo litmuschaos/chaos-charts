@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects http modify body chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by user and reverts after specified duration
+    It injects the chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by the user and reverts after a specified duration
 kind: ChaosExperiment
 metadata:
   name: pod-http-modify-body

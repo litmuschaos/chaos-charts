@@ -1,7 +1,7 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    it injects http reset into the pod which stops outgoing http requests by resetting the TCP connection and then reverts back to the original state after the specified duration
+    it injects chaos into the pod which stops outgoing http requests by resetting the TCP connection and then reverts back to the original state after a specified duration
 kind: ChaosExperiment
 metadata:
   name: pod-http-reset-peer
