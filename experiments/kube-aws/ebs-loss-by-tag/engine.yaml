@@ -1,0 +1,32 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: ebs-loss-by-tag-sa
+  experiments:
+    - name: ebs-loss-by-tag
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # provide EBS volume tag attached to the given instance
+            # it'll be in form of key:value (ex: 'team:devops')
+            - name: EBS_VOLUME_TAG
+              value: ''              
+              
+            # provide the region name of the instance
+            - name: REGION
+              value: ''
+
+            - name: VOLUME_AFFECTED_PERC
+              value: '' 
+                   

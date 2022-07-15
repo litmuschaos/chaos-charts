@@ -1,0 +1,41 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+spec:
+  appinfo:
+    appns: "default"
+    applabel: "app=nginx"
+    appkind: "deployment"
+  # It can be active/stop
+  engineState: "active"
+  #ex. values: ns1:name=percona,ns2:run=nginx
+  auxiliaryAppInfo: ""
+  chaosServiceAccount: pod-dns-error-sa
+  experiments:
+    - name: pod-dns-error
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60" # in seconds
+
+            # list of the target hostnames or kewywords eg. '["litmuschaos","chaosnative.io"]' . If empty all hostnames are targets
+            - name: TARGET_HOSTNAMES
+              value: ""
+
+            # can be either exact or substring, determines whether the dns query has to match exactly with one of the targets or can have any of the targets as substring
+            - name: MATCH_SCHEME
+              value: "exact"
+
+            # provide the name of container runtime, it supports docker, containerd, crio
+            - name: CONTAINER_RUNTIME
+              value: "docker"
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: "/var/run/docker.sock"
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ""

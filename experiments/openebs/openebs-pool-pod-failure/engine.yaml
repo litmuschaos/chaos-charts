@@ -1,0 +1,28 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: pool-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pool-pod-failure-sa
+  experiments:
+    - name: openebs-pool-pod-failure
+      spec:
+        components:
+          env:
+            - name: CHAOS_ITERATIONS
+              value: '2'
+
+            - name: APP_PVC
+              value: 'demo-nginx-claim' 
+                 
+            - name: DEPLOY_TYPE
+              value: 'deployment'     

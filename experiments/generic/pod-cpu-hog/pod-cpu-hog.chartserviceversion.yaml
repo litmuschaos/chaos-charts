@@ -1,0 +1,53 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2021-06-16T10:28:08Z
+  name: pod-cpu-hog
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: pod-cpu-hog
+  categoryDescription: |
+    Pod-CPU-Hog contains chaos to consume CPU resouces of specified containers in Kubernetes pods.    
+    - Causes CPU resource consumption on specified application containers using cgroups and litmus nsutil which consume CPU resources of the given target containers.
+    - It Can test the application's resilience to potential slowness/unavailability of some replicas due to high CPU load
+    - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
+  keywords:
+    - Kubernetes
+    - K8S
+    - CPU
+    - Pod
+    - Stress
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - Kind
+  maturity: alpha
+  maintainers:
+    - name: ksatchit
+      email: karthik@chaosnative.com
+    - name: Udit Gaurav
+      email: udit@chaosnative.com
+  minKubeVersion: 1.12.0
+  provider:
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-cpu-hog
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-cpu-hog/
+    - name: Video
+      url: https://www.youtube.com/watch?v=MBGSPmZKb2I
+  icon:
+    - base64data: ""
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-cpu-hog/experiment.yaml 

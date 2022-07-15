@@ -1,0 +1,36 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-memory-hog-sa
+  experiments:
+    - name: pod-memory-hog
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+
+            # Enter the amount of memory in megabytes to be consumed by the application pod
+            - name: MEMORY_CONSUMPTION
+              value: '500'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''   
+
+            ## provide the cluster runtime
+            - name: CONTAINER_RUNTIME
+              value: 'docker'   
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'              

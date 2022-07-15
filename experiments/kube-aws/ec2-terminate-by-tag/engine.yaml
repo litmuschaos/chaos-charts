@@ -1,0 +1,37 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: ec2-terminate-by-tag-sa
+  experiments:
+    - name: ec2-terminate-by-tag
+      spec:
+        components:
+          env: 
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set interval duration (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'              
+
+             # Instance Tag of the target ec2 instances
+             # ex: team:devops (key:value)
+            - name: INSTANCE_TAG
+              value: ''
+              
+            # provide the region name of the instance
+            - name: REGION
+              value: ''
+
+            # enable it if the target instance is a part of self-managed nodegroup.
+            - name: MANAGED_NODEGROUP
+              value: 'disable'
+            
+             # Target the percentage of instance filtered from tag
+            - name: INSTANCE_AFFECTED_PERC
+              value: ''
