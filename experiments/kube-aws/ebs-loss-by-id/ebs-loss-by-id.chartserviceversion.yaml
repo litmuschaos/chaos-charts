@@ -1,0 +1,43 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-10-28T10:28:08Z
+  name: ebs-loss-by-id
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: ebs-loss-by-id
+  categoryDescription: |
+    EBS Loss By ID contains chaos to disrupt state of infra resources. The experiment can induce ebs volume loss against specified application for the give EBS Volume(s). 
+    - Causes ebs volume loss from node or ec2 instance for a certain chaos interval from total chaos duration.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod
+  keywords:
+    - EBS
+    - Volume
+    - AWS
+  platforms:
+    - AWS
+  maturity: alpha
+  chaosType: infra
+  maintainers:
+    - name: Udit Gaurav
+      email: uditgaurav@mayadata.io
+  provider:
+    name: Mayadata
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/kube-aws/ebs-loss-by-id
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/aws/ebs-loss-by-id/
+    - name: Video
+      url:
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/kube-aws/ebs-loss-by-id/experiment.yaml

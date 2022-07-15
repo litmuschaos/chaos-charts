@@ -1,0 +1,36 @@
+
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  appinfo:
+    appns: 'default'
+    applabel: 'app=nginx'
+    appkind: 'deployment'
+  chaosServiceAccount: pod-cpu-hog-sa
+  experiments:
+    - name: pod-cpu-hog
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60' # in seconds
+
+            - name: CPU_CORES
+              value: '1'    
+
+            ## Percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''   
+
+            ## provide the cluster runtime
+            - name: CONTAINER_RUNTIME
+              value: 'docker'        
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: '/var/run/docker.sock'    

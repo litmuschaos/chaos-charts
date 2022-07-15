@@ -1,0 +1,27 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: vmware-vm-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: vm-poweroff-sa
+  experiments:
+    - name: vm-poweroff
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos interval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # provide VM MOIDs as comma separated values 
+            - name: APP_VM_MOIDS
+              value: ''

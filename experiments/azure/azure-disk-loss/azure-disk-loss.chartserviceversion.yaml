@@ -1,0 +1,42 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: azure-disk-loss 
+  version: 0.1.0
+  annotations:
+    categories: Azure
+    vendor: ChaosNative
+    support: https://app.slack.com/client/T09NY5SBT/CNXNB0ZTN
+spec:
+  displayName: azure-disk-loss 
+  categoryDescription: |
+    This experiment causes the detachment of the disk from the VM for a certain chaos duration
+    - Causes detachment of the disk from the VM and then reattachment of the disk to the VM
+    - It helps to check the performance of the application on the instance. 
+  keywords: 
+    - Azure
+    - Disk
+    - AKS
+  platforms: 
+    - Azure
+  maturity: alpha
+  maintainers: 
+    - name: avaakash 
+      email: akash@chaosnative.com 
+  minKubeVersion: 1.12.0 
+  provider: 
+    name: ChaosNative
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links: 
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/azure/disk-loss/experiment
+    - name: Documentation 
+      url: https://litmuschaos.github.io/litmus/experiments/categories/azure/azure-disk-loss/
+    # - name: Video
+    #   url:  
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/azure/azure-disk-loss/experiment.yaml

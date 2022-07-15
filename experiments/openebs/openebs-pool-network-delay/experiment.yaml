@@ -1,0 +1,93 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Network delay to pool pod belonging to a OpenEBS PVC
+    This experiment is using pumba lib for network chaos
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-pool-network-delay
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-pool-network-delay
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "apps"
+          - "litmuschaos.io"
+          - "batch"
+          - "extensions"
+          - "storage.k8s.io"
+          - "openebs.io"
+        resources:
+          - "pods"
+          - "pods/exec"
+          - "jobs"
+          - "pods/log"
+          - "events"
+          - "configmaps"
+          - "services"
+          - "persistentvolumeclaims"
+          - "storageclasses"
+          - "persistentvolumes"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+          - "cstorpools"
+          - "cstorvolumereplicas"
+          - "replicasets"
+        verbs:
+          - "create"
+          - "get"
+          - "list"
+          - "patch"
+          - "update"
+          - "delete"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-pool-network-delay/openebs_pool_network_delay_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NAMESPACE
+      value: 'openebs'
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.6.5
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    # in milliseconds
+    - name: NETWORK_DELAY
+      value: '60000'
+
+    - name: TC_IMAGE
+      value: 'gaiadocker/iproute2'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: ''
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    labels:
+      name: openebs-pool-network-delay
+      app.kubernetes.io/part-of: litmus 
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

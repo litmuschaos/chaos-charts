@@ -1,0 +1,97 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kill the pool container and check if gets scheduled again
+kind: ChaosExperiment
+metadata:
+  labels:
+    litmuschaos.io/name: openebs
+    name: openebs-pool-container-failure
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+  name: openebs-pool-container-failure
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      - apiGroups:
+          - ""
+          - "extensions"
+          - "apps"
+          - "batch"
+          - "litmuschaos.io"
+          - "openebs.io"
+          - "storage.k8s.io"
+        resources:
+          - "replicasets"
+          - "events"
+          - "jobs"
+          - "pods"
+          - "pods/log"
+          - "pods/exec"
+          - "configmaps"
+          - "secrets"
+          - "persistentvolumeclaims"
+          - "cstorvolumereplicas"
+          - "chaosengines"
+          - "chaosexperiments"
+          - "chaosresults"
+        verbs:
+          - "create"
+          - "get"
+          - "delete"
+          - "list"
+          - "patch"
+          - "update"
+    image: "litmuschaos/ansible-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ansible-playbook ./experiments/openebs/openebs-pool-container-failure/openebs_pool_container_failure_ansible_logic.yml -i /etc/ansible/hosts -vv; exit 0
+    command:
+    - /bin/bash
+    env:
+    - name: ANSIBLE_STDOUT_CALLBACK
+      value: 'default'
+
+    - name: OPENEBS_NS
+      value: 'openebs'
+
+    - name: APP_PVC
+      value: ''
+
+    - name: LIVENESS_APP_LABEL
+      value: ''
+
+    # only pumba supported
+    # For pumba image use : gaiaadm/pumba:0.6.5
+    - name: LIB_IMAGE  
+      value: 'gaiaadm/pumba:0.6.5' 
+
+    - name: LIVENESS_APP_NAMESPACE
+      value: '' 
+
+    # provide the chaos interval
+    - name: CHAOS_INTERVAL
+      value: '10'
+
+    # provide the total chaos duration
+    - name: TOTAL_CHAOS_DURATION
+      value: '20'
+
+    - name: DATA_PERSISTENCE
+      value: ''
+
+    - name: CHAOS_ITERATIONS
+      value: '2'
+
+    labels:
+      name: openebs-pool-container-failure
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest
+    #configmaps:
+    #- name: openebs-pool-container-failure
+    #  mountPath: /mnt

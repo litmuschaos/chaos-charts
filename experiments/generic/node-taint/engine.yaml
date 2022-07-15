@@ -1,0 +1,31 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: node-taint-sa
+  experiments:
+    - name: node-taint
+      spec:
+        components:
+        # nodeSelector: 
+        #   # provide the node labels
+        #   kubernetes.io/hostname: 'node02'        
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: '60'
+              
+            # set target node name
+            - name: TARGET_NODE
+              value: ''
+              
+             # set taint label & effect
+             # key=value:effect or key:effect
+            - name: TAINTS
+              value: 'node.kubernetes.io/unreachable:NoExecute'
+              

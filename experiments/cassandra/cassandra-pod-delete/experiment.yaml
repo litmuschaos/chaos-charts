@@ -1,0 +1,121 @@
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Deletes a pod belonging to a casandra statefulset
+kind: ChaosExperiment
+metadata:
+  name: cassandra-pod-delete
+  labels:
+    name: cassandra-pod-delete
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: latest
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Create and manage the liveness and target application services
+      - apiGroups: [""]
+        resources: ["services"]
+        verbs: ["create","delete","get","list", "deletecollection"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["secrets","configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log 
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]  
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for deriving the parent/owner details of the pod   
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name cassandra-pod-delete
+    command:
+    - /bin/bash
+    env:
+
+    # provide cassandra service name
+    # default service: cassandra
+    - name: CASSANDRA_SVC_NAME
+      value: ''
+
+    # provide the keyspace replication factor
+    - name: KEYSPACE_REPLICATION_FACTOR
+      value: ''
+
+    # provide cassandra port 
+    # default port: 9042
+    - name: CASSANDRA_PORT
+      value: '9042'
+
+    # provide liveness deployement port
+    # default port: 8088, It only supports 8088 port
+    - name: LIVENESS_SVC_PORT
+      value: '8088'
+
+    # provide cassandra liveness image
+    - name: CASSANDRA_LIVENESS_IMAGE
+      value: 'litmuschaos/cassandra-client:latest'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: CHAOS_INTERVAL
+      value: '15'
+
+    # SET THE CASSANDRA_LIVENESS_CHECK
+    # IT CAN BE `enable` OR `disable`
+    - name: CASSANDRA_LIVENESS_CHECK
+      value: ''
+
+    ## Period to wait before and after injection of chaos  
+    - name: RAMP_TIME
+      value: ''
+
+    - name: FORCE
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    ## env var that describes the library used to execute the chaos
+    ## default: litmus. Supported values: litmus
+    - name: LIB
+      value: 'litmus'
+
+    labels:
+      name: cassandra-pod-delete
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: latest

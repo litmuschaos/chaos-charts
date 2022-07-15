@@ -1,0 +1,37 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  #ex. values: ns1:name=percona,ns2:run=nginx 
+  auxiliaryAppInfo: ''
+  chaosServiceAccount: node-memory-hog-sa
+  experiments:
+    - name: node-memory-hog
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '120'
+
+            ## percentage of total nodes to target
+            - name: NODES_AFFECTED_PERC
+              value: ''
+
+            # provide the comma separated target node names
+            - name: TARGET_NODES
+              value: ''
+            
+            ## Specify the size as percent of total node capacity Ex: '30'
+            ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_MEBIBYTES empty
+            - name: MEMORY_CONSUMPTION_PERCENTAGE
+              value: '0'
+              
+            ## Specify the amount of memory to be consumed in mebibytes
+            ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
+            - name: MEMORY_CONSUMPTION_MEBIBYTES
+              value: '0'
