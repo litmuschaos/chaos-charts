@@ -9,7 +9,7 @@ metadata:
     name: k8-aws-ec2-terminate
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.11.0
 spec:
   definition:
     scope: Namespaced
@@ -41,7 +41,7 @@ spec:
         verbs :
           - "get"
           - "list"
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/py-runner:2.11.0"
     args:
     - -c
     - python /litmus/byoc/chaostest/chaostest/aws/aws_wrapper.py ; exit 0
@@ -108,5 +108,5 @@ spec:
       name: k8-aws-ec2-terminate
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 2.11.0
 

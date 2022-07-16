@@ -23,7 +23,7 @@ spec:
     name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 2.11.0
   links: 
     - name: Documentation 
       url: https://litmuschaos.github.io/litmus/experiments/categories/gcp/gcp-vm-instance-stop/ 
