@@ -1,0 +1,20 @@
+packageName: cloud-foundry
+experiments:
+  - name: kill-app-instance
+    CSV: kill-app-instance.chartserviceversion.yaml
+    desc: "kill-app-instance"
+  - name: app-stats
+    CSV: app-stats.chartserviceversion.yaml
+    desc: "app-stats"
+  - name: random-kill-app-instance
+    CSV: random-kill-app-instance.chartserviceversion.yaml
+    desc: "random-kill-app-instance"
+  - name: stop-all-apps
+    CSV: stop-all-apps.chartserviceversion.yaml
+    desc: "stop-all-apps"
+  - name: stop-apps
+    CSV: stop-apps.chartserviceversion.yaml
+    desc: "stop-apps"
+  - name: unbind-apps
+    CSV: unbind-apps.chartserviceversion.yaml
+    desc: "unbind-apps"
