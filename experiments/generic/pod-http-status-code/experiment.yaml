@@ -77,6 +77,7 @@ spec:
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
     # if an invalid status code is provided, the experiment will fail
+    # if multiple comma separated values are provided, then a random value from the provided list will be selected
     # supported status code list: [200, 201, 202, 204, 300, 301, 302, 304, 307, 400, 401, 403, 404, 500, 501, 502, 503, 504]
     - name: STATUS_CODE
       value: ''
@@ -92,6 +93,12 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
+
+    # toxicity is the probability of the request to be affected
+    # provide the percentage value in the range of 0-100
+    # 0 means no request will be affected and 100 means all request will be affected
+    - name: TOXICITY
+      value: "100"
     
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE

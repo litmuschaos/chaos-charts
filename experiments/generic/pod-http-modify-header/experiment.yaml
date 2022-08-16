@@ -90,7 +90,13 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
+    # toxicity is the probability of the request to be affected
+    # provide the percentage value in the range of 0-100
+    # 0 means no request will be affected and 100 means all request will be affected
+    - name: TOXICITY
+      value: "100"
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
