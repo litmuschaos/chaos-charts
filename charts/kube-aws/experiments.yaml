@@ -1,12 +1,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Detaching an ebs volume from ec2 instance.
+    Stopping an EC2 instance identified by tag.
 kind: ChaosExperiment
 metadata:
-  name: ebs-loss-by-id
+  name: ec2-terminate-by-tag
   labels:
-    name: ebs-loss-by-id
+    name: ec2-terminate-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
@@ -42,11 +42,15 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ebs-loss-by-id
+    - ./experiments -name ec2-terminate-by-tag
     command:
     - /bin/bash
     env:
@@ -60,16 +64,24 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    - name: EBS_VOLUME_ID
+    - name: INSTANCE_TAG
       value: ''
 
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'
+
     - name: REGION
+      value: ''
+
+    # Target the percentage of instance filtered from tag
+    - name: INSTANCE_AFFECTED_PERC
       value: ''
 
     - name: SEQUENCE
       value: 'parallel'      
 
-    # Provide the path of aws credentials mounted from secret
+    # Provide the path of aws credentials mounted from secret  
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: '/tmp/cloud_config.yml'
 
@@ -79,7 +91,7 @@ spec:
       value: 'litmus'  
           
     labels:
-      name: ebs-loss-by-id
+      name: ec2-terminate-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
@@ -191,18 +203,18 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stopping an EC2 instance identified by tag.
+    Execute aws-az chaos to detach the target zones from the load balancer
 kind: ChaosExperiment
 metadata:
-  name: ec2-terminate-by-tag
+  name: aws-az-chaos
   labels:
-    name: ec2-terminate-by-tag
+    name: aws-az-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -232,56 +244,32 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/py-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ec2-terminate-by-tag
+    - python3 -u experiment -name aws-az-chaos
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '30'
-
     - name: CHAOS_INTERVAL
       value: '30'
-
-    # Period to wait before and after injection of chaos in sec
+    - name: LIB
+      value: 'litmus'
+    - name: LOAD_BALANCER_NAME
+      value: ''
+    - name: LOAD_BALANCER_ZONES
+      value: ''
+    - name: LOAD_BALANCERNAME_ARN
+      value: 'na'
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: "/tmp/cloud_config.yml"
     - name: RAMP_TIME
       value: ''
-
-    - name: INSTANCE_TAG
-      value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'
-
-    - name: REGION
-      value: ''
-
-    # Target the percentage of instance filtered from tag
-    - name: INSTANCE_AFFECTED_PERC
-      value: ''
-
-    - name: SEQUENCE
-      value: 'parallel'      
-
-    # Provide the path of aws credentials mounted from secret  
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
     labels:
-      name: ec2-terminate-by-tag
+      name: aws-az-chaos
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
@@ -385,18 +373,18 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Execute aws-az chaos to detach the target zones from the load balancer
+    Detaching an ebs volume from ec2 instance.
 kind: ChaosExperiment
 metadata:
-  name: aws-az-chaos
+  name: ebs-loss-by-id
   labels:
-    name: aws-az-chaos
+    name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: latest
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -426,32 +414,44 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
     - -c
-    - python3 -u experiment -name aws-az-chaos
+    - ./experiments -name ebs-loss-by-id
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '30'
+
     - name: CHAOS_INTERVAL
       value: '30'
-    - name: LIB
-      value: 'litmus'
-    - name: LOAD_BALANCER_NAME
-      value: ''
-    - name: LOAD_BALANCER_ZONES
-      value: ''
-    - name: LOAD_BALANCERNAME_ARN
-      value: 'na'
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: "/tmp/cloud_config.yml"
+
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
+
+    - name: EBS_VOLUME_ID
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    - name: SEQUENCE
+      value: 'parallel'      
+
+    # Provide the path of aws credentials mounted from secret
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
+    # provide the LIB
+    # only litmus supported
+    - name: LIB
+      value: 'litmus'  
+          
     labels:
-      name: aws-az-chaos
+      name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: latest
