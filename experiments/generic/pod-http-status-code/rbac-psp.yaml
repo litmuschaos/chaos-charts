@@ -29,10 +29,10 @@ rules:
   - apiGroups: [""]
     resources: ["configmaps"]
     verbs: ["get","list",]
-  # Track and get the runner, experiment, and helper pods log 
+  # Track and get the runner, experiment, and helper pods log
   - apiGroups: [""]
     resources: ["pods/log"]
-    verbs: ["get","list","watch"]  
+    verbs: ["get","list","watch"]
   # for creating and managing to execute comands inside target container
   - apiGroups: [""]
     resources: ["pods/exec"]
@@ -41,7 +41,7 @@ rules:
   - apiGroups: ["apps"]
     resources: ["deployments","statefulsets","replicasets", "daemonsets"]
     verbs: ["list","get"]
-  # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+  # deriving the parent/owner details of the pod(if parent is deploymentConfig)
   - apiGroups: ["apps.openshift.io"]
     resources: ["deploymentconfigs"]
     verbs: ["list","get"]
