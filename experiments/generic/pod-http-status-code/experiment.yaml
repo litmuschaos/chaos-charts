@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -72,7 +72,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:latest'
 
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
@@ -85,6 +85,20 @@ spec:
     #  whether to modify the body as per the status code provided
     - name: "MODIFY_RESPONSE_BODY"
       value: "true"
+
+    # provide the body string to overwrite the response body. This will be used only if MODIFY_RESPONSE_BODY is set to true
+    - name: RESPONSE_BODY
+      value: ''
+
+    # provide the encoding type for the response body
+    # currently supported value are gzip, deflate
+    # if empty no encoding will be applied
+    - name: CONTENT_ENCODING
+      value: ''
+
+    # provide the content type for the response body
+    - name: CONTENT_TYPE
+      value: 'text/plain'
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -99,7 +113,7 @@ spec:
     # 0 means no request will be affected and 100 means all request will be affected
     - name: TOXICITY
       value: "100"
-    
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
@@ -140,9 +154,9 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-http-status-code
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: latest

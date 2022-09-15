@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -72,12 +72,22 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-    
+      value: 'litmuschaos/go-runner:latest'
+
     # provide the body string to overwrite the response body
     # if no value is provided, response will be an empty body.
     - name: RESPONSE_BODY
       value: ''
+
+    # provide the encoding type for the response body
+    # currently supported value are gzip, deflate
+    # if empty no encoding will be applied
+    - name: CONTENT_ENCODING
+      value: ''
+
+    # provide the content type for the response body
+    - name: CONTENT_TYPE
+      value: 'text/plain'
 
     # port of the target service
     - name: TARGET_SERVICE_PORT
@@ -86,7 +96,7 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
     # toxicity is the probability of the request to be affected
     # provide the percentage value in the range of 0-100
     # 0 means no request will be affected and 100 means all request will be affected
@@ -133,9 +143,9 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: latest
