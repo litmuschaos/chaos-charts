@@ -118,6 +118,16 @@ spec:
     - name: DESTINATION_HOSTS
       value: ''
 
+    # provide the comma seperated source ports
+    # chaos injection will be triggered for these source ports
+    - name: SOURCE_PORTS
+      value: ''
+
+      # provide the comma seperated destination ports
+      # chaos injection will be triggered for these destination ports
+    - name: DESTINATION_PORTS
+      value: ''
+
     # provide the socket file path
     - name: SOCKET_PATH
       value: '/var/run/docker.sock'
