@@ -30,7 +30,7 @@ spec:
             # Instance zone(s) of the target vm instance(s)
             # If more than one instance is targetted, provide zone for each in the order of their 
             # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
-            - name: INSTANCE_ZONES
+            - name: ZONES
               value: ''
 
             # enable it if the target instance is a part of a managed instance group.

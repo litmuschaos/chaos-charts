@@ -24,7 +24,7 @@ spec:
 
             # set the zone in which all the disks are created
             # all the disks must exist in the same zone 
-            - name: DISK_ZONES
+            - name: ZONES
               value: ''
 
             # set the label of the target disk volumes

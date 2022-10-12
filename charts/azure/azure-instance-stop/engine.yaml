@@ -20,7 +20,7 @@ spec:
               value: '30'            
 
             # provide the target instance name(s) (comma separated if multiple)
-            - name: AZURE_INSTANCE_NAME
+            - name: AZURE_INSTANCE_NAMES
               value: ''
 
             # provide the resource group of the instance
