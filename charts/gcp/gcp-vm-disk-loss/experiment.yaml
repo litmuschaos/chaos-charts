@@ -76,7 +76,7 @@ spec:
     # set the disk zone(s) as comma seperated values in the corresponding 
     # order of DISK_VOLUME_NAME  
     # eg. zone1,zone2,...
-    - name: DISK_ZONES
+    - name: ZONES
       value: ''
       
     labels:

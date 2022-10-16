@@ -76,7 +76,7 @@ spec:
     # set the disk zone(s) as comma seperated values in the corresponding 
     # order of DISK_VOLUME_NAME  
     # eg. zone1,zone2,...
-    - name: DISK_ZONES
+    - name: ZONES
       value: ''
       
     labels:
@@ -152,7 +152,7 @@ spec:
 
     # set the zone in which all the disks are created
     # all the disks must exist in the same zone 
-    - name: DISK_ZONES
+    - name: ZONES
       value: ''
     
     # set the label of the target disk volumes
@@ -248,7 +248,7 @@ spec:
     
     # Zone in which the target vm instance(s) filtered by the label exist
     # all the instances should lie in a single zone
-    - name: INSTANCE_ZONES
+    - name: ZONES
       value: ''
     
     # enable it if the target instance is a part of a managed instance group
@@ -359,7 +359,7 @@ spec:
     # Instance zone(s) of the target vm instance(s)
     # If more than one instance is targetted, provide zone for each in the order of their 
     # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
-    - name: INSTANCE_ZONES
+    - name: ZONES
       value: ''
       
     labels:
