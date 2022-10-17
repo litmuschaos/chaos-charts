@@ -64,7 +64,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:latest"
+                    image: "litmuschaos/go-runner:2.14.0"
                     args:
                     - -c
                     - ./experiments -name pod-memory-hog
