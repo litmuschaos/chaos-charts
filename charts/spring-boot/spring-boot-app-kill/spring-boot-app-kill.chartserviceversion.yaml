@@ -1,0 +1,49 @@
+apiVersion: litmuchaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-11-17T10:28:08Z
+  name: spring-boot-app-kill
+  version: 0.1.0
+  annotations:
+    categories: Spring Boot
+    vendor: CNCF
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: spring-boot-app-kill
+  categoryDescription: |
+    This experiment allows injecting Chaos Monkey app-kill assaults on Spring Boot applications, which have the [Chaos Monkey for Spring Boot](https://codecentric.github.io/chaos-monkey-spring-boot/) in their classpath. 
+    It can target random pods with a Spring Boot application and allows configuring the assaults to inject app-kill. It tests the resiliency of the system when some applications are having unexpected faulty behavior.
+  keywords:
+    - Kubernetes
+    - K8S
+    - Spring Boot
+    - Pod
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+  maturity: alpha
+  maintainers:
+    - name: Stephane Cazeaux
+      email: stephane.cazeaux@orange.com
+    - name: Shubham Chaudhary
+      email: shubham.chaudhary@harness.io
+  minKubeVersion: 1.12.0
+  provider:
+    name: Orange
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: latest
+  links:
+    - name: Source Code
+      url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/spring-boot/spring-boot-app-kill
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/spring-boot/spring-boot-app-kill
+    - name: Video
+      url: 
+  icon:
+    - url: 
+      mediatype: ""
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/spring-boot-app-kill/experiment.yaml

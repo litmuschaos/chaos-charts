@@ -1,0 +1,34 @@
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: spring-boot-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: 'default'
+    applabel: 'app=spring-boot'
+    appkind: 'deployment'
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: spring-boot-memory-stress-sa
+  experiments:
+    - name: spring-boot-memory-stress
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # Cron expression like */1 * * * * ? can be set to enable chaos monkey memory assault on a schedule
+            - name: CM_MEMORY_CRON
+              value: '*/1 * * * * ?'
+
+              # Final fraction of used memory by assault. 0.95 equals 95 %.
+            - name: CM_MEMORY_FILL_TARGET_FRACTION
+              value: '0.70'
+
+             ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ''
+              
