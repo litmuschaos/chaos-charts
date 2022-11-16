@@ -28,7 +28,7 @@ spec:
     name: Wipro, ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0-beta1
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/vmware/vm-poweroff
