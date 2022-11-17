@@ -20,13 +20,14 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '30'
 
-            # Cron expression like */1 * * * * ? can be set to enable cpu assault on a schedule
-            - name: CM_CPU_CRON
-              value: '*/1 * * * * ?'
+            # it contains fraction of used cpu. 0.95 equals 95%.
+            # it supports value in range [0.1,1.0]
+            - name: CPU_LOAD_FRACTION
+              value: '0.9'
 
-            # Final fraction of used cpu by assault. 0.95 equals 95 %.
-            - name: CM_CPU_LOAD_TARGET_FRACTION
-              value: '0.8'
+            # port of the spring boot application
+            - name: CM_PORT
+              value: ''
 
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC

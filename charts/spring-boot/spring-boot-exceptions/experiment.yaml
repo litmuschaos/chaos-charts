@@ -55,6 +55,19 @@ spec:
     - name: CM_EXCEPTIONS_ARGUMENTS
       value: 'java.lang.String:custom illegal argument exception'
 
+    # port of the spring boot application
+    - name: CM_PORT
+      value: ''
+
+    #it contains number of requests are to be attacked
+    # n value means nth request will be affected
+    - name: CM_LEVEL
+      value: '1'
+
+    # it limits watched packages/classes/methods
+    - name: CM_WATCHED_CUSTOM_SERVICES
+      value: ''
+
     # provide name of watcher
     # it supports controller, restController, service, repository, component, webClient
     - name: CM_WATCHERS

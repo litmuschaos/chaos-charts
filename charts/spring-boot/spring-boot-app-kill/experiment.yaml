@@ -46,18 +46,23 @@ spec:
     command:
     - /bin/bash
     env:
+    # port of the spring boot application
+    - name: CM_PORT
+      value: ''
 
-    # Cron expression like */1 * * * * ? can be set to enable chaos monkey AppKiller assault on a schedule
-    - name: CM_KILL_APPLICATION_CRON
+     #it contains number of requests are to be attacked
+     # n value means nth request will be affected
+    - name: CM_LEVEL
+      value: '1'
+
+    # it limits watched packages/classes/methods
+    - name: CM_WATCHED_CUSTOM_SERVICES
       value: ''
 
     # provide name of watcher
     # it supports controller, restController, service, repository, component, webClient
     - name: CM_WATCHERS
       value: 'restController'
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '30'
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC

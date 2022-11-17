@@ -20,13 +20,14 @@ spec:
             - name: TOTAL_CHAOS_DURATION
               value: '30'
 
-            # Cron expression like */1 * * * * ? can be set to enable chaos monkey memory assault on a schedule
-            - name: CM_MEMORY_CRON
-              value: '*/1 * * * * ?'
-
-              # Final fraction of used memory by assault. 0.95 equals 95 %.
-            - name: CM_MEMORY_FILL_TARGET_FRACTION
+            # it contains fraction of used cpu. 0.70 equals 70%.
+            # it supports value in range [0.01,0.95]
+            - name: MEMORY_FILL_FRACTION
               value: '0.70'
+
+            # port of the spring boot application
+            - name: CM_PORT
+              value: ''
 
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC

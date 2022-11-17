@@ -28,6 +28,10 @@ spec:
             - name: CM_EXCEPTIONS_ARGUMENTS
               value: 'java.lang.String:custom illegal argument exception'
 
+            # port of the spring boot application
+            - name: CM_PORT
+              value: ''
+
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC
               value: ''

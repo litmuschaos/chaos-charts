@@ -16,13 +16,9 @@ spec:
       spec:
         components:
           env:
-            # set chaos duration (in sec) as desired
-            - name: TOTAL_CHAOS_DURATION
-              value: '30'
-
-            # Cron expression like */1 * * * * ? can be set to enable chaos monkey AppKiller assault on a schedule
-            - name: CM_KILL_APPLICATION_CRON
-              value: '*/1 * * * * ?'
+            # port of the spring boot application
+            - name: CM_PORT
+              value: ''
 
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC

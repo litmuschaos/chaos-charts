@@ -47,13 +47,22 @@ spec:
     - /bin/bash
     env:
 
-    # Minimum latency (ms)
-    - name: CM_LATENCY_RANGE_START
+    # provide the latency (ms)
+    - name: LATENCY
       value: '2000'
 
-    # Maximum latency (ms)
-    - name: CM_LATENCY_RANGE_END
-      value: '5000'
+      # port of the spring boot application
+    - name: CM_PORT
+      value: ''
+
+      # it contains number of requests are to be attacked
+      # n value means nth request will be affected
+    - name: CM_LEVEL
+      value: '1'
+
+      # it limits watched packages/classes/methods
+    - name: CM_WATCHED_CUSTOM_SERVICES
+      value: ''
 
     # provide name of watcher
     # it supports controller, restController, service, repository, component, webClient

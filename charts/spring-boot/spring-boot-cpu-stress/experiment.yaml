@@ -47,17 +47,23 @@ spec:
     - /bin/bash
     env:
 
-    # Cron expression like */1 * * * * ? can be set to enable cpu assault on a schedule
-    - name: CM_CPU_CRON
+    # it contains fraction of cpu to be stressed(0.95 equals 95%)
+    # it supports value in range [0.1,1.0]
+    - name: CPU_LOAD_FRACTION
+      value: '0.9'
+
+    # port of the spring boot application
+    - name: CM_PORT
       value: ''
 
-    # Duration to assault cpu when requested load is reached in ms.
-    - name: CM_CPU_MS_HOLD_LOAD
-      value: '15000'
+    #it contains number of requests are to be attacked
+    # n value means nth request will be affected
+    - name: CM_LEVEL
+      value: '1'
 
-    # Final fraction of used cpu by assault. 0.95 equals 95 %.
-    - name: CM_CPU_LOAD_TARGET_FRACTION
-      value: '0.95'
+    # it limits watched packages/classes/methods
+    - name: CM_WATCHED_CUSTOM_SERVICES
+      value: ''
 
     # provide name of watcher
     # it supports controller, restController, service, repository, component, webClient
