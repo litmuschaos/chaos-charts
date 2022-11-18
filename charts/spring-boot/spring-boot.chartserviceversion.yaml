@@ -17,6 +17,7 @@ spec:
     - spring-boot-memory-stress
     - spring-boot-latency
     - spring-boot-exceptions
+    - spring-boot-faults
   keywords:
     - Kubernetes
     - Spring Boot

@@ -15,3 +15,6 @@ experiments:
   - name: spring-boot-exceptions
     CSV: spring-boot-exceptions.chartserviceversion.yaml
     desc: "spring-boot-exceptions"
+  - name: spring-boot-faults
+    CSV: spring-boot-faults.chartserviceversion.yaml
+    desc: "spring-boot-faults"
