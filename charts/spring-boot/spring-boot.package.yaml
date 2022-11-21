@@ -1,0 +1,20 @@
+packageName: spring-boot
+experiments:
+  - name: spring-boot-app-kill
+    CSV: spring-boot-app-kill.chartserviceversion.yaml
+    desc: "spring-boot-app-kill"
+  - name: spring-boot-cpu-stress
+    CSV: spring-boot-cpu-stress.chartserviceversion.yaml
+    desc: "spring-boot-cpu-stress"
+  - name: spring-boot-memory-stress
+    CSV: spring-boot-memory-stress.chartserviceversion.yaml
+    desc: "spring-boot-memory-stress"
+  - name: spring-boot-latency
+    CSV: spring-boot-latency.chartserviceversion.yaml
+    desc: "spring-boot-latency"
+  - name: spring-boot-exceptions
+    CSV: spring-boot-exceptions.chartserviceversion.yaml
+    desc: "spring-boot-exceptions"
+  - name: spring-boot-faults
+    CSV: spring-boot-faults.chartserviceversion.yaml
+    desc: "spring-boot-faults"
