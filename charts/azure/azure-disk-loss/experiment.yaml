@@ -57,9 +57,6 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
-    - name: LIB
-      value: 'litmus'
-
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''

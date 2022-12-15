@@ -90,9 +90,6 @@ spec:
                     - name: RAMP_TIME
                       value: ''
 
-                    - name: LIB
-                      value: 'litmus'
-
                     - name: TARGET_POD
                       value: ''
                       

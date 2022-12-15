@@ -62,10 +62,6 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # it should be litmus
-    - name: LIB
-      value: 'litmus'
-
     # provide the destination ips
     # chaos injection will be triggered for these destination ips
     - name: DESTINATION_IPS

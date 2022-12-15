@@ -61,11 +61,6 @@ spec:
     - name: SEQUENCE
       value: 'parallel'
 
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'
-
     # period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''

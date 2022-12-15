@@ -89,11 +89,6 @@ spec:
                       - name: RAMP_TIME
                         value: ''     
 
-                      ## env var that describes the library used to execute the chaos
-                      ## default: litmus. Supported values: litmus, powerfulseal, chaoskube
-                      - name: LIB
-                        value: 'litmus'
-
                       - name: TARGET_POD
                         value: ''
 

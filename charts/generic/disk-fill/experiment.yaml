@@ -80,11 +80,6 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # Provide the LIB here
-    # Only litmus supported
-    - name: LIB
-      value: 'litmus'
-
     # provide the data block size
     # supported unit is KB
     - name: DATA_BLOCK_SIZE

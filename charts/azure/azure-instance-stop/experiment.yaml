@@ -78,12 +78,7 @@ spec:
       value: '/tmp/azure.auth'
 
     - name: SEQUENCE
-      value: 'parallel'       
-
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
+      value: 'parallel'        
           
     labels:
       name: azure-instance-stop
