@@ -102,10 +102,6 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # lib can be litmus or pumba
-    - name: LIB
-      value: 'litmus'
-
     # percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''

@@ -81,11 +81,6 @@ spec:
       ## Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
         value: ''     
-
-      ## env var that describes the library used to execute the chaos
-      ## default: litmus. Supported values: litmus
-      - name: LIB
-        value: 'litmus'
       
       # The command to kill the chaos process
       - name: CHAOS_KILL_COMMAND

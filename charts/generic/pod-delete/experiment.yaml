@@ -84,9 +84,6 @@ spec:
     - name: PODS_AFFECTED_PERC
       value: ''
 
-    - name: LIB
-      value: 'litmus'    
-
     - name: TARGET_PODS
       value: ''
 

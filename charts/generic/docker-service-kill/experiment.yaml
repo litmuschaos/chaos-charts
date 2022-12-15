@@ -62,9 +62,6 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    - name: LIB
-      value: 'litmus'
-
     - name: NODE_LABEL
       value: ''
 

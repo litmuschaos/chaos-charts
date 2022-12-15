@@ -104,11 +104,6 @@ spec:
       - name: RAMP_TIME
         value: ''
 
-      # Provide the LIB here
-      # support litmus and pumba
-      - name: LIB
-        value: 'litmus'
-
       # provide lib image
       - name: LIB_IMAGE
         value: 'litmuschaos/go-runner:latest'

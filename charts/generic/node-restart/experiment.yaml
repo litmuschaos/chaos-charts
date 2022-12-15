@@ -64,11 +64,6 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # PROVIDE THE LIB HERE
-    # ONLY LITMUS SUPPORTED
-    - name: LIB
-      value: 'litmus'
-
     # provide lib image
     - name: LIB_IMAGE
       value: "litmuschaos/go-runner:latest"

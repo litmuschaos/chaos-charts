@@ -117,12 +117,7 @@ spec:
     # 0 will consume all the available cpu cores
     - name: CPU_CORE
       value: '0'
-                
-    # provide the LIB
-    # only litmus supported
-    - name: LIB
-      value: 'litmus'  
-          
+                       
     labels:
       name: aws-ssm-chaos-by-tag
       app.kubernetes.io/part-of: litmus

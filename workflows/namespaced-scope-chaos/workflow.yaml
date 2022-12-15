@@ -96,9 +96,7 @@ spec:
 
                     - name: CHAOS_INTERVAL
                       value: '5'
-
-                    - name: LIB
-                      value: 'litmus'    
+   
                     labels:
                       name: pod-delete
       container:

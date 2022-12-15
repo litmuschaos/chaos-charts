@@ -84,10 +84,6 @@ spec:
     - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
       value: '100' # in percentage
 
-    # lib can be litmus or pumba
-    - name: LIB
-      value: 'litmus'   
-
     - name: TARGET_PODS
       value: ''  
 

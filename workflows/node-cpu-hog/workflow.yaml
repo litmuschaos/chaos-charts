@@ -93,11 +93,6 @@ spec:
                     - name: NODE_CPU_CORE
                       value: ''
 
-                    # PROVIDE THE LIB HERE
-                    # ONLY LITMUS SUPPORTED
-                    - name: LIB
-                      value: 'litmus'
-
                     # provide lib image
                     - name: LIB_IMAGE
                       value: 'litmuschaos/go-runner:latest' 

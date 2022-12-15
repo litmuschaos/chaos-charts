@@ -85,11 +85,6 @@ spec:
     - name: SEQUENCE
       value: 'parallel'
 
-    ## env var that describes the library used to execute the chaos
-    ## default: litmus. Supported values: litmus
-    - name: LIB
-      value: 'litmus'
-
     labels:
       name: spring-boot-latency
       app.kubernetes.io/part-of: litmus
