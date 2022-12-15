@@ -10,7 +10,7 @@ metadata:
     name: openebs-target-container-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-target-container-failure
 spec:
   definition:
@@ -43,7 +43,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -107,7 +107,7 @@ spec:
       name: openebs-target-container-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt
@@ -125,7 +125,7 @@ metadata:
     name: openebs-target-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-target-pod-failure
 spec:
   definition:
@@ -168,7 +168,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -214,7 +214,7 @@ spec:
       name: openebs-target-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-target-pod-failure
     #  mountPath: /mnt
@@ -232,7 +232,7 @@ metadata:
     name: openebs-pool-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-pool-pod-failure
 spec:
   definition:
@@ -275,7 +275,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -312,7 +312,7 @@ spec:
       name: openebs-pool-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt
@@ -331,7 +331,7 @@ metadata:
     name: openebs-pool-disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-pool-disk-loss
 spec:
   definition:
@@ -368,7 +368,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -421,7 +421,7 @@ spec:
       name: openebs-pool-disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
 
     configmaps:
     - name: openebs-pool-disk-loss
@@ -444,7 +444,7 @@ metadata:
     name: openebs-pool-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-pool-network-delay
 spec:
   definition:
@@ -482,7 +482,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -524,7 +524,7 @@ spec:
       name: openebs-pool-network-delay
       app.kubernetes.io/part-of: litmus 
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -538,7 +538,7 @@ metadata:
     name: openebs-target-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-target-network-loss
 spec:
   definition:
@@ -573,7 +573,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -617,7 +617,7 @@ spec:
       name: openebs-target-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-target-network-loss
     #  mountPath: /mnt
@@ -634,7 +634,7 @@ metadata:
     name: openebs-target-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-target-network-delay
 spec:
   definition:
@@ -669,7 +669,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -713,7 +713,7 @@ spec:
       name: openebs-target-network-delay
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt
@@ -731,7 +731,7 @@ metadata:
     name: openebs-nfs-provisioner-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-nfs-provisioner-kill
 spec:
   definition:
@@ -774,7 +774,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -815,7 +815,7 @@ spec:
       name: openebs-nfs-provisioner-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/
@@ -833,7 +833,7 @@ metadata:
     name: openebs-control-plane-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-control-plane-chaos
 spec:
   definition:
@@ -869,7 +869,7 @@ spec:
           - "get"
           - "list"
       
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -899,7 +899,7 @@ spec:
       name: openebs-control-plane-chaos
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
 
 ---
 ---
@@ -914,7 +914,7 @@ metadata:
     name: openebs-pool-container-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-pool-container-failure
 spec:
   definition:
@@ -949,7 +949,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -995,7 +995,7 @@ spec:
       name: openebs-pool-container-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     #configmaps:
     #- name: openebs-pool-container-failure
     #  mountPath: /mnt
@@ -1012,7 +1012,7 @@ metadata:
     name: openebs-pool-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
   name: openebs-pool-network-loss
 spec:
   definition:
@@ -1051,7 +1051,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -1092,6 +1092,6 @@ spec:
       name: openebs-pool-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
 
 ---
