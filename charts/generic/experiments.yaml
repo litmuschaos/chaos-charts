@@ -708,7 +708,7 @@ spec:
       name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 3.0.0-beta2
+      app.kubernetes.io/version: 3.0.0-beta2 
 
 ---
 ---
@@ -872,7 +872,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta2' 
+      value: 'litmuschaos/go-runner:3.0.0-beta2'
 
     # set latency value for the chaos
     - name: LATENCY
@@ -2690,7 +2690,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta2' 
+      value: 'litmuschaos/go-runner:3.0.0-beta2'
     
     # reset timeout specifies after how much duration to reset the connection
     - name: RESET_TIMEOUT
@@ -2935,7 +2935,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta2' 
+      value: 'litmuschaos/go-runner:3.0.0-beta2'
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -3071,7 +3071,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta2' 
+      value: 'litmuschaos/go-runner:3.0.0-beta2'
 
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
