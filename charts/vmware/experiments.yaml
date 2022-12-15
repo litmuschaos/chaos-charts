@@ -80,9 +80,6 @@ spec:
     - name: CHAOS_INTERVAL
       value: '30'
 
-    - name: LIB
-      value: 'litmus'
-
     - name: RAMP_TIME
       value: ''
 
