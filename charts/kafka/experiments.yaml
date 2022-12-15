@@ -9,7 +9,7 @@ metadata:
     name: kafka-broker-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
 spec:
   definition:
     scope: Cluster
@@ -46,7 +46,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -119,7 +119,7 @@ spec:
       name: kafka-broker-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -133,7 +133,7 @@ metadata:
     name: kafka-broker-disk-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta2
 spec:
   definition:
     scope: Cluster
@@ -160,7 +160,7 @@ spec:
           - "get"
           - "list"
           - "patch"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta2"
     imagePullPolicy: Always
     args:
     - -c
@@ -235,7 +235,7 @@ spec:
       name: kafka-broker-disk-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta2
     secrets:
     - name: kafka-broker-disk-failure
       mountPath: /tmp/
