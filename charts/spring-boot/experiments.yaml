@@ -9,7 +9,7 @@ metadata:
     name: spring-boot-memory-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -38,7 +38,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -90,7 +90,7 @@ spec:
       name: spring-boot-memory-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -104,7 +104,7 @@ metadata:
     name: spring-boot-app-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -133,7 +133,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -176,7 +176,7 @@ spec:
       name: spring-boot-app-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -190,7 +190,7 @@ metadata:
     name: spring-boot-cpu-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -219,7 +219,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -271,7 +271,7 @@ spec:
       name: spring-boot-cpu-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -285,7 +285,7 @@ metadata:
     name: spring-boot-faults
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -314,7 +314,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -408,7 +408,7 @@ spec:
       name: spring-boot-faults
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -422,7 +422,7 @@ metadata:
     name: spring-boot-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -451,7 +451,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -502,7 +502,7 @@ spec:
       name: spring-boot-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -516,7 +516,7 @@ metadata:
     name: spring-boot-exceptions
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta3
 spec:
   definition:
     scope: Namespaced
@@ -545,7 +545,7 @@ spec:
       - apiGroups: [ "litmuschaos.io" ]
         resources: [ "chaosengines","chaosexperiments","chaosresults" ]
         verbs: [ "create","list","get","patch","update","delete" ]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta3"
     imagePullPolicy: Always
     args:
     - -c
@@ -600,6 +600,6 @@ spec:
       name: spring-boot-exceptions
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
