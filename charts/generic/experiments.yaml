@@ -197,7 +197,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -450,7 +450,7 @@ spec:
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3'  
 
     ## It is used in pumba lib only    
     - name: STRESS_IMAGE
@@ -652,7 +652,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
     
     # provide the body string to overwrite the response body
     # if no value is provided, response will be an empty body.
@@ -708,7 +708,7 @@ spec:
       name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 3.0.0-beta3 
+      app.kubernetes.io/version: 3.0.0-beta3
 
 ---
 ---
@@ -872,7 +872,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     # set latency value for the chaos
     - name: LATENCY
@@ -2154,7 +2154,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -2246,7 +2246,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -2935,7 +2935,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -3071,7 +3071,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta3'
+      value: 'litmuschaos/go-runner:3.0.0-beta3' 
 
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
