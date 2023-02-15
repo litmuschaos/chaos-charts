@@ -156,7 +156,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     # set latency value for the chaos
     - name: LATENCY
@@ -364,7 +364,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
     # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
@@ -848,7 +848,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1169,7 +1169,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
     
     # reset timeout specifies after how much duration to reset the connection
     - name: RESET_TIMEOUT
@@ -1224,7 +1224,7 @@ spec:
       name: pod-http-reset-peer
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 3.0.0-beta4
+      app.kubernetes.io/version: 3.0.0-beta4 
 
 ---
 ---
@@ -1504,7 +1504,7 @@ spec:
 
     ## It is used in pumba lib only    
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4'  
 
     ## It is used in pumba lib only    
     - name: STRESS_IMAGE
@@ -1933,7 +1933,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -2730,7 +2730,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -2958,7 +2958,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
     
     # provide the body string to overwrite the response body
     # if no value is provided, response will be an empty body.
@@ -3236,7 +3236,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -3331,7 +3331,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:3.0.0-beta4'
+      value: 'litmuschaos/go-runner:3.0.0-beta4' 
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
