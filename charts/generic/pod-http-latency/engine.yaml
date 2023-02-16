@@ -32,11 +32,11 @@ spec:
             # provide the name of container runtime
             # it supports docker, containerd, crio
             - name: CONTAINER_RUNTIME
-              value: 'docker'
+              value: 'containerd'
 
             # provide the socket file path
             - name: SOCKET_PATH
-              value: '/var/run/docker.sock'
+              value: '/run/containerd/containerd.sock'
 
              ## percentage of total pods to target
             - name: PODS_AFFECTED_PERC
