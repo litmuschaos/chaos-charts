@@ -151,16 +151,6 @@ While Chaos Experiments under the Generic category offer the ability to induce c
         <td> Injects faults in OpenEBS tool </td>
         <td> <a href="https://github.com/litmuschaos/chaos-charts/tree/master/charts/openebs"> OpenEBS experiments</a></td>
     <tr>
-    <tr>
-        <td> Kafka Experiments </td>
-        <td> Inject faults in kafka application </td>
-        <td> <a href="https://github.com/litmuschaos/chaos-charts/tree/master/charts/kafka"> kafka experiments </a></td>
-    <tr>
-    <tr>
-        <td> Cassandra Experiments </td>
-        <td> Inject faults in cassandra application </td>
-        <td> <a href="https://github.com/litmuschaos/chaos-charts/tree/master/charts/cassandra"> cassandra experiments </a></td>
-    <tr>
 </table>
 
 ### Platform Chaos
