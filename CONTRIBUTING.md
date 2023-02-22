@@ -10,8 +10,6 @@ Chaos Charts are a groups of categorized chaos experiments, represented as custo
 
 - <b>Generic</b>: It contains chaos to disrupt state of kubernetes resources. i.e, pod-delete
 - <b>OpenEBS</b>: It contains chaos to disrupt state of OpenEBS control/date plane components. i.e, openebs-target-failure
-- <b>Cassandra</b>: It contains chaos to disrupt state of Cassandra Applications. i.e, cassandra-pod-delete
-- <b>Kafka</b>: It contains chaos to disrupt state of Kafka Applications. i.e, kafka-broker-pod-delete
 - <b>Coredns</b>: It contains chaos to disrupt state of Coredns pod. i.e, coredns-pod-delete
 - <b>Kube-AWS</b>: It contains chaos to disrupt state of AWS resources running part of the kubernetes cluster. i.e, ebs-loss
 - <b>Kube-Components</b>: It contains chaos to disrupt the state of kubernetes components. i.e, k8-kube-proxy.
