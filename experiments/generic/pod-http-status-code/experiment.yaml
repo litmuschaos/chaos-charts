@@ -140,11 +140,11 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     # To select pods on specific node(s)
     - name: NODE_LABEL

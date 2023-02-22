@@ -109,7 +109,7 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the destination ips
     # chaos injection will be triggered for these destination ips
@@ -123,7 +123,7 @@ spec:
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -254,11 +254,11 @@ spec:
 
       ## provide the cluster runtime
       - name: CONTAINER_RUNTIME
-        value: 'docker'   
+        value: 'containerd'   
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: '/var/run/docker.sock'         
+        value: '/run/containerd/containerd.sock'         
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -363,11 +363,11 @@ spec:
 
       # provide the name of container runtime, it supports docker, containerd, crio
       - name: CONTAINER_RUNTIME
-        value: "docker"
+        value: 'containerd'
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: "/var/run/docker.sock"
+        value: '/run/containerd/containerd.sock'
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -590,13 +590,13 @@ spec:
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
@@ -737,7 +737,7 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the destination ips
     # chaos injection will be triggered for these destination ips
@@ -751,7 +751,7 @@ spec:
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -1200,11 +1200,11 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     # To select pods on specific node(s)
     - name: NODE_LABEL
@@ -1977,11 +1977,11 @@ spec:
 
     ## provide the cluster runtime
     - name: CONTAINER_RUNTIME
-      value: 'docker'        
+      value: 'containerd'        
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'      
+      value: '/run/containerd/containerd.sock'      
 
     - name: TARGET_PODS
       value: ''
@@ -2111,7 +2111,7 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the destination ips
     # chaos injection will be triggered for these destination ips
@@ -2125,7 +2125,7 @@ spec:
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -2356,7 +2356,7 @@ spec:
     # for litmus LIB, it supports docker, containerd, crio
     # for pumba LIB, it supports docker only
     - name: CONTAINER_RUNTIME
-      value: 'docker'
+      value: 'containerd'
 
     # provide the destination ips
     # chaos injection will be triggered for these destination ips
@@ -2370,7 +2370,7 @@ spec:
 
     # provide the socket file path
     - name: SOCKET_PATH
-      value: '/var/run/docker.sock'
+      value: '/run/containerd/containerd.sock'
 
     # To select pods on specific node(s)
     - name: NODE_LABEL
@@ -2597,11 +2597,11 @@ spec:
 
       # provide the name of container runtime, it supports docker, containerd, crio
       - name: CONTAINER_RUNTIME
-        value: "docker"
+        value: 'containerd'
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: "/var/run/docker.sock"
+        value: '/run/containerd/containerd.sock'
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -2830,11 +2830,11 @@ spec:
 
       ## provide the cluster runtime
       - name: CONTAINER_RUNTIME
-        value: 'docker'   
+        value: 'containerd'   
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: '/var/run/docker.sock'        
+        value: '/run/containerd/containerd.sock'        
         
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel

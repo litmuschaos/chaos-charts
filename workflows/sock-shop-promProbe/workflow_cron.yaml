@@ -338,9 +338,9 @@ spec:
                             - name: NETWORK_PACKET_LOSS_PERCENTAGE
                               value: '100'
                             - name: CONTAINER_RUNTIME
-                              value: 'docker' 
+                              value: 'containerd' 
                             - name: SOCKET_PATH
-                              value: '/var/run/docker.sock'                
+                              value: '/run/containerd/containerd.sock'                
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
