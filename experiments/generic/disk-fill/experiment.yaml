@@ -13,7 +13,7 @@ metadata:
 spec:
   definition:
     scope: Namespaced
-    permissions: 
+    permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -69,7 +69,7 @@ spec:
 
     - name: TARGET_CONTAINER
       value: ''
-    
+
     - name: FILL_PERCENTAGE
       value: '80'
 
@@ -107,10 +107,13 @@ spec:
     - name: LIB_IMAGE
       value: 'litmuschaos/go-runner:latest'
 
-    # Provide the container runtime path
-    # Default set to docker container path
-    - name: CONTAINER_PATH
-      value: '/var/lib/docker/containers'
+    # provide the name of container runtime, it supports docker, containerd, crio
+    - name: CONTAINER_RUNTIME
+      value: 'containerd'
+
+    # provide the socket file path
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -121,5 +124,5 @@ spec:
       name: disk-fill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/host-path-usage: "true" 
+      app.kubernetes.io/host-path-usage: "true"
       app.kubernetes.io/version: latest
