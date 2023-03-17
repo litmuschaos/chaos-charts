@@ -86,6 +86,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta5
+    
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -178,7 +179,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta5
-    
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

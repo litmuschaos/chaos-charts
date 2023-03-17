@@ -123,6 +123,10 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
@@ -169,7 +173,7 @@ spec:
       name: gcp-vm-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: 3.0.0-beta5
+      app.kubernetes.io/version: 3.0.0-beta5 
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -215,10 +219,6 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
     image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
@@ -262,7 +262,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta5
-
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -359,6 +358,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta5
+
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

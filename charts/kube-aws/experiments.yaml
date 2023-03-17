@@ -42,7 +42,11 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/py-runner:3.0.0-beta5"
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
@@ -220,10 +224,6 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
     image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
@@ -309,6 +309,10 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
     image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
@@ -402,11 +406,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:3.0.0-beta5"
+    image: "litmuschaos/py-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
