@@ -98,9 +98,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -112,9 +112,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             #number of cpu cores to be consumed
@@ -168,9 +168,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -182,9 +182,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             - name: MEMORY_CONSUMPTION
@@ -239,9 +239,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 12
+                            probeTimeout: 1000
                             interval: 12
-                            retry: 3
+                            attempt: 3
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -253,9 +253,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
@@ -312,9 +312,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 12
+                            probeTimeout: 1000
                             interval: 12
-                            retry: 3
+                            attempt: 3
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -326,9 +326,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
@@ -386,9 +386,9 @@ spec:
                             operation: "present"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 1
+                            attempt: 1
                             probePollingInterval: 1
                         - name: "check-probe-success"
                           type: "promProbe"
@@ -400,9 +400,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             - name: FILL_PERCENTAGE

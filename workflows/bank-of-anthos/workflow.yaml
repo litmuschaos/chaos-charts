@@ -84,9 +84,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION

@@ -94,9 +94,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -108,9 +108,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             initialDelaySeconds: 10
                         components:
                           env:
@@ -165,9 +165,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -179,9 +179,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             initialDelaySeconds: 10
                         components:
                           env:
@@ -237,9 +237,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 12
+                            probeTimeout: 1000
                             interval: 12
-                            retry: 3
+                            attempt: 3
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -251,9 +251,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             initialDelaySeconds: 2
                         components:
                           env:
@@ -310,9 +310,9 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 12
+                            probeTimeout: 1000
                             interval: 12
-                            retry: 3
+                            attempt: 3
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -324,9 +324,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             initialDelaySeconds: 2
                         components:
                           env:
@@ -385,9 +385,9 @@ spec:
                             operation: "present"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 1
+                            attempt: 1
                             probePollingInterval: 1
                         - name: "check-benchmark"
                           type: "cmdProbe"
@@ -399,9 +399,9 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 2
+                            probeTimeout: 1000
                             interval: 1
-                            retry: 2
+                            attempt: 2
                             initialDelaySeconds: 1
                         components:
                           env:
