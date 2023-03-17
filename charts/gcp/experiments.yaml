@@ -9,7 +9,7 @@ metadata:
     name: gcp-vm-disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta5
 spec:
   definition:
     scope: Cluster
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
@@ -80,7 +80,7 @@ spec:
       name: gcp-vm-disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -97,7 +97,7 @@ metadata:
     name: gcp-vm-disk-loss-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta5
 spec:
   definition:
     scope: Cluster
@@ -126,7 +126,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
@@ -165,7 +165,7 @@ spec:
       name: gcp-vm-disk-loss-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
@@ -182,7 +182,7 @@ metadata:
     name: gcp-vm-instance-stop-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta5
 spec:
   definition:
     scope: Cluster
@@ -215,7 +215,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
@@ -261,7 +261,7 @@ spec:
       name: gcp-vm-instance-stop-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta5
 
     secrets:
     - name: cloud-secret
@@ -279,7 +279,7 @@ metadata:
     name: gcp-vm-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta5
 spec:
   definition:
     scope: Cluster
@@ -312,7 +312,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta5"
     imagePullPolicy: Always
     args:
     - -c
@@ -358,7 +358,7 @@ spec:
       name: gcp-vm-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta5
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
