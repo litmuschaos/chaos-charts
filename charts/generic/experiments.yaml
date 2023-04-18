@@ -122,7 +122,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -171,7 +171,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -188,7 +188,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -247,7 +247,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -487,7 +487,7 @@ metadata:
     name: pod-http-status-code
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -536,7 +536,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -550,7 +550,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
@@ -612,7 +612,7 @@ spec:
       name: pod-http-status-code
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -626,7 +626,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Cluster
@@ -663,7 +663,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -698,7 +698,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -713,7 +713,7 @@ spec:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -727,7 +727,7 @@ metadata:
     name: pod-cpu-hog-exec
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -776,7 +776,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -815,7 +815,7 @@ spec:
       name: pod-cpu-hog-exec
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -829,7 +829,7 @@ metadata:
     name: pod-http-modify-header
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -878,7 +878,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -953,7 +953,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -967,7 +967,7 @@ metadata:
     name: pod-http-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -1016,7 +1016,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -1030,7 +1030,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     # set latency value for the chaos
     - name: LATENCY
@@ -1086,7 +1086,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 ---
@@ -1101,7 +1101,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Cluster
@@ -1187,7 +1187,7 @@ metadata:
     name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -1236,7 +1236,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -1274,7 +1274,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
@@ -1306,7 +1306,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1320,7 +1320,7 @@ metadata:
     name: pod-dns-error
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -1437,7 +1437,7 @@ metadata:
     name: pod-dns-spoof
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -1486,7 +1486,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     args:
       - -c
       - ./experiments -name pod-dns-spoof
@@ -1498,7 +1498,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.0.0-beta6"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -1536,7 +1536,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1809,7 +1809,7 @@ metadata:
     name: pod-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -1858,7 +1858,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -1872,7 +1872,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1931,7 +1931,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2209,7 +2209,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -2258,7 +2258,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -3149,7 +3149,7 @@ metadata:
     name: pod-http-modify-body
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta6
 spec:
   definition:
     scope: Namespaced
@@ -3198,7 +3198,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta6"
     imagePullPolicy: Always
     args:
     - -c
@@ -3212,7 +3212,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta6'
     
     # provide the body string to overwrite the response body
     # if no value is provided, response will be an empty body.
@@ -3268,7 +3268,7 @@ spec:
       name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta6
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
