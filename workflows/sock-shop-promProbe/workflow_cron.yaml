@@ -57,7 +57,7 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/3.0.0-beta6?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
         
     - name: pod-cpu-hog
@@ -98,10 +98,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
@@ -112,8 +112,8 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:
@@ -168,10 +168,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
@@ -182,8 +182,8 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:
@@ -239,10 +239,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 12
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 3
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
@@ -253,8 +253,8 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:
@@ -312,10 +312,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 12
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 3
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
@@ -326,8 +326,8 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:
@@ -386,10 +386,10 @@ spec:
                             operation: "present"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 1
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-probe-success"
                           type: "promProbe"
                           promProbe/inputs:
@@ -400,8 +400,8 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:  
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:
