@@ -88,8 +88,8 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
                         components:
                           env:

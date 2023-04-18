@@ -94,10 +94,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-benchmark"
                           type: "cmdProbe"
                           cmdProbe/inputs:
@@ -108,10 +108,10 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            initialDelaySeconds: 10
+                            initialDelay: 10s
                         components:
                           env:
                             #number of cpu cores to be consumed
@@ -165,10 +165,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-benchmark"
                           type: "cmdProbe"
                           cmdProbe/inputs:
@@ -179,10 +179,10 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            initialDelaySeconds: 10
+                            initialDelay: 10s
                         components:
                           env:
                             - name: MEMORY_CONSUMPTION
@@ -237,10 +237,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 12
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 3
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-benchmark"
                           type: "cmdProbe"
                           cmdProbe/inputs:
@@ -251,10 +251,10 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            initialDelaySeconds: 2
+                            initialDelay: 2s
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
@@ -310,10 +310,10 @@ spec:
                                 responseCode: "200"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 12
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 3
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-benchmark"
                           type: "cmdProbe"
                           cmdProbe/inputs:
@@ -324,25 +324,25 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            initialDelaySeconds: 2
+                            initialDelay: 2s
                         components:
                           env:
                             - name: TOTAL_CHAOS_DURATION
-                              value: '30' 
+                              value: '30'
                             - name: NETWORK_INTERFACE
                               value: 'eth0'
                             - name: NETWORK_PACKET_LOSS_PERCENTAGE
                               value: '100'
                             - name: CONTAINER_RUNTIME
-                              value: 'containerd' 
+                              value: 'containerd'
                             - name: SOCKET_PATH
-                              value: '/run/containerd/containerd.sock'                
+                              value: '/run/containerd/containerd.sock'
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: disk-fill
       inputs:
@@ -385,10 +385,10 @@ spec:
                             operation: "present"
                           mode: "Continuous"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 1
-                            probePollingInterval: 1
+                            probePollingInterval: 1s
                         - name: "check-benchmark"
                           type: "cmdProbe"
                           cmdProbe/inputs:
@@ -399,10 +399,10 @@ spec:
                               value: "100"
                           mode: "Edge"
                           runProperties:
-                            probeTimeout: 1000
-                            interval: 1
+                            probeTimeout: 1s
+                            interval: 100ms
                             attempt: 2
-                            initialDelaySeconds: 1
+                            initialDelay: 1s
                         components:
                           env:
                             - name: FILL_PERCENTAGE
@@ -410,7 +410,7 @@ spec:
                             - name: TARGET_CONTAINER
                               value: ''
                             - name: TOTAL_CHAOS_DURATION
-                              value: '30'                            
+                              value: '30'
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
@@ -428,13 +428,13 @@ spec:
     - name: delete-loadtest
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]    
-    
+        args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
+
     - name: revert-chaos
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
-        args: 
-          [ 
+        args:
+          [
             "kubectl delete chaosengine pod-memory-hog-chaos pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
