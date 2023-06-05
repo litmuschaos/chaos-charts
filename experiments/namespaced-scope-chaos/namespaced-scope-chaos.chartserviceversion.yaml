@@ -1,0 +1,27 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: namespaced-scope-chaos
+  version: 0.1.0
+  annotations:
+    categories: namespaced-scope-chaos
+    chartDescription: Performs the pod delete chaos experiment in namespaced scope mode
+spec:
+  displayName: Namespaced Scope Chaos
+  categoryDescription: >
+    Performs the pod delete chaos experiment in namespaced scope mode
+  faults:
+    - name: pod-delete
+      description: Deletes a pod belonging to a deployment/statefulset/daemonset
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  icon:
+    - url:
+      mediatype: ""

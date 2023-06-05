@@ -1,0 +1,29 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: node-poweroff
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: Harness
+spec:
+  displayName: Node Poweroff
+  categoryDescription: |
+    Node poweroff contains chaos experiment to poweroff a node via SSH.
+  keywords:
+    - Kubernetes
+  platforms:
+    - KVM/LibVirt based K8s
+    - EKS
+  chaosType: infra
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+  icon:
+    - url: ""
+      mediatype: ""

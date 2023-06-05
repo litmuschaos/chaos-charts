@@ -1,0 +1,29 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-19T10:28:08Z
+  name: vmware-vm-poweroff
+  version: 0.1.0
+  annotations:
+    categories: VMWare
+    vendor: Harness
+spec:
+  displayName: VMware VM Power Off
+  categoryDescription: |
+    vm-poweroff fault Power-Offs the target VMs for a certain chaos duration and then bring back to Power-On state.
+    - This fault helps verify the resiliency of the process/application that are running on the target instance.
+  keywords:
+    - VMware
+  platforms:
+    - VMware
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+  icon:
+    - url:
+      mediatype: ""

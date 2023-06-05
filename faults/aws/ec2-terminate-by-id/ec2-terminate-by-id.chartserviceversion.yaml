@@ -1,0 +1,30 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-27T10:28:08Z
+  name: ec2-terminate-by-id
+  version: 0.1.0
+  annotations:
+    categories: AWS
+    vendor: Harness
+spec:
+  displayName: EC2 Terminate By ID
+  categoryDescription: |
+    This fault causes termination of an EC2 instance for a certain chaos duration.
+    - Causes termination of an EC2 instance provided by instance ID before bringing it back to running state after the specified chaos duration.
+    - It helps to check the performance of the application on the EC2 instances.
+  keywords:
+    - AWS
+  platforms:
+    - AWS
+  chaosType: infra
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+  icon:
+    - url:
+      mediatype: ""

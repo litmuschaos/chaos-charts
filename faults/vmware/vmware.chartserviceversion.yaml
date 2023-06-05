@@ -1,0 +1,24 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: vmware
+  version: 0.1.0
+  annotations:
+    categories: VMware
+    chartDescription: Injects faults on VMware system
+    executionPlane: "kubernetes"
+spec:
+  displayName: VMware
+  categoryDescription: >
+    VMware chaos contains different experiments for VMware platform. It uses VMware apis to carry out the fault logic for different components.
+  faults:
+    - name: vm-poweroff
+      description: It injects power-off chaos on VMware VMs.
+      displayName: "VMware VM Poweroff"
+  keywords:
+    - VMware
+  minKubeVersion: 1.12.0
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png

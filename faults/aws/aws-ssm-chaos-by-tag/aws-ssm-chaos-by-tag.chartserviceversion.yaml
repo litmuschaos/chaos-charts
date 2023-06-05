@@ -1,0 +1,30 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-27T10:28:08Z
+  name: aws-ssm-chaos-by-tag
+  version: 0.1.0
+  annotations:
+    categories: AWS
+    vendor: Harness
+spec:
+  displayName: AWS SSM Chaos By Tag
+  categoryDescription: |
+    AWS SSM Chaos By Tag fault disrupts the state of infra resources. The fault induces chaos on AWS resources using Amazon SSM Run Command This is carried out by using SSM Docs that defines the actions performed by Systems Manager on your managed instances (having SSM agent installed) which let us perform chaos faults on resources.
+    - Causes chaos on AWS EC2 instances with given instance tag using SSM docs for total chaos duration with the specified chaos interval.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the target application pod(if provided).
+  keywords:
+    - AWS
+  platforms:
+    - AWS
+  chaosType: infra
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+  icon:
+    - url:
+      mediatype: ""

@@ -1,0 +1,27 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: azure
+  version: 0.1.0
+  annotations:
+    categories: Azure
+    chartDescription: Injects faults on Azure services
+    executionPlane: "kubernetes"
+spec:
+  displayName: Azure
+  categoryDescription: >
+    Azure chaos contains different chaos experiments for Azure cloud provider to test the app/platform service availability. It uses Azure RunCommand to carry out the fault logic in the instance. It will install all the experiments which can be used to inject chaos into the Azure services like VMs, and so on.
+  faults:
+    - name: azure-disk-loss
+      description: It injects Azure disk loss fault from an Azure VM instance for a certain chaos duration.
+      displayName: "Azure Disk Loss"
+    - name: azure-instance-stop
+      description: It injects the Azure VM instance stop fault for a certain chaos duration.
+      displayName: "Azure Instance Stop"
+  keywords:
+    - Azure
+  minKubeVersion: 1.12.0
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png
