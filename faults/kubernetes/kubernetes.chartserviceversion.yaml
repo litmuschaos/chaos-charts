@@ -1,0 +1,120 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: kubernetes
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    chartDescription: Injects kubernetes chaos experiment
+    executionPlane: "kubernetes"
+spec:
+  displayName: Kubernetes
+  categoryDescription: >
+    Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easier management and discovery. It will install all the experiments which can be used to inject chaos into containerized applications.
+  faults:
+    - name: pod-delete
+      description: It injects pod-delete chaos in a Kubernetes pod.
+      displayName: "Pod Delete"
+    - name: container-kill
+      description: It injects container-kill chaos in a Kubernetes pod .
+      displayName: "Container Kill"
+    - name: pod-cpu-hog
+      description: It injects cpu-hog chaos in a Kubernetes pod.
+      displayName: "Pod CPU Hog"
+    - name: pod-network-loss
+      description: It injects network-loss chaos in a Kubernetes pod.
+      displayName: "Pod Network Loss"
+    - name: pod-network-latency
+      description: It injects network-latency chaos in a Kubernetes pod.
+      displayName: "Pod Network Latency"
+    - name: pod-network-corruption
+      description: It injects network-corruption chaos in a Kubernetes pod.
+      displayName: "Pod Network Corruption"
+    - name: node-drain
+      description: It injects node-drain chaos in a Kubernetes node.
+      displayName: "Node Drain"
+    - name: node-cpu-hog
+      description: It injects node-cpu-hog chaos in a Kubernetes node.
+      displayName: "Node CPU Hog"
+    - name: node-restart
+      description: It injects node-restart chaos in a Kubernetes node.
+      displayName: "Node Restart"
+    - name: disk-fill
+      description: It injects disk-fill chaos in a Kubernetes node.
+      displayName: "Disk Fill"
+    - name: node-memory-hog
+      description: It injects node-memory-hog chaos in a Kubernetes node.
+      displayName: "Node Memory Hog"
+    - name: node-poweroff
+      description: Node poweroff contains chaos experiment to poweroff a node via SSH.
+      displayName: "Node Poweroff"
+    - name: pod-memory-hog
+      description: It injects pod-memory-hog chaos in a Kubernetes pod.
+      displayName: "Pod Memory Hog"
+    - name: kubelet-service-kill
+      description: It injects kubelet-service-kill chaos in a Kubernetes node.
+      displayName: "Kubelet Service Kill"
+    - name: pod-network-duplication
+      description: It injects pod-network-duplication chaos in a Kubernetes pod.
+      displayName: "Pod Network Duplication"
+    - name: node-taint
+      description: It injects node-taint chaos in a Kubernetes node.
+      displayName: "Node Taint"
+    - name: docker-service-kill
+      description: It injects docker-service-kill chaos in a Kubernetes pod.
+      displayName: "Docker Service Kill"
+    - name: pod-autoscaler
+      description: It injects pod-autoscaler chaos in a Kubernetes pod.
+      displayName: "Pod Autoscaler"
+    - name: node-io-stress
+      description: It injects node-io-stress chaos in a Kubernetes node.
+      displayName: "Node IO Stress"
+    - name: pod-io-stress
+      description: It injects pod-io-stress chaos in a Kubernetes pod.
+      displayName: "Pod IO Stress"
+    - name: pod-dns-error
+      description: It injects pod-dns-error chaos in a Kubernetes pod.
+      displayName: "Pod DNS Error"
+    - name: pod-dns-spoof
+      description: It injects pod-dns-spoof chaos in a Kubernetes pod.
+      displayName: "Pod DNS Spoof"
+    - name: pod-cpu-hog-exec
+      description: It injects pod-cpu-hog-exec chaos in a Kubernetes pod.
+      displayName: "Pod CPU Hog Exec"
+    - name: pod-memory-hog-exec
+      description: It injects pod-memory-hog-exec chaos in a Kubernetes pod.
+      displayName: "Pod Memory Hog Exec"
+    - name: pod-network-partition
+      description: It injects pod-network-partition chaos in a Kubernetes pod.
+      displayName: "Pod Network Partition"
+    - name: pod-http-latency
+      description: It injects pod-http-latency chaos in a Kubernetes pod.
+      displayName: "Pod HTTP Latency"
+    - name: pod-http-status-code
+      description: It injects pod-http-status-code chaos in a Kubernetes pod.
+      displayName: "Pod HTTP Status Code"
+    - name: pod-http-modify-header
+      description: It injects pod-http-modify-header chaos in a Kubernetes pod.
+      displayName: "Pod HTTP Modify Header"
+    - name: pod-http-modify-body
+      description: It injects pod-http-modify-body chaos in a Kubernetes pod.
+      displayName: "Pod HTTP Modify Body"
+    - name: pod-http-reset-peer
+      description: It injects pod-http-reset-peer chaos in a Kubernetes pod.
+      displayName: "Pod HTTP Reset Peer"
+  keywords:
+    - Kubernetes
+  minKubeVersion: 1.12.0
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/kubernetes/kubernetes
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents/#kubernetes
+  icon:
+    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+      mediatype: image/png
