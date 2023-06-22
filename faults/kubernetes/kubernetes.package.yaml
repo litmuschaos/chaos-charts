@@ -97,6 +97,3 @@ faults:
   - name: node-network-loss
     CSV: node-network-loss.chartserviceversion.yaml
     desc: "node-network-loss"
-  - name: time-chaos
-    CSV: time-chaos.chartserviceversion.yaml
-    desc: "time-chaos"

@@ -19,7 +19,7 @@ spec:
   minKubeVersion: 1.12.0
   links:
     - name: Documentation
-      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
   icon:
     - url:
       mediatype: ""

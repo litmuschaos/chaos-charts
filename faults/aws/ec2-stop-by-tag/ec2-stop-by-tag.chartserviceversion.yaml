@@ -7,7 +7,7 @@ metadata:
   version: 0.1.0
   annotations:
     categories: AWS
-    vendor: Harness
+    vendor: LitmusChaos
 spec:
   displayName: EC2 Stop By Tag
   categoryDescription: |
@@ -24,7 +24,7 @@ spec:
     app.kubernetes.io/version: ci
   links:
     - name: Documentation
-      url: https://docs.harness.io/category/kl0mxwpfw1-hce-category
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
   icon:
     - url:
       mediatype: ""

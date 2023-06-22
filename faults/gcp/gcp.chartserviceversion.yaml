@@ -36,7 +36,7 @@ spec:
     - name: Kubernetes Slack
       url: https://slack.kubernetes.io/
     - name: Documentation
-      url: ""
+      url: "https://litmuschaos.github.io/litmus/experiments/categories/contents/#gcp"
   icon:
     - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
       mediatype: image/png

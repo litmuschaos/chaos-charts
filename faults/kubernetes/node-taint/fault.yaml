@@ -51,7 +51,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list", "patch", "update"]
-    image: "chaosnative/go-runner:ci"
+    image: "litmuschaos/go-runner:ci"
     imagePullPolicy: Always
     args:
       - -c
