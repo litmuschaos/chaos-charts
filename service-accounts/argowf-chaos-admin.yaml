@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-
+  name: argowf-chaos-
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos

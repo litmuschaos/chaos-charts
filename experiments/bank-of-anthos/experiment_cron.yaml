@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  generateName: argowf-chaos-bank-of-anthos-resiliency-cron-wf-
+  name: argowf-chaos-bank-of-anthos-resiliency-cron-wf-
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"

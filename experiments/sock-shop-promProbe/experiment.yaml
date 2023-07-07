@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-sock-shop-resiliency-
+  name: argowf-chaos-sock-shop-resiliency-
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_sock-shop"

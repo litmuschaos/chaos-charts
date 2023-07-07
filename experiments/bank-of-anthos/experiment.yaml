@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-bank-of-anthos-resiliency-
+  name: argowf-chaos-bank-of-anthos-resiliency-
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"

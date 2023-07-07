@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  generateName: argowf-chaos-sock-shop-resiliency-cron-wf-
+  name: argowf-chaos-sock-shop-resiliency-cron-wf-
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_sock-shop"
