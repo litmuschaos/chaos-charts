@@ -26,8 +26,8 @@ spec:
       steps:
         - - name: install-application
             template: install-application
-        - - name: install-chaos-experiments
-            template: install-chaos-experiments
+        - - name: install-chaos-faults
+            template: install-chaos-faults
           - name: load-test
             template: load-test 
         - - name: pod-cpu-hog
@@ -52,7 +52,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
 
-    - name: install-chaos-experiments
+    - name: install-chaos-faults
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]

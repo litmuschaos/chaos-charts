@@ -24,17 +24,17 @@ spec:
     templates:
       - name: argowf-chaos
         steps:
-          - - name: install-experiment
-              template: install-experiment
+          - - name: install-chaos-faults
+              template: install-chaos-faults
           - - name: run-chaos
               template: run-chaos
           - - name: revert-chaos
               template: revert-chaos
 
-      - name: install-experiment
+      - name: install-chaos-faults
         inputs:
           artifacts:
-            - name: install-experiment
+            - name: install-chaos-faults
               path: /tmp/node-cpu-hog.yaml
               raw:
                 data: |
