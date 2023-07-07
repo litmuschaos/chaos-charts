@@ -30,8 +30,8 @@ spec:
             template: install-chaos-faults
         - - name: pod-network-loss
             template: pod-network-loss
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
           - name: delete-application
             template: delete-application
 
@@ -112,7 +112,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=bank","-typeName=resilient","-operation=delete", "-app=bank-of-anthos"]  
     
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]

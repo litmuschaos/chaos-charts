@@ -24,8 +24,8 @@ spec:
             template: install-chaos-faults
         - - name: run-chaos
             template: run-chaos
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
 
     - name: install-chaos-faults
       inputs:
@@ -144,7 +144,7 @@ spec:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]

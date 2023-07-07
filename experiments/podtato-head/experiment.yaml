@@ -24,8 +24,8 @@ spec:
             template: install-chaos-faults
         - - name: pod-delete
             template: pod-delete
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
           - name: delete-application
             template: delete-application
 
@@ -104,7 +104,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=delete","-app=podtato-head"]
     
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]

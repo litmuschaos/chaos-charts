@@ -36,8 +36,8 @@ spec:
             template: pod-memory-hog
         - - name: disk-fill
             template: disk-fill
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
         #  - name: delete-application
         #    template: delete-application
           - name: delete-loadtest
@@ -426,7 +426,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
 
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
