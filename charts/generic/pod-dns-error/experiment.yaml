@@ -9,7 +9,7 @@ metadata:
     name: pod-dns-error
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
 spec:
   definition:
     scope: Namespaced
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -58,7 +58,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta9"
     args:
       - -c
       - ./experiments -name pod-dns-error
@@ -70,7 +70,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.0.0-beta9"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -111,5 +111,5 @@ spec:
       experiment: pod-dns-error
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta9

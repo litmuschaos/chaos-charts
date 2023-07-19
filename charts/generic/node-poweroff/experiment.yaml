@@ -9,7 +9,7 @@ metadata:
     name: node-poweroff
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps","secrets"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta9"
     imagePullPolicy: Always
     args:
     - -c
@@ -69,7 +69,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
+      value: "litmuschaos/go-runner:3.0.0-beta9"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -86,7 +86,7 @@ spec:
       name: node-poweroff
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta9
     secrets:
       - name: id-rsa
         mountPath: /mnt/

@@ -36,7 +36,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-cpu-hog
@@ -44,7 +44,7 @@ spec:
       url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/node-cpu-hog/
     - name: Video
       url: https://www.youtube.com/watch?v=jpJttftsZqA
-  icon: 
-    - url: 
+  icon:
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/node-cpu-hog/experiment.yaml

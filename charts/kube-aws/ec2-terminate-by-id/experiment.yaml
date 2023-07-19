@@ -9,7 +9,7 @@ metadata:
     name: ec2-terminate-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta9"
     imagePullPolicy: Always
     args:
     - -c
@@ -66,7 +66,7 @@ spec:
 
     # enable it if the target instance is a part of self-managed nodegroup.
     - name: MANAGED_NODEGROUP
-      value: 'disable'      
+      value: 'disable'
 
     # Instance ID of the target ec2 instance
     # Multiple IDs can also be provided as comma separated values ex: id1,id2
@@ -79,15 +79,15 @@ spec:
     - name: SEQUENCE
       value: 'parallel'
 
-    # Provide the path of aws credentials mounted from secret  
+    # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
       value: '/tmp/cloud_config.yml'
-          
+
     labels:
       name: ec2-terminate-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta9
     secrets:
     - name: cloud-secret
       mountPath: /tmp/
