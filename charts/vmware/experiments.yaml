@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log
+      # Track and get the runner, experiment, and helper pods log 
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]
+        verbs: ["get","list","watch"]  
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -71,7 +71,7 @@ spec:
     # provide the VM MOIDs as comma separated values
     - name: APP_VM_MOIDS
       value: ''
-
+          
     # set chaos duration (in sec) as desired
     - name: TOTAL_CHAOS_DURATION
       value: '30'
