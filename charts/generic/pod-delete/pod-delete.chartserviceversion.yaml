@@ -14,7 +14,7 @@ spec:
     Pod delete contains chaos to disrupt state of kubernetes resources. Experiments can inject random pod delete failures against specified application.
     - Causes (forced/graceful) pod failure of random replicas of an application deployment.
     - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
- 
+
   keywords:
     - Kubernetes
     - K8S
@@ -38,7 +38,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-delete
@@ -47,6 +47,6 @@ spec:
     - name: Video
       url: https://www.youtube.com/watch?v=X3JvY_58V9A
   icon:
-    - url: 
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-delete/experiment.yaml

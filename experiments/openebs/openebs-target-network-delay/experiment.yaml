@@ -9,7 +9,7 @@ metadata:
     name: openebs-target-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   name: openebs-target-network-delay
 spec:
   definition:
@@ -44,7 +44,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta9"
     imagePullPolicy: Always
     args:
     - -c
@@ -67,14 +67,14 @@ spec:
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
     - name: LIB_IMAGE
-      value: 'gaiaadm/pumba:0.6.5' 
+      value: 'gaiaadm/pumba:0.6.5'
 
     - name: NETWORK_DELAY
       value: '60000' # in milliseconds
 
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
-            
+
     - name: LIVENESS_APP_LABEL
       value: ''
 
@@ -82,13 +82,13 @@ spec:
       value: ''
 
     - name: DATA_PERSISTENCE
-      value: ''   
+      value: ''
 
     labels:
       name: openebs-target-network-delay
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta9
     #configmaps:
     #- name: openebs-target-network-delay
     #  mountPath: /mnt

@@ -18,10 +18,10 @@ spec:
     - Kubernetes
     - K8S
     - Pod
-    - Container 
+    - Container
   platforms:
     - GKE
-    - Minikube 
+    - Minikube
     - Packet(Kubeadm)
     - EKS
     - AKS
@@ -34,7 +34,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/container-kill
@@ -43,6 +43,6 @@ spec:
     - name: Video
       url: https://www.youtube.com/watch?v=XKyMNdVsKMo
   icon:
-    - url: 
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/container-kill/experiment.yaml

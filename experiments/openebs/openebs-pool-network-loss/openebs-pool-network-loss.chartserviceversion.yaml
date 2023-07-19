@@ -10,7 +10,7 @@ metadata:
 spec:
   displayName: openebs-pool-network-loss
   categoryDescription: >
-     Network loss to pool pod belonging to a OpenEBS PVC 
+     Network loss to pool pod belonging to a OpenEBS PVC
   keywords:
     - Kubernetes
     - K8S
@@ -30,14 +30,14 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-network-loss
     - name: Documentation
       url: https://v1-docs.litmuschaos.io/docs/openebs-pool-network-loss/
     - name: Video
-      url: 
+      url:
   icon:
     - url: ""
       mediatype: ""

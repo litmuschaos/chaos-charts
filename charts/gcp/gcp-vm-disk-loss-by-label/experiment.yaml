@@ -9,7 +9,7 @@ metadata:
     name: gcp-vm-disk-loss-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
 spec:
   definition:
     scope: Cluster
@@ -26,7 +26,7 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
         verbs: ["get","list","watch"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta9"
     imagePullPolicy: Always
     args:
     - -c
@@ -54,30 +54,30 @@ spec:
     # set chaos interval (in sec) as desired
     - name: CHAOS_INTERVAL
       value: '30'
-      
+
     # set the GCP project id
     - name: GCP_PROJECT_ID
       value: ''
 
     # set the zone in which all the disks are created
-    # all the disks must exist in the same zone 
+    # all the disks must exist in the same zone
     - name: ZONES
       value: ''
-    
+
     # set the label of the target disk volumes
     - name: DISK_VOLUME_LABEL
       value: ''
-    
-    # set the percentage value of the disks with the given label 
+
+    # set the percentage value of the disks with the given label
     # which should be targeted as part of the chaos injection
     - name: DISK_AFFECTED_PERC
       value: ''
-      
+
     labels:
       name: gcp-vm-disk-loss-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta9
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

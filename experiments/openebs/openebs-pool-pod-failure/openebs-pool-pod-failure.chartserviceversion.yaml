@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: openebs-pool-pod-failure
   categoryDescription: >
-     Kill the pool pod and check if gets scheduled again. 
+     Kill the pool pod and check if gets scheduled again.
   keywords:
     - Kubernetes
     - K8S
@@ -31,7 +31,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta9
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-pool-pod-failure
