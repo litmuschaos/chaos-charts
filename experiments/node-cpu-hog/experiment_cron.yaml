@@ -24,17 +24,17 @@ spec:
     templates:
       - name: argowf-chaos
         steps:
-          - - name: install-experiment
-              template: install-experiment
+          - - name: install-chaos-faults
+              template: install-chaos-faults
           - - name: run-chaos
               template: run-chaos
-          - - name: revert-chaos
-              template: revert-chaos
+          - - name: cleanup-chaos-resources
+              template: cleanup-chaos-resources
 
-      - name: install-experiment
+      - name: install-chaos-faults
         inputs:
           artifacts:
-            - name: install-experiment
+            - name: install-chaos-faults
               path: /tmp/node-cpu-hog.yaml
               raw:
                 data: |
@@ -76,7 +76,7 @@ spec:
                           verbs:
                             - "get"
                             - "list"
-                      image: "litmuschaos/go-runner:latest"
+                      image: "litmuschaos/go-runner:3.0.0-beta3"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -99,7 +99,7 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: 'litmuschaos/go-runner:latest' 
+                        value: 'litmuschaos/go-runner:3.0.0-beta3' 
                     
                       labels:
                         name: node-cpu-hog
@@ -143,7 +143,7 @@ spec:
           image: litmuschaos/litmus-checker:latest
           args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
-      - name: revert-chaos
+      - name: cleanup-chaos-resources
         container:
           image: litmuschaos/k8s:latest
           command: [sh, -c]

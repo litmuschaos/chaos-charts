@@ -24,12 +24,12 @@ spec:
       steps:
       - - name: install-application
           template: install-application
-      - - name: install-chaos-experiments
-          template: install-chaos-experiments
+      - - name: install-chaos-faults
+          template: install-chaos-faults
       - - name: pod-delete
           template: pod-delete
-      - - name: revert-chaos
-          template: revert-chaos
+      - - name: cleanup-chaos-resources
+          template: cleanup-chaos-resources
         - name: delete-application
           template: delete-application
 
@@ -38,7 +38,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=apply","-timeout=400", "-app=podtato-head","-scope=namespace"]
 
-    - name: install-chaos-experiments
+    - name: install-chaos-faults
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
@@ -108,7 +108,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace={{workflow.parameters.adminModeNamespace}}","-typeName=resilient","-operation=delete","-app=podtato-head"]
     
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]

@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-sock-shop-resiliency-
+  name: argowf-chaos-sock-shop-resiliency-
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_sock-shop"
@@ -22,8 +22,8 @@ spec:
       steps:
         - - name: install-application
             template: install-application
-        - - name: install-chaos-experiments
-            template: install-chaos-experiments
+        - - name: install-chaos-faults
+            template: install-chaos-faults
           - name: load-test
             template: load-test
         - - name: pod-cpu-hog
@@ -36,8 +36,8 @@ spec:
             template: pod-memory-hog
         - - name: disk-fill
             template: disk-fill   
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
         #  - name: delete-application
         #    template: delete-application
           - name: delete-loadtest
@@ -48,7 +48,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=sock-shop","-typeName=resilient","-operation=apply","-timeout=400", "-app=sock-shop","-scope=cluster"] #for weak provide type flagName as resilient(-typeName=weak)
 
-    - name: install-chaos-experiments
+    - name: install-chaos-faults
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
@@ -430,7 +430,7 @@ spec:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
 
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
