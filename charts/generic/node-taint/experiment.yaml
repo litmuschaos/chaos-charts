@@ -10,7 +10,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
     scope: Cluster
@@ -27,10 +27,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec","pods/eviction"]
@@ -51,7 +51,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list","patch","update"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -76,10 +76,10 @@ spec:
     # set taint label & effect
     # key=value:effect or key:effect
     - name: TAINTS
-      value: '' 
+      value: ''
 
     labels:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10

@@ -10,7 +10,7 @@ metadata:
     name: openebs-target-container-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   name: openebs-target-container-failure
 spec:
   definition:
@@ -43,7 +43,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -66,14 +66,14 @@ spec:
     - name: LIB_IMAGE
       value: 'gaiaadm/pumba:0.6.5'
 
-    # Specify the container runtime used , to pick the relevant chaos util  
+    # Specify the container runtime used , to pick the relevant chaos util
     - name: CONTAINER_RUNTIME
-      value: 'docker' 
+      value: 'docker'
 
     # TARGET_CONTAINER values: cstor-volume-mgmt , cstor-istgt
     # For cstor-volume-istgt container kill use : cstor-istgt
     # For volume-mgmt-kill container use : cstor-volume-mgmt
-            
+
     - name: TARGET_CONTAINER
       value: 'cstor-volume-mgmt'
 
@@ -102,12 +102,12 @@ spec:
 
     - name: SOAK_TIME
       value: '60'
-      
+
     labels:
       name: openebs-target-container-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10
     #configmaps:
     #- name: openebs-target-container-failure
     #  mountPath: /mnt

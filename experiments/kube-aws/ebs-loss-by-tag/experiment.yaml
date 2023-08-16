@@ -9,7 +9,7 @@ metadata:
     name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -42,7 +42,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -66,10 +66,10 @@ spec:
       value: ''
 
     - name: SEQUENCE
-      value: 'parallel' 
+      value: 'parallel'
 
     - name: VOLUME_AFFECTED_PERC
-      value: ''             
+      value: ''
 
     # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
@@ -78,13 +78,13 @@ spec:
     # provide the LIB
     # only litmus supported
     - name: LIB
-      value: 'litmus'  
-          
+      value: 'litmus'
+
     labels:
       name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

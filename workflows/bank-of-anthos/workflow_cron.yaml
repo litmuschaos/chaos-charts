@@ -45,9 +45,9 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
-            {{workflow.parameters.adminModeNamespace}} ; sleep 30"      
-    
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/3.0.0-beta10?file=charts/generic/experiments.yaml -n
+            {{workflow.parameters.adminModeNamespace}} ; sleep 30"
+
     - name: pod-network-loss
       inputs:
         artifacts:
@@ -102,21 +102,21 @@ spec:
                             - name: CONTAINER_RUNTIME
                               value: 'containerd' 
                             - name: SOCKET_PATH
-                              value: '/run/containerd/containerd.sock'                
+                              value: '/run/containerd/containerd.sock'
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"] 
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
 
     - name: delete-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
-        args: ["-namespace=bank","-typeName=resilient","-operation=delete", "-app=bank-of-anthos"]  
-    
+        args: ["-namespace=bank","-typeName=resilient","-operation=delete", "-app=bank-of-anthos"]
+
     - name: revert-chaos
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
-        args: 
-          [ 
+        args:
+          [
             "kubectl delete chaosengine pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]

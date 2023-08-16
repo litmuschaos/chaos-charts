@@ -33,15 +33,15 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-autoscaler
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-autoscaler/
     - name: Video
-      url: 
-  icon: 
-    - url: 
+      url:
+  icon:
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-autoscaler/experiment.yaml

@@ -9,7 +9,7 @@ metadata:
     name: aws-ssm-chaos-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -42,7 +42,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -55,7 +55,7 @@ spec:
 
     - name: CHAOS_INTERVAL
       value: '60'
-      
+
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
@@ -73,33 +73,33 @@ spec:
     - name: SEQUENCE
       value: 'parallel'
 
-    # Provide the path of aws credentials mounted from secret  
+    # Provide the path of aws credentials mounted from secret
     - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'      
+      value: '/tmp/cloud_config.yml'
 
-    # Provide the name of ssm doc 
-    # if not using the default stress docs  
+    # Provide the name of ssm doc
+    # if not using the default stress docs
     - name: DOCUMENT_NAME
       value: ''
 
-    # Provide the type of ssm doc 
-    # if not using the default stress docs  
+    # Provide the type of ssm doc
+    # if not using the default stress docs
     - name: DOCUMENT_TYPE
       value: ''
 
     # Provide the format of ssm doc
-    # if not using the default stress docs  
+    # if not using the default stress docs
     - name: DOCUMENT_FORMAT
       value: ''
 
-    # Provide the path of ssm doc 
-    # if not using the default stress docs  
+    # Provide the path of ssm doc
+    # if not using the default stress docs
     - name: DOCUMENT_PATH
       value: ''
 
     # if you want to install dependencies to run default ssm docs
     - name: INSTALL_DEPENDENCIES
-      value: 'True'        
+      value: 'True'
 
     # provide the number of workers for memory stress
     - name: NUMBER_OF_WORKERS
@@ -113,12 +113,12 @@ spec:
     # 0 will consume all the available cpu cores
     - name: CPU_CORE
       value: '0'
-                
+
     labels:
       name: aws-ssm-chaos-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

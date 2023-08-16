@@ -13,7 +13,7 @@ spec:
   categoryDescription: |
     This experiment causes the power off of an azure instance for a certain chaos duration.
     - Causes termination of an azure instance before bringing it back to running state after the specified chaos duration.
-    - It helps to check the performance of the application on the instance. 
+    - It helps to check the performance of the application on the instance.
   keywords:
     - Azure
     - Scaleset
@@ -29,7 +29,7 @@ spec:
     name: Chaos Native
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/azure/instance-stop/experiment
@@ -38,7 +38,7 @@ spec:
     # - name: Video
     #   url:
   icon:
-    - url: 
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/azure/azure-instance-stop/experiment.yaml
 

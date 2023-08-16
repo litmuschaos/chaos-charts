@@ -14,7 +14,7 @@ spec:
     kubelet-service-kill contains killing kubelet service gracefully for a certain chaos duration.
     - Causes replicas may be evicted or becomes unreachable on account on nodes turning unschedulable (Not Ready) due to kubelet service kill.
     - The application node should be healthy once chaos is stopped and the services are reaccessable. 
-    
+
   keywords:
     - Kubernetes
     - K8S
@@ -36,15 +36,15 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/kubelet-service-kill
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/nodes/kubelet-service-kill/
     - name: Video
-      url: 
+      url:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/kubelet-service-kill/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/kubelet-service-kill/experiment.yaml
