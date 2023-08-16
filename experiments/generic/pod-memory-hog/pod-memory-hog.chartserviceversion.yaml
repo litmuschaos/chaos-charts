@@ -19,7 +19,7 @@ spec:
     - Kubernetes
     - K8S
     - Memory
-    - Pod 
+    - Pod
     - Stress
   platforms:
     - GKE
@@ -37,15 +37,15 @@ spec:
     name: ChaosNative
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-memory-hog
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-memory-hog/
     - name: Video
-      url: https://www.youtube.com/watch?v=HuAXg8W5Tzo 
+      url: https://www.youtube.com/watch?v=HuAXg8W5Tzo
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-memory-hog/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-memory-hog/experiment.yaml

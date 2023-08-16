@@ -25,7 +25,7 @@ spec:
         - - name: install-chaos-experiments
             template: install-chaos-experiments
           - name: load-test
-            template: load-test 
+            template: load-test
         - - name: pod-cpu-hog
             template: pod-cpu-hog
         - - name: pod-delete
@@ -35,7 +35,7 @@ spec:
         - - name: pod-memory-hog
             template: pod-memory-hog
         - - name: disk-fill
-            template: disk-fill 
+            template: disk-fill
         - - name: revert-chaos
             template: revert-chaos
         #  - name: delete-application
@@ -53,9 +53,9 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/3.0.0-beta10?file=charts/generic/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
-        
+
     - name: pod-cpu-hog
       inputs:
         artifacts:
@@ -121,7 +121,7 @@ spec:
                               value: '30' # in seconds
                             - name: CHAOS_KILL_COMMAND
                               value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
-        
+
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
@@ -189,7 +189,7 @@ spec:
                               value: '30' # in seconds
                             - name: CHAOS_KILL_COMMAND
                               value: "kill -9 $(ps afx | grep \"[dd] if /dev/zero\" | awk '{print $1}' | tr '\n' ' ')"
-                            
+
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
@@ -264,8 +264,8 @@ spec:
                               value: 'false'
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]        
-    
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
     - name: pod-network-loss
       inputs:
         artifacts:
@@ -336,11 +336,11 @@ spec:
                             - name: CONTAINER_RUNTIME
                               value: 'containerd' 
                             - name: SOCKET_PATH
-                              value: '/run/containerd/containerd.sock'                
+                              value: '/run/containerd/containerd.sock'
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
-    
+
     - name: disk-fill
       inputs:
         artifacts:
@@ -406,11 +406,11 @@ spec:
                             - name: TARGET_CONTAINER
                               value: ''
                             - name: TOTAL_CHAOS_DURATION
-                              value: '30'                            
+                              value: '30'
       container:
         image: litmuschaos/litmus-checker:latest
         args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
-    
+
     - name: delete-application
       container:
         image: litmuschaos/litmus-app-deployer:latest
@@ -425,12 +425,12 @@ spec:
       container:
         image: litmuschaos/litmus-app-deployer:latest
         args: ["-namespace=loadtest","-operation=delete", "-app=loadtest"]
-    
+
     - name: revert-chaos
       container:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
-        args: 
-          [ 
+        args:
+          [
             "kubectl delete chaosengine pod-memory-hog-chaos  pod-cpu-hog-chaos catalogue-pod-delete-chaos pod-network-loss-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]

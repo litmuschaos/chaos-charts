@@ -9,7 +9,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -54,7 +54,7 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
@@ -67,8 +67,8 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'ubuntu:16.04' 
-            
+      value: 'ubuntu:16.04'
+
     # provide the target node name
     - name: TARGET_NODE
       value: ''
@@ -78,5 +78,5 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/service-kill: "true"
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10
 

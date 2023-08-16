@@ -22,7 +22,7 @@ spec:
     - Corruption
   platforms:
     - GKE
-    - Packet(Kubeadm) 
+    - Packet(Kubeadm)
     - Minikube
     - EKS
     - AKS
@@ -35,7 +35,7 @@ spec:
     name: Laura-Marie Henning
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-corruption
@@ -46,4 +46,4 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-corruption/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-corruption/experiment.yaml

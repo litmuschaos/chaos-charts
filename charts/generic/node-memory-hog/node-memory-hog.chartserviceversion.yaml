@@ -13,7 +13,7 @@ spec:
   categoryDescription: |
     Kubernetes Node memory hog contains chaos to disrupt the state of Kubernetes resources. Experiments can inject a memory spike on a node where the application pod is scheduled.
     - Memory hog on a particular node where the application deployment is available.
-    - After the test, the recovery should be manual for the application pod and node in case they are not in an appropriate state. 
+    - After the test, the recovery should be manual for the application pod and node in case they are not in an appropriate state.
   keywords:
     - Kubernetes
     - K8S
@@ -36,7 +36,7 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/node-memory-hog

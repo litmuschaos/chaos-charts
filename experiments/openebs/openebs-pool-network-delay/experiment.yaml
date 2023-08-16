@@ -10,7 +10,7 @@ metadata:
     name: openebs-pool-network-delay
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta10
   name: openebs-pool-network-delay
 spec:
   definition:
@@ -48,7 +48,7 @@ spec:
           - "patch"
           - "update"
           - "delete"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
@@ -64,8 +64,8 @@ spec:
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5'
 
     # in milliseconds
     - name: NETWORK_DELAY
@@ -88,6 +88,6 @@ spec:
 
     labels:
       name: openebs-pool-network-delay
-      app.kubernetes.io/part-of: litmus 
+      app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta10
