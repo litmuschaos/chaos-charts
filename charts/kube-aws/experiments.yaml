@@ -1,18 +1,18 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Execute aws-az chaos to detach the target zones from the load balancer
+    Stopping an EC2 instance identified by ID.
 kind: ChaosExperiment
 metadata:
-  name: aws-az-chaos
+  name: ec2-terminate-by-id
   labels:
-    name: aws-az-chaos
+    name: ec2-terminate-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
-    scope: Namespaced
+    scope: Cluster
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -42,32 +42,49 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/py-runner:3.0.0-beta10"
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
-    - python3 -u experiment -name aws-az-chaos
+    - ./experiments -name ec2-terminate-by-id
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '30'
+
     - name: CHAOS_INTERVAL
       value: '30'
-    - name: LIB
-      value: 'litmus'
-    - name: LOAD_BALANCER_NAME
-      value: ''
-    - name: LOAD_BALANCER_ZONES
-      value: ''
-    - name: LOAD_BALANCERNAME_ARN
-      value: 'na'
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: "/tmp/cloud_config.yml"
+
+    # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
+
+    # enable it if the target instance is a part of self-managed nodegroup.
+    - name: MANAGED_NODEGROUP
+      value: 'disable'
+
+    # Instance ID of the target ec2 instance
+    # Multiple IDs can also be provided as comma separated values ex: id1,id2
+    - name: EC2_INSTANCE_ID
+      value: ''
+
+    - name: REGION
+      value: ''
+
+    - name: SEQUENCE
+      value: 'parallel'
+
+    # Provide the path of aws credentials mounted from secret
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: '/tmp/cloud_config.yml'
+
     labels:
-      name: aws-az-chaos
+      name: ec2-terminate-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta10
@@ -348,18 +365,18 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stopping an EC2 instance identified by ID.
+    Execute aws-az chaos to detach the target zones from the load balancer
 kind: ChaosExperiment
 metadata:
-  name: ec2-terminate-by-id
+  name: aws-az-chaos
   labels:
-    name: ec2-terminate-by-id
+    name: aws-az-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: 3.0.0-beta10
 spec:
   definition:
-    scope: Cluster
+    scope: Namespaced
     permissions:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
@@ -389,49 +406,32 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/py-runner:3.0.0-beta10"
     imagePullPolicy: Always
     args:
     - -c
-    - ./experiments -name ec2-terminate-by-id
+    - python3 -u experiment -name aws-az-chaos
     command:
     - /bin/bash
     env:
     - name: TOTAL_CHAOS_DURATION
       value: '30'
-
     - name: CHAOS_INTERVAL
       value: '30'
-
-    # Period to wait before and after injection of chaos in sec
+    - name: LIB
+      value: 'litmus'
+    - name: LOAD_BALANCER_NAME
+      value: ''
+    - name: LOAD_BALANCER_ZONES
+      value: ''
+    - name: LOAD_BALANCERNAME_ARN
+      value: 'na'
+    - name: AWS_SHARED_CREDENTIALS_FILE
+      value: "/tmp/cloud_config.yml"
     - name: RAMP_TIME
       value: ''
-
-    # enable it if the target instance is a part of self-managed nodegroup.
-    - name: MANAGED_NODEGROUP
-      value: 'disable'
-
-    # Instance ID of the target ec2 instance
-    # Multiple IDs can also be provided as comma separated values ex: id1,id2
-    - name: EC2_INSTANCE_ID
-      value: ''
-
-    - name: REGION
-      value: ''
-
-    - name: SEQUENCE
-      value: 'parallel'
-
-    # Provide the path of aws credentials mounted from secret
-    - name: AWS_SHARED_CREDENTIALS_FILE
-      value: '/tmp/cloud_config.yml'
-
     labels:
-      name: ec2-terminate-by-id
+      name: aws-az-chaos
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.0.0-beta10
