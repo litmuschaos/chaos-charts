@@ -10,7 +10,7 @@ metadata:
     name: openebs-pool-pod-failure
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   name: openebs-pool-pod-failure
 spec:
   definition:
@@ -53,7 +53,7 @@ spec:
         verbs:
           - "get"
           - "list"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -90,7 +90,7 @@ spec:
       name: openebs-pool-pod-failure
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
     #configmaps:
     #- name: openebs-pool-pod-failure
     #  mountPath: /mnt

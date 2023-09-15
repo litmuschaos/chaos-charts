@@ -9,7 +9,7 @@ metadata:
     name: gcp-vm-disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -26,7 +26,7 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
         verbs: ["get","list","watch"]
@@ -38,7 +38,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -48,11 +48,11 @@ spec:
     env:
 
     - name: TOTAL_CHAOS_DURATION
-      value: '30' 
+      value: '30'
 
     - name: CHAOS_INTERVAL
       value: '30'
-    
+
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
@@ -65,22 +65,22 @@ spec:
     - name: GCP_PROJECT_ID
       value: ''
 
-    # set the disk volume name(s) as comma seperated values 
+    # set the disk volume name(s) as comma seperated values
     # eg. volume1,volume2,...
     - name: DISK_VOLUME_NAMES
       value: ''
-              
-    # set the disk zone(s) as comma seperated values in the corresponding 
-    # order of DISK_VOLUME_NAME  
+
+    # set the disk zone(s) as comma seperated values in the corresponding
+    # order of DISK_VOLUME_NAME
     # eg. zone1,zone2,...
     - name: ZONES
       value: ''
-      
+
     labels:
       name: gcp-vm-disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta11
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

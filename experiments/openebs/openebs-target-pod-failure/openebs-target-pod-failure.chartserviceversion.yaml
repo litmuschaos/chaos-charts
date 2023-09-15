@@ -9,7 +9,7 @@ metadata:
     vendor: CNCF
     support: https://slack.openebs.io/
 spec:
-  displayName: openebs-target-pod-failure 
+  displayName: openebs-target-pod-failure
   categoryDescription: >
      Kill the cstor target/Jiva controller pod and check if gets created again
   keywords:
@@ -31,14 +31,14 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-ansible/tree/master/experiments/openebs/openebs-target-pod-failure
     - name: Documentation
-      url: https://v1-docs.litmuschaos.io/docs/openebs-target-pod-failure/   
+      url: https://v1-docs.litmuschaos.io/docs/openebs-target-pod-failure/
     - name: Video
-      url:   
+      url:
   icon:
     - url: ""
       mediatype: ""

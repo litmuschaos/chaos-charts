@@ -10,7 +10,7 @@ metadata:
     name: openebs-nfs-provisioner-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   name: openebs-nfs-provisioner-kill
 spec:
   definition:
@@ -52,8 +52,8 @@ spec:
         verbs:
           - "get"
           - "list"
-      
-    image: "litmuschaos/ansible-runner:latest"
+
+    image: "litmuschaos/ansible-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -72,15 +72,15 @@ spec:
     - name: RAMP_TIME
       value: ''
 
-    # It supports pumba and containerd 
+    # It supports pumba and containerd
     - name: LIB
       value: 'pumba'
 
     # LIB_IMAGE can be - gaiaadm/pumba:0.6.5, gprasath/crictl:ci
     # For pumba image use: gaiaadm/pumba:0.6.5
     # For containerd image use: gprasath/crictl:ci
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5'
 
     # provide the chaos interval
     - name: CHAOS_INTERVAL
@@ -94,7 +94,7 @@ spec:
       name: openebs-nfs-provisioner-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
     configmaps:
       - name: openebs-nfs-provisioner-kill
         mountPath: /mnt/

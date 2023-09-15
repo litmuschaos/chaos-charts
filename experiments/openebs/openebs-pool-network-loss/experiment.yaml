@@ -9,7 +9,7 @@ metadata:
     name: openebs-pool-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   name: openebs-pool-network-loss
 spec:
   definition:
@@ -48,7 +48,7 @@ spec:
           - "list"
           - "patch"
           - "update"
-    image: "litmuschaos/ansible-runner:latest"
+    image: "litmuschaos/ansible-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -64,8 +64,8 @@ spec:
 
     # only pumba supported
     # For pumba image use : gaiaadm/pumba:0.6.5
-    - name: LIB_IMAGE  
-      value: 'gaiaadm/pumba:0.6.5' 
+    - name: LIB_IMAGE
+      value: 'gaiaadm/pumba:0.6.5'
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -89,4 +89,4 @@ spec:
       name: openebs-pool-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
