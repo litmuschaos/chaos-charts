@@ -9,7 +9,7 @@ metadata:
     name: gcp-vm-instance-stop
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -26,7 +26,7 @@ spec:
       - apiGroups: [""]
         resources: ["secrets","configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
         verbs: ["get","list","watch"]
@@ -42,7 +42,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -52,12 +52,12 @@ spec:
     env:
 
     - name: TOTAL_CHAOS_DURATION
-      value: '30' 
+      value: '30'
 
     - name: CHAOS_INTERVAL
       value: '30'
 
-    # parallel or serial; determines how the VM instances are terminated, all at once or one at a time  
+    # parallel or serial; determines how the VM instances are terminated, all at once or one at a time
     - name: SEQUENCE
       value: 'parallel'
 
@@ -73,27 +73,27 @@ spec:
     # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
     - name: MANAGED_INSTANCE_GROUP
       value: 'disable'
-    
+
     # Instance name of the target vm instance(s)
     # Multiple instance names can be provided as comma separated values ex: instance1,instance2
     - name: VM_INSTANCE_NAMES
       value: ''
-    
+
     # GCP project ID to which the vm instances belong
     - name: GCP_PROJECT_ID
       value: ''
 
     # Instance zone(s) of the target vm instance(s)
-    # If more than one instance is targetted, provide zone for each in the order of their 
+    # If more than one instance is targetted, provide zone for each in the order of their
     # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
     - name: INSTANCE_ZONES
       value: ''
-      
+
     labels:
       name: gcp-vm-instance-stop
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta11
     secrets:
     - name: cloud-secret
       mountPath: /tmp/

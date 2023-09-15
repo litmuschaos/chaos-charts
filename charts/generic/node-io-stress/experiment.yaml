@@ -9,7 +9,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -70,7 +70,7 @@ spec:
 
     ## Number of core of CPU
     - name: CPU
-      value: '1'      
+      value: '1'
 
     ## Total number of workers default value is 4
     - name: NUMBER_OF_WORKERS
@@ -85,7 +85,7 @@ spec:
       value: ''
 
     - name: NODE_LABEL
-      value: ''    
+      value: ''
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -93,7 +93,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -103,9 +103,9 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11

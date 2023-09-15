@@ -35,15 +35,15 @@ spec:
     name: Orange
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/spring-boot/spring-boot-faults
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/spring-boot/spring-boot-faults
     - name: Video
-      url: 
+      url:
   icon:
-    - url: 
+    - url:
       mediatype: ""
   chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/spring-boot-faults/experiment.yaml

@@ -18,11 +18,11 @@ spec:
     - Kubernetes
     - K8S
     - HTTP
-    - Pod 
+    - Pod
     - Headers
   platforms:
     - GKE
-    - Minikube 
+    - Minikube
     - EKS
   maturity: alpha
   maintainers:
@@ -33,7 +33,7 @@ spec:
     name: Harness
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-http-modify-header
@@ -42,4 +42,4 @@ spec:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-http-modify-header/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-http-modify-header/experiment.yaml

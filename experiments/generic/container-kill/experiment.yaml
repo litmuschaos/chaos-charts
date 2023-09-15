@@ -8,7 +8,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -25,10 +25,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -37,7 +37,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -57,7 +57,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -76,7 +76,7 @@ spec:
     # lib can be litmus or pumba
     - name: LIB
       value: 'litmus'
-      
+
     - name: TARGET_PODS
       value: ''
 
@@ -100,7 +100,7 @@ spec:
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
-    
+
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
@@ -109,8 +109,8 @@ spec:
     - name: NODE_LABEL
       value: ''
 
-    - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -122,4 +122,4 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true"
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11

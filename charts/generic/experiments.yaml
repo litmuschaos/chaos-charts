@@ -9,7 +9,7 @@ metadata:
     name: node-io-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -26,10 +26,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -46,7 +46,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -70,7 +70,7 @@ spec:
 
     ## Number of core of CPU
     - name: CPU
-      value: '1'      
+      value: '1'
 
     ## Total number of workers default value is 4
     - name: NUMBER_OF_WORKERS
@@ -85,7 +85,7 @@ spec:
       value: ''
 
     - name: NODE_LABEL
-      value: ''    
+      value: ''
 
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
@@ -93,7 +93,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -103,12 +103,12 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: node-io-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -122,7 +122,7 @@ metadata:
     name: pod-network-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -139,10 +139,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -151,7 +151,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -171,7 +171,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -179,7 +179,7 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
@@ -188,7 +188,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     - name: TC_IMAGE
       value: 'gaiadocker/iproute2'
@@ -246,8 +246,8 @@ spec:
       name: pod-network-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -261,7 +261,7 @@ metadata:
     name: node-poweroff
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -278,10 +278,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps","secrets"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -298,7 +298,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -321,7 +321,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
+      value: "litmuschaos/go-runner:3.0.0-beta11"
 
     # ENTER THE TARGET NODE NAME
     - name: TARGET_NODE
@@ -338,7 +338,7 @@ spec:
       name: node-poweroff
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
     secrets:
       - name: id-rsa
         mountPath: /mnt/
@@ -355,7 +355,7 @@ metadata:
     name: pod-http-reset-peer
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -372,10 +372,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -384,7 +384,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -404,7 +404,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -418,8 +418,8 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-    
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
+
     # reset timeout specifies after how much duration to reset the connection
     - name: RESET_TIMEOUT
       value: '0' #in ms
@@ -431,7 +431,7 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
@@ -468,12 +468,12 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-http-reset-peer
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -487,7 +487,7 @@ metadata:
     name: pod-http-status-code
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -504,10 +504,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -516,7 +516,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -536,7 +536,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -550,7 +550,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     # modified status code for the http response
     # if no value is provided, a random status code from the supported code list will selected
@@ -570,7 +570,7 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
@@ -607,12 +607,12 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-http-status-code
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -626,7 +626,7 @@ metadata:
     name: node-cpu-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -643,10 +643,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -663,7 +663,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -680,11 +680,11 @@ spec:
       value: ''
 
     ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
-    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
+    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY
     - name: NODE_CPU_CORE
       value: ''
 
-    ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS. 
+    ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS.
     ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
     - name: CPU_LOAD
       value: '100'
@@ -698,7 +698,7 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     ## percentage of total nodes to target
     - name: NODES_AFFECTED_PERC
@@ -708,12 +708,12 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-   
+
     labels:
       name: node-cpu-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -727,7 +727,7 @@ metadata:
     name: pod-cpu-hog-exec
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -744,10 +744,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -756,7 +756,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -776,7 +776,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -798,7 +798,7 @@ spec:
     ## Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-    
+
     # The command to kill the chaos process
     - name: CHAOS_KILL_COMMAND
       value: "kill $(find /proc -name exe -lname '*/md5sum' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}')"
@@ -810,12 +810,12 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-cpu-hog-exec
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -829,7 +829,7 @@ metadata:
     name: pod-http-modify-header
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -846,10 +846,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -858,7 +858,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -878,7 +878,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -886,13 +886,13 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
     # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
@@ -910,7 +910,7 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
@@ -952,8 +952,8 @@ spec:
       name: pod-http-modify-header
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -967,7 +967,7 @@ metadata:
     name: pod-http-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -984,10 +984,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -996,7 +996,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1016,7 +1016,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1024,13 +1024,13 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     # set latency value for the chaos
     - name: LATENCY
@@ -1043,7 +1043,7 @@ spec:
     # port on which the proxy will listen
     - name: PROXY_PORT
       value: "20000"
-    
+
     # network interface on which the proxy will listen
     - name: NETWORK_INTERFACE
       value: "eth0"
@@ -1085,8 +1085,8 @@ spec:
       name: pod-http-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 ---
@@ -1101,7 +1101,7 @@ metadata:
     name: node-taint
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -1118,10 +1118,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec","pods/eviction"]
@@ -1142,7 +1142,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list","patch","update"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1167,13 +1167,13 @@ spec:
     # set taint label & effect
     # key=value:effect or key:effect
     - name: TAINTS
-      value: '' 
+      value: ''
 
     labels:
       name: node-taint
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1187,7 +1187,7 @@ metadata:
     name: pod-network-duplication
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1204,10 +1204,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1216,7 +1216,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1236,7 +1236,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1263,18 +1263,18 @@ spec:
       value: '100' # in percentage
 
     - name: TARGET_PODS
-      value: ''  
+      value: ''
 
     # To select pods on specific node(s)
     - name: NODE_LABEL
-      value: '' 
+      value: ''
 
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     # provide the name of container runtime
     # for litmus LIB, it supports docker, containerd, crio
@@ -1305,8 +1305,8 @@ spec:
       name: pod-network-duplication
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1320,7 +1320,7 @@ metadata:
     name: pod-dns-error
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1337,10 +1337,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1349,7 +1349,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1369,7 +1369,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     args:
       - -c
       - ./experiments -name pod-dns-error
@@ -1381,7 +1381,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.0.0-beta11"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -1422,8 +1422,8 @@ spec:
       experiment: pod-dns-error
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1437,7 +1437,7 @@ metadata:
     name: pod-dns-spoof
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1454,10 +1454,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1466,7 +1466,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1486,7 +1486,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     args:
       - -c
       - ./experiments -name pod-dns-spoof
@@ -1498,7 +1498,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.0.0-beta11"
 
       - name: TOTAL_CHAOS_DURATION
         value: "60" # in seconds
@@ -1535,8 +1535,8 @@ spec:
       experiment: pod-dns-spoof
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1549,7 +1549,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1566,10 +1566,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1578,7 +1578,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1598,7 +1598,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1613,7 +1613,7 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-      
+
     - name: TARGET_PODS
       value: ''
 
@@ -1637,7 +1637,7 @@ spec:
     # provide the total chaos duration
     - name: TOTAL_CHAOS_DURATION
       value: '20'
-    
+
     ## percentage of total pods to target
     - name: PODS_AFFECTED_PERC
       value: ''
@@ -1646,8 +1646,8 @@ spec:
     - name: NODE_LABEL
       value: ''
 
-    - name: LIB_IMAGE  
-      value: 'litmuschaos/go-runner:latest' 
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     ## it defines the sequence of chaos execution for multiple target pods
     ## supported values: serial, parallel
@@ -1659,7 +1659,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true"
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1673,7 +1673,7 @@ metadata:
     name: pod-network-corruption
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1690,10 +1690,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1702,7 +1702,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1722,7 +1722,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1730,13 +1730,13 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1789,13 +1789,13 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-network-corruption
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1809,7 +1809,7 @@ metadata:
     name: pod-network-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1826,10 +1826,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1838,7 +1838,7 @@ spec:
       - apiGroups: ["apps"]
         resources: ["deployments","statefulsets","replicasets", "daemonsets"]
         verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
       - apiGroups: ["apps.openshift.io"]
         resources: ["deploymentconfigs"]
         verbs: ["list","get"]
@@ -1858,7 +1858,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1866,13 +1866,13 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_CONTAINER
       value: ''
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     - name: NETWORK_INTERFACE
       value: 'eth0'
@@ -1925,13 +1925,13 @@ spec:
     ## supported values: serial, parallel
     - name: SEQUENCE
       value: 'parallel'
-      
+
     labels:
       name: pod-network-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -1945,7 +1945,7 @@ metadata:
     name: pod-network-partition
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -1962,10 +1962,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -1982,7 +1982,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -1990,7 +1990,7 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TOTAL_CHAOS_DURATION
       value: '60' # in seconds
 
@@ -2029,7 +2029,7 @@ spec:
       name: pod-network-partition
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 ---
@@ -2044,7 +2044,7 @@ metadata:
     name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -2061,10 +2061,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec","pods/eviction"]
@@ -2085,7 +2085,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list","patch"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -2093,7 +2093,7 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TARGET_NODE
       value: ''
 
@@ -2106,12 +2106,12 @@ spec:
     # Period to wait before and after injection of chaos in sec
     - name: RAMP_TIME
       value: ''
-      
+
     labels:
       name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---
 apiVersion: litmuschaos.io/v1alpha1
@@ -2125,7 +2125,7 @@ metadata:
     name: docker-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Cluster
@@ -2142,10 +2142,10 @@ spec:
       - apiGroups: [""]
         resources: ["configmaps"]
         verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
+      # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
+        verbs: ["get","list","watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
@@ -2162,7 +2162,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -2170,7 +2170,7 @@ spec:
     command:
     - /bin/bash
     env:
-    
+
     - name: TOTAL_CHAOS_DURATION
       value: '90' # in seconds
 
@@ -2183,8 +2183,8 @@ spec:
 
     # provide lib image
     - name: LIB_IMAGE
-      value: 'ubuntu:16.04' 
-            
+      value: 'ubuntu:16.04'
+
     # provide the target node name
     - name: TARGET_NODE
       value: ''
@@ -2194,7 +2194,7 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/service-kill: "true"
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 
 ---
@@ -2209,1080 +2209,7 @@ metadata:
     name: pod-delete
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-delete
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '15'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: FORCE
-      value: 'true'
-
-    - name: CHAOS_INTERVAL
-      value: '5'
-
-    ## percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: TARGET_PODS
-      value: ''
-
-    # To select pods on specific node(s)
-    - name: NODE_LABEL
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-delete
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Restart node
-kind: ChaosExperiment
-metadata:
-  name: node-restart
-  labels:
-    name: node-restart
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps","secrets"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-restart
-    command:
-    - /bin/bash
-    env:
-    - name: SSH_USER
-      value: 'root'
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:latest"
-
-    # ENTER THE TARGET NODE NAME
-    - name: TARGET_NODE
-      value: ''
-
-    - name: NODE_LABEL
-      value: ''
-
-    # ENTER THE TARGET NODE IP
-    - name: TARGET_NODE_IP
-      value: ''
-
-    labels:
-      name: node-restart
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-    secrets:
-      - name: id-rsa
-        mountPath: /mnt/
-
----
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects memory consumption on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-memory-hog
-  labels:
-    name: pod-memory-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-memory-hog
-    command:
-    - /bin/bash
-    env:
-      - name: TOTAL_CHAOS_DURATION
-        value: '60'
-
-      ## enter the amount of memory in megabytes to be consumed by the application pod
-      - name: MEMORY_CONSUMPTION
-        value: '500'
-      
-      ## Number of workers to perform stress
-      - name: NUMBER_OF_WORKERS
-        value: '1'   
-
-      ## percentage of total pods to target
-      - name: PODS_AFFECTED_PERC
-        value: ''
-
-      ## Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''     
-
-      ## It is used in pumba lib only    
-      - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
-
-      ## It is used in pumba lib only    
-      - name: STRESS_IMAGE
-        value: 'alexeiled/stress-ng:latest-ubuntu'
-
-      ## provide the cluster runtime
-      - name: CONTAINER_RUNTIME
-        value: 'containerd'   
-
-      # provide the socket file path
-      - name: SOCKET_PATH
-        value: '/run/containerd/containerd.sock'        
-        
-      ## it defines the sequence of chaos execution for multiple target pods
-      ## supported values: serial, parallel
-      - name: SEQUENCE
-        value: 'parallel'
-
-      - name: TARGET_PODS
-        value: ''
-
-      # To select pods on specific node(s)
-      - name: NODE_LABEL
-        value: ''
-
-    labels:
-      name: pod-memory-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
-
----
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    IO stress on a app pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-io-stress
-  labels:
-    name: pod-io-stress
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-io-stress
-    command:
-    - /bin/bash
-    env:
-      - name: TOTAL_CHAOS_DURATION
-        value: '120'
-
-      ## specify the size as percentage of free space on the file system
-      ## default value 90 (in percentage)
-      - name: FILESYSTEM_UTILIZATION_PERCENTAGE
-        value: '10'
-
-      ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
-      ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
-      - name: FILESYSTEM_UTILIZATION_BYTES
-        value: ''
-
-      ## Total number of workers default value is 4
-      - name: NUMBER_OF_WORKERS
-        value: '4'    
-
-      ## Percentage of total pods to target
-      - name: PODS_AFFECTED_PERC
-        value: ''    
-
-      # provide volume mount path
-      - name: VOLUME_MOUNT_PATH
-        value: ''
-
-      ## specify the comma separated target pods
-      - name: TARGET_PODS
-        value: ''
-
-      # To select pods on specific node(s)
-      - name: NODE_LABEL
-        value: ''    
-
-      # Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''
-
-      # provide lib image
-      - name: LIB_IMAGE
-        value: 'litmuschaos/go-runner:latest'
-
-      ## provide the cluster runtime
-      - name: CONTAINER_RUNTIME
-        value: 'containerd'   
-
-      # provide the socket file path
-      - name: SOCKET_PATH
-        value: '/run/containerd/containerd.sock'         
-
-      ## it defines the sequence of chaos execution for multiple target pods
-      ## supported values: serial, parallel
-      - name: SEQUENCE
-        value: 'parallel'
-
-    labels:
-      name: pod-io-stress
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true" 
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Give a memory hog on a node belonging to a deployment
-kind: ChaosExperiment
-metadata:
-  name: node-memory-hog
-  labels:
-    name: node-memory-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name node-memory-hog
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '120'
-
-    ## Specify the size as percent of total node capacity Ex: '30'
-    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_MEBIBYTES empty
-    - name: MEMORY_CONSUMPTION_PERCENTAGE
-      value: ''
-      
-    ## Specify the amount of memory to be consumed in mebibytes
-    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
-    - name: MEMORY_CONSUMPTION_MEBIBYTES
-      value: ''
-
-    - name: NUMBER_OF_WORKERS
-      value: '1'
-
-    # ENTER THE COMMA SEPARATED TARGET NODES NAME
-    - name: TARGET_NODES
-      value: ''    
-
-    - name: NODE_LABEL
-      value: ''
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-
-    ## percentage of total nodes to target
-    - name: NODES_AFFECTED_PERC
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target nodes
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: node-memory-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects memory consumption on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-memory-hog-exec
-  labels:
-    name: pod-memory-hog-exec
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-memory-hog-exec
-    command:
-    - /bin/bash
-    env:
-      - name: TOTAL_CHAOS_DURATION
-        value: '60'
-
-      ## enter the amount of memory in megabytes to be consumed by the application pod
-      - name: MEMORY_CONSUMPTION
-        value: '500'
-
-      ## percentage of total pods to target
-      - name: PODS_AFFECTED_PERC
-        value: ''
-
-      ## Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ''     
-      
-      # The command to kill the chaos process
-      - name: CHAOS_KILL_COMMAND
-        value: "kill $(find /proc -name exe -lname '*/dd' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' | head -n 1)"
-        
-      ## it defines the sequence of chaos execution for multiple target pods
-      ## supported values: serial, parallel
-      - name: SEQUENCE
-        value: 'parallel'
-
-      - name: TARGET_PODS
-        value: ''
-
-    labels:
-      name: pod-memory-hog-exec
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Kills the kubelet service on the application node to check the resiliency.
-kind: ChaosExperiment
-metadata:
-  name: kubelet-service-kill
-  labels:
-    name: kubelet-service-kill
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name kubelet-service-kill
-    command:
-    - /bin/bash
-    env:
-   
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    - name: NODE_LABEL
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'ubuntu:16.04' 
-            
-    # provide the target node name
-    - name: TARGET_NODE
-      value: ''
-
-    labels:
-      name: kubelet-service-kill
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/service-kill: "true"
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Injects cpu consumption on pods belonging to an app deployment
-kind: ChaosExperiment
-metadata:
-  name: pod-cpu-hog
-  labels:
-    name: pod-cpu-hog
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-cpu-hog
-    command:
-    - /bin/bash
-    env:
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    ## Number of CPU cores to stress
-    - name: CPU_CORES
-      value: '1' 
-
-    ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS. 
-    ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
-    - name: CPU_LOAD
-      value: '100'
-
-    ## Percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    ## Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    ## It is used in pumba lib only    
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'  
-
-    ## It is used in pumba lib only    
-    - name: STRESS_IMAGE
-      value: 'alexeiled/stress-ng:latest-ubuntu'
-
-    ## provide the cluster runtime
-    - name: CONTAINER_RUNTIME
-      value: 'containerd'        
-
-    # provide the socket file path
-    - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'      
-
-    - name: TARGET_PODS
-      value: ''
-
-    # To select pods on specific node(s)
-    - name: NODE_LABEL
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-cpu-hog
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/runtime-api-usage: "true"
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Scale the application replicas and test the node autoscaling on cluster
-kind: ChaosExperiment
-metadata:
-  name: pod-autoscaler
-  labels:
-    name: pod-autoscaler
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Cluster
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # performs CRUD operations on the deployments and statefulsets
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets"]
-        verbs: ["list","get","patch","update"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-autoscaler
-    command:
-    - /bin/bash
-    env:
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
-
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # Number of replicas to scale
-    - name: REPLICA_COUNT
-      value: '5'
-  
-    labels:
-      name: pod-autoscaler
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    It injects the chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by the user and reverts after a specified duration
-kind: ChaosExperiment
-metadata:
-  name: pod-http-modify-body
-  labels:
-    name: pod-http-modify-body
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
-spec:
-  definition:
-    scope: Namespaced
-    permissions:
-      # Create and monitor the experiment & helper pods
-      - apiGroups: [""]
-        resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-      # Performs CRUD operations on the events inside chaosengine and chaosresult
-      - apiGroups: [""]
-        resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
-      # Fetch configmaps details and mount it to the experiment pod (if specified)
-      - apiGroups: [""]
-        resources: ["configmaps"]
-        verbs: ["get","list",]
-      # Track and get the runner, experiment, and helper pods log 
-      - apiGroups: [""]
-        resources: ["pods/log"]
-        verbs: ["get","list","watch"]  
-      # for creating and managing to execute comands inside target container
-      - apiGroups: [""]
-        resources: ["pods/exec"]
-        verbs: ["get","list","create"]
-      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
-      - apiGroups: ["apps"]
-        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)  
-      - apiGroups: ["apps.openshift.io"]
-        resources: ["deploymentconfigs"]
-        verbs: ["list","get"]
-      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
-      - apiGroups: [""]
-        resources: ["replicationcontrollers"]
-        verbs: ["get","list"]
-      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
-      - apiGroups: ["argoproj.io"]
-        resources: ["rollouts"]
-        verbs: ["list","get"]
-      # for configuring and monitor the experiment job by the chaos-runner pod
-      - apiGroups: ["batch"]
-        resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
-      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
-      - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
-    imagePullPolicy: Always
-    args:
-    - -c
-    - ./experiments -name pod-http-modify-body
-    command:
-    - /bin/bash
-    env:
-
-    - name: TARGET_CONTAINER
-      value: ''
-
-    # provide lib image
-    - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest' 
-    
-    # provide the body string to overwrite the response body
-    # if no value is provided, response will be an empty body.
-    - name: RESPONSE_BODY
-      value: ''
-
-    # port of the target service
-    - name: TARGET_SERVICE_PORT
-      value: "80"
-
-    # port on which the proxy will listen
-    - name: PROXY_PORT
-      value: "20000"
-    
-    # network interface on which the proxy will listen
-    - name: NETWORK_INTERFACE
-      value: "eth0"
-
-    - name: TOTAL_CHAOS_DURATION
-      value: '60' # in seconds
-
-    # Time period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
-
-    # percentage of total pods to target
-    - name: PODS_AFFECTED_PERC
-      value: ''
-
-    - name: TARGET_PODS
-      value: ''
-
-    # provide the name of container runtime
-    # for litmus LIB, it supports docker, containerd, crio
-    # for pumba LIB, it supports docker only
-    - name: CONTAINER_RUNTIME
-      value: 'containerd'
-
-    # provide the socket file path
-    - name: SOCKET_PATH
-      value: '/run/containerd/containerd.sock'
-
-    # To select pods on specific node(s)
-    - name: NODE_LABEL
-      value: ''
-
-    ## it defines the sequence of chaos execution for multiple target pods
-    ## supported values: serial, parallel
-    - name: SEQUENCE
-      value: 'parallel'
-      
-    labels:
-      name: pod-http-modify-body
-      app.kubernetes.io/part-of: litmus
-      app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: latest 
-
----
-apiVersion: litmuschaos.io/v1alpha1
-description:
-  message: |
-    Fillup Ephemeral Storage of a Resource
-kind: ChaosExperiment
-metadata:
-  name: disk-fill
-  labels:
-    name: disk-fill
-    app.kubernetes.io/part-of: litmus
-    app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
 spec:
   definition:
     scope: Namespaced
@@ -3331,7 +2258,1080 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-delete
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '15'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: FORCE
+      value: 'true'
+
+    - name: CHAOS_INTERVAL
+      value: '5'
+
+    ## percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_PODS
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: pod-delete
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Restart node
+kind: ChaosExperiment
+metadata:
+  name: node-restart
+  labels:
+    name: node-restart
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps","secrets"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-restart
+    command:
+    - /bin/bash
+    env:
+    - name: SSH_USER
+      value: 'root'
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: "litmuschaos/go-runner:3.0.0-beta11"
+
+    # ENTER THE TARGET NODE NAME
+    - name: TARGET_NODE
+      value: ''
+
+    - name: NODE_LABEL
+      value: ''
+
+    # ENTER THE TARGET NODE IP
+    - name: TARGET_NODE_IP
+      value: ''
+
+    labels:
+      name: node-restart
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+    secrets:
+      - name: id-rsa
+        mountPath: /mnt/
+
+---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects memory consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-memory-hog
+  labels:
+    name: pod-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-memory-hog
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '60'
+
+      ## enter the amount of memory in megabytes to be consumed by the application pod
+      - name: MEMORY_CONSUMPTION
+        value: '500'
+
+      ## Number of workers to perform stress
+      - name: NUMBER_OF_WORKERS
+        value: '1'
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      ## Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      ## It is used in pumba lib only
+      - name: LIB_IMAGE
+        value: 'litmuschaos/go-runner:3.0.0-beta11'
+
+      ## It is used in pumba lib only
+      - name: STRESS_IMAGE
+        value: 'alexeiled/stress-ng:latest-ubuntu'
+
+      ## provide the cluster runtime
+      - name: CONTAINER_RUNTIME
+        value: 'containerd'
+
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: '/run/containerd/containerd.sock'
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      - name: TARGET_PODS
+        value: ''
+
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
+        value: ''
+
+    labels:
+      name: pod-memory-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    IO stress on a app pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-io-stress
+  labels:
+    name: pod-io-stress
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-io-stress
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '120'
+
+      ## specify the size as percentage of free space on the file system
+      ## default value 90 (in percentage)
+      - name: FILESYSTEM_UTILIZATION_PERCENTAGE
+        value: '10'
+
+      ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
+      ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
+      - name: FILESYSTEM_UTILIZATION_BYTES
+        value: ''
+
+      ## Total number of workers default value is 4
+      - name: NUMBER_OF_WORKERS
+        value: '4'
+
+      ## Percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      # provide volume mount path
+      - name: VOLUME_MOUNT_PATH
+        value: ''
+
+      ## specify the comma separated target pods
+      - name: TARGET_PODS
+        value: ''
+
+      # To select pods on specific node(s)
+      - name: NODE_LABEL
+        value: ''
+
+      # Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      # provide lib image
+      - name: LIB_IMAGE
+        value: 'litmuschaos/go-runner:3.0.0-beta11'
+
+      ## provide the cluster runtime
+      - name: CONTAINER_RUNTIME
+        value: 'containerd'
+
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: '/run/containerd/containerd.sock'
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+    labels:
+      name: pod-io-stress
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Give a memory hog on a node belonging to a deployment
+kind: ChaosExperiment
+metadata:
+  name: node-memory-hog
+  labels:
+    name: node-memory-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name node-memory-hog
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '120'
+
+    ## Specify the size as percent of total node capacity Ex: '30'
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_MEBIBYTES empty
+    - name: MEMORY_CONSUMPTION_PERCENTAGE
+      value: ''
+
+    ## Specify the amount of memory to be consumed in mebibytes
+    ## NOTE: for selecting this option keep MEMORY_CONSUMPTION_PERCENTAGE empty
+    - name: MEMORY_CONSUMPTION_MEBIBYTES
+      value: ''
+
+    - name: NUMBER_OF_WORKERS
+      value: '1'
+
+    # ENTER THE COMMA SEPARATED TARGET NODES NAME
+    - name: TARGET_NODES
+      value: ''
+
+    - name: NODE_LABEL
+      value: ''
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
+
+    ## percentage of total nodes to target
+    - name: NODES_AFFECTED_PERC
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target nodes
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: node-memory-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects memory consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-memory-hog-exec
+  labels:
+    name: pod-memory-hog-exec
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-memory-hog-exec
+    command:
+    - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: '60'
+
+      ## enter the amount of memory in megabytes to be consumed by the application pod
+      - name: MEMORY_CONSUMPTION
+        value: '500'
+
+      ## percentage of total pods to target
+      - name: PODS_AFFECTED_PERC
+        value: ''
+
+      ## Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ''
+
+      # The command to kill the chaos process
+      - name: CHAOS_KILL_COMMAND
+        value: "kill $(find /proc -name exe -lname '*/dd' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' | head -n 1)"
+
+      ## it defines the sequence of chaos execution for multiple target pods
+      ## supported values: serial, parallel
+      - name: SEQUENCE
+        value: 'parallel'
+
+      - name: TARGET_PODS
+        value: ''
+
+    labels:
+      name: pod-memory-hog-exec
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Kills the kubelet service on the application node to check the resiliency.
+kind: ChaosExperiment
+metadata:
+  name: kubelet-service-kill
+  labels:
+    name: kubelet-service-kill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get","list"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name kubelet-service-kill
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    - name: NODE_LABEL
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'ubuntu:16.04'
+
+    # provide the target node name
+    - name: TARGET_NODE
+      value: ''
+
+    labels:
+      name: kubelet-service-kill
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/service-kill: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects cpu consumption on pods belonging to an app deployment
+kind: ChaosExperiment
+metadata:
+  name: pod-cpu-hog
+  labels:
+    name: pod-cpu-hog
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-cpu-hog
+    command:
+    - /bin/bash
+    env:
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    ## Number of CPU cores to stress
+    - name: CPU_CORES
+      value: '1'
+
+    ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS.
+    ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
+    - name: CPU_LOAD
+      value: '100'
+
+    ## Percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    ## Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    ## It is used in pumba lib only
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
+
+    ## It is used in pumba lib only
+    - name: STRESS_IMAGE
+      value: 'alexeiled/stress-ng:latest-ubuntu'
+
+    ## provide the cluster runtime
+    - name: CONTAINER_RUNTIME
+      value: 'containerd'
+
+    # provide the socket file path
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    - name: TARGET_PODS
+      value: ''
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: pod-cpu-hog
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/runtime-api-usage: "true"
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Scale the application replicas and test the node autoscaling on cluster
+kind: ChaosExperiment
+metadata:
+  name: pod-autoscaler
+  labels:
+    name: pod-autoscaler
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # performs CRUD operations on the deployments and statefulsets
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets"]
+        verbs: ["list","get","patch","update"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-autoscaler
+    command:
+    - /bin/bash
+    env:
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60'
+
+    # Period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # Number of replicas to scale
+    - name: REPLICA_COUNT
+      value: '5'
+
+    labels:
+      name: pod-autoscaler
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    It injects the chaos inside the pod which modifies the body of the response from the provided application server to the body string provided by the user and reverts after a specified duration
+kind: ChaosExperiment
+metadata:
+  name: pod-http-modify-body
+  labels:
+    name: pod-http-modify-body
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
+    imagePullPolicy: Always
+    args:
+    - -c
+    - ./experiments -name pod-http-modify-body
+    command:
+    - /bin/bash
+    env:
+
+    - name: TARGET_CONTAINER
+      value: ''
+
+    # provide lib image
+    - name: LIB_IMAGE
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
+
+    # provide the body string to overwrite the response body
+    # if no value is provided, response will be an empty body.
+    - name: RESPONSE_BODY
+      value: ''
+
+    # port of the target service
+    - name: TARGET_SERVICE_PORT
+      value: "80"
+
+    # port on which the proxy will listen
+    - name: PROXY_PORT
+      value: "20000"
+
+    # network interface on which the proxy will listen
+    - name: NETWORK_INTERFACE
+      value: "eth0"
+
+    - name: TOTAL_CHAOS_DURATION
+      value: '60' # in seconds
+
+    # Time period to wait before and after injection of chaos in sec
+    - name: RAMP_TIME
+      value: ''
+
+    # percentage of total pods to target
+    - name: PODS_AFFECTED_PERC
+      value: ''
+
+    - name: TARGET_PODS
+      value: ''
+
+    # provide the name of container runtime
+    # for litmus LIB, it supports docker, containerd, crio
+    # for pumba LIB, it supports docker only
+    - name: CONTAINER_RUNTIME
+      value: 'containerd'
+
+    # provide the socket file path
+    - name: SOCKET_PATH
+      value: '/run/containerd/containerd.sock'
+
+    # To select pods on specific node(s)
+    - name: NODE_LABEL
+      value: ''
+
+    ## it defines the sequence of chaos execution for multiple target pods
+    ## supported values: serial, parallel
+    - name: SEQUENCE
+      value: 'parallel'
+
+    labels:
+      name: pod-http-modify-body
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 3.0.0-beta11
+
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Fillup Ephemeral Storage of a Resource
+kind: ChaosExperiment
+metadata:
+  name: disk-fill
+  labels:
+    name: disk-fill
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 3.0.0-beta11
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create","get","list","patch","update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get","list",]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get","list","watch"]
+      # for creating and managing to execute comands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get","list","create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments","statefulsets","replicasets", "daemonsets"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list","get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get","list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list","get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create","list","get","delete","deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines","chaosexperiments","chaosresults"]
+        verbs: ["create","list","get","patch","update","delete"]
+    image: "litmuschaos/go-runner:3.0.0-beta11"
     imagePullPolicy: Always
     args:
     - -c
@@ -3373,7 +3373,7 @@ spec:
       value: ''
 
     - name: LIB_IMAGE
-      value: 'litmuschaos/go-runner:latest'
+      value: 'litmuschaos/go-runner:3.0.0-beta11'
 
     # provide the name of container runtime, it supports docker, containerd, crio
     - name: CONTAINER_RUNTIME
@@ -3393,6 +3393,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/host-path-usage: "true"
-      app.kubernetes.io/version: latest
+      app.kubernetes.io/version: 3.0.0-beta11
 
 ---

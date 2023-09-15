@@ -22,7 +22,7 @@ spec:
     - Duplication
   platforms:
     - GKE
-    - Minikube 
+    - Minikube
     - Packet(Kubeadm)
     - EKS
     - AKS
@@ -35,15 +35,15 @@ spec:
     name: Mayadata
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: latest
+    app.kubernetes.io/version: 3.0.0-beta11
   links:
     - name: Source Code
       url: https://github.com/litmuschaos/litmus-go/tree/master/experiments/generic/pod-network-duplication
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/pods/pod-network-duplication/
     - name: Video
-      url: 
+      url:
   icon:
     - base64data: ""
       mediatype: ""
-  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-duplication/experiment.yaml 
+  chaosexpcrdlink: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/generic/pod-network-duplication/experiment.yaml
