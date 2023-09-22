@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -47,7 +56,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -56,41 +65,41 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '60' # in seconds
+        value: "60" # in seconds
 
       # time period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # provide the destination ips
       # chaos injection will be triggered for these destination ips
       - name: DESTINATION_IPS
-        value: ''
+        value: ""
 
       # provide the destination hosts
       # chaos injection will be triggered for these destination hosts
       - name: DESTINATION_HOSTS
-        value: ''
+        value: ""
 
       # provide network policy type
       # support ingress, egress, all values
       - name: POLICY_TYPES
-        value: 'all'
+        value: "all"
 
       # provide labels of the destination pods
       - name: POD_SELECTOR
-        value: ''
+        value: ""
 
       # provide labels the destination namespaces
       - name: NAMESPACE_SELECTOR
-        value: ''
+        value: ""
 
       # provide comma separated ports
       - name: PORTS
-        value: ''
+        value: ""
 
     labels:
       name: pod-network-partition

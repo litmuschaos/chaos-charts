@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -39,7 +48,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -49,45 +58,45 @@ spec:
     env:
       # Type of raised exception
       - name: CM_EXCEPTIONS_TYPE
-        value: 'java.lang.IllegalArgumentException'
+        value: "java.lang.IllegalArgumentException"
 
         # Argument of raised exception
       - name: CM_EXCEPTIONS_ARGUMENTS
-        value: 'java.lang.String:custom illegal argument exception'
+        value: "java.lang.String:custom illegal argument exception"
 
       # port of the spring boot application
       - name: CM_PORT
-        value: ''
+        value: ""
 
       #it contains number of requests are to be attacked
       # n value means nth request will be affected
       - name: CM_LEVEL
-        value: '1'
+        value: "1"
 
       # it limits watched packages/classes/methods
       - name: CM_WATCHED_CUSTOM_SERVICES
-        value: ''
+        value: ""
 
       # provide name of watcher
       # it supports controller, restController, service, repository, component, webClient
       - name: CM_WATCHERS
-        value: 'restController'
+        value: "restController"
 
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       ## percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       ## Period to wait before and after injection of chaos
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: spring-boot-exceptions

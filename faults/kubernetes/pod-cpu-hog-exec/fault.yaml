@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -59,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -68,37 +77,37 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '60'
+        value: "60"
 
       ## Number of CPU cores to stress
       - name: CPU_CORES
-        value: '1'
+        value: "1"
 
       ## Percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       ## Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       # The command to kill the chaos process
       - name: CHAOS_KILL_COMMAND
         value: "kill $(find /proc -name exe -lname '*/md5sum' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}')"
 
       - name: TARGET_CONTAINER
-        value: ''
+        value: ""
 
       - name: TARGET_PODS
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: pod-cpu-hog-exec

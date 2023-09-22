@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -39,7 +48,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -49,35 +58,35 @@ spec:
     env:
       # set chaos duration (in sec) as desired
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       # set chaos interval (in sec) as desired
       - name: CHAOS_INTERVAL
-        value: '30'
+        value: "30"
 
       # set the GCP project id
       - name: GCP_PROJECT_ID
-        value: ''
+        value: ""
 
       # set the zone in which all the disks are created
       # all the disks must exist in the same zone
       - name: ZONES
-        value: ''
+        value: ""
 
       # set the label of the target disk volumes
       - name: DISK_VOLUME_LABEL
-        value: ''
+        value: ""
 
       # set the percentage value of the disks with the given label
       # which should be targeted as part of the chaos injection
       - name: DISK_AFFECTED_PERC
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: gcp-vm-disk-loss-by-label

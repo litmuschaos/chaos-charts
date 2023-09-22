@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -39,7 +48,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -49,84 +58,84 @@ spec:
     env:
       # it enables spring app-kill fault
       - name: CM_KILL_APPLICATION_ACTIVE
-        value: ''
+        value: ""
 
-    # it enables spring-boot latency fault
+      # it enables spring-boot latency fault
       - name: CM_LATENCY_ACTIVE
-        value: ''
+        value: ""
 
       # provide the latency (ms)
       # it is applicable when latency is active
       - name: LATENCY
-        value: '2000'
+        value: "2000"
 
       # it enables spring-boot memory stress fault
       - name: CM_MEMORY_ACTIVE
-        value: ''
+        value: ""
 
       # it contains fraction of memory to be stressed(0.70 equals 70%)
       # it supports value in range [0.01,0.95]
       # it is applicable when memory is active
       - name: MEMORY_FILL_FRACTION
-        value: '0.70'
+        value: "0.70"
 
       # it enables spring-boot cpu stress fault
       - name: CM_CPU_ACTIVE
-        value: ''
+        value: ""
 
       # it contains fraction of cpu to be stressed(0.95 equals 95%)
       # it supports value in range [0.1,1.0]
       # it is applicable when cpu is active
       - name: CPU_LOAD_FRACTION
-        value: '0.9'
+        value: "0.9"
 
       # it enables spring-boot exceptions fault
       - name: CM_EXCEPTIONS_ACTIVE
-        value: ''
+        value: ""
 
       # Type of raised exception
       # it is applicable when exceptions is active
       - name: CM_EXCEPTIONS_TYPE
-        value: 'java.lang.IllegalArgumentException'
+        value: "java.lang.IllegalArgumentException"
 
         # Argument of raised exception
         # it is applicable when exceptions is active
       - name: CM_EXCEPTIONS_ARGUMENTS
-        value: 'java.lang.String:custom illegal argument exception'
+        value: "java.lang.String:custom illegal argument exception"
 
       # port of the spring boot application
       - name: CM_PORT
-        value: ''
+        value: ""
 
       #it contains number of requests are to be attacked
       # n value means nth request will be affected
       - name: CM_LEVEL
-        value: '1'
+        value: "1"
 
       # it limits watched packages/classes/methods
       - name: CM_WATCHED_CUSTOM_SERVICES
-        value: ''
+        value: ""
 
       # provide name of watcher
       # it supports controller, restController, service, repository, component, webClient
       - name: CM_WATCHERS
-        value: 'restController'
+        value: "restController"
 
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       ## percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       ## Period to wait before and after injection of chaos
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: spring-boot-faults

@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -39,7 +48,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -48,40 +57,40 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       - name: CHAOS_INTERVAL
-        value: '30'
+        value: "30"
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       # parallel or serial; determines how chaos is injected
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
       # set the GCP project id
       - name: GCP_PROJECT_ID
-        value: ''
+        value: ""
 
       # set the disk volume name(s) as comma seperated values
       # eg. volume1,volume2,...
       - name: DISK_VOLUME_NAMES
-        value: ''
+        value: ""
 
       # set the disk zone(s) as comma seperated values in the corresponding
       # order of DISK_VOLUME_NAME
       # eg. zone1,zone2,...
       - name: ZONES
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # parallel or serial; determines how chaos is injected
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: gcp-vm-disk-loss

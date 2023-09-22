@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -59,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -68,13 +77,13 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       - name: CHAOS_INTERVAL
-        value: '10'
+        value: "10"
 
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: VCENTERSERVER
         valueFrom:
@@ -95,13 +104,13 @@ spec:
             key: VCENTERPASS
 
       - name: APP_VM_MOIDS
-        value: ''
+        value: ""
 
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
     labels:
       name: vmware-vm-poweroff

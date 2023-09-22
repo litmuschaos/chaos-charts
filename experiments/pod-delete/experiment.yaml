@@ -74,7 +74,7 @@ spec:
                         verbs:
                           - "get"
                           - "list"
-                    image: "litmuschaos/go-runner:3.0.0-beta10"
+                    image: "litmuschaos/go-runner:latest"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -99,7 +99,7 @@ spec:
 
                     - name: CHAOS_INTERVAL
                       value: '5'
-   
+
                     labels:
                       name: pod-delete
       container:
@@ -145,7 +145,7 @@ spec:
                               value: "false"
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+        args: ["-file=/tmp/chaosengine.yaml", "-saveName=/tmp/engine-name"]
 
     - name: cleanup-chaos-resources
       container:

@@ -64,7 +64,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos/go-runner:3.0.0-beta10"
+                    image: "litmuschaos/go-runner:latest"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -143,7 +143,7 @@ spec:
                               value: "kill -9 $(ps afx | grep \"[md5sum] /dev/zero\" | awk '{print$1}' | tr '\n' ' ')"
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+        args: ["-file=/tmp/chaosengine.yaml", "-saveName=/tmp/engine-name"]
 
     - name: cleanup-chaos-resources
       container:

@@ -17,7 +17,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -58,7 +67,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -67,53 +76,53 @@ spec:
       - /bin/bash
     env:
       - name: TARGET_CONTAINER
-        value: ''
+        value: ""
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: TARGET_PODS
-        value: ''
+        value: ""
 
       # provide the chaos interval
       - name: CHAOS_INTERVAL
-        value: '10'
+        value: "10"
 
       - name: SIGNAL
-        value: 'SIGKILL'
+        value: "SIGKILL"
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: '/run/containerd/containerd.sock'
+        value: "/run/containerd/containerd.sock"
 
       # provide the name of container runtime
       # it supports docker, containerd, crio
       - name: CONTAINER_RUNTIME
-        value: 'containerd'
+        value: "containerd"
 
       # provide the total chaos duration
       - name: TOTAL_CHAOS_DURATION
-        value: '20'
+        value: "20"
 
       ## percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       # To select pods on specific node(s)
       - name: NODE_LABEL
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       - name: LIB_IMAGE
-        value: 'chaosnative/go-runner:ci'
+        value: "chaosnative/go-runner:ci"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: container-kill

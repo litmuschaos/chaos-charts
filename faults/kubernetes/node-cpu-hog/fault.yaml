@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -47,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -56,44 +65,44 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '60'
+        value: "60"
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
       ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY
       - name: NODE_CPU_CORE
-        value: ''
+        value: ""
 
       ## LOAD CPU WITH GIVEN PERCENT LOADING FOR THE CPU STRESS WORKERS.
       ## 0 IS EFFECTIVELY A SLEEP (NO LOAD) AND 100 IS FULL LOADING
       - name: CPU_LOAD
-        value: '100'
+        value: "100"
 
       # ENTER THE COMMA SEPARATED TARGET NODES NAME
       - name: TARGET_NODES
-        value: ''
+        value: ""
 
       - name: NODE_LABEL
-        value: ''
+        value: ""
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'chaosnative/go-runner:ci'
+        value: "chaosnative/go-runner:ci"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       ## it defines the sequence of chaos execution for multiple target nodes
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: node-cpu-hog

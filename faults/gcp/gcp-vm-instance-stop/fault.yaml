@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -43,7 +52,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -52,44 +61,44 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       - name: CHAOS_INTERVAL
-        value: '30'
+        value: "30"
 
       # parallel or serial; determines how the VM instances are terminated, all at once or one at a time
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
       # period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       # enable or disable; shall be set to enable if the target instances are a part of a managed instance group
       - name: MANAGED_INSTANCE_GROUP
-        value: 'disable'
+        value: "disable"
 
       # Instance name of the target VM instance(s)
       # Multiple instance names can be provided as comma separated values ex: instance1,instance2
       - name: VM_INSTANCE_NAMES
-        value: ''
+        value: ""
 
       # GCP project ID to which the VM instances belong
       - name: GCP_PROJECT_ID
-        value: ''
+        value: ""
 
       # Instance zone(s) of the target VM instance(s)
       # If more than one instance is targetted, provide zone for each in the order of their
       # respective instance name in VM_INSTANCE_NAME as comma separated values ex: zone1,zone2
       - name: ZONES
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # parallel or serial; determines how chaos is injected
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: gcp-vm-instance-stop

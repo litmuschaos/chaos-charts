@@ -18,70 +18,79 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create","delete","get","list","patch","update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
-        verbs: ["create","get","list","patch","update"]
+        verbs: ["create", "get", "list", "patch", "update"]
       # Fetch configmaps & secrets details and mount it to the experiment pod (if specified)
       - apiGroups: [""]
-        resources: ["configmaps","secrets"]
-        verbs: ["get","list",]
+        resources: ["configmaps", "secrets"]
+        verbs: ["get", "list"]
       # Track and get the runner, experiment, and helper pods log
       - apiGroups: [""]
         resources: ["pods/log"]
-        verbs: ["get","list","watch"]
+        verbs: ["get", "list", "watch"]
       # for creating and managing to execute comands inside target container
       - apiGroups: [""]
         resources: ["pods/exec"]
-        verbs: ["get","list","create"]
+        verbs: ["get", "list", "create"]
       # for configuring and monitor the experiment job by the chaos-runner pod
       - apiGroups: ["batch"]
         resources: ["jobs"]
-        verbs: ["create","list","get","delete","deletecollection"]
+        verbs: ["create", "list", "get", "delete", "deletecollection"]
       # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
       - apiGroups: ["litmuschaos.io"]
-        resources: ["chaosengines","chaosexperiments","chaosresults"]
-        verbs: ["create","list","get","patch","update","delete"]
+        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+        verbs: ["create", "list", "get", "patch", "update", "delete"]
       # for experiment to perform node status checks
       - apiGroups: [""]
         resources: ["nodes"]
-        verbs: ["get","list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+        verbs: ["get", "list"]
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
-    - -c
-    - ./experiments -name node-restart
+      - -c
+      - ./experiments -name node-restart
     command:
-    - /bin/bash
+      - /bin/bash
     env:
-    - name: SSH_USER
-      value: 'root'
+      - name: SSH_USER
+        value: "root"
 
-    - name: TOTAL_CHAOS_DURATION
-      value: '60'
+      - name: TOTAL_CHAOS_DURATION
+        value: "60"
 
-    - name: REBOOT_COMMAND
-      value: '-o ServerAliveInterval=1 -o ServerAliveCountMax=1 "sudo systemctl poweroff --force --force" ; true'
+      - name: REBOOT_COMMAND
+        value: '-o ServerAliveInterval=1 -o ServerAliveCountMax=1 "sudo systemctl poweroff --force --force" ; true'
 
-    # Period to wait before and after injection of chaos in sec
-    - name: RAMP_TIME
-      value: ''
+      # Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ""
 
-    # provide lib image
-    - name: LIB_IMAGE
-      value: "litmuschaos/go-runner:3.0.0-beta10"
+      # provide lib image
+      - name: LIB_IMAGE
+        value: "litmuschaos/go-runner:latest"
 
-    # ENTER THE TARGET NODE NAME
-    - name: TARGET_NODE
-      value: ''
+      # ENTER THE TARGET NODE NAME
+      - name: TARGET_NODE
+        value: ""
 
-    - name: NODE_LABEL
-      value: ''
+      - name: NODE_LABEL
+        value: ""
 
-    # ENTER THE TARGET NODE IP
-    - name: TARGET_NODE_IP
-      value: ''
+      # ENTER THE TARGET NODE IP
+      - name: TARGET_NODE_IP
+        value: ""
 
     labels:
       name: node-poweroff

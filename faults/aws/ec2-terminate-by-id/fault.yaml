@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -47,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -56,36 +65,36 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '30'
+        value: "30"
 
       - name: CHAOS_INTERVAL
-        value: '30'
+        value: "30"
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # enable it if the target instance is a part of self-managed nodegroup.
       - name: MANAGED_NODEGROUP
-        value: 'disable'
+        value: "disable"
 
       # Instance ID of the target EC2 instance
       # Multiple IDs can also be provided as comma separated values ex: id1,id2
       - name: EC2_INSTANCE_ID
-        value: ''
+        value: ""
 
       - name: REGION
-        value: ''
+        value: ""
 
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
       # Provide the path of AWS credentials mounted from secret
       - name: AWS_SHARED_CREDENTIALS_FILE
-        value: '/tmp/cloud_config.yml'
+        value: "/tmp/cloud_config.yml"
 
     labels:
       name: ec2-terminate-by-id

@@ -16,7 +16,7 @@ spec:
       - name: adminModeNamespace
         value: "litmus"
       - name: context
-        value: "node-cpu-hog_infra"   
+        value: "node-cpu-hog_infra"
   templates:
     - name: argowf-chaos
       steps:
@@ -72,7 +72,7 @@ spec:
                         verbs:
                           - "get"
                           - "list"
-                    image: "litmuschaos/go-runner:3.0.0-beta10"
+                    image: "litmuschaos/go-runner:latest"
                     imagePullPolicy: Always
                     args:
                     - -c
@@ -95,7 +95,7 @@ spec:
 
                     # provide lib image
                     - name: LIB_IMAGE
-                      value: 'litmuschaos/go-runner:3.0.0-beta10' 
+                      value: 'litmuschaos/go-runner:latest' 
                   
                     labels:
                       name: node-cpu-hog
@@ -137,7 +137,7 @@ spec:
                               value: '60' # in seconds
       container:
         image: litmuschaos/litmus-checker:latest
-        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+        args: ["-file=/tmp/chaosengine.yaml", "-saveName=/tmp/engine-name"]
 
     - name: cleanup-chaos-resources
       container:

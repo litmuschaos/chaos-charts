@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -59,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -68,64 +77,64 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '60'
+        value: "60"
 
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: TARGET_CONTAINER
-        value: ''
+        value: ""
 
       - name: TC_IMAGE
-        value: 'gaiadocker/iproute2'
+        value: "gaiadocker/iproute2"
 
       - name: NETWORK_INTERFACE
-        value: 'eth0'
+        value: "eth0"
 
       - name: NETWORK_PACKET_DUPLICATION_PERCENTAGE
-        value: '100' # in percentage
+        value: "100" # in percentage
 
       - name: TARGET_PODS
-        value: ''
+        value: ""
 
       # To select pods on specific node(s)
       - name: NODE_LABEL
-        value: ''
+        value: ""
 
       ## percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       - name: LIB_IMAGE
-        value: 'chaosnative/go-runner:ci'
+        value: "chaosnative/go-runner:ci"
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio
       # for pumba LIB, it supports docker only
       - name: CONTAINER_RUNTIME
-        value: 'containerd'
+        value: "containerd"
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # provide the destination ips
       # chaos injection will be triggered for these destination ips
       - name: DESTINATION_IPS
-        value: ''
+        value: ""
 
       # provide the destination hosts
       # chaos injection will be triggered for these destination hosts
       - name: DESTINATION_HOSTS
-        value: ''
+        value: ""
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: '/run/containerd/containerd.sock'
+        value: "/run/containerd/containerd.sock"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: pod-network-duplication

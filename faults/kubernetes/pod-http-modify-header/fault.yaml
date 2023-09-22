@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -59,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -68,20 +77,20 @@ spec:
       - /bin/bash
     env:
       - name: TARGET_CONTAINER
-        value: ''
+        value: ""
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'chaosnative/go-runner:ci'
+        value: "chaosnative/go-runner:ci"
 
       # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
       # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
       - name: HEADERS_MAP
-        value: '{}'
+        value: "{}"
 
       # whether to modify response headers or request headers. Accepted values: request, response
       - name: HEADER_MODE
-        value: 'response'
+        value: "response"
 
       # port of the target service
       - name: TARGET_SERVICE_PORT
@@ -102,40 +111,40 @@ spec:
         value: "eth0"
 
       - name: TOTAL_CHAOS_DURATION
-        value: '60' # in seconds
+        value: "60" # in seconds
 
       # Time period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       # percentage of total pods to target
       - name: PODS_AFFECTED_PERC
-        value: ''
+        value: ""
 
       - name: TARGET_PODS
-        value: ''
+        value: ""
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio
       # for pumba LIB, it supports docker only
       - name: CONTAINER_RUNTIME
-        value: 'containerd'
+        value: "containerd"
 
       # provide the socket file path
       - name: SOCKET_PATH
-        value: '/run/containerd/containerd.sock'
+        value: "/run/containerd/containerd.sock"
 
       # To select pods on specific node(s)
       - name: NODE_LABEL
-        value: ''
+        value: ""
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: pod-http-modify-header

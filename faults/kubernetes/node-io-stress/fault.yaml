@@ -18,7 +18,16 @@ spec:
       # Create and monitor the experiment & helper pods
       - apiGroups: [""]
         resources: ["pods"]
-        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
       # Performs CRUD operations on the events inside chaosengine and chaosresult
       - apiGroups: [""]
         resources: ["events"]
@@ -47,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:3.0.0-beta10"
+    image: "litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -56,56 +65,56 @@ spec:
       - /bin/bash
     env:
       - name: TOTAL_CHAOS_DURATION
-        value: '120'
+        value: "120"
 
       ## specify the size as percentage of free space on the file system
       ## default value 90 (in percentage)
       - name: FILESYSTEM_UTILIZATION_PERCENTAGE
-        value: '10'
+        value: "10"
 
       ## we can specify the size in Gigabyte (Gb) also in place of percentage of free space
       ## NOTE: for selecting this option FILESYSTEM_UTILIZATION_PERCENTAGE should be empty
       - name: FILESYSTEM_UTILIZATION_BYTES
-        value: ''
+        value: ""
 
       ## Number of core of CPU
       - name: CPU
-        value: '1'
+        value: "1"
 
       ## Total number of workers default value is 4
       - name: NUMBER_OF_WORKERS
-        value: '4'
+        value: "4"
 
       ## Total number of VM workers
       - name: VM_WORKERS
-        value: '1'
+        value: "1"
 
       ## enter the comma separated target nodes name
       - name: TARGET_NODES
-        value: ''
+        value: ""
 
       - name: NODE_LABEL
-        value: ''
+        value: ""
 
       # Period to wait before and after injection of chaos in sec
       - name: RAMP_TIME
-        value: ''
+        value: ""
 
       # provide lib image
       - name: LIB_IMAGE
-        value: 'chaosnative/go-runner:ci'
+        value: "chaosnative/go-runner:ci"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
-        value: ''
+        value: ""
 
       - name: DEFAULT_HEALTH_CHECK
-        value: 'false'
+        value: "false"
 
       ## it defines the sequence of chaos execution for multiple target nodes
       ## supported values: serial, parallel
       - name: SEQUENCE
-        value: 'parallel'
+        value: "parallel"
 
     labels:
       name: node-io-stress
