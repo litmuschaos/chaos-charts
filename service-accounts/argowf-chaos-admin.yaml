@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  generateName: argowf-chaos-
+  name: argowf-chaos-
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -22,8 +22,8 @@ spec:
             template: run-chaos
           - name: run-benchmark
             template: run-benchmark
-        - - name: revert-chaos
-            template: revert-chaos
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
 
     - name: run-chaos
       inputs:
@@ -105,7 +105,7 @@ spec:
         command: [sh, -c]
         args: ['kubectl apply -f /tmp/bench.yaml -n {{workflow.parameters.appNamespace}}']
 
-    - name: revert-chaos
+    - name: cleanup-chaos-resources
       container:
         image: alpine/k8s:1.18.2
         command: [sh, -c]

@@ -1,0 +1,28 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: sock-shop-promProbe
+  version: 0.1.0
+  annotations:
+    categories: sock-shop-promProbe
+    chartDescription: Injects chaos on Sock Shop application and uses a prom probe to validate frontend API endpoint availability.
+spec:
+  displayName: Sock Shop PromProbe
+  categoryDescription: >
+    It installs Sock Shop application, injects chaos on the application, uninstalls the application, and reverts the chaos
+  faults:
+    - name: sock-shop
+      description: Injects chaos on Sock Shop application and uses a prom probe to validate frontend API endpoint availability.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - OpenShift(OKD)
+  icon:
+    - url:
+      mediatype: ""

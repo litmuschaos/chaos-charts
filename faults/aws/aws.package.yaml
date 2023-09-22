@@ -1,0 +1,24 @@
+---
+packageName: aws
+faults:
+  - name: alb-az-down
+    CSV: alb-az-down.chartserviceversion.yaml
+    desc: "alb-az-down"
+  - name: aws-ssm-chaos-by-id
+    CSV: aws-ssm-chaos-by-id.chartserviceversion.yaml
+    desc: "aws-ssm-chaos-by-id"
+  - name: aws-ssm-chaos-by-tag
+    CSV: aws-ssm-chaos-by-tag.chartserviceversion.yaml
+    desc: "aws-ssm-chaos-by-tag"
+  - name: ec2-terminate-by-id
+    CSV: ec2-terminate-by-id.chartserviceversion.yaml
+    desc: "ec2-terminate-by-id"
+  - name: ec2-terminate-by-tag
+    CSV: ec2-terminate-by-tag.chartserviceversion.yaml
+    desc: "ec2-terminate-by-tag"
+  - name: ebs-loss-by-id
+    CSV: ebs-loss-by-id.chartserviceversion.yaml
+    desc: "ebs-loss-by-id"
+  - name: ebs-loss-by-tag
+    CSV: ebs-loss-by-tag.chartserviceversion.yaml
+    desc: "ebs-loss-by-tag"
