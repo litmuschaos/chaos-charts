@@ -19,6 +19,9 @@ spec:
     - GKE
     - Minikube
     - EKS
+  maintainers:
+    - name: Akash Shrivastava
+      email: akash.shrivastava@harness.io
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion

@@ -18,6 +18,9 @@ spec:
     - AWS
   platforms:
     - AWS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   chaosType: infra
   labels:
     app.kubernetes.io/component: chartserviceversion

@@ -21,6 +21,9 @@ spec:
       displayName: "Azure Instance Stop"
   keywords:
     - Azure
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   minKubeVersion: 1.12.0
   links:
     - name: Kubernetes Website

@@ -21,6 +21,9 @@ spec:
     - Packet(Kubeadm)
     - EKS
     - AKS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion

@@ -22,6 +22,9 @@ spec:
     - Kind
     - Rancher
     - OpenShift(OKD)
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   experiments:
     - node-memory-hog
   chaosType: infra

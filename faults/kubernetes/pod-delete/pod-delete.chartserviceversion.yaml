@@ -25,6 +25,9 @@ spec:
     - Kind
     - Rancher
     - OpenShift(OKD)
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
   experiments:
     - pod-delete
     - podtato-head

@@ -20,6 +20,9 @@ spec:
     - Konvoy
     - EKS
     - AKS
+  maintainers:
+    - name: Shubham Chaudhary
+      email: shubham.chaudhary@harness.io
   chaosType: infra
   minKubeVersion: 1.12.0
   labels:

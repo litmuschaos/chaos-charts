@@ -23,6 +23,11 @@ spec:
     - EKS
     - AKS
     - Kind
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   experiments:
     - pod-cpu-hog
     - sock-shop

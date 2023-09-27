@@ -23,6 +23,9 @@ spec:
     - EKS
     - AKS
     - OpenShift(OKD)
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   experiments:
     - pod-memory-hog
     - sock-shop
