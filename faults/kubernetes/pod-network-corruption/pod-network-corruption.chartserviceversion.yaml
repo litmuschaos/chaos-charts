@@ -23,6 +23,9 @@ spec:
     - Minikube
     - EKS
     - AKS
+  maintainers:
+    - name: LaumiH
+      email: laura-marie.henning@stud.h-da.de
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion

@@ -18,6 +18,11 @@ spec:
       displayName: "VMware VM Poweroff"
   keywords:
     - VMware
+  maintainers:
+    - name: Delphine Joyneer
+      email: golkonda.joyneer@wipro.com
+    - name: Neelanjan Manna
+      email: neelanjan.manna@harness.io
   minKubeVersion: 1.12.0
   links:
     - name: Kubernetes Website

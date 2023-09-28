@@ -36,6 +36,13 @@ spec:
       displayName: "EBS Loss By Tag"
   keywords:
     - AWS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+    - name: oumkale
+      email: imkaleoum@gmail.com
   minKubeVersion: 1.12.0
   links:
     - name: Kubernetes Website

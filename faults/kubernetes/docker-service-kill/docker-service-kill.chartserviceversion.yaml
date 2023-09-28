@@ -18,6 +18,9 @@ spec:
   platforms:
     - GKE
     - AKS
+  maintainers:
+    - name: Ankur Ghosh
+      email: ankur.ghosh3@wipro.com
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion

@@ -20,6 +20,9 @@ spec:
     - Minikube
     - Packet(Kubeadm)
     - EKS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
   experiments:
     - bank-of-anthos
     - sock-shop

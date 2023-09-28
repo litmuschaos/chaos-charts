@@ -22,6 +22,9 @@ spec:
     - EKS
     - AKS
     - OpenShift(OKD)
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion

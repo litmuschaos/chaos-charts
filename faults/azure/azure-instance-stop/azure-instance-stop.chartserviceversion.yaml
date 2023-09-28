@@ -17,6 +17,9 @@ spec:
     - Azure
   platforms:
     - Azure
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
   minKubeVersion: 1.12.0
   links:
     - name: Documentation

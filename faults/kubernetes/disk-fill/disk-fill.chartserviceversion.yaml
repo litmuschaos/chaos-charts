@@ -21,6 +21,9 @@ spec:
     - GKE
     - EKS
     - AKS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
   experiments:
     - sock-shop
     - sock-shop-promProbe

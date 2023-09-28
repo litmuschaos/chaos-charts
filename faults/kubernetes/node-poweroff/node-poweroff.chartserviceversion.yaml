@@ -16,6 +16,9 @@ spec:
   platforms:
     - KVM/LibVirt based K8s
     - EKS
+  maintainers:
+    - name: jordigilh
+      email: jordi.gil@gmail.com
   chaosType: infra
   minKubeVersion: 1.12.0
   labels:

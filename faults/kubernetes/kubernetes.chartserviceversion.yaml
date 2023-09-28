@@ -105,6 +105,9 @@ spec:
       displayName: "Pod HTTP Reset Peer"
   keywords:
     - Kubernetes
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
   minKubeVersion: 1.12.0
   links:
     - name: Kubernetes Website

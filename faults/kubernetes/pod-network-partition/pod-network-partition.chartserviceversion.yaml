@@ -17,6 +17,9 @@ spec:
   platforms:
     - Minikube
     - Packet(Kubeadm)
+  maintainers:
+    - name: Shubham Chaudhary
+      email: shubham.chaudhary@harness.io
   minKubeVersion: 1.12.0
   labels:
     app.kubernetes.io/component: chartserviceversion
