@@ -78,7 +78,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # ENTER THE TARGET NODE NAME
       - name: TARGET_NODE

@@ -286,7 +286,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # modified status code for the HTTP response
       # if no value is provided, a random status code from the supported code list will selected
@@ -469,7 +469,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -589,7 +589,7 @@ spec:
 
       ## It is used in pumba lib only
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## It is used in pumba lib only
       - name: STRESS_IMAGE
@@ -711,7 +711,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -867,7 +867,7 @@ spec:
         value: ""
 
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio
@@ -988,7 +988,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
       # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
@@ -1153,7 +1153,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
@@ -1375,7 +1375,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # reset timeout specifies after how much duration to reset the connection
       - name: RESET_TIMEOUT
@@ -1522,7 +1522,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # ENTER THE TARGET NODE NAME
       - name: TARGET_NODE
@@ -1750,7 +1750,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
@@ -2105,7 +2105,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -2203,7 +2203,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: LATENCY
         value: "2000" #in ms
@@ -2356,7 +2356,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: TC_IMAGE
         value: "gaiadocker/iproute2"
@@ -2836,7 +2836,7 @@ spec:
 
       ## It is used in pumba lib only
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## It is used in pumba lib only
       - name: STRESS_IMAGE
@@ -2959,7 +2959,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: NETWORK_INTERFACE
         value: "eth0"
@@ -3107,7 +3107,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # provide the body string to overwrite the response body
       # if no value is provided, response will be an empty body.
@@ -3392,7 +3392,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -3532,7 +3532,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # Provide the container runtime path
       # Default set to docker container path
@@ -3634,7 +3634,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -3761,7 +3761,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: NETWORK_INTERFACE
         value: "eth0"

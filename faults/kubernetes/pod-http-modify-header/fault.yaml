@@ -81,7 +81,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
       # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}

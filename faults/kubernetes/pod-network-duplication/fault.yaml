@@ -106,7 +106,7 @@ spec:
         value: ""
 
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio

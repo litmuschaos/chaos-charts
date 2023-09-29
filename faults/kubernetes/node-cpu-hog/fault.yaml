@@ -90,7 +90,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC

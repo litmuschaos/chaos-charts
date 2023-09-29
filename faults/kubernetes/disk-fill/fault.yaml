@@ -112,7 +112,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       # Provide the container runtime path
       # Default set to docker container path
