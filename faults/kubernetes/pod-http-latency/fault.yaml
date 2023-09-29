@@ -81,7 +81,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: LATENCY
         value: "2000" #in ms

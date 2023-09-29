@@ -118,7 +118,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "chaosnative/go-runner:ci"
+        value: "litmuschaos/go-runner:latest"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
