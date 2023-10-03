@@ -190,7 +190,7 @@ Following chaos faults are classified in this category:
 
 ## Installation Steps for Chart Releases
 
-*Note: Supported from release 1.1.0*
+*Note: Supported from release 3.0.0*
 
 - To install the chaos faults from a specific chart for a given release, execute the following commands
 with the desired `<release_version>`, `<chart_name>` & `<namespace>`
@@ -202,18 +202,17 @@ tar -zxvf <(curl -sL https://github.com/litmuschaos/chaos-charts/archive/<releas
 ## installs the chaosexperiment resources
 find chaos-charts-<release_version> -name experiments.yaml | grep <chart-name> | xargs kubectl apply -n <namespace> -f
 ```
-- For example, to install the *Kubernetes* fault chart bundle for release *1.1.0*, in the *sock-shop* namespace, run:
+- For example, to install the *Kubernetes* fault chart bundle for release *3.0.0*, in the *sock-shop* namespace, run:
 
 ```bash
-tar -zxvf <(curl -sL https://github.com/litmuschaos/chaos-charts/archive/1.1.0.tar.gz)
-find chaos-charts-1.1.0 -name experiments.yaml | grep generic | xargs kubectl apply -n sock-shop -f
+tar -zxvf <(curl -sL https://github.com/litmuschaos/chaos-charts/archive/3.0.0.tar.gz)
+find chaos-charts-3.0.0 -name experiments.yaml | grep kubernetes | xargs kubectl apply -n sock-shop -f
 ```
 
-- If you would like to install a specific fault, replace the `experiments.yaml` in the above command with the relative
-path of the experiment manifest within the parent chart. For example, to install only the *pod-delete* experiment, run:
+- If you would like to install a specific fault, replace the `experiments.yaml` in the above command with the relative path of the fault manifest within the parent chart. For example, to install only the *pod-delete* fault, run:
 
 ```bash
-find chaos-charts-1.1.0 -name experiment.yaml | grep 'generic/pod-delete' | xargs kubectl apply -n sock-shop -f
+find chaos-charts-3.0.0 -name fault.yaml | grep 'kubernetes/pod-delete' | xargs kubectl apply -n sock-shop -f
 ```
 
 
