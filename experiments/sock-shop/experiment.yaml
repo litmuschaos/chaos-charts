@@ -763,7 +763,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_carts"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -835,7 +835,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_orders"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -905,7 +905,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_catalogue"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -979,7 +979,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_user-db"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: 'sock-shop'
@@ -1055,7 +1055,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_catalogue-db"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: 'sock-shop'

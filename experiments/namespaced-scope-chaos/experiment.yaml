@@ -125,7 +125,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.adminModeNamespace}}_hello-world"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: {{workflow.parameters.adminModeNamespace}}

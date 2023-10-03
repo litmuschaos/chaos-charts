@@ -118,7 +118,7 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                     labels:
                       context: "{{workflow.parameters.context}}"
-                    annotation: {}
+                    annotations: {}
                   spec:
                     jobCleanUpPolicy: retain
                     engineState: 'active'

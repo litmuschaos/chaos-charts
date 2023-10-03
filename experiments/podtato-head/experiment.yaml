@@ -184,7 +184,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.adminModeNamespace}}_podtato-main"
-                  annotation: {}
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: {{workflow.parameters.adminModeNamespace}}

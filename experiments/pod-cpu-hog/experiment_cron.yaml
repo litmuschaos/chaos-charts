@@ -121,7 +121,7 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                     labels:
                       context: "{{workflow.parameters.appNamespace}}_kube-proxy"
-                    annotation: {}
+                    annotations: {}
                   spec:
                     appinfo:
                       appns: kube-system
