@@ -71,7 +71,7 @@ spec:
                             - "delete"
                         - apiGroups:
                             - ""
-                          resources: 
+                          resources:
                             - "nodes"
                           verbs:
                             - "get"
@@ -99,8 +99,8 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: 'litmuschaos/go-runner:latest' 
-                    
+                        value: 'litmuschaos/go-runner:latest'
+
                       labels:
                         name: node-cpu-hog
         container:
@@ -125,6 +125,7 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                     labels:
                       context: "{{workflow.parameters.context}}"
+                    annotation: {}
                   spec:
                     jobCleanUpPolicy: retain
                     engineState: 'active'

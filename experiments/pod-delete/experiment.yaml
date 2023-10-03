@@ -69,7 +69,7 @@ spec:
                           - "delete"
                       - apiGroups:
                           - ""
-                        resources: 
+                        resources:
                           - "nodes"
                         verbs:
                           - "get"
@@ -124,6 +124,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_kube-proxy"
+                  annotation: {}
                 spec:
                   appinfo:
                     appns: kube-system

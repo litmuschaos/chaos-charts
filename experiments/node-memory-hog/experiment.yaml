@@ -67,7 +67,7 @@ spec:
                           - "delete"
                       - apiGroups:
                           - ""
-                        resources: 
+                        resources:
                           - "nodes"
                         verbs:
                           - "get"
@@ -87,7 +87,7 @@ spec:
                     ## specify the size as percent of total available memory (in percentage)
                     ## Default value "90"
                     - name: MEMORY_PERCENTAGE
-                      value: '90'        
+                      value: '90'
 
                     # Period to wait before and after injection of chaos in sec
                     - name: RAMP_TIME
@@ -95,8 +95,8 @@ spec:
 
                     # provide lib image
                     - name: LIB_IMAGE
-                      value: 'litmuschaos/go-runner:latest' 
-                      
+                      value: 'litmuschaos/go-runner:latest'
+
                     labels:
                       name: node-memory-hog
       container:
@@ -121,6 +121,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.context}}"
+                  annotation: {}
                 spec:
                   jobCleanUpPolicy: retain
                   engineState: 'active'

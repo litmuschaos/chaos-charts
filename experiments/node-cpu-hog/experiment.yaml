@@ -67,7 +67,7 @@ spec:
                           - "delete"
                       - apiGroups:
                           - ""
-                        resources: 
+                        resources:
                           - "nodes"
                         verbs:
                           - "get"
@@ -89,14 +89,14 @@ spec:
                       value: ''
 
                     ## ENTER THE NUMBER OF CORES OF CPU FOR CPU HOGGING
-                    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY 
+                    ## OPTIONAL VALUE IN CASE OF EMPTY VALUE IT WILL TAKE NODE CPU CAPACITY
                     - name: NODE_CPU_CORE
                       value: ''
 
                     # provide lib image
                     - name: LIB_IMAGE
-                      value: 'litmuschaos/go-runner:latest' 
-                  
+                      value: 'litmuschaos/go-runner:latest'
+
                     labels:
                       name: node-cpu-hog
       container:
@@ -121,6 +121,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.context}}"
+                  annotation: {}
                 spec:
                   jobCleanUpPolicy: retain
                   engineState: 'active'

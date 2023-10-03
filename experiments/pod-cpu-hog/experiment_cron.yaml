@@ -78,7 +78,7 @@ spec:
                       env:
                       - name: TOTAL_CHAOS_DURATION
                         value: '30'
-                      
+
                       - name: CHAOS_INTERVAL
                         value: '10'
 
@@ -96,7 +96,7 @@ spec:
 
                       - name: TARGET_POD
                         value: ''
-                        
+
                       labels:
                         name: pod-cpu-hog
         container:
@@ -121,6 +121,7 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                     labels:
                       context: "{{workflow.parameters.appNamespace}}_kube-proxy"
+                    annotation: {}
                   spec:
                     appinfo:
                       appns: kube-system
