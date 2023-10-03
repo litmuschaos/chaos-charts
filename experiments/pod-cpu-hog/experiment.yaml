@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: argowf-chaos-pod-cpu-hog-
+  name: argowf-chaos-pod-cpu-hog
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_kube-proxy"

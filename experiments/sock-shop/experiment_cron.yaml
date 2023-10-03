@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: CronWorkflow
 metadata:
-  name: argowf-chaos-sock-shop-resiliency-cron-wf-
+  name: argowf-chaos-sock-shop-resiliency-cron-wf
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_sock-shop"
@@ -57,7 +57,7 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=faults/kubernetes/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
 
     - name: pod-cpu-hog

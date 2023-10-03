@@ -41,5 +41,5 @@ spec:
     - name: Documentation
       url: "https://litmuschaos.github.io/litmus/experiments/categories/contents/#gcp"
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/gcp/icons/gcp.png
       mediatype: image/png

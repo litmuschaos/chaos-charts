@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: argowf-chaos-bank-of-anthos-resiliency-
+  name: argowf-chaos-bank-of-anthos-resiliency
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
@@ -41,7 +41,7 @@ spec:
         image: litmuschaos/k8s:latest
         command: [sh, -c]
         args:
-          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=charts/generic/experiments.yaml -n
+          - "kubectl apply -f https://hub.litmuschaos.io/api/chaos/master?file=faults/kubernetes/experiments.yaml -n
             {{workflow.parameters.adminModeNamespace}} ; sleep 30"
 
     - name: pod-network-loss
