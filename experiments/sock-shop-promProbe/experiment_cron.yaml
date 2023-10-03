@@ -70,7 +70,7 @@ spec:
                     name: pod-cpu-hog
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -195,7 +195,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
           - name: pod-delete-rm5
             path: /tmp/pod-delete-rm5.yaml
             raw:
@@ -211,7 +211,7 @@ spec:
                     name: pod-delete
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -316,7 +316,7 @@ spec:
                       name: pod-delete
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
           - name: pod-network-loss-x1w
             path: /tmp/pod-network-loss-x1w.yaml
             raw:
@@ -332,7 +332,7 @@ spec:
                     name: pod-network-loss
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -465,7 +465,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
           - name: pod-memory-hog-49a
             path: /tmp/pod-memory-hog-49a.yaml
             raw:
@@ -481,7 +481,7 @@ spec:
                     name: pod-memory-hog
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -605,7 +605,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
           - name: disk-fill-h7d
             path: /tmp/disk-fill-h7d.yaml
             raw:
@@ -621,7 +621,7 @@ spec:
                     name: disk-fill
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -740,7 +740,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/host-path-usage: "true"
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
       outputs: {}
       metadata: {}
       container:

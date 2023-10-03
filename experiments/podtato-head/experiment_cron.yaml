@@ -56,7 +56,7 @@ spec:
                     name: pod-delete
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: ci
+                    app.kubernetes.io/version: latest
                 spec:
                   definition:
                     scope: Namespaced
@@ -161,7 +161,7 @@ spec:
                       name: pod-delete
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
-                      app.kubernetes.io/version: ci
+                      app.kubernetes.io/version: latest
       outputs: {}
       metadata: {}
       container:
