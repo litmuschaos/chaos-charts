@@ -54,5 +54,5 @@ spec:
     - name: Documentation
       url: "https://litmuschaos.github.io/litmus/experiments/categories/contents/#aws"
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/charthub.litmuschaos.io/master/public/litmus.ico
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/aws/icons/aws.png
       mediatype: image/png

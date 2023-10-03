@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: argowf-chaos-hello-world-pod-delete-
+  name: argowf-chaos-hello-world-pod-delete
   labels:
     subject: "{{workflow.parameters.adminModeNamespace}}_hello-world"
 spec:

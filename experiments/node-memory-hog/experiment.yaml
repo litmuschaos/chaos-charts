@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: argowf-chaos-node-memory-hog-
+  name: argowf-chaos-node-memory-hog
   namespace: litmus
   labels:
     subject: "{{workflow.parameters.context}}"

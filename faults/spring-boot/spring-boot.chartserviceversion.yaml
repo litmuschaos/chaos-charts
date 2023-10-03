@@ -45,5 +45,5 @@ spec:
     - name: Documentation
       url: https://spring.io/projects/spring-boot
   icon:
-    - url: https://raw.githubusercontent.com/litmuschaos/chaos-charts/master/charts/spring-boot/icons/spring-boot.png
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/spring-boot/icons/spring-boot.png
       mediatype: image/png

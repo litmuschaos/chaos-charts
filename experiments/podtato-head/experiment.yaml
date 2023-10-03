@@ -1,7 +1,7 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Workflow
 metadata:
-  name: argowf-podtato-head-chaos-
+  name: argowf-podtato-head-chaos
   namespace: litmus
   labels:
     subject : "{{workflow.parameters.adminModeNamespace}}_podtato-main"
