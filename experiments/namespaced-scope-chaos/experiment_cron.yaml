@@ -70,7 +70,7 @@ spec:
                             - "delete"
                         - apiGroups:
                             - ""
-                          resources: 
+                          resources:
                             - "nodes"
                           verbs:
                             - "get"
@@ -129,6 +129,7 @@ spec:
                     namespace: {{workflow.parameters.adminModeNamespace}}
                     labels:
                       context: "{{workflow.parameters.adminModeNamespace}}_hello-world"
+                    annotations: {}
                   spec:
                     appinfo:
                       appns: {{workflow.parameters.adminModeNamespace}}

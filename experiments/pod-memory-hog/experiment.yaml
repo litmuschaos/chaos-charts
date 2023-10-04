@@ -87,7 +87,7 @@ spec:
 
                       ## Period to wait before and after injection of chaos in sec
                       - name: RAMP_TIME
-                        value: ''     
+                        value: ''
 
                       - name: TARGET_POD
                         value: ''
@@ -116,6 +116,7 @@ spec:
                   namespace: {{workflow.parameters.adminModeNamespace}}
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_kube-proxy"
+                  annotations: {}
                 spec:
                   appinfo:
                     appns: kube-system
