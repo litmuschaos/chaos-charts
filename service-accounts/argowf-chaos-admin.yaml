@@ -36,7 +36,7 @@ spec:
               kind: ChaosEngine
               metadata:
                 name: nginx-chaos
-                namespace: {{workflow.parameters.adminModeNamespace}}
+                namespace: "{{workflow.parameters.adminModeNamespace}}"
               spec:
                 appinfo:
                   appns: {{workflow.parameters.appNamespace}}

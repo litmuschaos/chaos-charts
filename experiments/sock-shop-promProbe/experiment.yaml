@@ -4,7 +4,7 @@ metadata:
   name: argowf-chaos-sock-shop-resiliency
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_sock-shop"
+    subject: "sock-shop"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -760,7 +760,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: pod-cpu-hog-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_carts"
                   annotations: {}
@@ -831,7 +831,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: pod-memory-hog-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_orders"
                   annotations: {}
@@ -900,7 +900,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: catalogue-pod-delete-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_catalogue"
                   annotations: {}
@@ -973,7 +973,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: pod-network-loss-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_user-db"
                   annotations: {}
@@ -1049,7 +1049,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: catalogue-disk-fill
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_catalogue-db"
                   annotations: {}

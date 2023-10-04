@@ -60,7 +60,7 @@ spec:
     imagePullPolicy: Always
     args:
       - -c
-      - ./experiments -name ec2-stop-by-tag
+      - ./experiments -name ec2-terminate-by-tag
     command:
       - /bin/bash
     env:

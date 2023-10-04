@@ -13,19 +13,19 @@ spec:
   categoryDescription: >
     AWS chaos contains different faults for AWS cloud provider to test the app/platform service availability. It uses AWS command to carry the fault logic in the instance. It will install all the faults which can be used to inject chaos into the AWS services like EC2, ECS, S3 and so on.
   faults:
-    - name: alb-az-down
-      description: It injects AZ down chaos on ALB for a certain chaos duration.
-      displayName: "ALB AZ Down"
+    - name: aws-az-chaos
+      description: It injects AZ chaos to detach the target zones from the load balancer.
+      displayName: "AWS AZ Chaos"
     - name: aws-ssm-chaos-by-id
       description: It allow to perform in-VM chaos using AWS SSM service and EC2 instance ID.
       displayName: "AWS SSM Chaos By ID"
     - name: aws-ssm-chaos-by-tag
       description: It allow to perform in-VM chaos using AWS SSM service and EC2 instance tag.
       displayName: "AWS SSM Chaos By Tag"
-    - name: ec2-terminate-by-id
+    - name: ec2-stop-by-id
       description: It stops the AWS EC2 instance identified by ID for a certain chaos duration.
       displayName: "EC2 Stop By ID"
-    - name: ec2-terminate-by-tag
+    - name: ec2-stop-by-tag
       description: It stops the AWS EC2 instance identified by Tag for a certain chaos duration.
       displayName: "EC2 Stop By Tag"
     - name: ebs-loss-by-id

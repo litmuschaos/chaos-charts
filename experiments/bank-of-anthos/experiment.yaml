@@ -4,7 +4,7 @@ metadata:
   name: argowf-chaos-bank-of-anthos-resiliency
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
+    subject: "bank-of-anthos"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -211,14 +211,14 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: pod-network-loss-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
                   annotations: {}
                 spec:
                   appinfo:
                     appns: 'bank'
-                    applabel: 'name in (balancereader,transactionhistory)'
+                    applabel: 'name=balancereader'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
                   engineState: 'active'

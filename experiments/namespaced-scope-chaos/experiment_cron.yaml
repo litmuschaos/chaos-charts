@@ -126,7 +126,7 @@ spec:
                   kind: ChaosEngine
                   metadata:
                     name: pod-delete-chaos
-                    namespace: {{workflow.parameters.adminModeNamespace}}
+                    namespace: "{{workflow.parameters.adminModeNamespace}}"
                     labels:
                       context: "{{workflow.parameters.adminModeNamespace}}_hello-world"
                     annotations: {}

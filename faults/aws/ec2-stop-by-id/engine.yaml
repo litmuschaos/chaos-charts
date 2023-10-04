@@ -8,7 +8,7 @@ spec:
   engineState: 'active'
   chaosServiceAccount: litmus-admin
   experiments:
-    - name: ec2-terminate-by-id
+    - name: ec2-stop-by-id
       spec:
         components:
           env:

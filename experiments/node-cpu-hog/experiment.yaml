@@ -118,7 +118,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: kube-proxy-node-cpu-hog-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.context}}"
                   annotations: {}
