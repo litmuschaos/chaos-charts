@@ -113,7 +113,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: kube-proxy-pod-memory-hog-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_kube-proxy"
                   annotations: {}
