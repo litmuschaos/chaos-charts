@@ -4,7 +4,7 @@ metadata:
   name: argowf-chaos-bank-of-anthos-resiliency-cron-wf
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_bank-of-anthos"
+    subject: "bank-of-anthos"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -222,7 +222,7 @@ spec:
                 spec:
                   appinfo:
                     appns: 'bank'
-                    applabel: 'name in (balancereader,transactionhistory)'
+                    applabel: 'name=balancereader'
                     appkind: 'deployment'
                   jobCleanUpPolicy: retain
                   engineState: 'active'

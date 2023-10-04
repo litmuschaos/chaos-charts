@@ -4,7 +4,7 @@ metadata:
   name: argowf-chaos-sock-shop-resiliency-cron-wf
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_sock-shop"
+    subject: "sock-shop"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -764,7 +764,7 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: pod-cpu-hog-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.appNamespace}}_carts"
                   annotations: {}

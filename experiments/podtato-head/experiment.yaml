@@ -4,7 +4,7 @@ metadata:
   name: argowf-podtato-head-chaos
   namespace: litmus
   labels:
-    subject : "{{workflow.parameters.adminModeNamespace}}_podtato-main"
+    subject : "podtato-main"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -181,13 +181,13 @@ spec:
                 kind: ChaosEngine
                 metadata:
                   name: podtato-main-pod-delete-chaos
-                  namespace: {{workflow.parameters.adminModeNamespace}}
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.adminModeNamespace}}_podtato-main"
                   annotations: {}
                 spec:
                   appinfo:
-                    appns: {{workflow.parameters.adminModeNamespace}}
+                    appns: "{{workflow.parameters.adminModeNamespace}}"
                     applabel: 'name=podtato-main'
                     appkind: 'deployment'
                   engineState: 'active'
