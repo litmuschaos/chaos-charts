@@ -68,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -106,7 +106,7 @@ spec:
         value: ""
 
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio
@@ -214,7 +214,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -258,7 +258,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # Provide the container runtime path
       # Default set to docker container path
@@ -348,7 +348,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -465,7 +465,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -515,7 +515,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
@@ -600,7 +600,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -613,7 +613,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # map of headers to modify/add; Eg: {"X-Litmus-Test-Header": "X-Litmus-Test-Value"}
       # to remove a header, just set the value to ""; Eg: {"X-Litmus-Test-Header": ""}
@@ -756,7 +756,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -785,7 +785,7 @@ spec:
 
       ## It is used in pumba lib only
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## It is used in pumba lib only
       - name: STRESS_IMAGE
@@ -887,7 +887,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list", "patch"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -988,7 +988,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1038,7 +1038,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -1122,7 +1122,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1145,7 +1145,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # ENTER THE TARGET NODE NAME
       - name: TARGET_NODE
@@ -1230,7 +1230,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list", "patch", "update"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1336,7 +1336,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1349,7 +1349,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # modified status code for the HTTP response
       # if no value is provided, a random status code from the supported code list will selected
@@ -1495,7 +1495,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1590,7 +1590,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1697,7 +1697,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1713,7 +1713,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: TC_IMAGE
         value: "gaiadocker/iproute2"
@@ -1836,7 +1836,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1858,7 +1858,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # ENTER THE TARGET NODE NAME
       - name: TARGET_NODE
@@ -1954,7 +1954,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -1967,7 +1967,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: LATENCY
         value: "2000" #in ms
@@ -2104,7 +2104,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -2117,7 +2117,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: NETWORK_INTERFACE
         value: "eth0"
@@ -2240,7 +2240,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -2362,7 +2362,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -2375,7 +2375,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # provide the body string to overwrite the response body
       # if no value is provided, response will be an empty body.
@@ -2523,7 +2523,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -2536,7 +2536,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: NETWORK_INTERFACE
         value: "eth0"
@@ -2671,7 +2671,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     args:
       - -c
       - ./experiments -name pod-dns-error
@@ -2683,7 +2683,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -2801,7 +2801,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     args:
       - -c
       - ./experiments -name pod-dns-spoof
@@ -2813,7 +2813,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -2915,7 +2915,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -2961,7 +2961,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
@@ -3052,7 +3052,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3172,7 +3172,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3185,7 +3185,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       # reset timeout specifies after how much duration to reset the connection
       - name: RESET_TIMEOUT
@@ -3322,7 +3322,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3352,7 +3352,7 @@ spec:
 
       ## It is used in pumba lib only
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## It is used in pumba lib only
       - name: STRESS_IMAGE
@@ -3462,7 +3462,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3568,7 +3568,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3602,7 +3602,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## percentage of total nodes to target
       - name: NODES_AFFECTED_PERC
@@ -3681,7 +3681,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3768,7 +3768,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -3805,7 +3805,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"

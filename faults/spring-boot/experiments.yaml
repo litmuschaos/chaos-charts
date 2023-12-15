@@ -48,7 +48,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -152,7 +152,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -259,7 +259,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -405,7 +405,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -509,7 +509,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -605,7 +605,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c

@@ -68,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -97,7 +97,7 @@ spec:
 
       ## It is used in pumba lib only
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos/go-runner:3.2.0"
 
       ## It is used in pumba lib only
       - name: STRESS_IMAGE
