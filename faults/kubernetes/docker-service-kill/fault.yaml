@@ -56,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c

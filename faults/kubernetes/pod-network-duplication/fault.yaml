@@ -68,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -106,7 +106,7 @@ spec:
         value: ""
 
       - name: LIB_IMAGE
-        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
+        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
 
       # provide the name of container runtime
       # for litmus LIB, it supports docker, containerd, crio
