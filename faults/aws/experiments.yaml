@@ -10,7 +10,7 @@ metadata:
     name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -52,7 +52,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -90,7 +90,7 @@ spec:
       name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -108,7 +108,7 @@ metadata:
     name: ec2-stop-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -154,7 +154,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -198,7 +198,7 @@ spec:
       name: ec2-stop-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -216,7 +216,7 @@ metadata:
     name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -258,7 +258,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -298,7 +298,7 @@ spec:
       name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -316,7 +316,7 @@ metadata:
     name: aws-az-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -349,7 +349,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines","chaosexperiments","chaosresults"]
         verbs: ["create","list","get","patch","update","delete"]
-    image: "litmuschaos/py-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/py-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -395,7 +395,7 @@ metadata:
     name: ec2-stop-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -441,7 +441,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -491,7 +491,7 @@ spec:
       name: ec2-stop-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -509,7 +509,7 @@ metadata:
     name: aws-ssm-chaos-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -551,7 +551,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -634,7 +634,7 @@ spec:
       name: aws-ssm-chaos-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -652,7 +652,7 @@ metadata:
     name: aws-ssm-chaos-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -694,7 +694,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -773,7 +773,7 @@ spec:
       name: aws-ssm-chaos-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/

@@ -10,7 +10,7 @@ metadata:
     name: pod-http-modify-body
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -68,7 +68,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -81,7 +81,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
 
       # provide the body string to overwrite the response body
       # if no value is provided, response will be an empty body.
@@ -156,4 +156,4 @@ spec:
       name: pod-http-modify-body
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0

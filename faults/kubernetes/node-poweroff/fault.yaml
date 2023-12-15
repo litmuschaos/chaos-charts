@@ -56,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -79,7 +79,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.2.0"
 
       # ENTER THE TARGET NODE NAME
       - name: TARGET_NODE
