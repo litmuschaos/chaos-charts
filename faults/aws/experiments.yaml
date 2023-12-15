@@ -10,7 +10,7 @@ metadata:
     name: ebs-loss-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -90,7 +90,7 @@ spec:
       name: ebs-loss-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -108,7 +108,7 @@ metadata:
     name: ec2-stop-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -198,7 +198,7 @@ spec:
       name: ec2-stop-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -216,7 +216,7 @@ metadata:
     name: ebs-loss-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -298,7 +298,7 @@ spec:
       name: ebs-loss-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -316,7 +316,7 @@ metadata:
     name: aws-az-chaos
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -395,7 +395,7 @@ metadata:
     name: ec2-stop-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -491,7 +491,7 @@ spec:
       name: ec2-stop-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -509,7 +509,7 @@ metadata:
     name: aws-ssm-chaos-by-tag
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -634,7 +634,7 @@ spec:
       name: aws-ssm-chaos-by-tag
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/
@@ -652,7 +652,7 @@ metadata:
     name: aws-ssm-chaos-by-id
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Cluster
@@ -773,7 +773,7 @@ spec:
       name: aws-ssm-chaos-by-id
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
     secrets:
       - name: cloud-secret
         mountPath: /tmp/

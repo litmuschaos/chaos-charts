@@ -9,7 +9,7 @@ metadata:
     name: container-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -129,4 +129,4 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/runtime-api-usage: "true"
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0

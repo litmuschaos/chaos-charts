@@ -10,7 +10,7 @@ metadata:
     name: spring-boot-memory-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -99,7 +99,7 @@ spec:
       name: spring-boot-memory-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
 ---
@@ -114,7 +114,7 @@ metadata:
     name: spring-boot-exceptions
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -206,7 +206,7 @@ spec:
       name: spring-boot-exceptions
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
 ---
@@ -221,7 +221,7 @@ metadata:
     name: spring-boot-faults
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -352,7 +352,7 @@ spec:
       name: spring-boot-faults
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
 ---
@@ -367,7 +367,7 @@ metadata:
     name: spring-boot-cpu-stress
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -456,7 +456,7 @@ spec:
       name: spring-boot-cpu-stress
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
 ---
@@ -471,7 +471,7 @@ metadata:
     name: spring-boot-app-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -552,7 +552,7 @@ spec:
       name: spring-boot-app-kill
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
 ---
@@ -567,7 +567,7 @@ metadata:
     name: spring-boot-latency
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.2.0
 spec:
   definition:
     scope: Namespaced
@@ -655,6 +655,6 @@ spec:
       name: spring-boot-latency
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.2.0
 
 ---
