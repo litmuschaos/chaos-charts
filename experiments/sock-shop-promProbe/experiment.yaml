@@ -124,7 +124,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos/go-runner:3.2.0"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -154,7 +154,7 @@ spec:
 
                       ## It is used in pumba lib only
                       - name: LIB_IMAGE
-                        value: "litmuschaos/go-runner:3.2.0"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
 
                       ## It is used in pumba lib only
                       - name: STRESS_IMAGE
@@ -265,7 +265,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos/go-runner:3.2.0"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -386,7 +386,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos/go-runner:3.2.0"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -399,7 +399,7 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: "litmuschaos/go-runner:3.2.0"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
 
                       - name: NETWORK_INTERFACE
                         value: "eth0"
@@ -535,7 +535,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos/go-runner:3.2.0"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -564,7 +564,7 @@ spec:
 
                       ## It is used in pumba lib only
                       - name: LIB_IMAGE
-                        value: "litmuschaos/go-runner:3.2.0"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
 
                       ## It is used in pumba lib only
                       - name: STRESS_IMAGE
@@ -675,7 +675,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos/go-runner:3.2.0"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -719,7 +719,7 @@ spec:
                         value: "false"
 
                       - name: LIB_IMAGE
-                        value: "litmuschaos/go-runner:3.2.0"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runnner:3.2.0"
 
                       # Provide the container runtime path
                       # Default set to docker container path
