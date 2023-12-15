@@ -67,7 +67,7 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-    image: "litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
     imagePullPolicy: Always
     args:
       - -c
@@ -117,7 +117,7 @@ spec:
         value: "false"
 
       - name: LIB_IMAGE
-        value: "litmuschaos/go-runner:latest"
+        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel

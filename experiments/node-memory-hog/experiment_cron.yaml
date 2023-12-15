@@ -75,7 +75,7 @@ spec:
                           verbs:
                             - "get"
                             - "list"
-                      image: "litmuschaos/go-runner:latest"
+                      image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
                       imagePullPolicy: Always
                       args:
                       - -c
@@ -94,7 +94,7 @@ spec:
                         value: ''
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: 'litmuschaos/go-runner:latest'
+                        value: 'litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest'
                       labels:
                         name: node-memory-hog
         container:
