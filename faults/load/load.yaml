@@ -1,0 +1,6 @@
+---
+packageName: load
+faults:
+  - name: k6-loadgen
+    CSV: k6-loadgen.chartserviceversion.yaml
+    desc: "k6-loadgen"

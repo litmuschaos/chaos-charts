@@ -1,0 +1,26 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: k6-loadgen
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: '30'
+
+            # set chaos intreval (in sec) as desired
+            - name: CHAOS_INTERVAL
+              value: '30'
+
+            # set the path of the JS script
+            - name: SCRIPT_PATH
+              value: '/tmp/script.js'
+              
