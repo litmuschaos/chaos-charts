@@ -75,10 +75,7 @@ spec:
         value: "/tmp/script.js"
 
     labels:
-      name: azure-instance-stop
+      name: k6-loadgen
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: ci
-    secrets:
-      - name: cloud-secret
-        mountPath: /tmp/
