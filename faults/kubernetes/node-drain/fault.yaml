@@ -10,7 +10,7 @@ metadata:
     name: node-drain
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.4.0
 spec:
   definition:
     scope: Cluster
@@ -60,7 +60,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list", "patch"]
-    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -88,4 +88,4 @@ spec:
       name: node-drain
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.4.0
