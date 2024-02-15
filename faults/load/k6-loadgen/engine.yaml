@@ -20,6 +20,10 @@ spec:
             - name: CHAOS_INTERVAL
               value: '30'
 
-            # set the path of the JS script
-            - name: SCRIPT_PATH
-              value: '/tmp/script.js'
+            # Provide the secret name of the JS script
+            - name: SCRIPT_SECRET_NAME
+              value: "k6-script"
+
+            # Provide the secret key of the JS script
+            - name: SCRIPT_SECRET_KEY
+              value: "script.js"

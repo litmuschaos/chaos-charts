@@ -70,16 +70,17 @@ spec:
       - name: RAMP_TIME
         value: ""
 
-      # Provide the path of the JS script
-      - name: SCRIPT_PATH
-        value: "/tmp/script.js"
+      # Provide the secret name of the JS script
+      - name: SCRIPT_SECRET_NAME
+        value: "k6-script"
+
+      # Provide the secret key of the JS script
+      - name: SCRIPT_SECRET_KEY
+        value: "script.js"
 
     labels:
       name: k6-loadgen
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: ci
-    secrets:
-      - name: k6-script
-        mountPath: /tmp/
 ---
