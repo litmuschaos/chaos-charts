@@ -70,7 +70,7 @@ spec:
                     name: pod-cpu-hog
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.4.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -128,7 +128,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -158,7 +158,7 @@ spec:
 
                       ## It is used in pumba lib only
                       - name: LIB_IMAGE
-                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
 
                       ## It is used in pumba lib only
                       - name: STRESS_IMAGE
@@ -195,7 +195,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.4.0
           - name: pod-delete-rm5
             path: /tmp/pod-delete-rm5.yaml
             raw:
@@ -211,7 +211,7 @@ spec:
                     name: pod-delete
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.4.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -269,7 +269,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -316,7 +316,7 @@ spec:
                       name: pod-delete
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.4.0
           - name: pod-network-loss-x1w
             path: /tmp/pod-network-loss-x1w.yaml
             raw:
@@ -332,7 +332,7 @@ spec:
                     name: pod-network-loss
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.4.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -390,7 +390,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -403,7 +403,7 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
 
                       - name: NETWORK_INTERFACE
                         value: "eth0"
@@ -465,7 +465,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.4.0
           - name: pod-memory-hog-49a
             path: /tmp/pod-memory-hog-49a.yaml
             raw:
@@ -481,7 +481,7 @@ spec:
                     name: pod-memory-hog
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.4.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -539,7 +539,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -568,7 +568,7 @@ spec:
 
                       ## It is used in pumba lib only
                       - name: LIB_IMAGE
-                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
 
                       ## It is used in pumba lib only
                       - name: STRESS_IMAGE
@@ -605,7 +605,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.4.0
           - name: disk-fill-h7d
             path: /tmp/disk-fill-h7d.yaml
             raw:
@@ -621,7 +621,7 @@ spec:
                     name: disk-fill
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.4.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -679,7 +679,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -723,7 +723,7 @@ spec:
                         value: "false"
 
                       - name: LIB_IMAGE
-                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.4.0"
 
                       # Provide the container runtime path
                       # Default set to docker container path
@@ -740,7 +740,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/host-path-usage: "true"
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.4.0
       outputs: {}
       metadata: {}
       container:
