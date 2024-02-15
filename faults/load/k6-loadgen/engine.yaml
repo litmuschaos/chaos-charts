@@ -23,4 +23,3 @@ spec:
             # set the path of the JS script
             - name: SCRIPT_PATH
               value: '/tmp/script.js'
-              

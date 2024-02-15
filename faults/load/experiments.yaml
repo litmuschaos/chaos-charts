@@ -2,12 +2,12 @@
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stops an Azure instance for a certain chaos duration
+    Execute the k6 engine using the JS script
 kind: ChaosExperiment
 metadata:
-  name: azure-instance-stop
+  name: k6-loadgen
   labels:
-    name: azure-instance-stop
+    name: k6-loadgen
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: ci
@@ -56,7 +56,7 @@ spec:
     imagePullPolicy: Always
     args:
       - -c
-      - ./experiments -name azure-instance-stop
+      - ./experiments -name k6-loadgen
     command:
       - /bin/bash
     env:
@@ -70,31 +70,16 @@ spec:
       - name: RAMP_TIME
         value: ""
 
-      # provide the target instance name(s) (comma separated if multiple)
-      - name: AZURE_INSTANCE_NAMES
-        value: ""
-
-      # provide the resource group of the instance
-      - name: RESOURCE_GROUP
-        value: ""
-
-      # accepts enable/disable, default is disable
-      - name: SCALE_SET
-        value: ""
-
-      # Provide the path of aks credentials mounted from secret
-      - name: AZURE_AUTH_LOCATION
-        value: "/tmp/azure.auth"
-
-      - name: SEQUENCE
-        value: "parallel"
-
-      - name: DEFAULT_HEALTH_CHECK
-        value: "false"
+      # Provide the path of the JS script
+      - name: SCRIPT_PATH
+        value: "/tmp/script.js"
 
     labels:
       name: k6-loadgen
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: ci
+    secrets:
+      - name: k6-script
+        mountPath: /tmp/
 ---

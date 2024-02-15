@@ -79,3 +79,6 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: ci
+    secrets:
+      - name: k6-script
+        mountPath: /tmp/
