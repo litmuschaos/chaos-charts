@@ -14,11 +14,15 @@ spec:
           env:
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
-              value: '30'
+              value: "30"
 
-            # set chaos intreval (in sec) as desired
+            # Interval between chaos injection in sec
             - name: CHAOS_INTERVAL
-              value: '30'
+              value: "30"
+
+            # Period to wait before and after injection of chaos in sec
+            - name: RAMP_TIME
+              value: "0"
 
             # Provide the secret name of the JS script
             - name: SCRIPT_SECRET_NAME
@@ -27,3 +31,11 @@ spec:
             # Provide the secret key of the JS script
             - name: SCRIPT_SECRET_KEY
               value: "script.js"
+
+            # Provide the image name of the helper pod
+            - name: LIB_IMAGE
+              value: "ghcr.io/grafana/k6-operator:latest-runner"
+
+            # Provide the image pull policy of the helper pod
+            - name: LIBImagePullPolicy
+              value: "Always"
