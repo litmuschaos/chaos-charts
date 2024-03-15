@@ -54,7 +54,7 @@ spec:
                     name: pod-network-loss
                     app.kubernetes.io/part-of: litmus
                     app.kubernetes.io/component: chaosexperiment
-                    app.kubernetes.io/version: latest
+                    app.kubernetes.io/version: 3.5.0
                 spec:
                   definition:
                     scope: Namespaced
@@ -112,7 +112,7 @@ spec:
                       - apiGroups: ["litmuschaos.io"]
                         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
                         verbs: ["create", "list", "get", "patch", "update", "delete"]
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.5.0"
                     imagePullPolicy: Always
                     args:
                       - -c
@@ -125,7 +125,7 @@ spec:
 
                       # provide lib image
                       - name: LIB_IMAGE
-                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.5.0"
 
                       - name: NETWORK_INTERFACE
                         value: "eth0"
@@ -187,7 +187,7 @@ spec:
                       app.kubernetes.io/part-of: litmus
                       app.kubernetes.io/component: experiment-job
                       app.kubernetes.io/runtime-api-usage: "true"
-                      app.kubernetes.io/version: latest
+                      app.kubernetes.io/version: 3.5.0
       outputs: {}
       metadata: {}
       container:
