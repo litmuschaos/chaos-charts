@@ -29,8 +29,12 @@ spec:
             - name: PODS_AFFECTED_PERC
               value: ''
 
-            # Provide the container runtime path
-            # Default set to docker container path
-            - name: CONTAINER_PATH
-              value: '/var/lib/docker/containers'
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: "/run/containerd/containerd.sock"
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            - name: CONTAINER_RUNTIME
+              value: "containerd"
 
