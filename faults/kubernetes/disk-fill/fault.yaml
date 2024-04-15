@@ -114,10 +114,14 @@ spec:
       - name: LIB_IMAGE
         value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
 
-      # Provide the container runtime path
-      # Default set to docker container path
-      - name: CONTAINER_PATH
-        value: "/var/lib/docker/containers"
+      # provide the socket file path
+      - name: SOCKET_PATH
+        value: "/run/containerd/containerd.sock"
+
+      # provide the name of container runtime
+      # it supports docker, containerd, crio
+      - name: CONTAINER_RUNTIME
+        value: "containerd"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
