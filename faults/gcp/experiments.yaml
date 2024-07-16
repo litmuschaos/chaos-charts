@@ -102,12 +102,12 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Stops GCP VM instances and GKE nodes filtered by a label for a specified duration and later restarts them
+    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration before attaching them back
 kind: ChaosExperiment
 metadata:
-  name: gcp-vm-instance-stop-by-label
+  name: gcp-vm-disk-loss
   labels:
-    name: gcp-vm-instance-stop-by-label
+    name: gcp-vm-disk-loss
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: 3.9.0
@@ -148,56 +148,52 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
-      # for experiment to perform node status checks
-      - apiGroups: [""]
-        resources: ["nodes"]
-        verbs: ["get", "list"]
     image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.9.0"
     imagePullPolicy: Always
     args:
       - -c
-      - ./experiments -name gcp-vm-instance-stop-by-label
+      - ./experiments -name gcp-vm-disk-loss
     command:
       - /bin/bash
     env:
-      # set chaos duration (in sec) as desired
       - name: TOTAL_CHAOS_DURATION
         value: "30"
 
-      # set chaos interval (in sec) as desired
       - name: CHAOS_INTERVAL
         value: "30"
 
+      # Period to wait before and after injection of chaos in sec
+      - name: RAMP_TIME
+        value: ""
+
+      # parallel or serial; determines how chaos is injected
       - name: SEQUENCE
         value: "parallel"
 
-      # GCP project ID to which the VM instances belong
+      # set the GCP project id
       - name: GCP_PROJECT_ID
         value: ""
 
-      # Label of the target VM instance(s)
-      - name: INSTANCE_LABEL
+      # set the disk volume name(s) as comma seperated values
+      # eg. volume1,volume2,...
+      - name: DISK_VOLUME_NAMES
         value: ""
 
-      # Zone in which the target VM instance(s) filtered by the label exist
-      # all the instances should lie in a single zone
+      # set the disk zone(s) as comma seperated values in the corresponding
+      # order of DISK_VOLUME_NAME
+      # eg. zone1,zone2,...
       - name: ZONES
-        value: ""
-
-      # enable it if the target instance is a part of a managed instance group
-      - name: MANAGED_INSTANCE_GROUP
-        value: "disable"
-
-      # set the percentage value of the instances with the given label
-      # which should be targeted as part of the chaos injection
-      - name: INSTANCE_AFFECTED_PERC
         value: ""
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
 
+      # parallel or serial; determines how chaos is injected
+      - name: SEQUENCE
+        value: "parallel"
+
     labels:
-      name: gcp-vm-instance-stop-by-label
+      name: gcp-vm-disk-loss
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.9.0
@@ -322,12 +318,12 @@ spec:
 apiVersion: litmuschaos.io/v1alpha1
 description:
   message: |
-    Causes loss of a non-boot storage persistent disk from a GCP VM instance for a specified duration before attaching them back
+    Stops GCP VM instances and GKE nodes filtered by a label for a specified duration and later restarts them
 kind: ChaosExperiment
 metadata:
-  name: gcp-vm-disk-loss
+  name: gcp-vm-instance-stop-by-label
   labels:
-    name: gcp-vm-disk-loss
+    name: gcp-vm-instance-stop-by-label
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
     app.kubernetes.io/version: 3.9.0
@@ -368,52 +364,56 @@ spec:
       - apiGroups: ["litmuschaos.io"]
         resources: ["chaosengines", "chaosexperiments", "chaosresults"]
         verbs: ["create", "list", "get", "patch", "update", "delete"]
+      # for experiment to perform node status checks
+      - apiGroups: [""]
+        resources: ["nodes"]
+        verbs: ["get", "list"]
     image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.9.0"
     imagePullPolicy: Always
     args:
       - -c
-      - ./experiments -name gcp-vm-disk-loss
+      - ./experiments -name gcp-vm-instance-stop-by-label
     command:
       - /bin/bash
     env:
+      # set chaos duration (in sec) as desired
       - name: TOTAL_CHAOS_DURATION
         value: "30"
 
+      # set chaos interval (in sec) as desired
       - name: CHAOS_INTERVAL
         value: "30"
 
-      # Period to wait before and after injection of chaos in sec
-      - name: RAMP_TIME
-        value: ""
-
-      # parallel or serial; determines how chaos is injected
       - name: SEQUENCE
         value: "parallel"
 
-      # set the GCP project id
+      # GCP project ID to which the VM instances belong
       - name: GCP_PROJECT_ID
         value: ""
 
-      # set the disk volume name(s) as comma seperated values
-      # eg. volume1,volume2,...
-      - name: DISK_VOLUME_NAMES
+      # Label of the target VM instance(s)
+      - name: INSTANCE_LABEL
         value: ""
 
-      # set the disk zone(s) as comma seperated values in the corresponding
-      # order of DISK_VOLUME_NAME
-      # eg. zone1,zone2,...
+      # Zone in which the target VM instance(s) filtered by the label exist
+      # all the instances should lie in a single zone
       - name: ZONES
+        value: ""
+
+      # enable it if the target instance is a part of a managed instance group
+      - name: MANAGED_INSTANCE_GROUP
+        value: "disable"
+
+      # set the percentage value of the instances with the given label
+      # which should be targeted as part of the chaos injection
+      - name: INSTANCE_AFFECTED_PERC
         value: ""
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
 
-      # parallel or serial; determines how chaos is injected
-      - name: SEQUENCE
-        value: "parallel"
-
     labels:
-      name: gcp-vm-disk-loss
+      name: gcp-vm-instance-stop-by-label
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/version: 3.9.0
