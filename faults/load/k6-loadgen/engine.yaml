@@ -6,10 +6,6 @@ metadata:
   namespace: default
 spec:
   engineState: 'active'
-  appinfo:
-    appns: ''
-    applabel: ''
-    appkind: ''
   chaosServiceAccount: litmus-admin
   experiments:
     - name: k6-loadgen
