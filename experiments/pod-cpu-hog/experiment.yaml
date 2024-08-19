@@ -64,7 +64,7 @@ spec:
                           - "patch"
                           - "update"
                           - "delete"
-                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.10.0"
                     imagePullPolicy: Always
                     args:
                     - -c
