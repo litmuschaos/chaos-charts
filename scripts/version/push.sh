@@ -5,16 +5,16 @@ setup_git() {
 }
 
 commit_updated_changes() {
-  git checkout master
+  git checkout v3.11.x
   git status
   git add .
   git commit --message " $GITHUB_RUN_ID: version upgraded for chaos-charts"
   git status
 }
 
-upload_files() {	
-  git remote -v	
-  git push origin master	
+upload_files() {
+  git remote -v
+  git push origin v3.11.x
 }
 
 setup_git
