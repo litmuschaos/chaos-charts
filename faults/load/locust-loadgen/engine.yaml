@@ -1,0 +1,37 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-chaos
+  namespace: default
+spec:
+  engineState: 'active'
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: locust-loadgen
+      spec:
+        components:
+          env:
+            # set chaos duration (in sec) as desired
+            - name: TOTAL_CHAOS_DURATION
+              value: "30"
+
+            # Interval between chaos injection in sec
+            - name: CHAOS_INTERVAL
+              value: "30"
+
+            # Period to wait before and after injection of chaos in sec
+            - name: RAMP_TIME
+              value: "0"
+
+            # Provide the secret key of the JS script
+            - name: CONFIG_MAP_FILE
+              value: "locust-script"
+
+            # Provide the image name of the helper pod
+            - name: LIB_IMAGE
+              value: "locustio/locust"
+
+            # Provide the image pull policy of the helper pod
+            - name: LIB_IMAGE_PULL_POLICY
+              value: "Always"

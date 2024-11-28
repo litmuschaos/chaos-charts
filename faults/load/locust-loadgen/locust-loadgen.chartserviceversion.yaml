@@ -1,0 +1,29 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2024-11-27T01:00:00Z
+  name: locust-loadgen
+  version: 0.1.0
+  annotations:
+    categories: Load
+    vendor: LitmusChaos
+spec:
+  displayName: locust Load Generator
+  categoryDescription: |
+     locust is an open-source load testing tool that makes performance testing easy and productive for engineering teams. You can easily run load testing through a single JS script. It's a modern alternative to LoadRunner, Grinder, and JMeter.
+  keywords:
+    - locust
+    - Load
+  platforms:
+    - kubernetes
+  maintainers:
+    - name: DongYoung Kim
+      email: kwx4957@gmail.com
+  minKubeVersion: 1.32.0
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""
