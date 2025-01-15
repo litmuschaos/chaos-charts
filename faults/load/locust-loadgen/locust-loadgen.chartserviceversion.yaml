@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: locust Load Generator
   categoryDescription: |
-     locust is an open-source load testing tool that makes performance testing easy and productive for engineering teams. You can easily run load testing through a single JS script. It's a modern alternative to LoadRunner, Grinder, and JMeter.
+     locust is an open-source load testing tool that makes performance testing easy and productive for engineering teams. You can easily run load testing through a single Python script. It's a modern alternative to LoadRunner, Grinder, and JMeter.
   keywords:
     - locust
     - Load
@@ -20,7 +20,7 @@ spec:
   maintainers:
     - name: DongYoung Kim
       email: kwx4957@gmail.com
-  minKubeVersion: 1.32.0
+  minKubeVersion: 1.33.0
   links:
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/contents
