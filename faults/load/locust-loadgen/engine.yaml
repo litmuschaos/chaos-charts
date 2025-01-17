@@ -15,22 +15,11 @@ spec:
             # set chaos duration (in sec) as desired
             - name: TOTAL_CHAOS_DURATION
               value: "30"
-<<<<<<< Updated upstream
-
-            # Interval between chaos injection in sec
-            - name: CHAOS_INTERVAL
-              value: "30"
-=======
->>>>>>> Stashed changes
 
             # Period to wait before and after injection of chaos in sec
             - name: RAMP_TIME
               value: "0"
 
-<<<<<<< Updated upstream
-            # Provide the secret key of the JS script
-            - name: CONFIG_MAP_FILE
-=======
             - name: HOST
               value: ""
 
@@ -42,7 +31,6 @@ spec:
 
             # Provide the ConfigMap key of the Python script
             - name: CONFIG_MAP_NAME
->>>>>>> Stashed changes
               value: "locust-script"
 
             # Provide the ConfigMap key of the Python script
