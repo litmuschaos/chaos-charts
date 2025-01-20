@@ -71,9 +71,11 @@ spec:
       - name: HOST
         value: ""
 
+      # Define maximum users
       - name: USERS
         value: "40"
 
+      # Generate users per second
       - name: SPAWN_RATE
         value: "30"
 

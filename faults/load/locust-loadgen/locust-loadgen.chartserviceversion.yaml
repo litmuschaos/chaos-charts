@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: locust Load Generator
   categoryDescription: |
-     locust is an open-source load testing tool that makes performance testing easy and productive for engineering teams. You can easily run load testing through a single Python script. It's a modern alternative to LoadRunner, Grinder, and JMeter.
+     Locust is an open-source load testing tool designed to make performance testing simple, efficient, and scalable for engineering teams. With Locust, you can define user behavior and simulate traffic using a single, flexible Python script. With its distributed testing capabilities, you can efficiently simulate millions of users.
   keywords:
     - locust
     - Load
