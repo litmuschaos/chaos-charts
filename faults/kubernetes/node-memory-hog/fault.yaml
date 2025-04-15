@@ -10,7 +10,7 @@ metadata:
     name: node-memory-hog
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.18.0
 spec:
   definition:
     scope: Cluster
@@ -56,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.18.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -93,7 +93,7 @@ spec:
 
       # provide lib image
       - name: LIB_IMAGE
-        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.18.0"
 
       - name: DEFAULT_HEALTH_CHECK
         value: "false"
@@ -111,4 +111,4 @@ spec:
       name: node-memory-hog
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.18.0
