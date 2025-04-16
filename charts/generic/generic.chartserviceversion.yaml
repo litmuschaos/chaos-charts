@@ -13,31 +13,7 @@ spec:
     Kubernetes is an open-source system for automating deployment, scaling, and management of containerized applications. It groups containers that make up an application into logical units for easier management and discovery. It will install all the experiments which can be used to inject chaos into containerized applications.
 
   experiments:
-    - pod-delete
-    - container-kill
-    - pod-cpu-hog
-    - pod-network-loss
-    - pod-network-latency
-    - pod-network-corruption
-    - node-drain
-    - node-cpu-hog
-    - disk-fill
-    - node-memory-hog
-    - pod-memory-hog
     - kubelet-service-kill
-    - pod-network-duplication
-    - node-taint
-    - docker-service-kill
-    - pod-autoscaler
-    - byoc-pod-delete
-    - node-io-stress
-    - pod-io-stress
-    - node-restart
-    - pod-dns-error
-    - pod-dns-spoof
-    - pod-cpu-hog-exec
-    - pod-memory-hog-exec
-    - pod-network-partition
   keywords:
     - Kubernetes
     - K8S
