@@ -11,7 +11,7 @@ metadata:
 spec:
   displayName: RDS Instance Stop
   categoryDescription: |
-    This fault causes termination of an RDS instance for a certain chaos duration.
+    This fault causes a state change of an RDS instance to a stopped state for a specified chaos duration.
     - Causes termination of an RDS instance using instance identifier before bringing it back to available state after the specified chaos duration.
     - It helps to check the performance of the application when the RDS instance is stopped.
   keywords:
