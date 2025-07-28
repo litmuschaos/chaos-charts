@@ -97,3 +97,6 @@ faults:
   - name: node-network-loss
     CSV: node-network-loss.chartserviceversion.yaml
     desc: "node-network-loss"
+  - name: pod-network-rate-limit
+    CSV: pod-network-rate-limit.chartserviceversion.yaml
+    desc: "pod-network-rate-limit"
