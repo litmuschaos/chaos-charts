@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-network-rate-limit
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Pod Network Rate Limit
+  categoryDescription: |
+    Pod-network-rate-limit fault add the network rate limit to kubernetes pods
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+  maintainers:
+    - name: Neelanjan Manna
+      email: neelanjan.manna@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Permissions
+      url: https://developer.harness.io/docs/chaos-engineering/use-harness-ce/chaos-faults/kubernetes/pod/pod-network-rate-limit/#permissions-required
+  icon:
+    - base64data: ""
+      mediatype: ""
