@@ -24,7 +24,7 @@ spec:
   chaosType: infra
   labels:
     app.kubernetes.io/component: chartserviceversion
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.20.0
   links:
     - name: Documentation
       url: https://litmuschaos.github.io/litmus/experiments/categories/contents
