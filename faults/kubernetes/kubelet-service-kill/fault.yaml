@@ -10,7 +10,7 @@ metadata:
     name: kubelet-service-kill
     app.kubernetes.io/part-of: litmus
     app.kubernetes.io/component: chaosexperiment
-    app.kubernetes.io/version: ci
+    app.kubernetes.io/version: 3.20.0
 spec:
   definition:
     scope: Cluster
@@ -56,7 +56,7 @@ spec:
       - apiGroups: [""]
         resources: ["nodes"]
         verbs: ["get", "list"]
-    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:3.20.0"
     imagePullPolicy: Always
     args:
       - -c
@@ -90,4 +90,4 @@ spec:
       app.kubernetes.io/part-of: litmus
       app.kubernetes.io/component: experiment-job
       app.kubernetes.io/service-kill: "true"
-      app.kubernetes.io/version: ci
+      app.kubernetes.io/version: 3.20.0
