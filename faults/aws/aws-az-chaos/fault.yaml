@@ -67,6 +67,9 @@ spec:
         value: "/tmp/cloud_config.yml"
       - name: RAMP_TIME
         value: ''
+      - name: LOAD_BALANCER_VERSION
+        value: 'elbv2
+    resources:
     labels:
       name: aws-az-chaos
       app.kubernetes.io/part-of: litmus

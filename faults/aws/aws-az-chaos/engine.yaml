@@ -26,3 +26,5 @@ spec:
               value: "na"
             - name: AWS_SHARED_CREDENTIALS_FILE
               value: "/tmp/cloud_config.yml"
+            - name: LOAD_BALANCER_VERSION
+              value: 'elbv2
