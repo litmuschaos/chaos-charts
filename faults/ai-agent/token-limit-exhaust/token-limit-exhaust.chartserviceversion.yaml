@@ -1,0 +1,49 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: token-limit-exhaust
+  version: 0.1.0
+  annotations:
+    categories: AI-Agent
+    vendor: AgentCert
+    createdAt: "2026-02-10T00:00:00Z"
+    repository: "https://github.com/AgentCert/chaos-charts"
+    support: "community"
+    chartDescription: "Simulates token/context limit exhaustion scenarios"
+spec:
+  displayName: Token Limit Exhaust
+  categoryDescription: |
+    Token Limit Exhaust simulates scenarios where LLM token/context limits are exceeded.
+    - Tests agent behavior when context window is full
+    - Validates token budget management and truncation strategies
+    - Tests conversation pruning and summarization fallbacks
+    - Simulates max_tokens exceeded errors from LLM APIs
+  keywords:
+    - ai-agent
+    - token
+    - context-window
+    - limit
+    - llm
+    - budget
+  platforms:
+    - Kubernetes
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: AgentCert Team
+      email: team@agentcert.io
+  minKubeVersion: "1.16.0"
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 0.1.0
+  links:
+    - name: Documentation
+      url: https://docs.agentcert.io/faults/token-limit-exhaust
+  faults:
+    - name: token-limit-exhaust
+      displayName: Token Limit Exhaust
+      description: "Simulates token/context limit exhaustion"
+  icon:
+    - url: ""
+      mediatype: ""

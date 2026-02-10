@@ -1,0 +1,22 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: token-limit-exhaust-engine
+spec:
+  appinfo:
+    appns: "default"
+    applabel: "app=ai-agent"
+    appkind: "deployment"
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: token-limit-exhaust
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60"
+            - name: SIMULATED_TOKEN_LIMIT
+              value: "4096"
+            - name: EXHAUST_PERCENTAGE
+              value: "95"

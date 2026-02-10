@@ -1,0 +1,82 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Injects latency into LLM API calls to test agent resilience
+kind: ChaosExperiment
+metadata:
+  name: llm-api-latency
+  labels:
+    name: llm-api-latency
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: 0.1.0
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs: ["create", "delete", "get", "list", "patch", "update", "deletecollection"]
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create", "get", "list", "patch", "update"]
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get", "list"]
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get", "list", "watch"]
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get", "list", "create"]
+      - apiGroups: ["apps"]
+        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+        verbs: ["list", "get"]
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create", "list", "get", "delete", "deletecollection"]
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+        verbs: ["create", "list", "get", "patch", "update", "delete"]
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+      - -c
+      - ./experiments -name llm-api-latency
+    command:
+      - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: "60"
+      - name: RAMP_TIME
+        value: "0"
+      - name: LATENCY_MS
+        value: "3000"
+      - name: TARGET_SERVICE_PORT
+        value: "443"
+      - name: DESTINATION_HOSTS
+        value: "api.openai.com,api.anthropic.com"
+      - name: TARGET_CONTAINER
+        value: ""
+      - name: TARGET_PODS
+        value: ""
+      - name: PODS_AFFECTED_PERC
+        value: "100"
+      - name: LIB
+        value: "litmus"
+      - name: LIB_IMAGE
+        value: "litmuschaos/go-runner:3.0.0"
+      - name: NETWORK_INTERFACE
+        value: "eth0"
+      - name: TC_IMAGE
+        value: "gaiadocker/iproute2"
+      - name: SEQUENCE
+        value: "parallel"
+      - name: DEFAULT_HEALTH_CHECK
+        value: "false"
+    labels:
+      name: llm-api-latency
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: 0.1.0

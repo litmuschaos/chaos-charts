@@ -1,0 +1,73 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: ai-agent
+  version: 0.1.0
+  annotations:
+    categories: AI-Agent
+    vendor: AgentCert
+    createdAt: "2026-02-10T00:00:00Z"
+    repository: "https://github.com/AgentCert/chaos-charts"
+    support: "community"
+    chartDescription: "Chaos experiments for testing AI Agent resilience and reliability"
+spec:
+  displayName: AI Agent Chaos Faults
+  categoryDescription: |
+    AI Agent Chaos Faults are designed to test the resilience and reliability of AI-powered agents.
+    These experiments simulate various failure scenarios that AI agents may encounter:
+    - LLM API latency and errors (rate limits, timeouts, 5xx errors)
+    - MCP (Model Context Protocol) server connection failures
+    - Token/context limit exhaustion scenarios
+    - Tool and function call failures
+    
+    Use these faults to validate:
+    - Error handling and retry logic
+    - Graceful degradation under stress
+    - Fallback mechanisms when dependencies fail
+    - Recovery behavior after transient failures
+  keywords:
+    - ai-agent
+    - llm
+    - artificial-intelligence
+    - mcp
+    - model-context-protocol
+    - chatbot
+    - copilot
+    - function-calling
+    - resilience
+  platforms:
+    - Kubernetes
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: AgentCert Team
+      email: team@agentcert.io
+  minKubeVersion: "1.16.0"
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 0.1.0
+  links:
+    - name: Documentation
+      url: https://docs.agentcert.io/faults
+    - name: Repository
+      url: https://github.com/AgentCert/chaos-charts
+  faults:
+    - name: llm-api-latency
+      displayName: LLM API Latency
+      description: "Injects latency into LLM API calls"
+    - name: llm-api-error
+      displayName: LLM API Error
+      description: "Injects HTTP errors into LLM API responses"
+    - name: mcp-connection-drop
+      displayName: MCP Connection Drop
+      description: "Simulates MCP server connection failures"
+    - name: token-limit-exhaust
+      displayName: Token Limit Exhaust
+      description: "Simulates token/context limit exhaustion"
+    - name: tool-call-failure
+      displayName: Tool Call Failure
+      description: "Simulates tool/function call failures"
+  icon:
+    - url: ""
+      mediatype: ""

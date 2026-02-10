@@ -1,0 +1,22 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: mcp-connection-drop-engine
+spec:
+  appinfo:
+    appns: "default"
+    applabel: "app=ai-agent"
+    appkind: "deployment"
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: mcp-connection-drop
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60"
+            - name: MCP_SERVER_PORTS
+              value: "3000,3001,8080"
+            - name: DROP_PERCENTAGE
+              value: "100"

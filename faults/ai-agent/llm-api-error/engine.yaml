@@ -1,0 +1,24 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: llm-api-error-engine
+spec:
+  appinfo:
+    appns: "default"
+    applabel: "app=ai-agent"
+    appkind: "deployment"
+  chaosServiceAccount: litmus-admin
+  experiments:
+    - name: llm-api-error
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60"
+            - name: ERROR_CODE
+              value: "429"
+            - name: ERROR_PERCENTAGE
+              value: "50"
+            - name: DESTINATION_HOSTS
+              value: "api.openai.com,api.anthropic.com"

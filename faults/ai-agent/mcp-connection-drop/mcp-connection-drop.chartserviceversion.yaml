@@ -1,0 +1,49 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: mcp-connection-drop
+  version: 0.1.0
+  annotations:
+    categories: AI-Agent
+    vendor: AgentCert
+    createdAt: "2026-02-10T00:00:00Z"
+    repository: "https://github.com/AgentCert/chaos-charts"
+    support: "community"
+    chartDescription: "Simulates MCP server connection failures to test agent resilience"
+spec:
+  displayName: MCP Connection Drop
+  categoryDescription: |
+    MCP Connection Drop simulates Model Context Protocol server failures.
+    - Tests agent behavior when MCP servers become unreachable
+    - Validates fallback mechanisms and graceful degradation
+    - Tests reconnection logic and timeout handling
+    - Simulates network partitions between agent and MCP servers
+  keywords:
+    - ai-agent
+    - mcp
+    - model-context-protocol
+    - connection
+    - network
+    - timeout
+  platforms:
+    - Kubernetes
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: AgentCert Team
+      email: team@agentcert.io
+  minKubeVersion: "1.16.0"
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 0.1.0
+  links:
+    - name: Documentation
+      url: https://docs.agentcert.io/faults/mcp-connection-drop
+  faults:
+    - name: mcp-connection-drop
+      displayName: MCP Connection Drop
+      description: "Simulates MCP server connection failures"
+  icon:
+    - url: ""
+      mediatype: ""

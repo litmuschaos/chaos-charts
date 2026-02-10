@@ -1,0 +1,51 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: tool-call-failure
+  version: 0.1.0
+  annotations:
+    categories: AI-Agent
+    vendor: AgentCert
+    createdAt: "2026-02-10T00:00:00Z"
+    repository: "https://github.com/AgentCert/chaos-charts"
+    support: "community"
+    chartDescription: "Simulates tool/function call failures in AI agents"
+spec:
+  displayName: Tool Call Failure
+  categoryDescription: |
+    Tool Call Failure simulates failures in agent tool/function calls.
+    - Tests agent behavior when tools return errors or timeout
+    - Validates error handling for failed function calls
+    - Tests retry logic for tool invocations
+    - Simulates partial tool execution failures
+    - Tests graceful degradation when tools are unavailable
+  keywords:
+    - ai-agent
+    - tool
+    - function
+    - function-calling
+    - mcp
+    - failure
+    - timeout
+  platforms:
+    - Kubernetes
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: AgentCert Team
+      email: team@agentcert.io
+  minKubeVersion: "1.16.0"
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 0.1.0
+  links:
+    - name: Documentation
+      url: https://docs.agentcert.io/faults/tool-call-failure
+  faults:
+    - name: tool-call-failure
+      displayName: Tool Call Failure
+      description: "Simulates tool/function call failures"
+  icon:
+    - url: ""
+      mediatype: ""

@@ -1,0 +1,26 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: llm-api-latency-chaos
+  namespace: default
+spec:
+  appinfo:
+    appns: ""
+    applabel: ""
+    appkind: ""
+  engineState: "active"
+  chaosServiceAccount: llm-api-latency-sa
+  experiments:
+    - name: llm-api-latency
+      spec:
+        components:
+          env:
+            - name: TOTAL_CHAOS_DURATION
+              value: "60"
+            - name: LATENCY_MS
+              value: "3000"
+            - name: DESTINATION_HOSTS
+              value: "api.openai.com,api.anthropic.com"
+            - name: PODS_AFFECTED_PERC
+              value: "100"

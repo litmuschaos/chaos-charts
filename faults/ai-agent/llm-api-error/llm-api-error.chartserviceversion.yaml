@@ -1,0 +1,49 @@
+﻿---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: llm-api-error
+  version: 0.1.0
+  annotations:
+    categories: AI-Agent
+    vendor: AgentCert
+    createdAt: "2026-02-10T00:00:00Z"
+    repository: "https://github.com/AgentCert/chaos-charts"
+    support: "community"
+    chartDescription: "Injects HTTP errors into LLM API responses to test agent error handling"
+spec:
+  displayName: LLM API Error
+  categoryDescription: |
+    LLM API Error injects HTTP error responses (429, 500, 503) into LLM API calls.
+    - Tests agent behavior when LLM APIs return rate limit errors (429)
+    - Validates retry logic and exponential backoff
+    - Tests graceful degradation when LLM is unavailable
+  keywords:
+    - ai-agent
+    - llm
+    - error
+    - rate-limit
+    - 429
+    - 500
+    - api
+  platforms:
+    - Kubernetes
+    - OpenShift
+  maturity: alpha
+  maintainers:
+    - name: AgentCert Team
+      email: team@agentcert.io
+  minKubeVersion: "1.16.0"
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: 0.1.0
+  links:
+    - name: Documentation
+      url: https://docs.agentcert.io/faults/llm-api-error
+  faults:
+    - name: llm-api-error
+      displayName: LLM API Error
+      description: "Injects HTTP errors into LLM API responses"
+  icon:
+    - url: ""
+      mediatype: ""
