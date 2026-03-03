@@ -74,7 +74,6 @@ spec:
           - "-namespace={{workflow.parameters.appNamespace}}"
           - "-create-namespace"
           - "-timeout={{workflow.parameters.installTimeout}}"
-          - "--set=rbac.create=true"
           - "--set=config.openaiApiKey={{workflow.parameters.openaiApiKey}}"
           - "--set=config.openaiModel={{workflow.parameters.openaiModel}}"
           - "--set=config.openaiBaseUrl={{workflow.parameters.openaiBaseUrl}}"
