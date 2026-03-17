@@ -27,17 +27,17 @@ spec:
             - name: TIMEOUT
               value: '10m'
 
-            # OpenAI API key for the agent
-            - name: OPENAI_API_KEY
+            # LiteLLM URL - URL where LiteLLM is hosted
+            - name: LITELLM_URL
               value: ''
 
-            # OpenAI model to use
-            - name: OPENAI_MODEL
-              value: 'gpt-4o-mini'
+            # LiteLLM Master Key - Secret key to connect to LiteLLM
+            - name: LITELLM_MASTER_KEY
+              value: ''
 
-            # OpenAI API base URL
-            - name: OPENAI_BASE_URL
-              value: 'https://api.openai.com/v1'
+            # LiteLLM Model - Alias/Name of the model to connect
+            - name: LITELLM_MODEL
+              value: ''
 
             # OpenTelemetry endpoint for tracing
             - name: OTEL_ENDPOINT

@@ -87,9 +87,9 @@ spec:
       - -namespace=$(NAMESPACE)
       - -create-namespace
       - -timeout=$(TIMEOUT)
-      - --set=config.openaiApiKey=$(OPENAI_API_KEY)
-      - --set=config.openaiModel=$(OPENAI_MODEL)
-      - --set=config.openaiBaseUrl=$(OPENAI_BASE_URL)
+      - --set=config.litellmUrl=$(LITELLM_URL)
+      - --set=config.litellmMasterKey=$(LITELLM_MASTER_KEY)
+      - --set=config.litellmModel=$(LITELLM_MODEL)
       - --set=config.otelEndpoint=$(OTEL_ENDPOINT)
       - --set=config.scanInterval=$(SCAN_INTERVAL)
       - --set=config.logLines=$(LOG_LINES)
@@ -103,14 +103,14 @@ spec:
       - name: TIMEOUT
         value: "10m"
 
-      - name: OPENAI_API_KEY
+      - name: LITELLM_URL
         value: ""
 
-      - name: OPENAI_MODEL
-        value: "gpt-4o-mini"
+      - name: LITELLM_MASTER_KEY
+        value: ""
 
-      - name: OPENAI_BASE_URL
-        value: "https://api.openai.com/v1"
+      - name: LITELLM_MODEL
+        value: ""
 
       - name: OTEL_ENDPOINT
         value: ""
