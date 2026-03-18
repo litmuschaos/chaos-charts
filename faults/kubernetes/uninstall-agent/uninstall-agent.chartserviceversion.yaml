@@ -1,0 +1,44 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: uninstall-agent
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Uninstall Agent
+  categoryDescription: |
+    Uninstall Agent fault removes AI agents from the Kubernetes cluster after chaos testing.
+    - Removes deployed agents (such as flash-agent) from the specified namespace.
+    - Can be used as a post-chaos step to clean up agents after running chaos experiments.
+  keywords:
+    - Kubernetes
+    - Agent Cleanup
+    - Teardown
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+  experiments:
+    - uninstall-agent
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

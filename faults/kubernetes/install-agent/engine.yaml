@@ -1,0 +1,52 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: install-agent-chaos
+  namespace: default
+  annotations:
+    probeRef: '[]'
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: install-agent-sa
+  experiments:
+    - name: install-agent
+      spec:
+        components:
+          env:
+            # folder name containing the Helm chart
+            - name: FOLDER
+              value: ''
+
+            # target namespace for agent deployment
+            - name: NAMESPACE
+              value: ''
+
+            # timeout for the operation
+            - name: TIMEOUT
+              value: '10m'
+
+            # LiteLLM URL - URL where LiteLLM is hosted
+            - name: LITELLM_URL
+              value: ''
+
+            # LiteLLM Master Key - Secret key to connect to LiteLLM
+            - name: LITELLM_MASTER_KEY
+              value: ''
+
+            # LiteLLM Model - Alias/Name of the model to connect
+            - name: LITELLM_MODEL
+              value: ''
+
+            # OpenTelemetry endpoint for tracing
+            - name: OTEL_ENDPOINT
+              value: ''
+
+            # Scan interval in seconds
+            - name: SCAN_INTERVAL
+              value: '60'
+
+            # Number of log lines to collect
+            - name: LOG_LINES
+              value: '100'

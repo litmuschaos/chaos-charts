@@ -1,0 +1,416 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Workflow
+metadata:
+  name: argowf-chaos-flash-agent-resiliency
+  namespace: litmus
+  labels:
+    subject: "flash-agent"
+spec:
+  entrypoint: argowf-chaos
+  serviceAccountName: argo-chaos
+  securityContext:
+    runAsUser: 1000
+    runAsNonRoot: true
+  arguments:
+    parameters:
+      - name: adminModeNamespace
+        value: "litmus"
+      - name: appNamespace
+        value: "sock-shop"
+      # Agent installation configuration
+      - name: agentFolder
+        value: "flash-agent"
+      - name: installTimeout
+        value: "10m"
+      # Flash Agent configuration
+      - name: openaiApiKey
+        value: ""
+      - name: openaiModel
+        value: "gpt-4o-mini"
+      - name: openaiBaseUrl
+        value: "https://api.openai.com/v1"
+      - name: otelEndpoint
+        value: ""
+      - name: scanInterval
+        value: "60"
+      - name: logLines
+        value: "100"
+      # Chaos experiment configuration
+      - name: appLabel
+        value: "app=flash-agent"
+      - name: podDeleteDuration
+        value: "15"
+      - name: podDeleteInterval
+        value: "5"
+      - name: cpuHogDuration
+        value: "60"
+      - name: cpuHogCores
+        value: "1"
+      - name: cpuHogLoad
+        value: "100"
+  templates:
+    - name: argowf-chaos
+      steps:
+        - - name: install-agent
+            template: install-agent
+        - - name: install-chaos-faults
+            template: install-chaos-faults
+        - - name: pod-delete
+            template: pod-delete
+        - - name: pod-cpu-hog
+            template: pod-cpu-hog
+        - - name: cleanup-chaos-resources
+            template: cleanup-chaos-resources
+
+    - name: install-agent
+      container:
+        image: agentcert/agentcert-install-agent:latest
+        args:
+          - "-folder={{workflow.parameters.agentFolder}}"
+          - "-namespace={{workflow.parameters.appNamespace}}"
+          - "-create-namespace"
+          - "-timeout={{workflow.parameters.installTimeout}}"
+          - "--set=config.openaiApiKey={{workflow.parameters.openaiApiKey}}"
+          - "--set=config.openaiModel={{workflow.parameters.openaiModel}}"
+          - "--set=config.openaiBaseUrl={{workflow.parameters.openaiBaseUrl}}"
+          - "--set=config.otelEndpoint={{workflow.parameters.otelEndpoint}}"
+          - "--set=config.scanInterval={{workflow.parameters.scanInterval}}"
+          - "--set=config.logLines={{workflow.parameters.logLines}}"
+
+    - name: install-chaos-faults
+      inputs:
+        artifacts:
+          - name: pod-delete-fault
+            path: /tmp/pod-delete-fault.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Deletes a pod belonging to the agent deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-delete
+                  labels:
+                    name: pod-delete
+                    app.kubernetes.io/part-of: litmus
+                    app.kubernetes.io/component: chaosexperiment
+                    app.kubernetes.io/version: latest
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups: [""]
+                        resources: ["pods"]
+                        verbs:
+                          [
+                            "create",
+                            "delete",
+                            "get",
+                            "list",
+                            "patch",
+                            "update",
+                            "deletecollection",
+                          ]
+                      - apiGroups: [""]
+                        resources: ["events"]
+                        verbs: ["create", "get", "list", "patch", "update"]
+                      - apiGroups: [""]
+                        resources: ["configmaps"]
+                        verbs: ["get", "list"]
+                      - apiGroups: [""]
+                        resources: ["pods/log"]
+                        verbs: ["get", "list", "watch"]
+                      - apiGroups: [""]
+                        resources: ["pods/exec"]
+                        verbs: ["get", "list", "create"]
+                      - apiGroups: ["apps"]
+                        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+                        verbs: ["list", "get"]
+                      - apiGroups: ["batch"]
+                        resources: ["jobs"]
+                        verbs: ["create", "list", "get", "delete", "deletecollection"]
+                      - apiGroups: ["litmuschaos.io"]
+                        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+                        verbs: ["create", "list", "get", "patch", "update", "delete"]
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
+                    args:
+                      - -c
+                      - ./experiments -name pod-delete
+                    command:
+                      - /bin/bash
+                    env:
+                      - name: TOTAL_CHAOS_DURATION
+                        value: "15"
+
+                      - name: RAMP_TIME
+                        value: ""
+
+                      - name: FORCE
+                        value: "true"
+
+                      - name: CHAOS_INTERVAL
+                        value: "5"
+
+                      - name: PODS_AFFECTED_PERC
+                        value: ""
+
+                      - name: TARGET_CONTAINER
+                        value: ""
+
+                      - name: TARGET_PODS
+                        value: ""
+
+                      - name: DEFAULT_HEALTH_CHECK
+                        value: "false"
+
+                      - name: NODE_LABEL
+                        value: ""
+
+                      - name: SEQUENCE
+                        value: "parallel"
+
+                    labels:
+                      name: pod-delete
+                      app.kubernetes.io/part-of: litmus
+                      app.kubernetes.io/component: experiment-job
+                      app.kubernetes.io/version: latest
+          - name: pod-cpu-hog-fault
+            path: /tmp/pod-cpu-hog-fault.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                description:
+                  message: |
+                    Injects cpu consumption on pods belonging to the agent deployment
+                kind: ChaosExperiment
+                metadata:
+                  name: pod-cpu-hog
+                  labels:
+                    name: pod-cpu-hog
+                    app.kubernetes.io/part-of: litmus
+                    app.kubernetes.io/component: chaosexperiment
+                    app.kubernetes.io/version: latest
+                spec:
+                  definition:
+                    scope: Namespaced
+                    permissions:
+                      - apiGroups: [""]
+                        resources: ["pods"]
+                        verbs:
+                          [
+                            "create",
+                            "delete",
+                            "get",
+                            "list",
+                            "patch",
+                            "update",
+                            "deletecollection",
+                          ]
+                      - apiGroups: [""]
+                        resources: ["events"]
+                        verbs: ["create", "get", "list", "patch", "update"]
+                      - apiGroups: [""]
+                        resources: ["configmaps"]
+                        verbs: ["get", "list"]
+                      - apiGroups: [""]
+                        resources: ["pods/log"]
+                        verbs: ["get", "list", "watch"]
+                      - apiGroups: [""]
+                        resources: ["pods/exec"]
+                        verbs: ["get", "list", "create"]
+                      - apiGroups: ["apps"]
+                        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+                        verbs: ["list", "get"]
+                      - apiGroups: ["batch"]
+                        resources: ["jobs"]
+                        verbs: ["create", "list", "get", "delete", "deletecollection"]
+                      - apiGroups: ["litmuschaos.io"]
+                        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+                        verbs: ["create", "list", "get", "patch", "update", "delete"]
+                    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+                    imagePullPolicy: Always
+                    args:
+                      - -c
+                      - ./experiments -name pod-cpu-hog
+                    command:
+                      - /bin/bash
+                    env:
+                      - name: TOTAL_CHAOS_DURATION
+                        value: "60"
+
+                      - name: CPU_CORES
+                        value: "1"
+
+                      - name: CPU_LOAD
+                        value: "100"
+
+                      - name: PODS_AFFECTED_PERC
+                        value: ""
+
+                      - name: RAMP_TIME
+                        value: ""
+
+                      - name: LIB_IMAGE
+                        value: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+
+                      - name: STRESS_IMAGE
+                        value: "alexeiled/stress-ng:latest-ubuntu"
+
+                      - name: CONTAINER_RUNTIME
+                        value: "containerd"
+
+                      - name: SOCKET_PATH
+                        value: "/run/containerd/containerd.sock"
+
+                      - name: TARGET_PODS
+                        value: ""
+
+                      - name: TARGET_CONTAINER
+                        value: ""
+
+                      - name: NODE_LABEL
+                        value: ""
+
+                      - name: SEQUENCE
+                        value: "parallel"
+
+                      - name: DEFAULT_HEALTH_CHECK
+                        value: "false"
+
+                    labels:
+                      name: pod-cpu-hog
+                      app.kubernetes.io/part-of: litmus
+                      app.kubernetes.io/component: experiment-job
+                      app.kubernetes.io/version: latest
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args:
+          [
+            "kubectl apply -f /tmp/pod-delete-fault.yaml -n {{workflow.parameters.adminModeNamespace}} && kubectl apply -f /tmp/pod-cpu-hog-fault.yaml -n {{workflow.parameters.adminModeNamespace}}",
+          ]
+
+    - name: pod-delete
+      inputs:
+        artifacts:
+          - name: pod-delete-chaos
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: flash-agent-pod-delete-chaos
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
+                  labels:
+                    context: "flash-agent"
+                spec:
+                  appinfo:
+                    appns: '{{workflow.parameters.appNamespace}}'
+                    applabel: '{{workflow.parameters.appLabel}}'
+                    appkind: 'deployment'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-delete
+                      spec:
+                        probe:
+                        - name: "check-flash-agent-status"
+                          type: "k8sProbe"
+                          k8sProbe/inputs:
+                            group: ""
+                            version: "v1"
+                            resource: "pods"
+                            namespace: "{{workflow.parameters.appNamespace}}"
+                            fieldSelector: "status.phase=Running"
+                            labelSelector: "{{workflow.parameters.appLabel}}"
+                            operation: "present"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 1s
+                            interval: 100ms
+                            attempt: 1
+                            probePollingInterval: 1s
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '{{workflow.parameters.podDeleteDuration}}'
+                            - name: CHAOS_INTERVAL
+                              value: '{{workflow.parameters.podDeleteInterval}}'
+                            - name: FORCE
+                              value: 'true'
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
+    - name: pod-cpu-hog
+      inputs:
+        artifacts:
+          - name: pod-cpu-hog-chaos
+            path: /tmp/chaosengine.yaml
+            raw:
+              data: |
+                apiVersion: litmuschaos.io/v1alpha1
+                kind: ChaosEngine
+                metadata:
+                  name: flash-agent-pod-cpu-hog-chaos
+                  namespace: "{{workflow.parameters.adminModeNamespace}}"
+                  labels:
+                    context: "flash-agent"
+                spec:
+                  appinfo:
+                    appns: '{{workflow.parameters.appNamespace}}'
+                    applabel: '{{workflow.parameters.appLabel}}'
+                    appkind: 'deployment'
+                  engineState: 'active'
+                  chaosServiceAccount: litmus-admin
+                  jobCleanUpPolicy: 'retain'
+                  components:
+                    runner:
+                      imagePullPolicy: Always
+                  experiments:
+                    - name: pod-cpu-hog
+                      spec:
+                        probe:
+                        - name: "check-flash-agent-status"
+                          type: "k8sProbe"
+                          k8sProbe/inputs:
+                            group: ""
+                            version: "v1"
+                            resource: "pods"
+                            namespace: "{{workflow.parameters.appNamespace}}"
+                            fieldSelector: "status.phase=Running"
+                            labelSelector: "{{workflow.parameters.appLabel}}"
+                            operation: "present"
+                          mode: "Continuous"
+                          runProperties:
+                            probeTimeout: 1s
+                            interval: 100ms
+                            attempt: 1
+                            probePollingInterval: 1s
+                        components:
+                          env:
+                            - name: TOTAL_CHAOS_DURATION
+                              value: '{{workflow.parameters.cpuHogDuration}}'
+                            - name: CPU_CORES
+                              value: '{{workflow.parameters.cpuHogCores}}'
+                            - name: CPU_LOAD
+                              value: '{{workflow.parameters.cpuHogLoad}}'
+      container:
+        image: litmuschaos/litmus-checker:latest
+        args: ["-file=/tmp/chaosengine.yaml","-saveName=/tmp/engine-name"]
+
+    - name: cleanup-chaos-resources
+      container:
+        image: litmuschaos/k8s:latest
+        command: [sh, -c]
+        args:
+          [
+            "kubectl delete chaosengine flash-agent-pod-delete-chaos flash-agent-pod-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+          ]

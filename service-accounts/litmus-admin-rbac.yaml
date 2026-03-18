@@ -14,15 +14,38 @@ metadata:
   labels:
     name: litmus-admin
 rules:
+# Core chaos experiment resources
 - apiGroups: ["","apps","batch","extensions","litmuschaos.io"]
-  resources: ["pods","pods/exec","pods/eviction","jobs","daemonsets","events","chaosresults","chaosengines"]
-  verbs: ["create","delete","get","list","patch","update", "deletecollection"]
-- apiGroups: ["","apps","litmuschaos.io"]
-  resources: ["configmaps","secrets","services","chaosexperiments","pods/log","replicasets","deployments","statefulsets","services"]
-  verbs: ["get","list","patch","update"]
+  resources: ["pods","pods/exec","pods/eviction","jobs","cronjobs","events","chaosresults","chaosengines"]
+  verbs: ["create","delete","get","list","patch","update","deletecollection","watch"]
+- apiGroups: ["litmuschaos.io"]
+  resources: ["chaosexperiments"]
+  verbs: ["create","list","get","patch","update","delete"]
+- apiGroups: [""]
+  resources: ["pods/log","pods/status"]
+  verbs: ["get","list","watch"]
+- apiGroups: [""]
+  resources: ["configmaps"]
+  verbs: ["create","get","list"]
 - apiGroups: [""]
   resources: ["nodes"]
   verbs: ["get","list","patch","update"]
+# For install/uninstall application and agent faults
+- apiGroups: [""]
+  resources: ["namespaces"]
+  verbs: ["create","get","list","delete","patch","update"]
+- apiGroups: [""]
+  resources: ["services","serviceaccounts","secrets"]
+  verbs: ["create","get","list","delete"]
+- apiGroups: ["apps"]
+  resources: ["deployments","statefulsets","replicasets","daemonsets"]
+  verbs: ["create","get","list","delete","patch","update","watch"]
+- apiGroups: ["rbac.authorization.k8s.io"]
+  resources: ["roles","rolebindings","clusterroles","clusterrolebindings"]
+  verbs: ["create","get","list","delete"]
+- apiGroups: [""]
+  resources: ["persistentvolumeclaims"]
+  verbs: ["get","list","delete"]
 ---
 apiVersion: rbac.authorization.k8s.io/v1
 kind: ClusterRoleBinding

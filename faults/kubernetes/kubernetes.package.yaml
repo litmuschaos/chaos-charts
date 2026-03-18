@@ -91,12 +91,18 @@ faults:
   - name: pod-http-reset-peer
     CSV: pod-http-reset-peer.chartserviceversion.yaml
     desc: "pod-http-reset-peer"
-  - name: node-network-latency
-    CSV: node-network-latency.chartserviceversion.yaml
-    desc: "node-network-latency"
-  - name: node-network-loss
-    CSV: node-network-loss.chartserviceversion.yaml
-    desc: "node-network-loss"
   - name: pod-network-rate-limit
     CSV: pod-network-rate-limit.chartserviceversion.yaml
     desc: "pod-network-rate-limit"
+  - name: install-application
+    CSV: install-application.chartserviceversion.yaml
+    desc: "install-application"
+  - name: install-agent
+    CSV: install-agent.chartserviceversion.yaml
+    desc: "install-agent"
+  - name: uninstall-application
+    CSV: uninstall-application.chartserviceversion.yaml
+    desc: "uninstall-application"
+  - name: uninstall-agent
+    CSV: uninstall-agent.chartserviceversion.yaml
+    desc: "uninstall-agent"

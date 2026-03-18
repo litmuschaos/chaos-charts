@@ -1,0 +1,30 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: flash-agent
+  version: 0.1.0
+  annotations:
+    categories: flash-agent
+    chartDescription: Injects chaos on Flash Agent AI application deployed in the sock-shop namespace.
+spec:
+  displayName: Flash Agent
+  categoryDescription: >
+    It installs Flash Agent AI application into the sock-shop namespace, injects chaos on the agent, and cleans up chaos resources.
+  faults:
+    - name: flash-agent
+      description: Injects chaos on Flash Agent AI application.
+  keywords:
+    - Kubernetes
+    - AI Agent
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - OpenShift(OKD)
+    - Kind
+  icon:
+    - url:
+      mediatype: ""

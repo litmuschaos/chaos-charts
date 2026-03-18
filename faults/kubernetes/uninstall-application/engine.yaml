@@ -1,0 +1,32 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: uninstall-application-chaos
+  namespace: default
+  annotations:
+    probeRef: '[]'
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: uninstall-application-sa
+  experiments:
+    - name: uninstall-application
+      spec:
+        components:
+          env:
+            # folder name containing the application manifests
+            - name: FOLDER
+              value: 'sock-shop'
+
+            # target namespace for application removal
+            - name: NAMESPACE
+              value: 'sock-shop'
+
+            # whether to delete the namespace after removing the application
+            - name: DELETE_NAMESPACE
+              value: 'true'
+
+            # timeout for the operation
+            - name: TIMEOUT
+              value: '5m'

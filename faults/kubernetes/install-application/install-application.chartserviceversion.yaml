@@ -1,0 +1,45 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: install-application
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Install Application
+  categoryDescription: |
+    Install Application fault deploys applications into the Kubernetes cluster for chaos testing.
+    - Deploys target applications (such as bank-of-anthos) into the specified namespace.
+    - Supports different deployment types (resilient/weak) for testing various scenarios.
+    - Can be used as a pre-chaos step to set up the target application before running chaos experiments.
+  keywords:
+    - Kubernetes
+    - Application Deployment
+    - Setup
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+  experiments:
+    - install-application
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

@@ -1,0 +1,128 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Installs/deploys an AI agent into the Kubernetes cluster for chaos testing
+kind: ChaosExperiment
+metadata:
+  name: install-agent
+  annotations:
+    probeRef: '[]'
+  labels:
+    name: install-agent
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: ci
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create", "get", "list", "patch", "update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get", "list"]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get", "list", "watch"]
+      # for creating and managing to execute commands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get", "list", "create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create", "list", "get", "delete", "deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+        verbs: ["create", "list", "get", "patch", "update", "delete"]
+      # for deploying agents - namespaces
+      - apiGroups: [""]
+        resources: ["namespaces"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying agents - services
+      - apiGroups: [""]
+        resources: ["services"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying agents - deployments
+      - apiGroups: ["apps"]
+        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+        verbs: ["create", "get", "list", "delete", "patch", "update"]
+      # for deploying agents - serviceaccounts
+      - apiGroups: [""]
+        resources: ["serviceaccounts"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying agents - secrets
+      - apiGroups: [""]
+        resources: ["secrets"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying agents - roles and rolebindings
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+        verbs: ["create", "get", "list", "delete"]
+    image: "docker.io/agentcert/agentcert-install-agent:latest"
+    imagePullPolicy: Always
+    command:
+      - /usr/local/bin/install-agent
+    args:
+      - -folder=$(FOLDER)
+      - -namespace=$(NAMESPACE)
+      - -create-namespace
+      - -timeout=$(TIMEOUT)
+      - --set=config.litellmUrl=$(LITELLM_URL)
+      - --set=config.litellmMasterKey=$(LITELLM_MASTER_KEY)
+      - --set=config.litellmModel=$(LITELLM_MODEL)
+      - --set=config.otelEndpoint=$(OTEL_ENDPOINT)
+      - --set=config.scanInterval=$(SCAN_INTERVAL)
+      - --set=config.logLines=$(LOG_LINES)
+    env:
+      - name: FOLDER
+        value: ""
+
+      - name: NAMESPACE
+        value: ""
+
+      - name: TIMEOUT
+        value: "10m"
+
+      - name: LITELLM_URL
+        value: ""
+
+      - name: LITELLM_MASTER_KEY
+        value: ""
+
+      - name: LITELLM_MODEL
+        value: ""
+
+      - name: OTEL_ENDPOINT
+        value: ""
+
+      - name: SCAN_INTERVAL
+        value: "60"
+
+      - name: LOG_LINES
+        value: "100"
+
+    labels:
+      name: install-agent
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: ci

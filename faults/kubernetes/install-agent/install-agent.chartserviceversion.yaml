@@ -1,0 +1,46 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: install-agent
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: AgentCert
+spec:
+  displayName: Install Agent
+  categoryDescription: |
+    Install Agent fault deploys AI agents into the Kubernetes cluster for chaos testing.
+    - Deploys target agents (such as flash-agent) into the specified namespace.
+    - Uses Helm charts from the agent-charts repository to install the agent.
+    - Can be used as a pre-chaos step to set up the target agent before running chaos experiments.
+  keywords:
+    - Kubernetes
+    - Agent Deployment
+    - AI Agent
+    - Setup
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  maintainers:
+    - name: chetana
+      email: archetana@gmail.com
+  experiments:
+    - install-agent
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

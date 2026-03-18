@@ -1,0 +1,28 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: uninstall-agent-chaos
+  namespace: default
+  annotations:
+    probeRef: '[]'
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: uninstall-agent-sa
+  experiments:
+    - name: uninstall-agent
+      spec:
+        components:
+          env:
+            # folder name containing the agent manifests
+            - name: FOLDER
+              value: 'flash-agent'
+
+            # target namespace for agent removal
+            - name: NAMESPACE
+              value: 'sock-shop'
+
+            # timeout for the operation
+            - name: TIMEOUT
+              value: '5m'

@@ -1,0 +1,28 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: install-application-chaos
+  namespace: default
+  annotations:
+    probeRef: '[]'
+spec:
+  # It can be active/stop
+  engineState: 'active'
+  chaosServiceAccount: install-application-sa
+  experiments:
+    - name: install-application
+      spec:
+        components:
+          env:
+            # folder name containing the Helm chart
+            - name: FOLDER
+              value: 'sock-shop'
+
+            # target namespace for application deployment
+            - name: NAMESPACE
+              value: 'sock-shop'
+
+            # timeout for the operation
+            - name: TIMEOUT
+              value: '5m'

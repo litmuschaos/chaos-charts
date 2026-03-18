@@ -1,0 +1,105 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    Installs/deploys an application into the Kubernetes cluster for chaos testing
+kind: ChaosExperiment
+metadata:
+  name: install-application
+  annotations:
+    probeRef: '[]'
+  labels:
+    name: install-application
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: ci
+spec:
+  definition:
+    scope: Cluster
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create", "get", "list", "patch", "update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get", "list"]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get", "list", "watch"]
+      # for creating and managing to execute commands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get", "list", "create"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create", "list", "get", "delete", "deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+        verbs: ["create", "list", "get", "patch", "update", "delete"]
+      # for deploying applications - namespaces
+      - apiGroups: [""]
+        resources: ["namespaces"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying applications - services
+      - apiGroups: [""]
+        resources: ["services"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying applications - deployments
+      - apiGroups: ["apps"]
+        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+        verbs: ["create", "get", "list", "delete", "patch", "update"]
+      # for deploying applications - serviceaccounts
+      - apiGroups: [""]
+        resources: ["serviceaccounts"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying applications - secrets
+      - apiGroups: [""]
+        resources: ["secrets"]
+        verbs: ["create", "get", "list", "delete"]
+      # for deploying applications - roles and rolebindings
+      - apiGroups: ["rbac.authorization.k8s.io"]
+        resources: ["roles", "rolebindings", "clusterroles", "clusterrolebindings"]
+        verbs: ["create", "get", "list", "delete"]
+    image: "docker.io/agentcert/agentcert-install-app:latest"
+    imagePullPolicy: Always
+    command:
+      - /usr/local/bin/install-app
+    args:
+      - -folder=sock-shop
+      - -namespace=sock-shop
+      - -create-namespace
+      - -wait
+      - -timeout=5m
+    env:
+      - name: FOLDER
+        value: "sock-shop"
+
+      - name: NAMESPACE
+        value: "sock-shop"
+
+      - name: TIMEOUT
+        value: "5m"
+
+    labels:
+      name: install-application
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: ci
