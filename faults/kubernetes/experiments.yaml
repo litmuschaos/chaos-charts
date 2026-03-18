@@ -4208,7 +4208,7 @@ spec:
 
       # OpenAI API base URL
       - name: OPENAI_BASE_URL
-        value: "https://api.openai.com/v1"
+        value: "http://litellm.litellm.svc.cluster.local:4000/v1"
 
       # OpenTelemetry endpoint for tracing
       - name: OTEL_ENDPOINT
