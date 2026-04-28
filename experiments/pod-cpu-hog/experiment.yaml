@@ -4,7 +4,7 @@ metadata:
   name: argowf-chaos-pod-cpu-hog
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_kube-proxy"
+    subject: "{{workflow.parameters.appNamespace}}_pod-cpu-hog"
 spec:
   entrypoint: argowf-chaos
   serviceAccountName: argo-chaos
@@ -16,7 +16,11 @@ spec:
       - name: adminModeNamespace
         value: "litmus"
       - name: appNamespace
-        value: "kube-system"
+        value: "default"
+      - name: appLabel
+        value: "app=my-app"
+      - name: appKind
+        value: "deployment"
   templates:
     - name: argowf-chaos
       steps:
@@ -113,16 +117,16 @@ spec:
                 apiVersion: litmuschaos.io/v1alpha1
                 kind: ChaosEngine
                 metadata:
-                  name: kube-proxy-pod-cpu-hog-chaos
+                  name: pod-cpu-hog-chaos
                   namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
-                    context: "{{workflow.parameters.appNamespace}}_kube-proxy"
+                    context: "{{workflow.parameters.appNamespace}}_pod-cpu-hog"
                   annotations: {}
                 spec:
                   appinfo:
-                    appns: kube-system
-                    applabel: "k8s-app=kube-proxy"
-                    appkind: daemonset
+                    appns: "{{workflow.parameters.appNamespace}}"
+                    applabel: "{{workflow.parameters.appLabel}}"
+                    appkind: "{{workflow.parameters.appKind}}"
                   jobCleanUpPolicy: retain
                   engineState: 'active'
                   chaosServiceAccount: litmus-admin
@@ -132,7 +136,7 @@ spec:
                         components:
                           env:
                             - name: TARGET_CONTAINER
-                              value: 'kube-proxy'
+                              value: ''
 
                             - name: CPU_CORES
                               value: '1'
@@ -152,5 +156,5 @@ spec:
         command: [sh, -c]
         args:
           [
-            "kubectl delete chaosengine kube-proxy-pod-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine pod-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
