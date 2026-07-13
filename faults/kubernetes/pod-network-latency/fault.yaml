@@ -128,6 +128,11 @@ spec:
       - name: DESTINATION_HOSTS
         value: ""
 
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
+        value: ""
+
       # provide the socket file path
       - name: SOCKET_PATH
         value: "/run/containerd/containerd.sock"

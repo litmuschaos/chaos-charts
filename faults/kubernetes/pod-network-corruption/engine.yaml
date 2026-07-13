@@ -31,6 +31,11 @@ spec:
             - name: SOCKET_PATH
               value: '/run/containerd/containerd.sock'
 
+            # provide the destination ports
+            # chaos injection will be triggered for these destination ports
+            - name: DESTINATION_PORTS
+              value: ''
+
             - name: NETWORK_PACKET_CORRUPTION_PERCENTAGE
               value: '100' #in PERCENTAGE
 
