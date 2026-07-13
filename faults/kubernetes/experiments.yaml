@@ -84,6 +84,11 @@ spec:
       - name: DESTINATION_HOSTS
         value: ""
 
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
+        value: ""
+
       # provide network policy type
       # support ingress, egress, all values
       - name: POLICY_TYPES
@@ -856,6 +861,11 @@ spec:
       - name: DESTINATION_HOSTS
         value: ""
 
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
+        value: ""
+
       # provide the socket file path
       - name: SOCKET_PATH
         value: "/run/containerd/containerd.sock"
@@ -1431,6 +1441,11 @@ spec:
       - name: DESTINATION_HOSTS
         value: ""
 
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
+        value: ""
+
       # provide the socket file path
       - name: SOCKET_PATH
         value: "/run/containerd/containerd.sock"
@@ -1965,6 +1980,11 @@ spec:
       - name: DESTINATION_HOSTS
         value: ""
 
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
+        value: ""
+
       # provide the socket file path
       - name: SOCKET_PATH
         value: "/run/containerd/containerd.sock"
@@ -2333,6 +2353,11 @@ spec:
       # provide the destination hosts
       # chaos injection will be triggered for these destination hosts
       - name: DESTINATION_HOSTS
+        value: ""
+
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
         value: ""
 
       # provide the socket file path
@@ -3537,6 +3562,11 @@ spec:
       # provide the destination hosts
       # chaos injection will be triggered for these destination hosts
       - name: DESTINATION_HOSTS
+        value: ""
+
+      # provide the destination ports
+      # chaos injection will be triggered for these destination ports
+      - name: DESTINATION_PORTS
         value: ""
 
       # provide the socket file path
