@@ -117,7 +117,7 @@ spec:
                 apiVersion: litmuschaos.io/v1alpha1
                 kind: ChaosEngine
                 metadata:
-                  name: kube-proxy-node-cpu-hog-chaos
+                  name: node-cpu-hog-chaos
                   namespace: "{{workflow.parameters.adminModeNamespace}}"
                   labels:
                     context: "{{workflow.parameters.context}}"
@@ -146,5 +146,5 @@ spec:
         command: [sh, -c]
         args:
           [
-            "kubectl delete chaosengine kube-proxy-node-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
+            "kubectl delete chaosengine node-cpu-hog-chaos -n {{workflow.parameters.adminModeNamespace}}",
           ]
