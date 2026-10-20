@@ -103,6 +103,9 @@ spec:
     - name: pod-http-reset-peer
       description: It injects pod-http-reset-peer chaos in a Kubernetes pod.
       displayName: "Pod HTTP Reset Peer"
+    - name: pod-network-rate-limit
+      description: It injects pod-network-rate-limit chaos in a Kubernetes pod.
+      displayName: "Pod Network Rate Limit"
   keywords:
     - Kubernetes
   maintainers:

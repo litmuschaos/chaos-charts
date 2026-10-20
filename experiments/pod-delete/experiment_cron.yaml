@@ -4,7 +4,7 @@ metadata:
   name: argo-chaos-pod-delete-cron-wf
   namespace: litmus
   labels:
-    subject: "{{workflow.parameters.appNamespace}}_kube-proxy"
+    subject: "{{workflow.parameters.appNamespace}}_pod-delete"
 spec:
   schedule: "0 * * * *"
   concurrencyPolicy: "Forbid"
@@ -20,7 +20,11 @@ spec:
         - name: adminModeNamespace
           value: "litmus"
         - name: appNamespace
-          value: "kube-system"
+          value: "default"
+        - name: appLabel
+          value: "app=my-app"
+        - name: appKind
+          value: "deployment"
     templates:
       - name: argowf-chaos
         steps:
@@ -124,16 +128,16 @@ spec:
                   apiVersion: litmuschaos.io/v1alpha1
                   kind: ChaosEngine
                   metadata:
-                    name: kube-proxy-pod-delete-chaos
+                    name: pod-delete-chaos
                     namespace: "{{workflow.parameters.adminModeNamespace}}"
                     labels:
-                      context: "{{workflow.parameters.appNamespace}}_kube-proxy"
+                      context: "{{workflow.parameters.appNamespace}}_pod-delete"
                     annotations: {}
                   spec:
                     appinfo:
-                      appns: kube-system
-                      applabel: "k8s-app=kube-proxy"
-                      appkind: daemonset
+                      appns: "{{workflow.parameters.appNamespace}}"
+                      applabel: "{{workflow.parameters.appLabel}}"
+                      appkind: "{{workflow.parameters.appKind}}"
                     jobCleanUpPolicy: retain
                     engineState: 'active'
                     chaosServiceAccount: litmus-admin
@@ -158,5 +162,5 @@ spec:
           command: [sh, -c]
           args:
             [
-              "kubectl delete chaosengine kube-proxy-pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
+              "kubectl delete chaosengine pod-delete-chaos -n {{workflow.parameters.adminModeNamespace}}",
             ]
