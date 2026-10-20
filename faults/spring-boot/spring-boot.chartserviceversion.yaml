@@ -1,0 +1,49 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: spring-boot
+  version: 0.1.0
+  annotations:
+    categories: Spring Boot
+    chartDescription: Injects spring boot chaos
+spec:
+  displayName: Spring Boot
+  categoryDescription: >
+    It contains chaos to disrupt state of spring-boot application.
+  faults:
+    - name: spring-boot-app-kill
+      description: It injects app-kill chaos in a spring-boot application.
+      displayName: "Spring Boot App Kill"
+    - name: spring-boot-cpu-stress
+      description: It injects cpu-stress chaos in a spring-boot application.
+      displayName: "Spring Boot CPU Stress"
+    - name: spring-boot-memory-stress
+      description: It injects memory-stress chaos in a spring-boot application.
+      displayName: "Spring Boot Memory Stress"
+    - name: spring-boot-latency
+      description: It injects network-latency chaos in a spring-boot application.
+      displayName: "Spring Boot Latency"
+    - name: spring-boot-exceptions
+      description: It injects exceptions chaos in a spring-boot application.
+      displayName: "Spring Boot Exceptions"
+    - name: spring-boot-faults
+      description: It injects faults in a spring-boot application.
+      displayName: "Spring Boot Faults"
+  keywords:
+    - Kubernetes
+    - Spring Boot
+    - K8S
+    - Pod
+  maintainers:
+    - name: Stephane Cazeaux
+      email: stephane.cazeaux@orange.com
+    - name: Shubham Chaudhary
+      email: shubham.chaudhary@harness.io
+  minKubeVersion: 1.12.0
+  links:
+    - name: Documentation
+      url: https://spring.io/projects/spring-boot
+  icon:
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/spring-boot/icons/spring-boot.png
+      mediatype: image/png

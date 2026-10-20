@@ -1,0 +1,34 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-19T10:28:08Z
+  name: vmware-vm-poweroff
+  version: 0.1.0
+  annotations:
+    categories: VMWare
+    vendor: LitmusChaos
+spec:
+  displayName: VMware VM Power Off
+  categoryDescription: |
+    vm-poweroff fault Power-Offs the target VMs for a certain chaos duration and then bring back to Power-On state.
+    - This fault helps verify the resiliency of the process/application that are running on the target instance.
+  keywords:
+    - VMware
+  platforms:
+    - VMware
+  maintainers:
+    - name: Delphine Joyneer
+      email: golkonda.joyneer@wipro.com
+    - name: Neelanjan Manna
+      email: neelanjan.manna@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

@@ -1,0 +1,36 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: kubelet-service-kill
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Kubelet Service Kill
+  categoryDescription: |
+    kubelet-service-kill fault kills the Kubelet service gracefully for a certain chaos duration.
+    - Replicas may be evicted or become unreachable on account on nodes turning unschedulable (Not Ready) due to Kubelet service kill.
+    - The application node should be healthy once chaos is stopped and the services are reaccessable.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

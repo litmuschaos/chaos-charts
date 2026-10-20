@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-27T10:28:08Z
+  name: aws-ssm-chaos-by-id
+  version: 0.1.0
+  annotations:
+    categories: AWS
+    vendor: LitmusChaos
+spec:
+  displayName: AWS SSM Chaos By ID
+  categoryDescription: |
+    AWS SSM Chaos By ID fault disrupts the state of infra resources. The fault induces chaos on AWS resources using Amazon SSM Run Command This is carried out by using SSM Docs that defines the actions performed by Systems Manager on your managed instances (having SSM agent installed) which let us perform chaos faults on resources.
+    - Causes chaos on AWS EC2 instances with given instance ID(s) using SSM docs for total chaos duration with the specified chaos interval.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the target application pod(if provided).
+  keywords:
+    - AWS
+  platforms:
+    - AWS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  chaosType: infra
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

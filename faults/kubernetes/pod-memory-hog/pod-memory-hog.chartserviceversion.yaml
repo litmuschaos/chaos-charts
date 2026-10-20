@@ -1,0 +1,42 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-memory-hog
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Pod Memory Hog
+  categoryDescription: |
+    Pod-Memory-Hog fault consumes memory resources of specified containers in Kubernetes pods.
+    - Causes memory resource consumption on specified application containers using cgroups and litmus nsutil that consume memory resources of the given target containers.
+    - It tests the application's resilience to potential slowness/unavailability of some replicas due to high memory load.
+    - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - OpenShift(OKD)
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  experiments:
+    - pod-memory-hog
+    - sock-shop
+    - sock-shop-promProbe
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

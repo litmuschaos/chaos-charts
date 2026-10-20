@@ -1,0 +1,28 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: sock-shop
+  version: 0.1.0
+  annotations:
+    categories: sock-shop
+    chartDescription: Injects chaos on Sock Shop application.
+spec:
+  displayName: Sock Shop
+  categoryDescription: >
+    It installs Sock Shop application, injects chaos on the application, uninstalls the application, and reverts the chaos
+  faults:
+    - name: sock-shop
+      description: Injects chaos on Sock Shop application.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - OpenShift(OKD)
+  icon:
+    - url:
+      mediatype: ""

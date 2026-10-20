@@ -1,0 +1,29 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2024-02-10T01:00:00Z
+  name: k6-loadgen
+  version: 0.1.0
+  annotations:
+    categories: Load
+    vendor: LitmusChaos
+spec:
+  displayName: k6 Load Generator
+  categoryDescription: |
+     k6 is an open-source load testing tool that makes performance testing easy and productive for engineering teams. You can easily run load testing through a single JS script. It's a modern alternative to LoadRunner, Grinder, and JMeter.
+  keywords:
+    - k6
+    - Load
+  platforms:
+    - kubernetes
+  maintainers:
+    - name: Namkyu Park
+      email: lak9348@gmail.com
+  minKubeVersion: 1.32.0
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

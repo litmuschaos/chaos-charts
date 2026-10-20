@@ -1,0 +1,27 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-dns-spoof
+  version: 0.1.0
+  annotations:
+    categories: kubernetes
+spec:
+  displayName: Pod DNS Spoof
+  categoryDescription: >
+    Pod DNS Spoof fault spoofs particular DNS requests in a target pod container to desired target hostnames.
+  keywords:
+    - Kubernetes
+  maintainers:
+    - name: gdsoumya
+      email: gdsoumya@gmail.com
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

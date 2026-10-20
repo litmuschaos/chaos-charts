@@ -1,0 +1,35 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-26T10:28:08Z
+  name: aws-az-chaos
+  version: 0.1.0
+  annotations:
+    categories: Kube AWS
+    vendor: LitmusChaos
+spec:
+  displayName: AWS AZ Chaos
+  categoryDescription: |
+    Execute AWS AZ chaos to detach the target zones from the load balancer for a certain chaos duration.
+  keywords:
+    - AWS
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+  maintainers:
+    - name: oumkale
+      email: imkaleoum@gmail.com
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

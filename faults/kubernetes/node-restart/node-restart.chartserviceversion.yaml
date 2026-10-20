@@ -1,0 +1,28 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: node-restart
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+spec:
+  displayName: Node Restart
+  categoryDescription: |
+    Node restart fault restarts a target node via SSH.
+  keywords:
+    - Kubernetes
+  platforms:
+    - KVM/LibVirt based K8s
+    - EKS
+  maintainers:
+    - name: machacekondra
+      email: machacek.ondra@gmail.com
+  chaosType: infra
+  minKubeVersion: 1.12.0
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

@@ -1,0 +1,27 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: bank-of-anthos
+  version: 0.1.0
+  annotations:
+    categories: bank-of-anthos
+    chartDescription: Injects pod network loss chaos in the bank of anthos application
+spec:
+  displayName: Bank of Anthos
+  categoryDescription: >
+    Injects pod network loss chaos in the bank of anthos application
+  faults:
+    - name: pod-network-loss
+      description: Injects network packet loss on pods belonging to an app deployment
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+    - AKS
+  icon:
+    - url:
+      mediatype: ""

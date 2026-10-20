@@ -1,0 +1,34 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-http-modify-header
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Pod HTTP Modify Header
+  categoryDescription: |
+    Pod-http-modify-header fault disrupts HTTP requests of kubernetes pods. This fault can modify headers of incoming requests or the response from the service targetted.
+    - Causes modification of request/response headers of the HTTP request.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served despite chaos.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Minikube
+    - EKS
+  maintainers:
+    - name: Akash Shrivastava
+      email: akash.shrivastava@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  icon:
+    - base64data: ""
+      mediatype: ""
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents

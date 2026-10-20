@@ -1,0 +1,6 @@
+---
+packageName: vmware
+faults:
+  - name: vm-poweroff
+    CSV: vm-poweroff.chartserviceversion.yaml
+    desc: "vm-poweroff"

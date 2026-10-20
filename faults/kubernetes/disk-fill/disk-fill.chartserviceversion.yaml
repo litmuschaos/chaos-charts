@@ -1,0 +1,40 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: disk-fill
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: Disk Fill
+  categoryDescription: |
+    Disk fill fault disrupts state of kubernetes resources.
+    - Causes (forced/graceful) Disk Stress by filling up the Ephemeral Storage of the Pod using one of it containers.
+    - Causes Pod to get Evicted if the Pod exceeds it Ephemeral Storage Limit.
+    - Tests the Ephemeral Storage Limits, to ensure those parameters are sufficient.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+  experiments:
+    - sock-shop
+    - sock-shop-promProbe
+  chaosType: infra
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

@@ -1,0 +1,36 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-io-stress
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Pod IO Stress
+  categoryDescription: |
+    This fault causes disk IO stress on the application pod. It aims to verify the resiliency of applications that share this disk resource for ephemeral or persistent storage purposes.
+    - Consumes the disk available by executing filesystem IO stress as available memory or by providing the value in GB.
+    - The application pod should be healthy once chaos is stopped. Expectation is that service-requests should be served despite chaos.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

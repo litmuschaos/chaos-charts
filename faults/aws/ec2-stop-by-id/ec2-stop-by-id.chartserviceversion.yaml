@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-27T10:28:08Z
+  name: ec2-stop-by-id
+  version: 0.1.0
+  annotations:
+    categories: AWS
+    vendor: LitmusChaos
+spec:
+  displayName: EC2 Stop By ID
+  categoryDescription: |
+    This fault causes termination of an EC2 instance for a certain chaos duration.
+    - Causes termination of an EC2 instance provided by instance ID before bringing it back to running state after the specified chaos duration.
+    - It helps to check the performance of the application on the EC2 instances.
+  keywords:
+    - AWS
+  platforms:
+    - AWS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  chaosType: infra
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

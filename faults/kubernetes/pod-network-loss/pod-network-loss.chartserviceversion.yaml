@@ -1,0 +1,39 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-network-loss
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Pod Network Loss
+  categoryDescription: |
+    Pod-network-loss fault disrupts network connectivity to kubernetes pods. This fault injects percentage packet loss on the app replica pods.
+    - Causes loss of access to application replica by injecting packet loss using Pumba.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Minikube
+    - Packet(Kubeadm)
+    - EKS
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+  experiments:
+    - bank-of-anthos
+    - sock-shop
+    - sock-shop-promProbe
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

@@ -1,0 +1,38 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2020-01-07T10:28:08Z
+  name: pod-network-corruption
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+    support: https://slack.kubernetes.io/
+spec:
+  displayName: Pod Network Corruption
+  categoryDescription: |
+    Pod-network-corruption fault disrupts network connectivity to kubernetes pods. This fault injects percentage packet corruption on the app replica pods.
+    - Causes packet corruption of application replica by injecting packet corruption using Pumba.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served (say, via alternate replicas) despite chaos.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+  maintainers:
+    - name: LaumiH
+      email: laura-marie.henning@stud.h-da.de
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

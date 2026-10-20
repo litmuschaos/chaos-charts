@@ -1,0 +1,31 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-http-status-code
+  version: 0.1.0
+  annotations:
+    categories: kubernetes
+spec:
+  displayName: Pod HTTP Status Code
+  categoryDescription: >
+    pod-http-status-code fault disrupts HTTP requests of kubernetes pods. This fault can modify the status code of the response on the service targetted.
+    - Causes modification of status code of the HTTP request.
+    - The application pod should be healthy once chaos is stopped. Service-requests should be served despite chaos.
+  keywords:
+    - kubernetes
+  platforms:
+    - "Minikube"
+  maintainers:
+    - name: Akash Shrivastava
+      email: akash.shrivastava@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

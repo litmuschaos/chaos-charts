@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: docker-service-kill
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Docker Service Kill
+  categoryDescription: |
+    docker-service-kill fault kills the Docker service gracefully for a certain chaos duration.
+    - Causes replicas to be evicted or become unreachable on account of nodes turning unschedulable (Not Ready) due to Docker service kill.
+    - The application node should be healthy once the chaos is stopped and the services are re-accessable.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - AKS
+  maintainers:
+    - name: Ankur Ghosh
+      email: ankur.ghosh3@wipro.com
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - base64data: ""
+      mediatype: ""

@@ -1,0 +1,45 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp
+  version: 0.1.0
+  annotations:
+    categories: GCP
+    chartDescription: Injects faults on GCP services
+    executionPlane: "kubernetes"
+spec:
+  displayName: GCP
+  categoryDescription: >
+    GCP fault disrupts state of GCP resources running part of the GCP services
+  faults:
+    - name: gcp-vm-instance-stop
+      description: It injects gcp-vm-instance-stop fault into GCP VMs.
+      displayName: "GCP VM Instance Stop"
+    - name: gcp-vm-instance-stop-by-label
+      description: It injects gcp-vm-instance-stop-by-label fault into GCP VMs.
+      displayName: "GCP VM Instance Stop By Label"
+    - name: gcp-vm-disk-loss-by-label
+      description: It injects gcp-vm-disk-loss-by-label fault into GCP VMs.
+      displayName: "GCP VM Disk Loss By Label"
+    - name: gcp-vm-disk-loss
+      description: It injects gcp-vm-disk-loss fault into GCP VMs.
+      displayName: "GCP VM Disk Loss"
+  keywords:
+    - GCP
+  maintainers:
+    - name: Neelanjan Manna
+      email: neelanjan.manna@harness.io
+  minKubeVersion: 1.12.0
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: Source Code
+      url: https://github.com/kubernetes/kubernetes
+    - name: Kubernetes Slack
+      url: https://slack.kubernetes.io/
+    - name: Documentation
+      url: "https://litmuschaos.github.io/litmus/experiments/categories/contents/#gcp"
+  icon:
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/gcp/icons/gcp.png
+      mediatype: image/png

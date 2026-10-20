@@ -1,0 +1,121 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+description:
+  message: |
+    It poweroff the VMware instance for a certain chaos duration.
+kind: ChaosExperiment
+metadata:
+  name: vmware-vm-poweroff
+  labels:
+    name: vmware-vm-poweroff
+    app.kubernetes.io/part-of: litmus
+    app.kubernetes.io/component: chaosexperiment
+    app.kubernetes.io/version: ci
+spec:
+  definition:
+    scope: Namespaced
+    permissions:
+      # Create and monitor the experiment & helper pods
+      - apiGroups: [""]
+        resources: ["pods"]
+        verbs:
+          [
+            "create",
+            "delete",
+            "get",
+            "list",
+            "patch",
+            "update",
+            "deletecollection",
+          ]
+      # Performs CRUD operations on the events inside chaosengine and chaosresult
+      - apiGroups: [""]
+        resources: ["events"]
+        verbs: ["create", "get", "list", "patch", "update"]
+      # Fetch configmaps details and mount it to the experiment pod (if specified)
+      - apiGroups: [""]
+        resources: ["configmaps"]
+        verbs: ["get", "list"]
+      # Track and get the runner, experiment, and helper pods log
+      - apiGroups: [""]
+        resources: ["pods/log"]
+        verbs: ["get", "list", "watch"]
+      # for creating and managing to execute commands inside target container
+      - apiGroups: [""]
+        resources: ["pods/exec"]
+        verbs: ["get", "list", "create"]
+      # deriving the parent/owner details of the pod(if parent is anyof {deployment, statefulset, daemonsets})
+      - apiGroups: ["apps"]
+        resources: ["deployments", "statefulsets", "replicasets", "daemonsets"]
+        verbs: ["list", "get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: ["apps.openshift.io"]
+        resources: ["deploymentconfigs"]
+        verbs: ["list", "get"]
+      # deriving the parent/owner details of the pod(if parent is deploymentConfig)
+      - apiGroups: [""]
+        resources: ["replicationcontrollers"]
+        verbs: ["get", "list"]
+      # deriving the parent/owner details of the pod(if parent is argo-rollouts)
+      - apiGroups: ["argoproj.io"]
+        resources: ["rollouts"]
+        verbs: ["list", "get"]
+      # for configuring and monitor the experiment job by the chaos-runner pod
+      - apiGroups: ["batch"]
+        resources: ["jobs"]
+        verbs: ["create", "list", "get", "delete", "deletecollection"]
+      # for creation, status polling and deletion of litmus chaos resources used within a chaos workflow
+      - apiGroups: ["litmuschaos.io"]
+        resources: ["chaosengines", "chaosexperiments", "chaosresults"]
+        verbs: ["create", "list", "get", "patch", "update", "delete"]
+    image: "litmuschaos.docker.scarf.sh/litmuschaos/go-runner:latest"
+    imagePullPolicy: Always
+    args:
+      - -c
+      - ./experiments -name vm-poweroff
+    command:
+      - /bin/bash
+    env:
+      - name: TOTAL_CHAOS_DURATION
+        value: "30"
+
+      - name: CHAOS_INTERVAL
+        value: "10"
+
+      - name: RAMP_TIME
+        value: ""
+
+      - name: VCENTERSERVER
+        valueFrom:
+          secretKeyRef:
+            name: vcenter-secret
+            key: VCENTERSERVER
+
+      - name: VCENTERUSER
+        valueFrom:
+          secretKeyRef:
+            name: vcenter-secret
+            key: VCENTERUSER
+
+      - name: VCENTERPASS
+        valueFrom:
+          secretKeyRef:
+            name: vcenter-secret
+            key: VCENTERPASS
+
+      - name: APP_VM_MOIDS
+        value: ""
+
+      - name: SEQUENCE
+        value: "parallel"
+
+      - name: DEFAULT_HEALTH_CHECK
+        value: "false"
+
+    labels:
+      name: vmware-vm-poweroff
+      app.kubernetes.io/part-of: litmus
+      app.kubernetes.io/component: experiment-job
+      app.kubernetes.io/version: ci
+
+---

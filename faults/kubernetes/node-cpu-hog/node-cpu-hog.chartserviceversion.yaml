@@ -1,0 +1,40 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: node-cpu-hog
+  version: 0.1.0
+  annotations:
+    categories: Kubernetes
+    vendor: LitmusChaos
+spec:
+  displayName: Node CPU Hog
+  categoryDescription: |
+    Node CPU hog fault disrupts the state of Kubernetes resources. This fault injects a CPU spike on a node where the application pod is scheduled.
+    - CPU hog on a particular node where the application deployment is available.
+    - After test, the recovery should be manual for the application pod and node in case they are not in an appropriate state.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  maintainers:
+    - name: ksatchit
+      email: karthik.s@harness.io
+  experiments:
+    - node-cpu-hog
+  chaosType: infra
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

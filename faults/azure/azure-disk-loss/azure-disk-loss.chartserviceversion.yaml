@@ -1,0 +1,27 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-18T10:28:08Z
+  name: azure-disk-loss
+  version: 0.1.0
+  annotations:
+    categories: Azure
+    vendor: LitmusChaos
+spec:
+  displayName: Azure Disk Loss
+  categoryDescription: |
+    This fault causes the detachment of the disk from the VM for a certain chaos duration.
+    - Causes detachment of the disk from the VM and then re-attachment of the disk to the VM.
+    - It helps to check the performance of the application on the instance.
+  keywords:
+    - Azure
+  platforms:
+    - Azure
+  maintainers:
+    - name: avaakash
+      email: akash.shrivastava@harness.io
+  minKubeVersion: 1.12.0
+  icon:
+    - url:
+      mediatype: ""

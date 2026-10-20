@@ -16,7 +16,7 @@ import (
 
 func main() {
 
-	directories, err := GetAllSubDirectories("./../charts")
+	directories, err := GetAllSubDirectories("./../faults")
 	if err != nil {
 		log.Fatalf("unable to get chart categories details, err: %v", err)
 	}
@@ -41,21 +41,21 @@ func main() {
 		// get the list of all sub-directories
 		subDirectories, err := GetAllSubDirectories(directory)
 		if err != nil {
-			log.Fatalf("unable to get experiment details, err: %v", err)
+			log.Fatalf("unable to get fault details, err: %v", err)
 		}
 
 		for _, subdirectory := range subDirectories {
-			isFileExist := IsFileExist(subdirectory + "/experiment.yaml")
+			isFileExist := IsFileExist(subdirectory + "/fault.yaml")
 			if isFileExist {
 
-				CRName, err := GetCRName(subdirectory + "/experiment.yaml")
+				CRName, err := GetCRName(subdirectory + "/fault.yaml")
 				if err != nil || CRName == "" {
-					log.Fatalf("unable to extract the CR name for %v file, err: %v", subdirectory+"/experiment.yaml", err)
+					log.Fatalf("unable to extract the CR name for %v file, err: %v", subdirectory+"/fault.yaml", err)
 				}
 
 				if !Contains(CRName, CRNames) {
-					if err := CopyData(filePath, subdirectory+"/experiment.yaml"); err != nil {
-						log.Fatalf("unable to copy data for %v experiment, err: %v", subdirectory, err)
+					if err := CopyData(filePath, subdirectory+"/fault.yaml"); err != nil {
+						log.Fatalf("unable to copy data for %v fault, err: %v", subdirectory, err)
 					}
 					CRNames = append(CRNames, CRName)
 				}

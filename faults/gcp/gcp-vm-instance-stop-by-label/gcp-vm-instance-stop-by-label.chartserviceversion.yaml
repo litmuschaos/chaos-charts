@@ -1,0 +1,30 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: gcp-vm-instance-stop-by-label
+  version: 0.1.0
+  annotations:
+    categories: GCP
+    vendor: LitmusChaos
+spec:
+  displayName: GCP VM Instance Stop By Label
+  categoryDescription: >
+    Stops GCP VM instances and GKE nodes filtered by a label for a specified duration and later restarts them.
+  keywords:
+    - GCP
+  platforms:
+    - "Minikube"
+  maintainers:
+    - name: Neelanjan Manna
+      email: neelanjan.manna@harness.io
+  minKubeVersion: 1.12.0
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

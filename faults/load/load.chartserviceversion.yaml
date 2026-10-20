@@ -1,0 +1,32 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: load
+  version: 0.1.0
+  annotations:
+    categories: Load
+    chartDescription: Injects load on the application
+    executionPlane: "kubernetes"
+spec:
+  displayName: Load
+  categoryDescription: >
+    Load chaos contains different chaos experiments to test the app/platform service availability. It will install all the experiments which can be used to inject load into the services like VMs, Pods and so on.
+  faults:
+    - name: k6-loadgen
+      description: It injects the load on the application using k6 load generator
+      displayName: "k6 Load Generator"
+  keywords:
+    - Load
+  maintainers:
+    - name: Namkyu Park
+      email: lak9348@gmail.com
+  minKubeVersion: 1.32.0
+  links:
+    - name: Kubernetes Website
+      url: https://kubernetes.io
+    - name: k6 Website
+      url: https://k6.io/
+  icon:
+    - url: https://github.com/litmuschaos/chaos-charts/blob/master/faults/load/icons/k6-loadgen.png
+      mediatype: image/png

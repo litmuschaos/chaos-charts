@@ -1,0 +1,83 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChaosEngine
+metadata:
+  name: nginx-network-chaos
+  namespace: default
+spec:
+  # It can be active/stop
+  engineState: "active"
+  terminationGracePeriodSeconds: 30
+  appinfo:
+    appns: ""
+    # FYI, To see app label, apply kubectl get pods --show-labels
+    applabel: ""
+    appkind: ""
+  chaosServiceAccount: pod-network-rate-limit-sa
+  experiments:
+    - name: pod-network-rate-limit
+      spec:
+        components:
+          env:
+            - name: TARGET_CONTAINER
+              value: ""
+
+            - name: NETWORK_INTERFACE
+              value: "eth0"
+
+            - name: NETWORK_BANDWIDTH
+              value: "1mbit"
+
+            - name: BURST
+              value: "32kb"
+
+            - name: LIMIT
+              value: "2mb"
+
+            - name: MIN_BURST
+              value: ""
+
+            - name: PEAK_RATE
+              value: ""
+
+            - name: TOTAL_CHAOS_DURATION
+              value: "60" # in seconds
+
+            # time period to wait before and after injection of chaos in sec
+            - name: RAMP_TIME
+              value: ""
+
+            ## percentage of total pods to target
+            - name: PODS_AFFECTED_PERC
+              value: ""
+
+            - name: TARGET_PODS
+              value: ""
+
+            # To select pods on specific node(s)
+            - name: NODE_LABEL
+              value: ""
+
+            # provide the name of container runtime
+            # it supports docker, containerd, crio
+            - name: CONTAINER_RUNTIME
+              value: "containerd"
+
+            # provide the destination ips
+            # chaos injection will be triggered for these destination ips
+            - name: DESTINATION_IPS
+              value: ""
+
+            # provide the destination hosts
+            # chaos injection will be triggered for these destination hosts
+            - name: DESTINATION_HOSTS
+              value: ""
+
+            # provide the socket file path
+            - name: SOCKET_PATH
+              value: "/run/containerd/containerd.sock"
+
+            ## it defines the sequence of chaos execution for multiple target pods
+            ## supported values: serial, parallel
+            - name: SEQUENCE
+              value: "parallel"

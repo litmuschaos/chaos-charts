@@ -1,0 +1,29 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-18T10:28:08Z
+  name: azure-instance-stop
+  version: 0.1.0
+  annotations:
+    categories: Azure
+    vendor: LitmusChaos
+spec:
+  displayName: Azure Instance Stop
+  categoryDescription: |
+    Azure instance stop fault disrupts the state of Azure instance. This fault injects Azure instances stop for a certain chaos duration.
+    - It helps to check the performance of the application/processes running on the Azure instance when subject to instance stop.
+  keywords:
+    - Azure
+  platforms:
+    - Azure
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  minKubeVersion: 1.12.0
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

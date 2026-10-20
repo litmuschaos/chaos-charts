@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  createdAt: 2022-07-28T10:28:08Z
+  name: ebs-loss-by-tag
+  version: 0.1.0
+  annotations:
+    categories: AWS
+    vendor: LitmusChaos
+spec:
+  displayName: EBS Loss By Tag
+  categoryDescription: |
+    EBS Loss By Tag fault disrupts state of infra resources. The fault induces EBS volume loss against specified application for given volume tag.
+    - Causes EBS volume loss by tag from node or EC2 instance for certain chaos interval from total chaos duration.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+  keywords:
+    - AWS
+  platforms:
+    - AWS
+  maintainers:
+    - name: Udit Gaurav
+      email: udit.gaurav@harness.io
+  chaosType: infra
+  labels:
+    app.kubernetes.io/component: chartserviceversion
+    app.kubernetes.io/version: ci
+  links:
+    - name: Documentation
+      url: https://litmuschaos.github.io/litmus/experiments/categories/contents
+  icon:
+    - url:
+      mediatype: ""

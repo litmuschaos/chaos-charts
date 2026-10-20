@@ -1,0 +1,33 @@
+---
+apiVersion: litmuschaos.io/v1alpha1
+kind: ChartServiceVersion
+metadata:
+  name: pod-delete
+  version: 0.1.0
+  annotations:
+    categories: pod-delete
+    chartDescription: Pod delete fault disrupts the state of Kubernetes resources. This fault injects random pod delete failures against specified application.
+spec:
+  displayName: Pod Delete
+  categoryDescription: >
+    Pod delete fault disrupts the state of Kubernetes resources. This fault injects random pod delete failures against specified application.
+    - Causes (forced/graceful) pod failure of random replicas of an application deployment.
+    - Tests deployment sanity (replica availability & uninterrupted service) and recovery workflows of the application pod.
+  faults:
+    - name: pod-delete
+      description: Pod delete fault disrupts the state of Kubernetes resources. This fault injects random pod delete failures against specified application.
+  keywords:
+    - Kubernetes
+  platforms:
+    - GKE
+    - Konvoy
+    - Packet(Kubeadm)
+    - Minikube
+    - EKS
+    - AKS
+    - Kind
+    - Rancher
+    - OpenShift(OKD)
+  icon:
+    - url:
+      mediatype: ""
