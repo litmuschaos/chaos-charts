@@ -93,7 +93,7 @@ spec:
 
       # The command to kill the chaos process
       - name: CHAOS_KILL_COMMAND
-        value: "kill $(find /proc -name exe -lname '*/dd' 2>&1 | grep -v 'Permission denied' | awk -F/ '{print $(NF-1)}' | head -n 1)"
+        value: "kill $(grep -lx dd /proc/[0-9]*/comm 2>/dev/null | awk -F/ '{print $3}' | head -n 1)"
 
       ## it defines the sequence of chaos execution for multiple target pods
       ## supported values: serial, parallel
